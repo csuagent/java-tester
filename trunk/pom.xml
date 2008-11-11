@@ -44,5 +44,12 @@
 			<artifactId>dbunit</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>5.8</version>
+			<classifier>jdk15</classifier>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
