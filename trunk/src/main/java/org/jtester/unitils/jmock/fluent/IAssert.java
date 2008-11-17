@@ -24,7 +24,7 @@ public interface IAssert<T, E extends IAssert<T, E>> {
 
 	public E in(T... values);
 
-	public E same(T value);
+	//public E same(T value);
 
 	public Assert<T, E> matcher();
 

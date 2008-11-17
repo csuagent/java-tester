@@ -7,7 +7,7 @@ public interface IStringAssert extends IAssert<String, IStringAssert> {
 
 	public IStringAssert startsWith(String expected);
 
-	public IStringAssert regular(String regular);
+//	public IStringAssert regular(String regular);
 
 	public IStringAssert eqIgnoreCase(String item);
 }

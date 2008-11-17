@@ -9,10 +9,10 @@ import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.jtester.unitils.jmock.fluent.IAssert;
 
-public abstract class BaseImplExpected<T, E extends IAssert<T, E>> extends Assert<T, E> implements IAssert<T, E> {
+public abstract class BaseAssert<T, E extends IAssert<T, E>> extends Assert<T, E> implements IAssert<T, E> {
 
 	@SuppressWarnings("unchecked")
-	public BaseImplExpected(Class<T> clazT, Class<? extends IAssert> clazE) {
+	public BaseAssert(Class<T> clazT, Class<? extends IAssert> clazE) {
 		super(clazT, clazE);
 	}
 

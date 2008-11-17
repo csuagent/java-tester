@@ -7,38 +7,38 @@ import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
 import org.jtester.unitils.jmock.fluent.IStringAssert;
 
-public class StringAssert extends Assert<String, StringAssert> implements IStringAssert {
+public class StringAssert extends BaseAssert<String, IStringAssert> implements IStringAssert {
 
-	public StringExpected(Class<String> clazT, Class<StringExpectedOp> clazE) {
+	public StringAssert(Class<String> clazT, Class<? extends IStringAssert> clazE) {
 		super(clazT, clazE);
 	}
 
 	@Override
-	protected StringExpected getInstance() {
-		return new StringExpected(String.class, StringExpectedOp.class);
+	protected StringAssert getInstance() {
+		return new StringAssert(String.class, StringAssert.class);
 	}
 
-	public StringExpectedOp containsString(String expected) {
+	public IStringAssert containsString(String expected) {
 		StringContains matcher = new StringContains(expected);
 		return this.link(matcher);
 	}
 
-	public StringExpectedOp endWith(String expected) {
+	public IStringAssert endWith(String expected) {
 		Matcher<String> matcher = StringEndsWith.endsWith(expected);
 		return this.link(matcher);
 	}
 
-	public StringExpectedOp startsWith(String expected) {
+	public IStringAssert startsWith(String expected) {
 		Matcher<String> matcher = StringStartsWith.startsWith(expected);
 		return this.link(matcher);
 	}
 
-	public StringExpectedOp regular(String regular) {
-		Matcher<String> matcher = StringRegularMatcher.regular(regular);
-		return this.link(matcher);
-	}
+//	public IStringAssert regular(String regular) {
+//		Matcher<String> matcher = StringRegularMatcher.regular(regular);
+//		return this.link(matcher);
+//	}
 
-	public StringExpectedOp eqIgnoreCase(String item) {
+	public IStringAssert eqIgnoreCase(String item) {
 		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(item);
 		return this.link(matcher);
 	}
