@@ -19,6 +19,6 @@ public class TestStringAssert extends JTester {
 
 	@Test
 	public void test2() {
-		want("abcd").or(the().string.contains("a"), the().string.contains("d"));
+		want("abcd").or(the().string.contains("ad"), the().string.contains("de"));
 	}
 }
