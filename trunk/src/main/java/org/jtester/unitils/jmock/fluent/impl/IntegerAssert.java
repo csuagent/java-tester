@@ -3,7 +3,7 @@ package org.jtester.unitils.jmock.fluent.impl;
 import org.jtester.unitils.jmock.fluent.IAssert;
 import org.jtester.unitils.jmock.fluent.IIntegerAssert;
 
-public class IntegerAssert extends BaseAssert<Integer, IIntegerAssert> implements IIntegerAssert {
+public class IntegerAssert extends NumberAssert<Integer, IIntegerAssert> implements IIntegerAssert {
 
 	public IntegerAssert(Class<? extends IAssert> clazE) {
 		super(clazE);

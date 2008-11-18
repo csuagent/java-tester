@@ -36,6 +36,6 @@ public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAss
 
 	public E lt(int max) {
 		LessThan<Integer> matcher = new LessThan<Integer>(max);
-		return this.link(matcher);
+		return this.assertThat(matcher);
 	}
 }
