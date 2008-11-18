@@ -90,7 +90,7 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 			throw new RuntimeException("the root BaseExpected can't be null");
 		}
 
-		if (this.type == AssertType.AssertThat) {
+		if (this.rootExpected.type == AssertType.AssertThat) {
 			throw new RuntimeException("must call method 'match()'");
 		} else {
 			expectations.with(this.rootExpected);
@@ -103,7 +103,7 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean match() {
+	public void match() {
 		if (this.prevNodeType == MatchNodeType.Or) {
 			throw new RuntimeException("expected expression error:no succeeded condiction can be or");
 		} else if (this.prevNodeType == MatchNodeType.Not) {
@@ -113,8 +113,11 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 			throw new RuntimeException("the root BaseExpected can't be null");
 		}
 
-		if (this.type == AssertType.AssertThat) {
-			return this.rootExpected.matches(this.value);
+		if (this.rootExpected.type == AssertType.AssertThat) {
+			boolean _matched = this.rootExpected.matches(this.value);
+			if (!_matched) {
+				throw new AssertionError(this.description.toString());
+			}
 		} else {
 			throw new RuntimeException("must call method 'match(Expectations expectations)'");
 		}

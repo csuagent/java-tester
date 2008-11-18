@@ -12,6 +12,11 @@ import org.jtester.unitils.jmock.fluent.IAssert;
 public abstract class BaseAssert<T, E extends IAssert<T, E>> extends Assert<T, E> implements IAssert<T, E> {
 
 	@SuppressWarnings("unchecked")
+	public BaseAssert(T value, Class<? extends IAssert> clazE) {
+		super(value, clazE);
+	}
+
+	@SuppressWarnings("unchecked")
 	public BaseAssert(Class<T> clazT, Class<? extends IAssert> clazE) {
 		super(clazT, clazE);
 	}
@@ -81,8 +86,8 @@ public abstract class BaseAssert<T, E extends IAssert<T, E>> extends Assert<T, E
 		return this.link(matcher);
 	}
 
-//	public E same(T value) {
-//		Same matcher = new Same(value);
-//		return this.link(matcher);
-//	}
+	// public E same(T value) {
+	// Same matcher = new Same(value);
+	// return this.link(matcher);
+	// }
 }

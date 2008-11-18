@@ -31,5 +31,5 @@ public interface IAssert<T, E extends IAssert<T, E>> {
 
 	public T match(Expectations expectations);
 
-	public boolean match();
+	public void match();
 }

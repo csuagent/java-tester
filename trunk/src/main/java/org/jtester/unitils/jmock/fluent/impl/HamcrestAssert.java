@@ -6,7 +6,6 @@ import org.jtester.unitils.jmock.fluent.IStringAssert;
 public class HamcrestAssert implements IHamcrestAssert {
 
 	public IStringAssert assertThat(String value) {
-		// TODO Auto-generated method stub
-		return null;
+		return new StringAssert(value, StringAssert.class);
 	}
 }

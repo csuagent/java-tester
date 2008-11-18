@@ -9,6 +9,10 @@ import org.jtester.unitils.jmock.fluent.IStringAssert;
 
 public class StringAssert extends BaseAssert<String, IStringAssert> implements IStringAssert {
 
+	public StringAssert(String value, Class<? extends IStringAssert> clazE) {
+		super(value, clazE);
+	}
+
 	public StringAssert(Class<String> clazT, Class<? extends IStringAssert> clazE) {
 		super(clazT, clazE);
 	}
@@ -33,10 +37,10 @@ public class StringAssert extends BaseAssert<String, IStringAssert> implements I
 		return this.link(matcher);
 	}
 
-//	public IStringAssert regular(String regular) {
-//		Matcher<String> matcher = StringRegularMatcher.regular(regular);
-//		return this.link(matcher);
-//	}
+	// public IStringAssert regular(String regular) {
+	// Matcher<String> matcher = StringRegularMatcher.regular(regular);
+	// return this.link(matcher);
+	// }
 
 	public IStringAssert eqIgnoreCase(String item) {
 		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(item);
