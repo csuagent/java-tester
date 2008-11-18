@@ -1,7 +1,6 @@
 package org.jtester.unitils.jmock.fluent.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -14,13 +13,14 @@ import org.hamcrest.core.IsNot;
 import org.jtester.unitils.jmock.fluent.IAssert;
 
 public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
+	public BaseAssert(Class<? extends IAssert> clazE) {
+		super(clazE);
+	}
 
-	@SuppressWarnings("unchecked")
 	public BaseAssert(T value, Class<? extends IAssert> clazE) {
 		super(value, clazE);
 	}
 
-	@SuppressWarnings("unchecked")
 	public BaseAssert(Class<T> clazT, Class<? extends IAssert> clazE) {
 		super(clazT, clazE);
 	}
@@ -60,11 +60,15 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 		return this.assertThat(matcher);
 	}
 
-	public E or(Matcher matcher1, Matcher matcher2, Matcher<?>... matchers) {
+	public E or(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
-		list.add(matcher1);
-		list.add(matcher2);
-		list.addAll(Arrays.asList(matchers));
+		list.add(matcher1.setValue(this.value));
+		list.add(matcher2.setValue(this.value));
+		if (matchers != null) {
+			for (IAssert matcher : matchers) {
+				list.add(matcher.setValue(this.value));
+			}
+		}
 
 		Matcher<?> matcher = AnyOf.anyOf(list);
 		return this.assertThat(matcher);

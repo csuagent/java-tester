@@ -3,7 +3,7 @@ package org.jtester.unitils.jmock.fluent;
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
 
-public interface IAssert<T, E extends IAssert<T, ?>> {
+public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 	public E eq(T expected);
 
 	public E notEq(T expected);
@@ -22,11 +22,13 @@ public interface IAssert<T, E extends IAssert<T, ?>> {
 
 	public E and(Iterable<Matcher<?>> matchers);
 
-	public E or(Matcher matcher1, Matcher matcher2, Matcher<?>... matchers);
+	public E or(IAssert matcher1, IAssert matcher2, IAssert... matchers);
 
 	public E or(Iterable<Matcher<?>> matchers);
 
 	public T match(Expectations expectations);
+
+	public E setValue(T value);
 
 	// public E same(T value);
 }

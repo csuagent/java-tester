@@ -8,6 +8,9 @@ import org.hamcrest.text.StringStartsWith;
 import org.jtester.unitils.jmock.fluent.IStringAssert;
 
 public class StringAssert extends BaseAssert<String, IStringAssert> implements IStringAssert {
+	public StringAssert(Class<IStringAssert> clazE) {
+		super(clazE);
+	}
 
 	public StringAssert(String value, Class<? extends IStringAssert> clazE) {
 		super(value, clazE);

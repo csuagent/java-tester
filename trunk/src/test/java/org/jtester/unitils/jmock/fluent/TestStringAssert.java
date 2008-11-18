@@ -16,4 +16,9 @@ public class TestStringAssert extends JTester {
 		assertThat("eeeed").end("ed").start("eee");
 
 	}
+
+	@Test
+	public void test2() {
+		assertThat("abcd").or(a.string.contains("a"), a.string.contains("d"));
+	}
 }

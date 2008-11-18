@@ -3,6 +3,7 @@ package org.jtester.unitils.jmock.fluent.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
@@ -12,7 +13,7 @@ import org.jtester.unitils.jmock.fluent.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
 
-public abstract class Assert<T, E extends IAssert<T, ?>> implements IAssert<T, E> {
+public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> implements IAssert<T, E> {
 
 	protected Class<T> clazT;
 
@@ -26,6 +27,12 @@ public abstract class Assert<T, E extends IAssert<T, ?>> implements IAssert<T, E
 	private Description description = null;
 
 	protected ILinkMatcher<T> link;
+
+	public Assert(Class<? extends IAssert> clazE) {
+		this.type = AssertType.AssertThat;
+		this.clazE = clazE;
+		this.description = new StringDescription();
+	}
 
 	public Assert(T value, Class<? extends IAssert> clazE) {
 		this.type = AssertType.AssertThat;
@@ -77,8 +84,9 @@ public abstract class Assert<T, E extends IAssert<T, ?>> implements IAssert<T, E
 		return (E) this;
 	}
 
-	protected static enum MatchNodeType {
-		Or, Not, Normal, Start;
+	public boolean matches(Object item) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	private static Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
@@ -96,7 +104,12 @@ public abstract class Assert<T, E extends IAssert<T, ?>> implements IAssert<T, E
 		// TODO
 	}
 
-	protected static enum AssertType {
+	private static enum AssertType {
 		AssertThat, Expectations;
+	}
+
+	public E setValue(T value) {
+		this.value = value;
+		return (E) this;
 	}
 }
