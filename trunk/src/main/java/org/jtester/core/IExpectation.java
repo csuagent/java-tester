@@ -1,11 +1,11 @@
 package org.jtester.core;
 
-import org.jtester.unitils.jmock.fluent.IBooleanAssert;
-import org.jtester.unitils.jmock.fluent.IIntegerAssert;
-import org.jtester.unitils.jmock.fluent.IStringAssert;
-import org.jtester.unitils.jmock.fluent.impl.BooleanAssert;
-import org.jtester.unitils.jmock.fluent.impl.IntegerAssert;
-import org.jtester.unitils.jmock.fluent.impl.StringAssert;
+import org.jtester.hamcrest.IBooleanAssert;
+import org.jtester.hamcrest.IIntegerAssert;
+import org.jtester.hamcrest.IStringAssert;
+import org.jtester.hamcrest.impl.BooleanAssert;
+import org.jtester.hamcrest.impl.IntegerAssert;
+import org.jtester.hamcrest.impl.StringAssert;
 
 public interface IExpectation {
 	public static class the {

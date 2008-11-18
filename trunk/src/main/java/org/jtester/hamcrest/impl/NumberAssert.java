@@ -1,7 +1,7 @@
-package org.jtester.unitils.jmock.fluent.impl;
+package org.jtester.hamcrest.impl;
 
-import org.jtester.unitils.jmock.fluent.IAssert;
-import org.jtester.unitils.jmock.fluent.INumberAssert;
+import org.jtester.hamcrest.IAssert;
+import org.jtester.hamcrest.INumberAssert;
 import org.mockito.internal.matchers.LessThan;
 
 public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, E>> extends BaseAssert<T, E>

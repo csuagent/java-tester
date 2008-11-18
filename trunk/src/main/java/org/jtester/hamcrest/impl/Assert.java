@@ -1,4 +1,4 @@
-package org.jtester.unitils.jmock.fluent.impl;
+package org.jtester.hamcrest.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
-import org.jtester.unitils.jmock.fluent.IAssert;
+import org.jtester.hamcrest.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
 

@@ -1,7 +1,7 @@
-package org.jtester.unitils.jmock.fluent.impl;
+package org.jtester.hamcrest.impl;
 
-import org.jtester.unitils.jmock.fluent.IAssert;
-import org.jtester.unitils.jmock.fluent.IIntegerAssert;
+import org.jtester.hamcrest.IAssert;
+import org.jtester.hamcrest.IIntegerAssert;
 
 public class IntegerAssert extends NumberAssert<Integer, IIntegerAssert> implements IIntegerAssert {
 

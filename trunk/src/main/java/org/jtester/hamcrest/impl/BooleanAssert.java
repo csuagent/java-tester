@@ -1,7 +1,7 @@
-package org.jtester.unitils.jmock.fluent.impl;
+package org.jtester.hamcrest.impl;
 
-import org.jtester.unitils.jmock.fluent.IAssert;
-import org.jtester.unitils.jmock.fluent.IBooleanAssert;
+import org.jtester.hamcrest.IAssert;
+import org.jtester.hamcrest.IBooleanAssert;
 
 public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert> implements IBooleanAssert {
 
@@ -17,4 +17,7 @@ public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert> implement
 		super(clazT, clazE);
 	}
 
+	public IBooleanAssert is(boolean bl) {
+		return super.eq(bl);
+	}
 }

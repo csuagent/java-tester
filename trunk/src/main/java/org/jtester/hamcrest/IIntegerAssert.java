@@ -1,4 +1,4 @@
-package org.jtester.unitils.jmock.fluent;
+package org.jtester.hamcrest;
 
 public interface IIntegerAssert extends INumberAssert<Integer, IIntegerAssert> {
 }

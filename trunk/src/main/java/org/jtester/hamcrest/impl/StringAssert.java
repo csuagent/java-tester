@@ -1,11 +1,11 @@
-package org.jtester.unitils.jmock.fluent.impl;
+package org.jtester.hamcrest.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.text.IsEqualIgnoringCase;
 import org.hamcrest.text.StringContains;
 import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
-import org.jtester.unitils.jmock.fluent.IStringAssert;
+import org.jtester.hamcrest.IStringAssert;
 
 public class StringAssert extends BaseAssert<String, IStringAssert> implements IStringAssert {
 	public StringAssert(Class<IStringAssert> clazE) {
