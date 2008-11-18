@@ -18,13 +18,13 @@ public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 
 	public E not(Matcher<T> matcher);
 
-	public E and(IAssert matcher1, IAssert matcher2, IAssert... matchers);
+	public E allOf(IAssert matcher1, IAssert matcher2, IAssert... matchers);
 
-	public E and(Iterable<IAssert> matchers);
+	public E allOf(Iterable<IAssert> matchers);
 
-	public E or(IAssert matcher1, IAssert matcher2, IAssert... matchers);
+	public E anyOf(IAssert matcher1, IAssert matcher2, IAssert... matchers);
 
-	public E or(Iterable<IAssert> matchers);
+	public E anyOf(Iterable<IAssert> matchers);
 
 	public T match(Expectations expectations);
 

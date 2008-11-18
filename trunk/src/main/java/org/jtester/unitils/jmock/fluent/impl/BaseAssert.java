@@ -50,19 +50,19 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 		return this.assertThat(_matcher);
 	}
 
-	public E and(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
+	public E allOf(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
 		List<Matcher<?>> list = list(matcher1, matcher2, matchers);
 		Matcher<?> matcher = AllOf.allOf(list);
 		return this.assertThat(matcher);
 	}
 
-	public E and(Iterable<IAssert> matchers) {
+	public E allOf(Iterable<IAssert> matchers) {
 		List<Matcher<?>> list = list(matchers);
 		Matcher<?> matcher = AllOf.allOf(list);
 		return this.assertThat(matcher);
 	}
 
-	public E or(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
+	public E anyOf(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
 		List<Matcher<?>> list = list(matcher1, matcher2, matchers);
 		Matcher<?> matcher = AnyOf.anyOf(list);
 		return this.assertThat(matcher);
@@ -90,7 +90,7 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 		return list;
 	}
 
-	public E or(Iterable<IAssert> matchers) {
+	public E anyOf(Iterable<IAssert> matchers) {
 		List<Matcher<?>> list = list(matchers);
 		Matcher<?> matcher = AnyOf.anyOf(list);
 		return this.assertThat(matcher);

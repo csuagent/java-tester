@@ -1,8 +1,10 @@
 package org.jtester.unitils.jmock.fluent;
 
-public interface IHamcrestAssert {
+import org.jtester.unitils.jmock.fluent.impl.StringAssert;
+
+public interface IAssertThat {
 	// native type assert
-	IStringAssert want(String value);
+	// IStringAssert want(String value);
 
 	// BigDecimalAssert assertThat(BigDecimal actual);
 	//
@@ -57,4 +59,10 @@ public interface IHamcrestAssert {
 	// <T extends AssertExtension> T assertThat(T assertion);
 	//
 	// ThrowableAssert assertThat(Throwable actual);
+
+	public static class want {
+		public static IStringAssert string(String value) {
+			return new StringAssert(value, StringAssert.class);
+		}
+	}
 }
