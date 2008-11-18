@@ -6,22 +6,25 @@ import java.util.List;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.core.AllOf;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 
 public class LinkMatcher<T> extends BaseMatcher<T> implements ILinkMatcher<T> {
-	private List<Matcher> list = new ArrayList<Matcher>();
+	private List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+
+	private Matcher<?> matcher;
 
 	public void add(Matcher matcher) {
 		this.list.add(matcher);
 	}
 
 	public boolean matches(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		this.matcher = AllOf.allOf(list);
+
+		return this.matcher.matches(obj);
 	}
 
 	public void describeTo(Description description) {
-		// TODO Auto-generated method stub
-
+		this.matcher.describeTo(description);
 	}
 }

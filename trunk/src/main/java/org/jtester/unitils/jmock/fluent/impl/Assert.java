@@ -29,7 +29,9 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	protected ILinkMatcher<T> link;
 
 	public Assert(Class<? extends IAssert> clazE) {
-		this.type = AssertType.AssertThat;
+		this.value = null;
+		this.type = AssertType.Expectations;
+		this.link = new LinkMatcher<T>();
 		this.clazE = clazE;
 		this.description = new StringDescription();
 	}
@@ -84,8 +86,17 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		return (E) this;
 	}
 
+	public E assertThat(T value, Matcher matcher) {
+		if (this.type == AssertType.AssertThat) {
+			MatcherAssert.assertThat(value, matcher);
+		} else {
+			this.link.add(matcher);
+		}
+		return (E) this;
+	}
+
 	public boolean matches(Object item) {
-		// TODO Auto-generated method stub
+		this.link.matches(item);
 		return false;
 	}
 
@@ -108,7 +119,22 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		AssertThat, Expectations;
 	}
 
-	public E setValue(T value) {
+	// private static Map<Thread, Object> values = new HashMap<Thread,
+	// Object>();
+	//
+	// public static void put(Object value) {
+	// Thread thread = Thread.currentThread();
+	// System.out.println(thread);
+	// values.put(thread, value);
+	// }
+	//
+	// protected T value() {
+	// Thread thread = Thread.currentThread();
+	// System.out.println(thread);
+	// return (T) values.get(thread);
+	// }
+
+	 public E setValue(T value) {
 		this.value = value;
 		return (E) this;
 	}

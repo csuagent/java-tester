@@ -25,7 +25,9 @@ public class JTester extends UnitilsTestNG implements IHamcrestAssert {
 		return hamcrestAssert.assertThat(value);
 	}
 
-	protected AssertType a = new AssertType();
+	protected AssertType a() {
+		return new AssertType();
+	}
 
 	protected static class AssertType {
 		public IStringAssert string;

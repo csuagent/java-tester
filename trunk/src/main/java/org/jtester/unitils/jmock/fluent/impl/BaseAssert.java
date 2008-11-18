@@ -71,7 +71,7 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 		}
 
 		Matcher<?> matcher = AnyOf.anyOf(list);
-		return this.assertThat(matcher);
+		return this.assertThat(this.value, matcher);
 	}
 
 	public E or(Iterable<Matcher<?>> matchers) {
