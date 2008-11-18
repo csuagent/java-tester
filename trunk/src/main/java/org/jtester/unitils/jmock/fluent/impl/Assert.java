@@ -81,15 +81,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		return (E) this;
 	}
 
-	public E assertThat(T value, Matcher matcher) {
-		if (this.type == AssertType.AssertThat) {
-			MatcherAssert.assertThat(value, matcher);
-		} else {
-			this.link.add(matcher);
-		}
-		return (E) this;
-	}
-
 	public boolean matches(Object item) {
 		return this.link.matches(item);
 	}

@@ -65,16 +65,16 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 	public E or(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
 		List<Matcher<?>> list = list(matcher1, matcher2, matchers);
 		Matcher<?> matcher = AnyOf.anyOf(list);
-		return this.assertThat(this.value, matcher);
+		return this.assertThat(matcher);
 	}
 
 	private List<Matcher<?>> list(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
-		list.add(matcher1.setValue(this.value));
-		list.add(matcher2.setValue(this.value));
+		list.add(matcher1);
+		list.add(matcher2);
 		if (matchers != null) {
 			for (IAssert matcher : matchers) {
-				list.add(matcher.setValue(this.value));
+				list.add(matcher);
 			}
 		}
 		return list;
