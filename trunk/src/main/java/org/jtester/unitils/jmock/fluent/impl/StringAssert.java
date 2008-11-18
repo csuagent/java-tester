@@ -22,28 +22,28 @@ public class StringAssert extends BaseAssert<String, IStringAssert> implements I
 		return new StringAssert(String.class, StringAssert.class);
 	}
 
-	public IStringAssert containsString(String expected) {
+	public IStringAssert contains(String expected) {
 		StringContains matcher = new StringContains(expected);
-		return this.link(matcher);
+		return (IStringAssert) this.assertThat(matcher);
 	}
 
-	public IStringAssert endWith(String expected) {
+	public IStringAssert end(String expected) {
 		Matcher<String> matcher = StringEndsWith.endsWith(expected);
-		return this.link(matcher);
+		return (IStringAssert) this.assertThat(matcher);
 	}
-
-	public IStringAssert startsWith(String expected) {
-		Matcher<String> matcher = StringStartsWith.startsWith(expected);
-		return this.link(matcher);
-	}
-
-	// public IStringAssert regular(String regular) {
-	// Matcher<String> matcher = StringRegularMatcher.regular(regular);
-	// return this.link(matcher);
-	// }
 
 	public IStringAssert eqIgnoreCase(String item) {
 		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(item);
-		return this.link(matcher);
+		return (IStringAssert) this.assertThat(matcher);
+	}
+
+	public IStringAssert regular(String regular) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IStringAssert start(String expected) {
+		Matcher<String> matcher = StringStartsWith.startsWith(expected);
+		return (IStringAssert) this.assertThat(matcher);
 	}
 }

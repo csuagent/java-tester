@@ -2,18 +2,21 @@ package org.jtester.unitils.jmock.fluent;
 
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
-import org.jtester.unitils.jmock.fluent.impl.Assert;
 
-public interface IAssert<T, E extends IAssert<T, E>> {
-	public E or();
-
-	public E not();
-
+public interface IAssert<T, E extends IAssert<T, ?>> {
 	public E eq(T expected);
+
+	public E notEq(T expected);
+
+	public E in(T... values);
+
+	public E notIn(T... values);
 
 	public E type(Class<?> claz);
 
 	public E is(Matcher<T> matcher);
+
+	public E not(Matcher<T> matcher);
 
 	public E and(Matcher<?>... matchers);
 
@@ -23,13 +26,7 @@ public interface IAssert<T, E extends IAssert<T, E>> {
 
 	public E or(Iterable<Matcher<?>> matchers);
 
-	public E in(T... values);
-
-	// public E same(T value);
-
-	public Assert<T, E> matcher();
-
 	public T match(Expectations expectations);
 
-	public void match();
+	// public E same(T value);
 }
