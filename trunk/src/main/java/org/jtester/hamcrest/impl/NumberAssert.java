@@ -38,4 +38,9 @@ public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAss
 		LessThan<Integer> matcher = new LessThan<Integer>(max);
 		return this.assertThat(matcher);
 	}
+
+	public E between(int min, int max) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

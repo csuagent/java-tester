@@ -8,4 +8,6 @@ public interface INumberAssert<T extends Number & Comparable<T>, E extends INumb
 	public E gt(int min);
 
 	public E geq(int min);
+
+	public E between(int min, int max);
 }
