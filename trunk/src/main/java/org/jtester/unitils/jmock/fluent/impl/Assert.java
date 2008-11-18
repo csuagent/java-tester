@@ -114,7 +114,7 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 		}
 
 		if (this.rootExpected.type == AssertType.AssertThat) {
-			boolean _matched = this.rootExpected.matches(this.value);
+			boolean _matched = this.rootExpected.matches(this.rootExpected.value);
 			if (!_matched) {
 				throw new AssertionError(this.description.toString());
 			}
