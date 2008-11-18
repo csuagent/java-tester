@@ -1,17 +1,14 @@
 package org.jtester.core;
 
+import org.jtester.unitils.jmock.fluent.IBooleanAssert;
 import org.jtester.unitils.jmock.fluent.IIntegerAssert;
 import org.jtester.unitils.jmock.fluent.IStringAssert;
+import org.jtester.unitils.jmock.fluent.impl.BooleanAssert;
 import org.jtester.unitils.jmock.fluent.impl.IntegerAssert;
 import org.jtester.unitils.jmock.fluent.impl.StringAssert;
 
 public interface IAssertThat {
-	// native type assert
-	// IStringAssert want(String value);
-
 	// BigDecimalAssert assertThat(BigDecimal actual);
-	//
-	// BooleanAssert assertThat(boolean actual);
 	//
 	// BooleanArrayAssert assertThat(boolean[] actual);
 	//
@@ -36,8 +33,7 @@ public interface IAssertThat {
 	// FloatAssert assertThat(float actual);
 	//
 	// FloatArrayAssert assertThat(float[] actual);
-	//
-	// IntAssert assertThat(int actual);
+
 	//
 	// IntArrayAssert assertThat(int[] actual);
 	//
@@ -70,6 +66,10 @@ public interface IAssertThat {
 
 		public static IIntegerAssert integer(Integer value) {
 			return new IntegerAssert(value, IntegerAssert.class);
+		}
+
+		public static IBooleanAssert bool(Boolean value) {
+			return new BooleanAssert(value, BooleanAssert.class);
 		}
 	}
 }
