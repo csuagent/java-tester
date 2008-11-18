@@ -7,7 +7,6 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.StringDescription;
 import org.jmock.Expectations;
 import org.jtester.unitils.jmock.fluent.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
