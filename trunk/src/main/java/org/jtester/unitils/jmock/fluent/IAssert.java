@@ -22,7 +22,7 @@ public interface IAssert<T, E extends IAssert<T, ?>> {
 
 	public E and(Iterable<Matcher<?>> matchers);
 
-	public E or(Matcher<?>... matchers);
+	public E or(Matcher matcher1, Matcher matcher2, Matcher<?>... matchers);
 
 	public E or(Iterable<Matcher<?>> matchers);
 

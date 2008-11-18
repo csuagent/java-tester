@@ -1,5 +1,9 @@
 package org.jtester.unitils.jmock.fluent.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsIn;
 import org.hamcrest.core.AllOf;
@@ -56,8 +60,13 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 		return this.assertThat(matcher);
 	}
 
-	public E or(Matcher<?>... matchers) {
-		Matcher<?> matcher = AnyOf.anyOf(matchers);
+	public E or(Matcher matcher1, Matcher matcher2, Matcher<?>... matchers) {
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		list.add(matcher1);
+		list.add(matcher2);
+		list.addAll(Arrays.asList(matchers));
+
+		Matcher<?> matcher = AnyOf.anyOf(list);
 		return this.assertThat(matcher);
 	}
 
