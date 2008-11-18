@@ -6,19 +6,19 @@ import org.testng.annotations.Test;
 public class TestStringAssert extends JTester {
 	// @Test
 	public void test1() {
-		assertThat("ddd").contains("d").contains("d");
+		want("ddd").contains("d").contains("d");
 
-		assertThat("ddd").eq("ddd");
-		assertThat("ddd").eqIgnoreCase("dDD");
+		want("ddd").eq("ddd");
+		want("ddd").eqIgnoreCase("dDD");
 
-		assertThat("eeeed").end("ed");
+		want("eeeed").end("ed");
 
-		assertThat("eeeed").end("ed").start("eee");
+		want("eeeed").end("ed").start("eee");
 
 	}
 
 	@Test
 	public void test2() {
-		assertThat("abcd").or(a().string.contains("a"), a().string.contains("d"));
+		want("abcd").or(the().string.contains("a"), the().string.contains("d"));
 	}
 }

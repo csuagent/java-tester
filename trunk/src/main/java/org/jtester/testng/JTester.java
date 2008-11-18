@@ -21,11 +21,11 @@ public class JTester extends UnitilsTestNG implements IHamcrestAssert {
 	// assert that
 	private IHamcrestAssert hamcrestAssert = new HamcrestAssert();
 
-	public IStringAssert assertThat(String value) {
-		return hamcrestAssert.assertThat(value);
+	public IStringAssert want(String value) {
+		return hamcrestAssert.want(value);
 	}
 
-	protected AssertType a() {
+	protected AssertType the() {
 		return new AssertType();
 	}
 

@@ -2,7 +2,7 @@ package org.jtester.unitils.jmock.fluent;
 
 public interface IHamcrestAssert {
 	// native type assert
-	IStringAssert assertThat(String value);
+	IStringAssert want(String value);
 
 	// BigDecimalAssert assertThat(BigDecimal actual);
 	//

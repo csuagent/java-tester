@@ -5,8 +5,7 @@ import org.jtester.unitils.jmock.fluent.IStringAssert;
 
 public class HamcrestAssert implements IHamcrestAssert {
 
-	public IStringAssert assertThat(String value) {
-//		Assert.put(value);
+	public IStringAssert want(String value) {
 		return new StringAssert(value, StringAssert.class);
 	}
 }
