@@ -15,6 +15,10 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 
 	protected Class<T> clazT;
 
+	protected T value;
+
+	protected AssertType type;
+
 	@SuppressWarnings("unchecked")
 	protected Class<? extends IAssert> clazE;
 
@@ -35,7 +39,19 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 	private Assert<T, E> rootExpected = null;
 
 	@SuppressWarnings("unchecked")
+	public Assert(T value, Class<? extends IAssert> clazE) {
+		this.type = AssertType.AssertThat;
+		this.value = value;
+		this.clazE = clazE;
+		this.rootExpected = this;
+		this.prevNodeType = MatchNodeType.Start;
+		this.description = new StringDescription();
+		this.matchers = new ArrayList<Matcher<?>>();
+	}
+
+	@SuppressWarnings("unchecked")
 	public Assert(Class<T> clazT, Class<? extends IAssert> clazE) {
+		this.type = AssertType.Expectations;
 		this.clazT = clazT;
 		this.clazE = clazE;
 		this.rootExpected = this;
@@ -73,11 +89,34 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 		if (this.rootExpected == null) {
 			throw new RuntimeException("the root BaseExpected can't be null");
 		}
-		expectations.with(this.rootExpected);
-		if (map.containsKey(clazT)) {
-			return (T) map.get(clazT);
+
+		if (this.type == AssertType.AssertThat) {
+			throw new RuntimeException("must call method 'match()'");
 		} else {
-			return null;
+			expectations.with(this.rootExpected);
+			if (map.containsKey(clazT)) {
+				return (T) map.get(clazT);
+			} else {
+				return null;
+			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public boolean match() {
+		if (this.prevNodeType == MatchNodeType.Or) {
+			throw new RuntimeException("expected expression error:no succeeded condiction can be or");
+		} else if (this.prevNodeType == MatchNodeType.Not) {
+			throw new RuntimeException("expected expression error:no succeeded condiction can be not");
+		}
+		if (this.rootExpected == null) {
+			throw new RuntimeException("the root BaseExpected can't be null");
+		}
+
+		if (this.type == AssertType.AssertThat) {
+			return this.rootExpected.matches(this.value);
+		} else {
+			throw new RuntimeException("must call method 'match(Expectations expectations)'");
 		}
 	}
 
@@ -178,4 +217,7 @@ public abstract class Assert<T, E extends IAssert<T, E>> implements Matcher<T> {
 		// TODO
 	}
 
+	protected static enum AssertType {
+		AssertThat, Expectations;
+	}
 }

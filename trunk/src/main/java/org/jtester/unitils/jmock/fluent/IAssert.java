@@ -1,6 +1,7 @@
 package org.jtester.unitils.jmock.fluent;
 
 import org.hamcrest.Matcher;
+import org.jmock.Expectations;
 import org.jtester.unitils.jmock.fluent.impl.Assert;
 
 public interface IAssert<T, E extends IAssert<T, E>> {
@@ -24,9 +25,11 @@ public interface IAssert<T, E extends IAssert<T, E>> {
 
 	public E in(T... values);
 
-	//public E same(T value);
+	// public E same(T value);
 
 	public Assert<T, E> matcher();
 
-	// public T match(Expectations expectations);
+	public T match(Expectations expectations);
+
+	public boolean match();
 }
