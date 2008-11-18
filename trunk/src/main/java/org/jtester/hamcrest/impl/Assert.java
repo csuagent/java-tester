@@ -46,13 +46,13 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		this.link = new LinkMatcher<T>();
 	}
 
-//	protected abstract E getInstance();
-//
-//	@SuppressWarnings("unchecked")
-//	protected final E instance() {
-//		E instance = this.getInstance();
-//		return instance;
-//	}
+	// protected abstract E getInstance();
+	//
+	// @SuppressWarnings("unchecked")
+	// protected final E instance() {
+	// E instance = this.getInstance();
+	// return instance;
+	// }
 
 	@SuppressWarnings("unchecked")
 	public T match(Expectations expectations) {
@@ -75,6 +75,15 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	public E assertThat(Matcher matcher) {
 		if (this.type == AssertType.AssertThat) {
 			MatcherAssert.assertThat(this.value, matcher);
+		} else {
+			this.link.add(matcher);
+		}
+		return (E) this;
+	}
+
+	public E assertThat(Matcher matcher, String message) {
+		if (this.type == AssertType.AssertThat) {
+			MatcherAssert.assertThat(message, this.value, matcher);
 		} else {
 			this.link.add(matcher);
 		}

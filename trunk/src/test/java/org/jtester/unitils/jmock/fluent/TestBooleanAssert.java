@@ -11,8 +11,13 @@ public class TestBooleanAssert extends JTester {
 		want.bool(true).is(true);
 	}
 
-	@Test
+	@Test(expectedExceptions = { AssertionError.class })
 	public void test2() {
-		
+		want.bool(true).is(false);
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void test3() {
+		fail();
 	}
 }

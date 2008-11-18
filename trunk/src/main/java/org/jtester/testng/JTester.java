@@ -12,6 +12,10 @@ public class JTester extends UnitilsTestNG implements IAssertThat, IExpectation 
 		JmockUnitils.checking(expectations);
 	}
 
+	public static void fail() {
+		assert true == false;
+	}
+
 	public static class JExpectations extends Expectations {
 
 	}
