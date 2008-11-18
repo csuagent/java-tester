@@ -1,5 +1,7 @@
-package org.jtester.unitils.jmock.fluent;
+package org.jtester.core;
 
+import org.jtester.unitils.jmock.fluent.IIntegerAssert;
+import org.jtester.unitils.jmock.fluent.IStringAssert;
 import org.jtester.unitils.jmock.fluent.impl.IntegerAssert;
 import org.jtester.unitils.jmock.fluent.impl.StringAssert;
 

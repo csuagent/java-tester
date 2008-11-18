@@ -1,9 +1,9 @@
 package org.jtester.testng;
 
 import org.jmock.Expectations;
+import org.jtester.core.IAssertThat;
+import org.jtester.core.IExpectation;
 import org.jtester.unitils.jmock.JmockUnitils;
-import org.jtester.unitils.jmock.fluent.IAssertThat;
-import org.jtester.unitils.jmock.fluent.IExpectation;
 import org.unitils.UnitilsTestNG;
 
 public class JTester extends UnitilsTestNG implements IAssertThat, IExpectation {
