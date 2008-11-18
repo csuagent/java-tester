@@ -46,13 +46,13 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		this.link = new LinkMatcher<T>();
 	}
 
-	protected abstract E getInstance();
-
-	@SuppressWarnings("unchecked")
-	protected final E instance() {
-		E instance = this.getInstance();
-		return instance;
-	}
+//	protected abstract E getInstance();
+//
+//	@SuppressWarnings("unchecked")
+//	protected final E instance() {
+//		E instance = this.getInstance();
+//		return instance;
+//	}
 
 	@SuppressWarnings("unchecked")
 	public T match(Expectations expectations) {

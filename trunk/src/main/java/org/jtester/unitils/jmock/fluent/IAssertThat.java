@@ -1,5 +1,6 @@
 package org.jtester.unitils.jmock.fluent;
 
+import org.jtester.unitils.jmock.fluent.impl.IntegerAssert;
 import org.jtester.unitils.jmock.fluent.impl.StringAssert;
 
 public interface IAssertThat {
@@ -63,6 +64,10 @@ public interface IAssertThat {
 	public static class want {
 		public static IStringAssert string(String value) {
 			return new StringAssert(value, StringAssert.class);
+		}
+
+		public static IIntegerAssert integer(Integer value) {
+			return new IntegerAssert(value, IntegerAssert.class);
 		}
 	}
 }

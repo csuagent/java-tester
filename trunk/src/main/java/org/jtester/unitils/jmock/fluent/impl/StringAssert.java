@@ -20,10 +20,10 @@ public class StringAssert extends BaseAssert<String, IStringAssert> implements I
 		super(clazT, clazE);
 	}
 
-	@Override
-	protected StringAssert getInstance() {
-		return new StringAssert(String.class, StringAssert.class);
-	}
+//	@Override
+//	protected StringAssert getInstance() {
+//		return new StringAssert(String.class, StringAssert.class);
+//	}
 
 	public IStringAssert contains(String expected) {
 		StringContains matcher = new StringContains(expected);
