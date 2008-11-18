@@ -19,11 +19,11 @@ public class TestStringAssert extends JTester {
 
 	@Test
 	public void test2() {
-		want.string("abcd").anyOf(the().string.contains("ad"), the().string.contains("de"));
+		want.string("abcd").anyOf(the.string().contains("ad"), the.string().contains("de"));
 	}
 
 	@Test
 	public void test3() {
-		want.string("abcd").anyOf(the().string.contains("ab"), the().string.contains("cd"));
+		want.string("abcd").anyOf(the.string().contains("ab"), the.string().contains("cd"));
 	}
 }
