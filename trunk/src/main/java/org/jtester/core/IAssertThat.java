@@ -1,9 +1,11 @@
 package org.jtester.core;
 
+import org.jtester.hamcrest.IArrayAssert;
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.ICharacterAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
+import org.jtester.hamcrest.impl.ArrayAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
@@ -91,6 +93,18 @@ public interface IAssertThat {
 
 		public static ICharacterAssert character(char value) {
 			return new CharacterAssert(value, CharacterAssert.class);
+		}
+
+		public static IArrayAssert array(Object value[]) {
+			return new ArrayAssert(value, ArrayAssert.class);
+		}
+
+		public static IArrayAssert array(int value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
+		public static IArrayAssert array(double value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
 		}
 
 	}
