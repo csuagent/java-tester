@@ -1,6 +1,7 @@
 package org.jtester.hamcrest.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -25,7 +26,7 @@ public class ArrayAssert<T, E extends IArrayAssert<T, E>> extends BaseAssert<T, 
 		this.type = AssertType.AssertThat;
 	}
 
-	public E hasItems(Object item, Object... items) {
+	public E hasItems(T item, T... items) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		Matcher matcher1 = IsArrayContaining.hasItemInArray(item);
 		list.add(matcher1);
@@ -33,6 +34,18 @@ public class ArrayAssert<T, E extends IArrayAssert<T, E>> extends BaseAssert<T, 
 			for (Object temp : items) {
 				Matcher matcher2 = IsArrayContaining.hasItemInArray(temp);
 				list.add(matcher2);
+			}
+		}
+		Matcher<?> matcher = AllOf.allOf(list);
+		return this.assertThat(matcher);
+	}
+
+	public E hasItems(Collection collection) {
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		if (collection != null) {
+			for (Object temp : collection) {
+				Matcher _matcher = IsArrayContaining.hasItemInArray(temp);
+				list.add(_matcher);
 			}
 		}
 		Matcher<?> matcher = AllOf.allOf(list);
