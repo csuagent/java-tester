@@ -5,12 +5,14 @@ import org.jtester.hamcrest.ICharacterAssert;
 import org.jtester.hamcrest.IDoubleAssert;
 import org.jtester.hamcrest.IFloatAssert;
 import org.jtester.hamcrest.IIntegerAssert;
+import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
 import org.jtester.hamcrest.impl.DoubleAssert;
 import org.jtester.hamcrest.impl.FloatAssert;
 import org.jtester.hamcrest.impl.IntegerAssert;
+import org.jtester.hamcrest.impl.NumberAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
 public interface IAssertThat {
@@ -57,22 +59,6 @@ public interface IAssertThat {
 			return new StringAssert(value, StringAssert.class);
 		}
 
-		public static IIntegerAssert integer(int value) {
-			return new IntegerAssert(value, IntegerAssert.class);
-		}
-
-		public static IIntegerAssert integer(Integer value) {
-			return new IntegerAssert(value, IntegerAssert.class);
-		}
-
-		public static IIntegerAssert integer(Short value) {
-			return new IntegerAssert((int) value, IntegerAssert.class);
-		}
-
-		public static IIntegerAssert integer(short value) {
-			return new IntegerAssert((int) value, IntegerAssert.class);
-		}
-
 		public static IBooleanAssert bool(boolean value) {
 			return new BooleanAssert(value, BooleanAssert.class);
 		}
@@ -81,19 +67,35 @@ public interface IAssertThat {
 			return new BooleanAssert(value, BooleanAssert.class);
 		}
 
-		public static IDoubleAssert doublenum(double value) {
+		public static IIntegerAssert number(int value) {
+			return new IntegerAssert(value, IntegerAssert.class);
+		}
+
+		public static IIntegerAssert number(Integer value) {
+			return new IntegerAssert(value, IntegerAssert.class);
+		}
+
+		public static INumberAssert number(Short value) {
+			return new NumberAssert(value, INumberAssert.class);
+		}
+
+		public static INumberAssert number(short value) {
+			return new NumberAssert(value, INumberAssert.class);
+		}
+
+		public static INumberAssert number(double value) {
+			return new NumberAssert(value, NumberAssert.class);
+		}
+
+		public static IDoubleAssert number(Double value) {
 			return new DoubleAssert(value, DoubleAssert.class);
 		}
 
-		public static IDoubleAssert doublenum(Double value) {
-			return new DoubleAssert(value, DoubleAssert.class);
-		}
-
-		public static IFloatAssert floatnum(float value) {
+		public static IFloatAssert number(float value) {
 			return new FloatAssert(value, FloatAssert.class);
 		}
 
-		public static IFloatAssert floatnum(Float value) {
+		public static IFloatAssert number(Float value) {
 			return new FloatAssert(value, FloatAssert.class);
 		}
 
