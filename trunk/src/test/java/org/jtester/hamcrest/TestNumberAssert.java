@@ -3,7 +3,7 @@ package org.jtester.hamcrest;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
-public class TestIntegerAssert extends JTester {
+public class TestNumberAssert extends JTester {
 	@Test
 	public void test1() {
 		want.number(3).between(2, 5);
