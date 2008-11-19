@@ -25,16 +25,16 @@ public class DbSchemaExport {
 
 		this.dbSupport = MemDbConfigUtil.getDbSupport(type);
 		SQLHandler sqlHandler = new DefaultSQLHandler(MemDbConfigUtil.getDataSource());
-		dbSupport.init(cfg.getProperties(), sqlHandler, type.getSchemas());
+		this.dbSupport.init(cfg.getProperties(), sqlHandler, type.getSchemas());
 	}
 
 	public void export() {
 		log.info("call hibernate tool:org.hibernate.tool.hbm2ddl.SchemaExport.create");
 		this.export.execute(MemDbConfigUtil.isScript(), true, false, true);
 		log.info("remove foreign key constraints");
-		dbSupport.disableReferentialConstraints();
+		this.dbSupport.disableReferentialConstraints();
 		log.info("remove not null constraints");
-		dbSupport.disableValueConstraints();
+		this.dbSupport.disableValueConstraints();
 	}
 
 	protected void removeForeignKeyConstraints() {
