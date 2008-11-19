@@ -1,7 +1,13 @@
 package org.jtester.hamcrest.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.collection.IsCollectionContaining;
+import org.hamcrest.core.AllOf;
+import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.IAssert;
 import org.jtester.hamcrest.ICollectionAssert;
 
@@ -21,13 +27,35 @@ public class CollectionAssert<T extends Collection, E extends ICollectionAssert<
 	}
 
 	public E hasItems(Collection collection) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		if (collection != null) {
+			for (Object item : collection) {
+				list.add(IsCollectionContaining.hasItem(item));
+			}
+		}
+		return assertThat(AllOf.allOf(list));
 	}
 
-	public E hasItems(T[] value) {
-		// TODO Auto-generated method stub
-		return null;
+	public E hasItems(Object value, Object... values) {
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		list.add(IsCollectionContaining.hasItem(value));
+		for (Object item : values) {
+			list.add(IsCollectionContaining.hasItem(item));
+		}
+		return assertThat(AllOf.allOf(list));
 	}
 
+	public <F> E hasItems(F[] values) {
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		if (values != null) {
+			for (Object item : values) {
+				list.add(IsCollectionContaining.hasItem(item));
+			}
+		}
+		return assertThat(AllOf.allOf(list));
+	}
+
+	public E hasItems(int[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
 }

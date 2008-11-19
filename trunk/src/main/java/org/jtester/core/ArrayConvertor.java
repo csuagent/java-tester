@@ -3,7 +3,7 @@ package org.jtester.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConvertArray {
+public class ArrayConvertor {
 	// boolean
 	// byte
 	// char
