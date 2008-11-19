@@ -21,24 +21,11 @@ import org.jtester.hamcrest.impl.NumberAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
 public interface IAssertThat {
-	// BigDecimalAssert assertThat(BigDecimal actual);
-	//
 	// ImageAssert assertThat(BufferedImage actual);
-	//
-	// ByteAssert assertThat(byte actual);
-	//
-	// CollectionAssertEx assertThat(Collection<?> actual);
-	//
 	// FileAssert assertThat(File actual);
-	//
 	// CollectionAssertEx assertThat(Iterator<?> actual);
-	//
-	// MapAssert assertThat(Map<?, ?> actual);
-	//
 	// ObjectAssertEx assertThat(Object actual);
-
 	// <T extends AssertExtension> T assertThat(T assertion);
-	//
 	// ThrowableAssert assertThat(Throwable actual);
 
 	public static class want {
