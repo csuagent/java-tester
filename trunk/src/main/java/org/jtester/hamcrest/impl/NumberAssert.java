@@ -9,7 +9,7 @@ import org.mockito.internal.matchers.GreaterThan;
 import org.mockito.internal.matchers.LessOrEqual;
 import org.mockito.internal.matchers.LessThan;
 
-public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, E>> extends BaseAssert<T, E>
+public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, ?>> extends BaseAssert<T, E>
 		implements INumberAssert<T, E> {
 
 	public NumberAssert(Class<? extends IAssert> clazE) {
