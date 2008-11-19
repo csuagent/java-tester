@@ -58,4 +58,32 @@ public class CollectionAssert<T extends Collection, E extends ICollectionAssert<
 	public E hasItems(int[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
+
+	public E hasItems(boolean[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(byte[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(char[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(short[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(long[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(float[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(double[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
 }

@@ -12,7 +12,7 @@ public class TestCollectionAssert extends JTester {
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems("aaa", "ccc");
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems(Arrays.asList("aaa", "ccc"));
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems(new String[] { "aaa", "ccc" });
-		want.collection(Arrays.asList(1, 2, 4)).hasItems(new int[] { 1 });
+		want.collection(Arrays.asList(1, 2, 4)).hasItems(new int[] { 1, 4 });
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })
