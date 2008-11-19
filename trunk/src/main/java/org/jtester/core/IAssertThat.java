@@ -1,9 +1,13 @@
 package org.jtester.core;
 
 import org.jtester.hamcrest.IBooleanAssert;
+import org.jtester.hamcrest.IDoubleAssert;
+import org.jtester.hamcrest.IFloatAssert;
 import org.jtester.hamcrest.IIntegerAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
+import org.jtester.hamcrest.impl.DoubleAssert;
+import org.jtester.hamcrest.impl.FloatAssert;
 import org.jtester.hamcrest.impl.IntegerAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
@@ -78,6 +82,22 @@ public interface IAssertThat {
 
 		public static IBooleanAssert bool(Boolean value) {
 			return new BooleanAssert(value, BooleanAssert.class);
+		}
+
+		public static IDoubleAssert doublenum(double value) {
+			return new DoubleAssert(value, DoubleAssert.class);
+		}
+
+		public static IDoubleAssert doublenum(Double value) {
+			return new DoubleAssert(value, DoubleAssert.class);
+		}
+
+		public static IFloatAssert floatnum(float value) {
+			return new FloatAssert(value, FloatAssert.class);
+		}
+
+		public static IFloatAssert floatnum(Float value) {
+			return new FloatAssert(value, FloatAssert.class);
 		}
 	}
 }
