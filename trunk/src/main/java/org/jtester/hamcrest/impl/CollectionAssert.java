@@ -20,4 +20,14 @@ public class CollectionAssert<T extends Collection, E extends ICollectionAssert<
 		super(value, clazE);
 	}
 
+	public E hasItems(Collection collection) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public E hasItems(T[] value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
