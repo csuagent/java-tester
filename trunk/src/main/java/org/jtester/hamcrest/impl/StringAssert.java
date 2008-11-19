@@ -8,7 +8,7 @@ import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
 import org.jtester.hamcrest.IStringAssert;
 
-public class StringAssert extends BaseAssert<String, IStringAssert> implements IStringAssert {
+public class StringAssert extends ComparableAssert<String, IStringAssert> implements IStringAssert {
 	public StringAssert(Class<IStringAssert> clazE) {
 		super(clazE);
 	}

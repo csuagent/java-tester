@@ -2,7 +2,7 @@ package org.jtester.hamcrest;
 
 import org.hamcrest.Matcher;
 
-public interface IStringAssert extends IAssert<String, IStringAssert> {
+public interface IStringAssert extends IComparableAssert<String, IStringAssert> {
 	public IStringAssert contains(String expected);
 
 	public IStringAssert end(String expected);
