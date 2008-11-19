@@ -64,8 +64,16 @@ public interface IAssertThat {
 			return new StringAssert(value, StringAssert.class);
 		}
 
+		public static IIntegerAssert integer(int value) {
+			return new IntegerAssert(value, IntegerAssert.class);
+		}
+
 		public static IIntegerAssert integer(Integer value) {
 			return new IntegerAssert(value, IntegerAssert.class);
+		}
+
+		public static IBooleanAssert bool(boolean value) {
+			return new BooleanAssert(value, BooleanAssert.class);
 		}
 
 		public static IBooleanAssert bool(Boolean value) {
