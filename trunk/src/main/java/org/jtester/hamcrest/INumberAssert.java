@@ -1,13 +1,13 @@
 package org.jtester.hamcrest;
 
 public interface INumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, E>> extends IAssert<T, E> {
-	public E lt(int max);
+	public E lt(T max);
 
-	public E leq(int max);
+	public E leq(T max);
 
-	public E gt(int min);
+	public E gt(T min);
 
-	public E geq(int min);
+	public E geq(T min);
 
-	public E between(int min, int max);
+	public E between(T min, T max);
 }
