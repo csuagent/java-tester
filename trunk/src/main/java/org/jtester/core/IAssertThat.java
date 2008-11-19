@@ -2,11 +2,13 @@ package org.jtester.core;
 
 import org.jtester.hamcrest.IArrayAssert;
 import org.jtester.hamcrest.IBooleanAssert;
+import org.jtester.hamcrest.IByteAssert;
 import org.jtester.hamcrest.ICharacterAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.ArrayAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
+import org.jtester.hamcrest.impl.ByteAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
 import org.jtester.hamcrest.impl.StringAssert;
@@ -75,6 +77,26 @@ public interface IAssertThat {
 
 		public static ICharacterAssert character(char value) {
 			return new CharacterAssert(value, CharacterAssert.class);
+		}
+
+		/**
+		 * bite is byte
+		 * 
+		 * @param value
+		 * @return
+		 */
+		public static IByteAssert bite(Byte value) {
+			return new ByteAssert(value, ByteAssert.class);
+		}
+
+		/**
+		 * bite is byte
+		 * 
+		 * @param value
+		 * @return
+		 */
+		public static IByteAssert bite(byte value) {
+			return new ByteAssert(value, ByteAssert.class);
 		}
 
 		public static IArrayAssert array(Object value[]) {
