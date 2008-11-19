@@ -4,12 +4,16 @@ import org.jtester.hamcrest.IArrayAssert;
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.IByteAssert;
 import org.jtester.hamcrest.ICharacterAssert;
+import org.jtester.hamcrest.ICollectionAssert;
+import org.jtester.hamcrest.IMapAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.ArrayAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.ByteAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
+import org.jtester.hamcrest.impl.CollectionAssert;
+import org.jtester.hamcrest.impl.MapAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
@@ -42,6 +46,14 @@ public interface IExpectation {
 
 		public static IArrayAssert array() {
 			return new ArrayAssert(ArrayAssert.class);
+		}
+
+		public static IMapAssert map() {
+			return new MapAssert(MapAssert.class);
+		}
+
+		public static ICollectionAssert collection() {
+			return new CollectionAssert(CollectionAssert.class);
 		}
 	}
 }
