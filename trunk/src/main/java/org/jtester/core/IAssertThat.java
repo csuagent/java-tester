@@ -1,11 +1,13 @@
 package org.jtester.core;
 
 import org.jtester.hamcrest.IBooleanAssert;
+import org.jtester.hamcrest.ICharacterAssert;
 import org.jtester.hamcrest.IDoubleAssert;
 import org.jtester.hamcrest.IFloatAssert;
 import org.jtester.hamcrest.IIntegerAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
+import org.jtester.hamcrest.impl.CharacterAssert;
 import org.jtester.hamcrest.impl.DoubleAssert;
 import org.jtester.hamcrest.impl.FloatAssert;
 import org.jtester.hamcrest.impl.IntegerAssert;
@@ -21,8 +23,6 @@ public interface IAssertThat {
 	// ByteAssert assertThat(byte actual);
 	//
 	// ByteArrayAssert assertThat(byte[] actual);
-	//
-	// CharAssert assertThat(char actual);
 	//
 	// CharArrayAssert assertThat(char[] actual);
 	//
@@ -95,6 +95,14 @@ public interface IAssertThat {
 
 		public static IFloatAssert floatnum(Float value) {
 			return new FloatAssert(value, FloatAssert.class);
+		}
+
+		public static ICharacterAssert character(char value) {
+			return new CharacterAssert(value, CharacterAssert.class);
+		}
+
+		public static ICharacterAssert character(Character value) {
+			return new CharacterAssert(value, CharacterAssert.class);
 		}
 	}
 }
