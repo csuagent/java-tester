@@ -1,4 +1,4 @@
-package org.jtester.unitils.jmock.fluent;
+package org.jtester.hamcrest;
 
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
