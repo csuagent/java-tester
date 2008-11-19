@@ -45,7 +45,9 @@ public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAss
 	}
 
 	public E between(T min, T max) {
-		assert min.compareTo(max) < 0;
+		if (min.compareTo(max) > 0) {
+			throw new AssertionError(String.format("arg1[%s] must less than arg2[%s]", min, max));
+		}
 		GreaterOrEqual<T> geq = new GreaterOrEqual<T>(min);
 		LessOrEqual<T> leq = new LessOrEqual<T>(max);
 		Matcher<?> matcher = AllOf.allOf(geq, leq);
