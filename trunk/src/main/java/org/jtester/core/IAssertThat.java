@@ -14,37 +14,19 @@ import org.jtester.hamcrest.impl.StringAssert;
 public interface IAssertThat {
 	// BigDecimalAssert assertThat(BigDecimal actual);
 	//
-	// BooleanArrayAssert assertThat(boolean[] actual);
-	//
 	// ImageAssert assertThat(BufferedImage actual);
 	//
 	// ByteAssert assertThat(byte actual);
 	//
-	// ByteArrayAssert assertThat(byte[] actual);
-	//
-	// CharArrayAssert assertThat(char[] actual);
-	//
 	// CollectionAssertEx assertThat(Collection<?> actual);
-	//
-	// DoubleArrayAssert assertThat(double[] actual);
 	//
 	// FileAssert assertThat(File actual);
 	//
-	// FloatArrayAssert assertThat(float[] actual);
-
-	// IntArrayAssert assertThat(int[] actual);
-	//
 	// CollectionAssertEx assertThat(Iterator<?> actual);
-
-	// LongArrayAssert assertThat(long[] actual);
 	//
 	// MapAssert assertThat(Map<?, ?> actual);
 	//
 	// ObjectAssertEx assertThat(Object actual);
-	//
-	// ObjectArrayAssertEx assertThat(Object[] actual);
-	//
-	// ShortArrayAssert assertThat(short[] actual);
 
 	// <T extends AssertExtension> T assertThat(T assertion);
 	//
@@ -75,15 +57,15 @@ public interface IAssertThat {
 			return new NumberAssert(value, INumberAssert.class);
 		}
 
+		public static INumberAssert number(long value) {
+			return new NumberAssert(value, NumberAssert.class);
+		}
+
 		public static INumberAssert number(double value) {
 			return new NumberAssert(value, NumberAssert.class);
 		}
 
 		public static INumberAssert number(float value) {
-			return new NumberAssert(value, NumberAssert.class);
-		}
-
-		public static INumberAssert number(long value) {
 			return new NumberAssert(value, NumberAssert.class);
 		}
 
@@ -99,13 +81,41 @@ public interface IAssertThat {
 			return new ArrayAssert(value, ArrayAssert.class);
 		}
 
+		// boolean
+		public static IArrayAssert array(boolean value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
+		// byte
+		public static IArrayAssert array(byte value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
+		// char
+		public static IArrayAssert array(char value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
+		// short int long
+		public static IArrayAssert array(short value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
 		public static IArrayAssert array(int value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
+		public static IArrayAssert array(long value[]) {
+			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
+		}
+
+		// float double
+		public static IArrayAssert array(float value[]) {
 			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
 		}
 
 		public static IArrayAssert array(double value[]) {
 			return new ArrayAssert(ConvertArray.convert(value), ArrayAssert.class);
 		}
-
 	}
 }
