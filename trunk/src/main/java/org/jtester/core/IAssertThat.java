@@ -2,15 +2,11 @@ package org.jtester.core;
 
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.ICharacterAssert;
-import org.jtester.hamcrest.IDoubleAssert;
-import org.jtester.hamcrest.IFloatAssert;
 import org.jtester.hamcrest.IIntegerAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
-import org.jtester.hamcrest.impl.DoubleAssert;
-import org.jtester.hamcrest.impl.FloatAssert;
 import org.jtester.hamcrest.impl.IntegerAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
 import org.jtester.hamcrest.impl.StringAssert;
@@ -67,16 +63,12 @@ public interface IAssertThat {
 			return new BooleanAssert(value, BooleanAssert.class);
 		}
 
+		public static INumberAssert number(Number value) {
+			return new NumberAssert(value, INumberAssert.class);
+		}
+
 		public static IIntegerAssert number(int value) {
 			return new IntegerAssert(value, IntegerAssert.class);
-		}
-
-		public static IIntegerAssert number(Integer value) {
-			return new IntegerAssert(value, IntegerAssert.class);
-		}
-
-		public static INumberAssert number(Short value) {
-			return new NumberAssert(value, INumberAssert.class);
 		}
 
 		public static INumberAssert number(short value) {
@@ -87,24 +79,21 @@ public interface IAssertThat {
 			return new NumberAssert(value, NumberAssert.class);
 		}
 
-		public static IDoubleAssert number(Double value) {
-			return new DoubleAssert(value, DoubleAssert.class);
+		public static INumberAssert number(float value) {
+			return new NumberAssert(value, NumberAssert.class);
 		}
 
-		public static IFloatAssert number(float value) {
-			return new FloatAssert(value, FloatAssert.class);
+		public static INumberAssert number(long value) {
+			return new NumberAssert(value, NumberAssert.class);
 		}
 
-		public static IFloatAssert number(Float value) {
-			return new FloatAssert(value, FloatAssert.class);
+		public static ICharacterAssert character(Character value) {
+			return new CharacterAssert(value, CharacterAssert.class);
 		}
 
 		public static ICharacterAssert character(char value) {
 			return new CharacterAssert(value, CharacterAssert.class);
 		}
 
-		public static ICharacterAssert character(Character value) {
-			return new CharacterAssert(value, CharacterAssert.class);
-		}
 	}
 }
