@@ -2,6 +2,7 @@ package org.jtester.hamcrest.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.text.IsEqualIgnoringCase;
+import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.hamcrest.text.StringContains;
 import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
@@ -20,11 +21,6 @@ public class StringAssert extends BaseAssert<String, IStringAssert> implements I
 		super(clazT, clazE);
 	}
 
-//	@Override
-//	protected StringAssert getInstance() {
-//		return new StringAssert(String.class, StringAssert.class);
-//	}
-
 	public IStringAssert contains(String expected) {
 		StringContains matcher = new StringContains(expected);
 		return (IStringAssert) this.assertThat(matcher);
@@ -35,8 +31,8 @@ public class StringAssert extends BaseAssert<String, IStringAssert> implements I
 		return (IStringAssert) this.assertThat(matcher);
 	}
 
-	public IStringAssert eqIgnoreCase(String item) {
-		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(item);
+	public IStringAssert eqIgnoreCase(String string) {
+		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(string);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 
@@ -47,6 +43,11 @@ public class StringAssert extends BaseAssert<String, IStringAssert> implements I
 
 	public IStringAssert start(String expected) {
 		Matcher<String> matcher = StringStartsWith.startsWith(expected);
+		return (IStringAssert) this.assertThat(matcher);
+	}
+
+	public Matcher<String> eqIgnorBlank(String string) {
+		Matcher<String> matcher = IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(string);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 }

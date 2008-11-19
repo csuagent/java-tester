@@ -18,4 +18,10 @@ public class ArrayAssert<T, E extends IArrayAssert<T, E>> extends BaseAssert<T, 
 		this.value = value;
 		this.type = AssertType.AssertThat;
 	}
+
+	public E hasItems(T item, T... items) {
+		// return
+		// org.hamcrest.collection.IsCollectionContaining.hasItem(element);
+		return null;// TODO
+	}
 }
