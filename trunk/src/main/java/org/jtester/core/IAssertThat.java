@@ -2,12 +2,10 @@ package org.jtester.core;
 
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.ICharacterAssert;
-import org.jtester.hamcrest.IIntegerAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
-import org.jtester.hamcrest.impl.IntegerAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
@@ -67,8 +65,8 @@ public interface IAssertThat {
 			return new NumberAssert(value, INumberAssert.class);
 		}
 
-		public static IIntegerAssert number(int value) {
-			return new IntegerAssert(value, IntegerAssert.class);
+		public static INumberAssert number(int value) {
+			return new NumberAssert(value, NumberAssert.class);
 		}
 
 		public static INumberAssert number(short value) {
