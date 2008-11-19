@@ -28,23 +28,16 @@ public interface IAssertThat {
 	//
 	// CollectionAssertEx assertThat(Collection<?> actual);
 	//
-	// DoubleAssert assertThat(double actual);
-	//
 	// DoubleArrayAssert assertThat(double[] actual);
 	//
 	// FileAssert assertThat(File actual);
 	//
-	// FloatAssert assertThat(float actual);
-	//
 	// FloatArrayAssert assertThat(float[] actual);
 
-	//
 	// IntArrayAssert assertThat(int[] actual);
 	//
 	// CollectionAssertEx assertThat(Iterator<?> actual);
-	//
-	// LongAssert assertThat(long actual);
-	//
+
 	// LongArrayAssert assertThat(long[] actual);
 	//
 	// MapAssert assertThat(Map<?, ?> actual);
@@ -53,12 +46,8 @@ public interface IAssertThat {
 	//
 	// ObjectArrayAssertEx assertThat(Object[] actual);
 	//
-	// ShortAssert assertThat(short actual);
-	//
 	// ShortArrayAssert assertThat(short[] actual);
-	//
-	// StringAssert assertThat(String actual);
-	//
+
 	// <T extends AssertExtension> T assertThat(T assertion);
 	//
 	// ThrowableAssert assertThat(Throwable actual);
@@ -74,6 +63,14 @@ public interface IAssertThat {
 
 		public static IIntegerAssert integer(Integer value) {
 			return new IntegerAssert(value, IntegerAssert.class);
+		}
+
+		public static IIntegerAssert integer(Short value) {
+			return new IntegerAssert((int) value, IntegerAssert.class);
+		}
+
+		public static IIntegerAssert integer(short value) {
+			return new IntegerAssert((int) value, IntegerAssert.class);
 		}
 
 		public static IBooleanAssert bool(boolean value) {
