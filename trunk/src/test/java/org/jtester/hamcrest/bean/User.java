@@ -9,9 +9,17 @@ public class User {
 
 	private String last;
 
+	private Address address;
+
 	public User(long id, String first, String last) {
 		this.id = id;
 		this.first = first;
 		this.last = last;
+	}
+
+	public User(String first, String last, Address address) {
+		this.first = first;
+		this.last = last;
+		this.address = address;
 	}
 }

@@ -38,7 +38,7 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 	}
 
 	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes) {
-		ReflectionAssert.assertReflectionEquals(this.value, expected);
+		ReflectionAssert.assertReflectionEquals(expected,this.value,  modes);
 		return (E) this;
 	}
 
