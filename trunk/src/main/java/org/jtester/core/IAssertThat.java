@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.jtester.hamcrest.IArrayAssert;
+import org.jtester.hamcrest.IAssert;
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.IByteAssert;
 import org.jtester.hamcrest.ICharacterAssert;
@@ -12,6 +13,7 @@ import org.jtester.hamcrest.IMapAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.ArrayAssert;
+import org.jtester.hamcrest.impl.BaseAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.ByteAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
@@ -140,6 +142,10 @@ public interface IAssertThat {
 
 		public static ICollectionAssert collection(Collection collection) {
 			return new CollectionAssert(collection, CollectionAssert.class);
+		}
+
+		public static IAssert bean(Object bean) {
+			return new BaseAssert(bean, Object.class);
 		}
 	}
 }

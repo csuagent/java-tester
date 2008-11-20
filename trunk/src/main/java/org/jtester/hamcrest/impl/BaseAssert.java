@@ -13,7 +13,7 @@ import org.hamcrest.core.IsNot;
 import org.jtester.hamcrest.IAssert;
 import org.unitils.reflectionassert.ReflectionAssert;
 
-public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
+public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
 	public BaseAssert(Class<? extends IAssert> clazE) {
 		super(clazE);
 	}

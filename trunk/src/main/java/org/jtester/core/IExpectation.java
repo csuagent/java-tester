@@ -1,6 +1,7 @@
 package org.jtester.core;
 
 import org.jtester.hamcrest.IArrayAssert;
+import org.jtester.hamcrest.IAssert;
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.IByteAssert;
 import org.jtester.hamcrest.ICharacterAssert;
@@ -9,6 +10,7 @@ import org.jtester.hamcrest.IMapAssert;
 import org.jtester.hamcrest.INumberAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.ArrayAssert;
+import org.jtester.hamcrest.impl.BaseAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.ByteAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
@@ -54,6 +56,10 @@ public interface IExpectation {
 
 		public static ICollectionAssert collection() {
 			return new CollectionAssert(CollectionAssert.class);
+		}
+
+		public static IAssert bean() {
+			return new BaseAssert(Object.class);
 		}
 	}
 }
