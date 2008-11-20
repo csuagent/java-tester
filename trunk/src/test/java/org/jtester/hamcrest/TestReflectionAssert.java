@@ -41,5 +41,6 @@ public class TestReflectionAssert extends JTester {
 		myList.add(1.0);
 		myList.add(2.0);
 		want.object(myList).reflectionEqualTo(Arrays.asList(1, 2));
+
 	}
 }
