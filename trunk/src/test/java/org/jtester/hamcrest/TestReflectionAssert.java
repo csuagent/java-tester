@@ -74,6 +74,24 @@ public class TestReflectionAssert extends JTester {
 		// assertPropertyLenientEquals("address.street", "First street", user);
 		want.object(user1).propertyEqualTo("id", 1);
 		want.object(user2).propertyEqualTo("address.street", "First street");
+
+		// assertReflectionEquals(Arrays.asList(new User("John"), new
+		// User("Jane")),
+		// new User[] {new User("Jane"), new User("John")},
+		// ReflectionComparatorMode.LENIENT_ORDER);
+
+		want.object(new User[] { new User("Jane"), new User("John") }).reflectionEqualTo(
+				Arrays.asList(new User("John"), new User("Jane")), opts.CompMode.LENIENT_ORDER);
+
+		want.object(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
+				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
+
+		want.array(new User[] { new User("Jane"), new User("John") }).reflectionEqualTo(
+				Arrays.asList(new User("John"), new User("Jane")), opts.CompMode.LENIENT_ORDER);
+
+		want.collection(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
+				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
+
 	}
 
 	@Test(expectedExceptions = { AssertionFailedError.class })

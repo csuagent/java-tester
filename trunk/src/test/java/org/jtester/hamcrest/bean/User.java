@@ -11,6 +11,10 @@ public class User {
 
 	private Address address;
 
+	public User(String first) {
+		this.first = first;
+	}
+
 	public User(long id, String first, String last) {
 		this.id = id;
 		this.first = first;
