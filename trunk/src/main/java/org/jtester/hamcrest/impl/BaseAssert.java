@@ -11,6 +11,7 @@ import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.jtester.hamcrest.IAssert;
+import org.unitils.reflectionassert.ReflectionAssert;
 
 public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
 	public BaseAssert(Class<? extends IAssert> clazE) {
@@ -33,6 +34,13 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 	public E notEq(T expected) {
 		Matcher<T> matcher = IsNot.not(IsEqual.equalTo(expected));
 		return this.assertThat(matcher);
+	}
+
+	public E req(T expected) {
+		// Matcher<T> matcher = IsNot.not(IsEqual.equalTo(expected));
+		// return this.assertThat(matcher);
+		ReflectionAssert.assertReflectionEquals(this.value, expected);
+		return (E) this;
 	}
 
 	public E type(Class<?> expected) {
