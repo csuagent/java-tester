@@ -48,7 +48,7 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		return (E) this;
 	}
 
-	public E propertyEqualTo(T expected, String property) {
+	public E propertyEqualTo(String property, T expected) {
 		ReflectionAssert.assertPropertyLenientEquals(property, expected, this.value);
 		return (E) this;
 	}
