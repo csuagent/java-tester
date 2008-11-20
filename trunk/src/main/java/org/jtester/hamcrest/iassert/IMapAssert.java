@@ -1,4 +1,4 @@
-package org.jtester.hamcrest;
+package org.jtester.hamcrest.iassert;
 
 import java.util.Map;
 

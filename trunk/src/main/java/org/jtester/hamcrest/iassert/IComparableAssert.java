@@ -1,4 +1,4 @@
-package org.jtester.hamcrest;
+package org.jtester.hamcrest.iassert;
 
 public interface IComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>> extends IAssert<T, E> {
 	public E lt(T max);

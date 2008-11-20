@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.impl;
+package org.jtester.hamcrest.iassert.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.hamcrest.core.AnyOf;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
-import org.jtester.hamcrest.IAssert;
-import org.jtester.hamcrest.IBaseAssert;
+import org.jtester.hamcrest.iassert.IAssert;
+import org.jtester.hamcrest.iassert.IBaseAssert;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 

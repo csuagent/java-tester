@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.impl;
+package org.jtester.hamcrest.iassert.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,8 +7,8 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsArrayContaining;
 import org.hamcrest.core.AllOf;
-import org.jtester.hamcrest.IArrayAssert;
-import org.jtester.hamcrest.IAssert;
+import org.jtester.hamcrest.iassert.IArrayAssert;
+import org.jtester.hamcrest.iassert.IAssert;
 
 public class ArrayAssert<T, E extends IArrayAssert<T, E>> extends BaseAssert<T, E> implements IArrayAssert<T, E> {
 

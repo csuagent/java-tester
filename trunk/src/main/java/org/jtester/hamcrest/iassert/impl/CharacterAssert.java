@@ -1,7 +1,7 @@
-package org.jtester.hamcrest.impl;
+package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.IAssert;
-import org.jtester.hamcrest.ICharacterAssert;
+import org.jtester.hamcrest.iassert.IAssert;
+import org.jtester.hamcrest.iassert.ICharacterAssert;
 
 public class CharacterAssert extends BaseAssert<Character, ICharacterAssert> implements ICharacterAssert {
 

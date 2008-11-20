@@ -1,7 +1,7 @@
-package org.jtester.hamcrest.impl;
+package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.IAssert;
-import org.jtester.hamcrest.IObjectAssert;
+import org.jtester.hamcrest.iassert.IAssert;
+import org.jtester.hamcrest.iassert.IObjectAssert;
 
 public class ObjectAssert<T, E extends IObjectAssert<T, ?>> extends BaseAssert<T, E> implements IObjectAssert<T, E> {
 

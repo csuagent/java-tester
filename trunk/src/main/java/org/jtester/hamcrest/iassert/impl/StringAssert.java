@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.impl;
+package org.jtester.hamcrest.iassert.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.text.IsEqualIgnoringCase;
@@ -6,7 +6,7 @@ import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.hamcrest.text.StringContains;
 import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
-import org.jtester.hamcrest.IStringAssert;
+import org.jtester.hamcrest.iassert.IStringAssert;
 
 public class StringAssert extends ComparableAssert<String, IStringAssert> implements IStringAssert {
 	public StringAssert(Class<IStringAssert> clazE) {

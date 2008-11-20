@@ -1,7 +1,7 @@
-package org.jtester.hamcrest.impl;
+package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.IAssert;
-import org.jtester.hamcrest.IByteAssert;
+import org.jtester.hamcrest.iassert.IAssert;
+import org.jtester.hamcrest.iassert.IByteAssert;
 
 public class ByteAssert extends BaseAssert<Byte, IByteAssert> implements IByteAssert {
 
