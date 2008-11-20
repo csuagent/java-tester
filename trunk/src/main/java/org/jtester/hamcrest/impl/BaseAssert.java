@@ -11,10 +11,11 @@ import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.jtester.hamcrest.IAssert;
+import org.jtester.hamcrest.IBaseAssert;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
+public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IBaseAssert<T, E> {
 	public BaseAssert(Class<? extends IAssert> clazE) {
 		super(clazE);
 	}
@@ -38,7 +39,7 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 	}
 
 	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes) {
-		ReflectionAssert.assertReflectionEquals(expected,this.value,  modes);
+		ReflectionAssert.assertReflectionEquals(expected, this.value, modes);
 		return (E) this;
 	}
 

@@ -1,22 +1,22 @@
 package org.jtester.core;
 
 import org.jtester.hamcrest.IArrayAssert;
-import org.jtester.hamcrest.IAssert;
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.IByteAssert;
 import org.jtester.hamcrest.ICharacterAssert;
 import org.jtester.hamcrest.ICollectionAssert;
 import org.jtester.hamcrest.IMapAssert;
 import org.jtester.hamcrest.INumberAssert;
+import org.jtester.hamcrest.IObjectAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.ArrayAssert;
-import org.jtester.hamcrest.impl.BaseAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.ByteAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
 import org.jtester.hamcrest.impl.CollectionAssert;
 import org.jtester.hamcrest.impl.MapAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
+import org.jtester.hamcrest.impl.ObjectAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
 public interface IExpectation {
@@ -58,8 +58,8 @@ public interface IExpectation {
 			return new CollectionAssert(CollectionAssert.class);
 		}
 
-		public static IAssert object() {
-			return new BaseAssert(Object.class);
+		public static IObjectAssert object() {
+			return new ObjectAssert(Object.class);
 		}
 	}
 }

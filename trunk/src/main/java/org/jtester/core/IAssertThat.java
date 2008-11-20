@@ -4,28 +4,27 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.jtester.hamcrest.IArrayAssert;
-import org.jtester.hamcrest.IAssert;
 import org.jtester.hamcrest.IBooleanAssert;
 import org.jtester.hamcrest.IByteAssert;
 import org.jtester.hamcrest.ICharacterAssert;
 import org.jtester.hamcrest.ICollectionAssert;
 import org.jtester.hamcrest.IMapAssert;
 import org.jtester.hamcrest.INumberAssert;
+import org.jtester.hamcrest.IObjectAssert;
 import org.jtester.hamcrest.IStringAssert;
 import org.jtester.hamcrest.impl.ArrayAssert;
-import org.jtester.hamcrest.impl.BaseAssert;
 import org.jtester.hamcrest.impl.BooleanAssert;
 import org.jtester.hamcrest.impl.ByteAssert;
 import org.jtester.hamcrest.impl.CharacterAssert;
 import org.jtester.hamcrest.impl.CollectionAssert;
 import org.jtester.hamcrest.impl.MapAssert;
 import org.jtester.hamcrest.impl.NumberAssert;
+import org.jtester.hamcrest.impl.ObjectAssert;
 import org.jtester.hamcrest.impl.StringAssert;
 
 public interface IAssertThat {
 	// ImageAssert assertThat(BufferedImage actual);
 	// FileAssert assertThat(File actual);
-	// CollectionAssertEx assertThat(Iterator<?> actual);
 	// ObjectAssertEx assertThat(Object actual);
 	// <T extends AssertExtension> T assertThat(T assertion);
 	// ThrowableAssert assertThat(Throwable actual);
@@ -144,8 +143,8 @@ public interface IAssertThat {
 			return new CollectionAssert(collection, CollectionAssert.class);
 		}
 
-		public static IAssert object(Object bean) {
-			return new BaseAssert(bean, Object.class);
+		public static IObjectAssert object(Object bean) {
+			return new ObjectAssert(bean, Object.class);
 		}
 	}
 }

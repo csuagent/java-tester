@@ -2,12 +2,9 @@ package org.jtester.hamcrest;
 
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
-import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 	public E isEqualTo(T expected);
-
-	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes);
 
 	public E notEqualTo(T expected);
 
