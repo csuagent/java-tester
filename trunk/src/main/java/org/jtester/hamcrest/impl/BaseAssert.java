@@ -84,7 +84,7 @@ public abstract class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		if (matchers != null) {
 			for (IAssert matcher : matchers) {
-				list.add(matcher.setValue(this.value));
+				list.add(matcher);
 			}
 		}
 		return list;

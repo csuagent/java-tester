@@ -1,13 +1,11 @@
 package org.jtester.hamcrest.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
+import org.jtester.core.PrimitiveConvertor;
 import org.jtester.hamcrest.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
@@ -52,11 +50,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 			throw new RuntimeException("is not an Expectations");
 		} else {
 			expectations.with(this.link);
-			if (map.containsKey(clazT)) {
-				return (T) map.get(clazT);
-			} else {
-				return null;
-			}
+			return PrimitiveConvertor.value(clazT);
 		}
 	}
 
@@ -86,27 +80,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		return this.link.matches(item);
 	}
 
-	private static Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
-	static {
-		map.put(String.class, "");
-		map.put(Integer.class, 0);
-		map.put(Short.class, 0);
-		map.put(Long.class, 0);
-		map.put(Byte.class, 0);
-		map.put(Float.class, 0.0f);
-		map.put(Double.class, 0.0d);
-
-		map.put(Boolean.class, false);
-
-		// TODO
-	}
-
 	protected static enum AssertType {
 		AssertThat, Expectations;
-	}
-
-	public E setValue(T value) {
-		this.value = value;
-		return (E) this;
 	}
 }
