@@ -21,6 +21,11 @@ public class User {
 		this.last = last;
 	}
 
+	public User(String first, String last) {
+		this.first = first;
+		this.last = last;
+	}
+
 	public User(String first, String last, Address address) {
 		this.first = first;
 		this.last = last;

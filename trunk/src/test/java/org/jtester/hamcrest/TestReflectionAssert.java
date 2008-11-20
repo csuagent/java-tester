@@ -12,6 +12,7 @@ import org.jtester.hamcrest.bean.User;
 import org.jtester.testng.JTester;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.unitils.reflectionassert.ReflectionAssert;
 
 public class TestReflectionAssert extends JTester {
 	@Test(expectedExceptions = { AssertionError.class })
@@ -91,6 +92,11 @@ public class TestReflectionAssert extends JTester {
 
 		want.collection(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
 				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
+		// Check only the firstName property
+//		ReflectionAssert.assertPropertyLenientEquals("firstName", Arrays.asList("John", "Jane"), new User[] {
+//				new User("Jane", "Doe"), new User("John", "Doe") });
+		want.array(new User[] { new User("Jane", "Doe"), new User("John", "Doe") }).propertyEqualTo("firstName",
+				Arrays.asList("John", "Jane"));
 
 	}
 
