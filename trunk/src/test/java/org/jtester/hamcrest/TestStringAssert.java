@@ -11,7 +11,6 @@ public class TestStringAssert extends JTester {
 		want.string("ddd").eqIgnoreCase("dDD");
 		want.string("eeeed").end("ed");
 		want.string("eeeed").end("ed").start("eee");
-
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })
