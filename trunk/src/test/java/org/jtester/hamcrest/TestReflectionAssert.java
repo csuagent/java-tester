@@ -1,5 +1,9 @@
 package org.jtester.hamcrest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import junit.framework.AssertionFailedError;
 
 import org.jtester.hamcrest.bean.User;
@@ -19,13 +23,23 @@ public class TestReflectionAssert extends JTester {
 	public void test2() {
 		User user1 = new User(1, "John", "Doe");
 		User user2 = new User(1, "John", "Doe");
-		want.bean(user1).reflectionEqualTo(user2);
+		want.object(user1).reflectionEqualTo(user2);
 	}
 
 	@Test(expectedExceptions = { AssertionFailedError.class })
 	public void test3() {
 		User user1 = new User(1, "John", "Doe");
 		User user2 = new User(1, "John", "Doe1");
-		want.bean(user1).reflectionEqualTo(user2);
+		want.object(user1).reflectionEqualTo(user2);
+	}
+
+	@Test
+	public void test4() {
+		want.object(1).reflectionEqualTo(1L);
+
+		List<Double> myList = new ArrayList<Double>();
+		myList.add(1.0);
+		myList.add(2.0);
+		want.object(myList).reflectionEqualTo(Arrays.asList(1, 2));
 	}
 }

@@ -58,7 +58,7 @@ public interface IExpectation {
 			return new CollectionAssert(CollectionAssert.class);
 		}
 
-		public static IAssert bean() {
+		public static IAssert object() {
 			return new BaseAssert(Object.class);
 		}
 	}

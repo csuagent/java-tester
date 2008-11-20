@@ -144,7 +144,7 @@ public interface IAssertThat {
 			return new CollectionAssert(collection, CollectionAssert.class);
 		}
 
-		public static IAssert bean(Object bean) {
+		public static IAssert object(Object bean) {
 			return new BaseAssert(bean, Object.class);
 		}
 	}
