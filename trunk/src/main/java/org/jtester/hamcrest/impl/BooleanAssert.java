@@ -20,7 +20,7 @@ public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert> implement
 	}
 
 	public IBooleanAssert is(boolean bl) {
-		return super.eq(bl);
+		return super.isEqualTo(bl);
 	}
 
 	public IBooleanAssert is(boolean bl, String message) {

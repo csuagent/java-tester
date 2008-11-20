@@ -7,7 +7,7 @@ public class TestBooleanAssert extends JTester {
 
 	@Test
 	public void test1() {
-		want.bool(true).eq(true);
+		want.bool(true).isEqualTo(true);
 		want.bool(true).is(true);
 	}
 

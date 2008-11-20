@@ -19,13 +19,13 @@ public class TestReflectionAssert extends JTester {
 	public void test2() {
 		User user1 = new User(1, "John", "Doe");
 		User user2 = new User(1, "John", "Doe");
-		want.bean(user1).req(user2);
+		want.bean(user1).reflectionEqualTo(user2);
 	}
 
 	@Test(expectedExceptions = { AssertionFailedError.class })
 	public void test3() {
 		User user1 = new User(1, "John", "Doe");
 		User user2 = new User(1, "John", "Doe1");
-		want.bean(user1).req(user2);
+		want.bean(user1).reflectionEqualTo(user2);
 	}
 }

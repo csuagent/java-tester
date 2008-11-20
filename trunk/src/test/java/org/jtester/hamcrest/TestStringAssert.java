@@ -7,7 +7,7 @@ public class TestStringAssert extends JTester {
 	@Test
 	public void test11() {
 		want.string("ddd").contains("d").contains("d");
-		want.string("ddd").eq("ddd");
+		want.string("ddd").isEqualTo("ddd");
 		want.string("ddd").eqIgnoreCase("dDD");
 		want.string("eeeed").end("ed");
 		want.string("eeeed").end("ed").start("eee");

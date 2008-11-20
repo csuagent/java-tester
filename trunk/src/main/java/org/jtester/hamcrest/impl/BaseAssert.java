@@ -26,17 +26,17 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		super(clazT, clazE);
 	}
 
-	public E eq(T expected) {
+	public E isEqualTo(T expected) {
 		Matcher<T> matcher = IsEqual.equalTo(expected);
 		return this.assertThat(matcher);
 	}
 
-	public E notEq(T expected) {
+	public E notEqualTo(T expected) {
 		Matcher<T> matcher = IsNot.not(IsEqual.equalTo(expected));
 		return this.assertThat(matcher);
 	}
 
-	public E req(T expected) {
+	public E reflectionEqualTo(T expected) {
 		// Matcher<T> matcher = IsNot.not(IsEqual.equalTo(expected));
 		// return this.assertThat(matcher);
 		ReflectionAssert.assertReflectionEquals(this.value, expected);

@@ -11,7 +11,7 @@ public class TestNumberAssert extends JTester {
 		want.number(3).gt(2);
 		want.number(3).leq(3);
 		want.number(3).lt(4);
-		want.number(3).eq(3);
+		want.number(3).isEqualTo(3);
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })

@@ -4,11 +4,11 @@ import org.hamcrest.Matcher;
 import org.jmock.Expectations;
 
 public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
-	public E eq(T expected);
+	public E isEqualTo(T expected);
 
-	public E req(T expected);
+	public E reflectionEqualTo(T expected);
 
-	public E notEq(T expected);
+	public E notEqualTo(T expected);
 
 	public E in(T... values);
 

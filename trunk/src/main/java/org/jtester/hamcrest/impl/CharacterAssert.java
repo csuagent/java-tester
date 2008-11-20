@@ -18,6 +18,6 @@ public class CharacterAssert extends BaseAssert<Character, ICharacterAssert> imp
 	}
 
 	public ICharacterAssert is(char ch) {
-		return super.eq(ch);
+		return super.isEqualTo(ch);
 	}
 }
