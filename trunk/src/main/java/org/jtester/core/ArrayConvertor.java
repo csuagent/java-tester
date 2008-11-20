@@ -72,4 +72,37 @@ public class ArrayConvertor {
 		}
 		return objs.toArray();
 	}
+
+	public static <T> Object convert(T value) {
+		if (value instanceof int[]) {
+			return convert((int[]) value);
+		} else if (value instanceof long[]) {
+			return convert((long[]) value);
+		} else if (value instanceof short[]) {
+			return convert((short[]) value);
+		} else if (value instanceof float[]) {
+			return convert((float[]) value);
+		} else if (value instanceof double[]) {
+			return convert((double[]) value);
+		} else if (value instanceof char[]) {
+			return convert((char[]) value);
+		} else if (value instanceof byte[]) {
+			return convert((byte[]) value);
+		} else if (value instanceof boolean[]) {
+			return convert((boolean[]) value);
+		} else {
+			return value;
+		}
+	}
+
+	public static List convert(Object values[]) {
+		if (values == null) {
+			return null;
+		}
+		List list = new ArrayList();
+		for (Object o : values) {
+			list.add(o);
+		}
+		return list;
+	}
 }

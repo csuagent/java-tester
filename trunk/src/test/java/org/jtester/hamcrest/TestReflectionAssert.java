@@ -69,32 +69,24 @@ public class TestReflectionAssert extends JTester {
 
 	@Test
 	public void test7() {
-		User user1 = new User(1, "John", "Doe");
-		User user2 = new User("John", "Doe", new Address("First street", "", ""));
-		// assertPropertyLenientEquals("id", 1, user);
-		// assertPropertyLenientEquals("address.street", "First street", user);
-		want.object(user1).propertyEqualTo("id", 1);
-		want.object(user2).propertyEqualTo("address.street", "First street");
-
-		// assertReflectionEquals(Arrays.asList(new User("John"), new
-		// User("Jane")),
-		// new User[] {new User("Jane"), new User("John")},
-		// ReflectionComparatorMode.LENIENT_ORDER);
-
-		want.object(new User[] { new User("Jane"), new User("John") }).reflectionEqualTo(
-				Arrays.asList(new User("John"), new User("Jane")), opts.CompMode.LENIENT_ORDER);
-
-		want.object(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
-				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
-
-		want.array(new User[] { new User("Jane"), new User("John") }).reflectionEqualTo(
-				Arrays.asList(new User("John"), new User("Jane")), opts.CompMode.LENIENT_ORDER);
-
-		want.collection(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
-				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
-		// Check only the firstName property
-//		ReflectionAssert.assertPropertyLenientEquals("firstName", Arrays.asList("John", "Jane"), new User[] {
-//				new User("Jane", "Doe"), new User("John", "Doe") });
+//		User user1 = new User(1, "John", "Doe");
+//		User user2 = new User("John", "Doe", new Address("First street", "", ""));
+//
+//		want.object(user1).propertyEqualTo("id", 1);
+//		want.object(user2).propertyEqualTo("address.street", "First street");
+//
+//		want.object(new User[] { new User("Jane"), new User("John") }).reflectionEqualTo(
+//				Arrays.asList(new User("John"), new User("Jane")), opts.CompMode.LENIENT_ORDER);
+//
+//		want.object(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
+//				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
+//
+//		want.array(new User[] { new User("Jane"), new User("John") }).reflectionEqualTo(
+//				Arrays.asList(new User("John"), new User("Jane")), opts.CompMode.LENIENT_ORDER);
+//
+//		want.collection(Arrays.asList(new User("John"), new User("Jane"))).reflectionEqualTo(
+//				new User[] { new User("Jane"), new User("John") }, opts.CompMode.LENIENT_ORDER);
+//		
 		want.array(new User[] { new User("Jane", "Doe"), new User("John", "Doe") }).propertyEqualTo("firstName",
 				Arrays.asList("John", "Jane"));
 
