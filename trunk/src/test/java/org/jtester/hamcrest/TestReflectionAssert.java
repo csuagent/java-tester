@@ -65,4 +65,26 @@ public class TestReflectionAssert extends JTester {
 		want.object(actualDate).reflectionEqualTo(expectedDate, opts.CompMode.LENIENT_DATES);
 
 	}
+
+	@Test
+	public void test7() {
+		User user1 = new User(1, "John", "Doe");
+		User user2 = new User("John", "Doe", new Address("First street", "", ""));
+		// assertPropertyLenientEquals("id", 1, user);
+		// assertPropertyLenientEquals("address.street", "First street", user);
+		want.object(user1).propertyEqualTo("id", 1);
+		want.object(user2).propertyEqualTo("address.street", "First street");
+	}
+
+	@Test(expectedExceptions = { AssertionFailedError.class })
+	public void test8() {
+		User user = new User(1, "John", "Doe");
+		want.object(user).propertyEqualTo("id", 2);
+	}
+
+	@Test(expectedExceptions = { AssertionFailedError.class })
+	public void test9() {
+		User user = new User("John", "Doe", new Address("First street", "", ""));
+		want.object(user).propertyEqualTo("address.street", "First street1");
+	}
 }

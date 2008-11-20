@@ -8,5 +8,5 @@ public interface IReflectionAssert<T, E extends IAssert<T, ?>> extends IAssert<T
 
 	public E lenientEqualTo(T expected);
 
-	public E propertyEqualTo(T expected, String property);
+	public E propertyEqualTo(String property, T expected);
 }
