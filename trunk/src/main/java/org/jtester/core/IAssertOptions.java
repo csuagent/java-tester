@@ -3,7 +3,7 @@ package org.jtester.core;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public interface IAssertOptions {
-	public static class options {
+	public static class opts {
 		public static class CompMode {
 			public final static ReflectionComparatorMode IGNORE_DEFAULTS = ReflectionComparatorMode.IGNORE_DEFAULTS;
 
@@ -13,7 +13,7 @@ public interface IAssertOptions {
 		}
 	}
 
-	public static class opts extends options {
+	public static class options extends opts {
 
 	}
 }

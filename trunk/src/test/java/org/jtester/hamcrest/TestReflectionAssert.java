@@ -2,6 +2,7 @@ package org.jtester.hamcrest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import junit.framework.AssertionFailedError;
@@ -54,5 +55,14 @@ public class TestReflectionAssert extends JTester {
 		User expectedUser = new User("John", null, new Address("First street", null, null));
 		// assertReflectionEquals(expectedUser, actualUser, IGNORE_DEFAULTS);
 		want.object(actualUser).reflectionEqualTo(expectedUser, opts.CompMode.IGNORE_DEFAULTS);
+	}
+
+	@Test
+	public void test6() {
+		Date actualDate = new Date(44444);
+		Date expectedDate = new Date();
+		// assertReflectionEquals(expectedDate, actualDate, LENIENT_DATES);
+		want.object(actualDate).reflectionEqualTo(expectedDate, opts.CompMode.LENIENT_DATES);
+
 	}
 }
