@@ -12,6 +12,7 @@ import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.jtester.hamcrest.IAssert;
 import org.unitils.reflectionassert.ReflectionAssert;
+import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
 	public BaseAssert(Class<? extends IAssert> clazE) {
@@ -36,9 +37,7 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		return this.assertThat(matcher);
 	}
 
-	public E reflectionEqualTo(T expected) {
-		// Matcher<T> matcher = IsNot.not(IsEqual.equalTo(expected));
-		// return this.assertThat(matcher);
+	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes) {
 		ReflectionAssert.assertReflectionEquals(this.value, expected);
 		return (E) this;
 	}
