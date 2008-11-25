@@ -12,7 +12,6 @@ import org.jtester.hamcrest.bean.User;
 import org.jtester.testng.JTester;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.unitils.reflectionassert.ReflectionAssert;
 
 public class TestReflectionAssert extends JTester {
 	@Test(expectedExceptions = { AssertionError.class })
