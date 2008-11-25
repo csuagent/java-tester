@@ -1,21 +1,17 @@
 package org.jtester.hamcrest.matcher;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.jtester.core.ArrayConvertor;
-import org.unitils.core.UnitilsException;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparator;
-import org.unitils.reflectionassert.ReflectionComparatorFactory;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.reflectionassert.difference.Difference;
 
+@SuppressWarnings("unused")
 public class PropertyMatcher<T> extends BaseMatcher<T> {
 	private Object expected;
 
@@ -45,8 +41,8 @@ public class PropertyMatcher<T> extends BaseMatcher<T> {
 		return true;
 	}
 
-
 	public void describeTo(Description description) {
-		//description.appendText(ReflectionAssertEx.formatMessageEx(message, difference));
+		// description.appendText(ReflectionAssertEx.formatMessageEx(message,
+		// difference));
 	}
 }
