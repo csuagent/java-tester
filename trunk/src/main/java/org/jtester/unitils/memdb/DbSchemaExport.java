@@ -36,34 +36,4 @@ public class DbSchemaExport {
 		log.info("remove not null constraints");
 		this.dbSupport.disableValueConstraints();
 	}
-
-	protected void removeForeignKeyConstraints() {
-
-		// Set<String> tableNames = dbSupport.getTableNames();
-		// for (String tableName : tableNames) {
-		// Set<String> constraintNames =
-		// dbSupport.getForeignKeyConstraintNames(tableName);
-		// for (String constraintName : constraintNames) {
-		// dbSupport.removeForeignKeyConstraint(tableName, constraintName);
-		// }
-		// }
-	}
-
-	protected void removeNotNullConstraints() {
-
-		// Set<String> tableNames = dbSupport.getTableNames();
-		// for (String tableName : tableNames) {
-		// Set<String> primaryKeyColumnNames =
-		// dbSupport.getPrimaryKeyColumnNames(tableName);
-		//
-		// Set<String> notNullColumnNames =
-		// dbSupport.getNotNullColummnNames(tableName);
-		// for (String notNullColumnName : notNullColumnNames) {
-		// if (primaryKeyColumnNames.contains(notNullColumnName)) {
-		// continue;
-		// }
-		// dbSupport.removeNotNullConstraint(tableName, notNullColumnName);
-		// }
-		// }
-	}
 }
