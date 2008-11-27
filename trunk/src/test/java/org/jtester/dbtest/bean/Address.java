@@ -1,4 +1,4 @@
-package org.jtester.bean;
+package org.jtester.dbtest.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
