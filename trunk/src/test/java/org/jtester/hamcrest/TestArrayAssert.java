@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class TestArrayAssert extends JTester {
 	@Test
 	public void test1() {

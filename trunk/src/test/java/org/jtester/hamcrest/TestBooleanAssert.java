@@ -3,6 +3,7 @@ package org.jtester.hamcrest;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class TestBooleanAssert extends JTester {
 
 	@Test

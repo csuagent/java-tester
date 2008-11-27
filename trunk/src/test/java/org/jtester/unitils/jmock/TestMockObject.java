@@ -7,6 +7,7 @@ import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.bean.ISay;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class TestMockObject extends JTester {
 	@Mock
 	private ISay say;
