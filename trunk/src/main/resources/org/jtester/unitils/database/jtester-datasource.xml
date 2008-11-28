@@ -13,6 +13,6 @@
     <!-- =================================================================== -->
     <!-- Hibernate: datasouce and hibernate config                           -->
     <!-- =================================================================== -->
-    <bean id="dataSource" class="com.infowarelab.test.unitils.database.BuildDataSource" destroy-method="close">
+    <bean id="dataSource" class="org.jtester.unitils.database.JTesterDataSource" destroy-method="close">
     </bean>
 </beans>
