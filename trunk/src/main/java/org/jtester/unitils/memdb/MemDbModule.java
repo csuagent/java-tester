@@ -15,7 +15,11 @@ public class MemDbModule implements Module {
 			MemDbConfigUtil.uptUnitilsConfigs();
 			// disable DatabaseSchemaEnabled
 			DatabaseModule module = Unitils.getInstance().getModulesRepository().getModuleOfType(DatabaseModule.class);
-			ReflectUtil.setFieldValue(module, "updateDatabaseSchemaEnabled", false);
+			try {
+				ReflectUtil.setFieldValue(module, "updateDatabaseSchemaEnabled", false);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 			// export hibernate db schema
 			DbSchemaExport export = new DbSchemaExport(MemDbConfigUtil.getMemDbType());
 			export.export();
