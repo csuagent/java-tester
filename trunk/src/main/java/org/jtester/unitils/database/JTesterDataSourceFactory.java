@@ -9,11 +9,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.unitils.database.config.DataSourceFactory;
 
-public class JTesterSourceFactory implements DataSourceFactory {
+public class JTesterDataSourceFactory implements DataSourceFactory {
 	@SuppressWarnings("unused")
-	private static Log logger = LogFactory.getLog(JTesterSourceFactory.class);
+	private static Log logger = LogFactory.getLog(JTesterDataSourceFactory.class);
 
-	public JTesterSourceFactory() {
+	public JTesterDataSourceFactory() {
 	}
 
 	public void init(Properties configuration) {
