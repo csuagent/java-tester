@@ -28,16 +28,28 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>mockito-repository</id>
+			<url>http://wamblee.org/mockito</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
-			<version>1.1</version>
+			<version>${hamcrest.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>1.5</version>
+			<version>${mockito.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jmock</groupId>
@@ -129,5 +141,7 @@
 		<unitils.version>2.0</unitils.version>
 		<dbunit.version>2.4.0</dbunit.version>
 		<jmock.version>2.5.1</jmock.version>
+		<hamcrest.version>1.1</hamcrest.version>
+		<mockito.version>1.6</mockito.version>
 	</properties>
 </project>
