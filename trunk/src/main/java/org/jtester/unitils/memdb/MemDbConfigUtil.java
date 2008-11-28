@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
+import org.jtester.unitils.database.H2DbSupport;
 import org.unitils.core.Unitils;
 import org.unitils.core.dbsupport.DbSupport;
 import org.unitils.core.dbsupport.HsqldbDbSupport;

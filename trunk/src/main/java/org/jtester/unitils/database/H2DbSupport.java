@@ -1,4 +1,4 @@
-package org.jtester.unitils.memdb;
+package org.jtester.unitils.database;
 
 import java.util.Set;
 
