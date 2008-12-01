@@ -47,7 +47,7 @@ public class DbSchemaExport {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		
+
 		log.info("call hibernate tool:org.hibernate.tool.hbm2ddl.SchemaExport.create");
 		this.export.execute(isScript(), true, false, true);
 		log.info("remove foreign key constraints");
@@ -102,7 +102,7 @@ public class DbSchemaExport {
 
 		Properties unitilscfg = Unitils.getInstance().getConfiguration();
 		String script = unitilscfg.getProperty("dbexport.script");
-		if (script.equalsIgnoreCase("true")) {
+		if (script != null && script.equalsIgnoreCase("true")) {
 			return true;
 		} else {
 			return false;
