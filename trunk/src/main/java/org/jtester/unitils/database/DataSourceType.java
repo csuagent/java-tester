@@ -19,6 +19,11 @@ public enum DataSourceType {
 		public DbSupport getDbSupport() {
 			return new H2DbSupport();
 		}
+
+		@Override
+		public boolean autoExport() {
+			return true;
+		}
 	},
 	/**
 	 * HsqlDb
@@ -28,6 +33,11 @@ public enum DataSourceType {
 		@Override
 		public DbSupport getDbSupport() {
 			return new HsqldbDbSupport();
+		}
+
+		@Override
+		public boolean autoExport() {
+			return true;
 		}
 	},
 	/**
@@ -120,10 +130,10 @@ public enum DataSourceType {
 
 	public static DataSourceType type() {
 		// form vm
-		String type = System.getProperty("memdb.type");
+		String type = System.getProperty("datasource.type");
 		// from property
 		if (type == null) {
-			type = cfg.getProperty("memdb.type");
+			type = cfg.getProperty("datasource.type");
 		}
 		DataSourceType dataSourceType = DataSourceType.H2DB;
 
@@ -139,7 +149,9 @@ public enum DataSourceType {
 	}
 
 	public boolean autoExport() {
-		if (this == H2DB || this == HSQLDB) {
+		Properties unitilscfg = Unitils.getInstance().getConfiguration();
+		String auto = unitilscfg.getProperty("dbexport.auto");
+		if (auto != null && auto.equalsIgnoreCase("true")) {
 			return true;
 		} else {
 			return false;

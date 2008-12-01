@@ -99,7 +99,6 @@ public class DbSchemaExport {
 	}
 
 	public static boolean isScript() {
-
 		Properties unitilscfg = Unitils.getInstance().getConfiguration();
 		String script = unitilscfg.getProperty("dbexport.script");
 		if (script != null && script.equalsIgnoreCase("true")) {
