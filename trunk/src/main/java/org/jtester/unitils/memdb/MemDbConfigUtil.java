@@ -132,10 +132,10 @@ public final class MemDbConfigUtil {
 		cfg.setProperty("database.url", dbtype.getConnUrl());
 		cfg.setProperty("database.userName", dbtype.getUserName());
 		cfg.setProperty("database.password", dbtype.getUserPass());
-		cfg.setProperty("database.schemaNames", dbtype.getSchemas());
+		cfg.setProperty("database.schemaNames", dbtype.getSchema());
 		cfg.setProperty("database.dialect", "hsqldb");
-		
-		//disable dbmaintainer properties
+
+		// disable dbmaintainer properties
 		cfg.setProperty("updateDataBaseSchema.enabled", "false");
 		cfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
 		cfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");

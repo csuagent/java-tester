@@ -24,7 +24,7 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(db);
 		JTesterDataSource datasource = (JTesterDataSource) context.getBean("dataSource");
-		datasource.init();
+		//datasource.init();
 		return datasource;
 	}
 }

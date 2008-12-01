@@ -10,15 +10,17 @@ public enum DataSourceType {
 	/**
 	 * H2Db
 	 */
-	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "sa", "", "public"),
+	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "public", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "sa", "",
+			"public"),
 	/**
 	 * HsqlDb
 	 */
-	HSQLDB("org.hsqldb.jdbcDriver", "org.hibernate.dialect.HSQLDialect", "jdbc:hsqldb:mem:test", "sa", "", "public"),
+	HSQLDB("org.hsqldb.jdbcDriver", "org.hibernate.dialect.HSQLDialect", "public", "jdbc:hsqldb:mem:test", "sa", "",
+			"public"),
 	/**
 	 * mysql
 	 */
-	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect");
+	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect", "information_schema");
 	private static Log log = LogFactory.getLog(DataSourceType.class);
 
 	private static Properties cfg = Unitils.getInstance().getConfiguration();
@@ -33,20 +35,25 @@ public enum DataSourceType {
 
 	private String pass = null;
 
-	private String schemas = null;
+	private String infoSchema = null;
 
-	private DataSourceType(String clazz, String dialect, String url, String user, String pass, String schemas) {
+	private String schema = null;
+
+	private DataSourceType(String clazz, String dialect, String infoSchema, String url, String user, String pass,
+			String schema) {
 		this.clazz = clazz;
+		this.dialect = dialect;
+		this.infoSchema = infoSchema;
 		this.url = url;
 		this.user = user;
 		this.pass = pass;
-		this.dialect = dialect;
-		this.schemas = schemas;
+		this.schema = schema;
 	}
 
-	private DataSourceType(String clazz, String dialect) {
+	private DataSourceType(String clazz, String dialect, String infoSchema) {
 		this.clazz = clazz;
 		this.dialect = dialect;
+		this.infoSchema = infoSchema;
 	}
 
 	public String getDriveClass() {
@@ -55,6 +62,10 @@ public enum DataSourceType {
 
 	public String getDialect() {
 		return this.dialect;
+	}
+
+	public String getInfoSchema() {
+		return this.infoSchema;
 	}
 
 	public String getConnUrl() {
@@ -81,11 +92,11 @@ public enum DataSourceType {
 		}
 	}
 
-	public String getSchemas() {
-		if (schemas != null) {
-			return this.schemas;
+	public String getSchema() {
+		if (this.schema != null) {
+			return this.schema;
 		} else {
-			return cfg.getProperty("database.schemaNames");
+			return cfg.getProperty("database.schemaName");
 		}
 	}
 

@@ -26,7 +26,7 @@ public class DbSchemaExport {
 
 		this.dbSupport = MemDbConfigUtil.getDbSupport(type);
 		SQLHandler sqlHandler = new DefaultSQLHandler(MemDbConfigUtil.getDataSource());
-		this.dbSupport.init(cfg.getProperties(), sqlHandler, type.getSchemas());
+		this.dbSupport.init(cfg.getProperties(), sqlHandler, type.getSchema());
 	}
 
 	public void export() {
