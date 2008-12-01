@@ -5,22 +5,40 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.unitils.core.Unitils;
+import org.unitils.core.dbsupport.DbSupport;
+import org.unitils.core.dbsupport.HsqldbDbSupport;
+import org.unitils.core.dbsupport.MySqlDbSupport;
 
 public enum DataSourceType {
 	/**
 	 * H2Db
 	 */
 	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "public", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "sa", "",
-			"public"),
+			"public") {
+		@Override
+		public DbSupport getDbSupport() {
+			return new H2DbSupport();
+		}
+	},
 	/**
 	 * HsqlDb
 	 */
 	HSQLDB("org.hsqldb.jdbcDriver", "org.hibernate.dialect.HSQLDialect", "public", "jdbc:hsqldb:mem:test", "sa", "",
-			"public"),
+			"public") {
+		@Override
+		public DbSupport getDbSupport() {
+			return new HsqldbDbSupport();
+		}
+	},
 	/**
 	 * mysql
 	 */
-	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect", "information_schema");
+	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect", "information_schema") {
+		@Override
+		public DbSupport getDbSupport() {
+			return new MySqlDbSupport();
+		}
+	};
 	private static Log log = LogFactory.getLog(DataSourceType.class);
 
 	private static Properties cfg = Unitils.getInstance().getConfiguration();
@@ -119,4 +137,14 @@ public enum DataSourceType {
 		}
 		return dataSourceType;
 	}
+
+	public boolean autoExport() {
+		if (this == H2DB || this == HSQLDB) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public abstract DbSupport getDbSupport();
 }
