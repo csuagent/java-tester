@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.jtester.unitils.database.DataSourceType;
 import org.unitils.core.dbsupport.DbSupport;
 import org.unitils.core.dbsupport.DefaultSQLHandler;
 import org.unitils.core.dbsupport.SQLHandler;
@@ -16,10 +17,10 @@ public class DbSchemaExport {
 	private DbSupport dbSupport;
 
 	public DbSchemaExport() {
-		this(MemDbType.H2DB);
+		this(DataSourceType.H2DB);
 	}
 
-	public DbSchemaExport(MemDbType type) {
+	public DbSchemaExport(DataSourceType type) {
 		Configuration cfg = MemDbConfigUtil.getConfig();
 		this.export = new SchemaExport(cfg);
 

@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.jtester.unitils.database.H2DbSupport;
+import org.jtester.unitils.database.DataSourceType;
 import org.unitils.core.Unitils;
 import org.unitils.core.dbsupport.DbSupport;
 import org.unitils.core.dbsupport.HsqldbDbSupport;
@@ -21,7 +22,7 @@ public final class MemDbConfigUtil {
 
 	private static BasicDataSource dataSource = null;
 
-	private static MemDbType dbtype = null;
+	private static DataSourceType dbtype = null;
 
 	private static Boolean isMemDb = null;
 
@@ -61,11 +62,11 @@ public final class MemDbConfigUtil {
 		return script;
 	}
 
-	public static MemDbType getMemDbType() {
+	public static DataSourceType getMemDbType() {
 		if (isMemDbType()) {
 			return dbtype;
 		} else {
-			return MemDbType.H2DB;
+			return DataSourceType.H2DB;
 		}
 	}
 
@@ -85,7 +86,7 @@ public final class MemDbConfigUtil {
 			return isMemDb;
 		}
 		try {
-			dbtype = MemDbType.valueOf(type.toUpperCase());
+			dbtype = DataSourceType.valueOf(type.toUpperCase());
 			isMemDb = true;
 		} catch (IllegalArgumentException e) {
 			log.warn(e.getMessage());
@@ -95,8 +96,8 @@ public final class MemDbConfigUtil {
 		return isMemDb;
 	}
 
-	public static DbSupport getDbSupport(MemDbType type) {
-		if (type == MemDbType.HSQLDB) {
+	public static DbSupport getDbSupport(DataSourceType type) {
+		if (type == DataSourceType.HSQLDB) {
 			return new HsqldbDbSupport();
 		} else {
 			return new H2DbSupport();
