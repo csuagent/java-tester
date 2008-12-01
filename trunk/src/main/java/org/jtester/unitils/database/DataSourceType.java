@@ -1,10 +1,8 @@
 package org.jtester.unitils.database;
 
-import java.util.Properties;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.unitils.core.Unitils;
+import org.jtester.unitils.config.ConfigUtil;
 import org.unitils.core.dbsupport.DbSupport;
 import org.unitils.core.dbsupport.HsqldbDbSupport;
 import org.unitils.core.dbsupport.MySqlDbSupport;
@@ -51,8 +49,6 @@ public enum DataSourceType {
 	};
 	private static Log log = LogFactory.getLog(DataSourceType.class);
 
-	private static Properties cfg = Unitils.getInstance().getConfiguration();
-
 	private String clazz = null;
 
 	private String dialect = null;
@@ -97,50 +93,26 @@ public enum DataSourceType {
 	}
 
 	public String getConnUrl() {
-		if (url != null) {
-			return url;
-		} else {
-			return cfg.getProperty("database.url");
-		}
+		return ConfigUtil.property(this.url, "database.url");
 	}
 
 	public String getUserName() {
-		if (user != null) {
-			return this.user;
-		} else {
-			return cfg.getProperty("database.userName");
-		}
+		return ConfigUtil.property(this.user, "database.userName");
 	}
 
 	public String getUserPass() {
-		if (pass != null) {
-			return this.pass;
-		} else {
-			return cfg.getProperty("database.password");
-		}
+		return ConfigUtil.property(this.pass, "database.password");
 	}
 
 	public String getSchema() {
-		if (this.schema != null) {
-			return this.schema;
-		} else {
-			return cfg.getProperty("database.schemaName");
-		}
+		return ConfigUtil.property(this.schema, "database.schemaName");
 	}
 
 	public static DataSourceType type() {
-		// form vm
-		String type = System.getProperty("datasource.type");
-		// from property
-		if (type == null) {
-			type = cfg.getProperty("datasource.type");
-		}
+		String type = ConfigUtil.dataSource();
 		DataSourceType dataSourceType = DataSourceType.H2DB;
-
 		try {
-			if (type != null) {
-				dataSourceType = DataSourceType.valueOf(type.toUpperCase());
-			}
+			dataSourceType = DataSourceType.valueOf(type.toUpperCase());
 		} catch (Exception e) {
 			log.warn(e.getMessage());
 			dataSourceType = DataSourceType.H2DB;
@@ -149,13 +121,7 @@ public enum DataSourceType {
 	}
 
 	public boolean autoExport() {
-		Properties unitilscfg = Unitils.getInstance().getConfiguration();
-		String auto = unitilscfg.getProperty("dbexport.auto");
-		if (auto != null && auto.equalsIgnoreCase("true")) {
-			return true;
-		} else {
-			return false;
-		}
+		return ConfigUtil.autoExport();
 	}
 
 	public abstract DbSupport getDbSupport();

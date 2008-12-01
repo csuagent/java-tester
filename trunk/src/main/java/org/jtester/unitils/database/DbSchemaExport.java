@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.jtester.unitils.config.ConfigUtil;
 import org.jtester.utility.ReflectUtil;
 import org.unitils.core.Unitils;
 import org.unitils.core.dbsupport.DbSupport;
@@ -49,7 +50,7 @@ public class DbSchemaExport {
 		}
 
 		log.info("call hibernate tool:org.hibernate.tool.hbm2ddl.SchemaExport.create");
-		this.export.execute(isScript(), true, false, true);
+		this.export.execute(ConfigUtil.isScript(), true, false, true);
 		log.info("remove foreign key constraints");
 		this.dbSupport.disableReferentialConstraints();
 		log.info("remove not null constraints");
@@ -96,15 +97,5 @@ public class DbSchemaExport {
 		cfg.setProperty("updateDataBaseSchema.enabled", "false");
 		cfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
 		cfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");
-	}
-
-	public static boolean isScript() {
-		Properties unitilscfg = Unitils.getInstance().getConfiguration();
-		String script = unitilscfg.getProperty("dbexport.script");
-		if (script != null && script.equalsIgnoreCase("true")) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 }
