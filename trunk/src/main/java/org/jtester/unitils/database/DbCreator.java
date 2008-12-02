@@ -19,12 +19,16 @@ public class DbCreator {
 		String url = type.getConnUrl().replaceFirst(type.getSchema(), "information_schema");
 		DataSource datasource = datasource(type, url);
 		SQLHandler sqlHandler = new DefaultSQLHandler(datasource);
-		String sql1 = "select * from information_schema.SCHEMATA where SCHEMA_NAME = '" + type.getSchema() + "' ";
-		if (sqlHandler.getItemsAsStringSet(sql1).size() == 0) {
-			String sql2 = "create database " + type.getSchema()
-					+ " DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
-			sqlHandler.executeUpdate(sql2);
+		String exists_sql = String.format("select * from information_schema.SCHEMATA where SCHEMA_NAME = '%s'", type
+				.getSchema());
+		int exists = sqlHandler.getItemsAsStringSet(exists_sql).size();
+		if (exists > 0) {
+			String drop_sql = String.format("drop database %s", type.getSchema());
+			sqlHandler.executeUpdate(drop_sql);
 		}
+		String create_sql = String.format(
+				"create database %s DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;", type.getSchema());
+		sqlHandler.executeUpdate(create_sql);
 	}
 
 	private static DataSource datasource(DataSourceType type, String url) {
