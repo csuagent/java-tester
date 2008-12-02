@@ -7,7 +7,7 @@ import org.unitils.UnitilsTestNG;
 
 public class JTester extends UnitilsTestNG implements IJTester {
 
-	public static void checking(JExpectations expectations) {
+	public static void checking(JTesterExpectations expectations) {
 		JmockUnitils.checking(expectations);
 	}
 
@@ -15,8 +15,11 @@ public class JTester extends UnitilsTestNG implements IJTester {
 		assert true == false;
 	}
 
-	public static class JExpectations extends Expectations {
+	public static class JTesterExpectations extends Expectations {
 		// implements IExpectation
 		protected Expectations $ = this;
+	}
+
+	public static class Je extends JTesterExpectations {
 	}
 }

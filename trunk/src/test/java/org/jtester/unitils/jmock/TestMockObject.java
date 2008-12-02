@@ -27,7 +27,7 @@ public class TestMockObject extends JTester {
 
 	@Test
 	public void testMock2() {
-		checking(new JExpectations() {
+		checking(new JTesterExpectations() {
 			{
 				allowing(say).count();
 				will(returnValue(3));

@@ -26,6 +26,8 @@ public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 	public E anyOf(Iterable<IAssert> matchers);
 
 	public E same(T value);
+	
+	public E any();
 
 	// public T match(Expectations expectations);
 	// public T $(Expectations $);
