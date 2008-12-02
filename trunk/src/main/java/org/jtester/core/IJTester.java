@@ -1,5 +1,5 @@
 package org.jtester.core;
 
-public interface IJTester extends IAssertThat, IExpectation, IAssertOptions {
+public interface IJTester extends IAssertThat, IAssertOptions, IExpectation {
 
 }
