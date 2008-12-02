@@ -1,7 +1,5 @@
 package org.jtester.unitils.database;
 
-import java.util.Properties;
-
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -37,11 +35,11 @@ public class DbSchemaExport {
 
 		this.dbSupport = type.getDbSupport();
 		SQLHandler sqlHandler = new DefaultSQLHandler(dataSource());
-		this.dbSupport.init(config().getProperties(), sqlHandler, type.getSchema());
+		this.dbSupport.init(ConfigUtil.config(), sqlHandler, type.getSchema());
 	}
 
 	public void export() {
-		this.disableDbMaintain();
+		ConfigUtil.disableDbMaintain();
 		DatabaseModule module = Unitils.getInstance().getModulesRepository().getModuleOfType(DatabaseModule.class);
 		try {
 			ReflectUtil.setFieldValue(module, "updateDatabaseSchemaEnabled", false);
@@ -59,10 +57,6 @@ public class DbSchemaExport {
 
 	public Configuration config() {
 		Configuration cfg = new AnnotationConfiguration().configure();
-		cfg.setProperty("database.identifierQuoteString.h2db", "auto");
-		cfg.setProperty("database.storedIndentifierCase.h2db", "auto");
-		cfg.setProperty("database.identifierQuoteString.hsqldb", "auto");
-		cfg.setProperty("database.storedIndentifierCase.hsqldb", "auto");
 		cfg.setProperty("hibernate.show_sql", "false");
 
 		cfg.setProperty("hibernate.connection.username", type.getUserName());
@@ -82,20 +76,5 @@ public class DbSchemaExport {
 		dataSource.setUrl(type.getConnUrl());
 
 		return dataSource;
-	}
-
-	public void disableDbMaintain() {
-		Properties cfg = Unitils.getInstance().getConfiguration();
-		// cfg.setProperty("database.driverClassName", type.getDriveClass());
-		// cfg.setProperty("database.url", type.getConnUrl());
-		// cfg.setProperty("database.userName", type.getUserName());
-		// cfg.setProperty("database.password", type.getUserPass());
-		// cfg.setProperty("database.schemaNames", type.getSchema());
-		// cfg.setProperty("database.dialect", "hsqldb");
-
-		// disable dbmaintainer properties
-		cfg.setProperty("updateDataBaseSchema.enabled", "false");
-		cfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
-		cfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");
 	}
 }

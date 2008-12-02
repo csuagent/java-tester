@@ -53,4 +53,15 @@ public class ConfigUtil {
 		}
 		return type;
 	}
+
+	public static Properties config() {
+		return unitilscfg;
+	}
+
+	public static void disableDbMaintain() {
+		// disable dbmaintainer properties
+		unitilscfg.setProperty("updateDataBaseSchema.enabled", "false");
+		unitilscfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
+		unitilscfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");
+	}
 }
