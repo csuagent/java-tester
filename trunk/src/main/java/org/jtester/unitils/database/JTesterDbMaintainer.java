@@ -13,6 +13,7 @@ import org.unitils.dbmaintainer.DBMaintainer;
 //import java.util.List;
 
 public class JTesterDbMaintainer extends DBMaintainer {
+	@SuppressWarnings("unused")
 	private static Log log = LogFactory.getLog(JTesterDbMaintainer.class);
 
 	public JTesterDbMaintainer(Properties cfg, SQLHandler sqlHandler) {
