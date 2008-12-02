@@ -22,11 +22,12 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 	public void init() {
 		this.type = DataSourceType.type();
 
+		if (type.needCreatDb()) {
+			this.createDb();
+		}
 		if (type.autoExport()) {
 			this.export = new DbSchemaExport(type);
 			export.export();
-		} else {
-			this.createDb();
 		}
 		this.setUsername(type.getUserName());
 		this.setDriverClassName(type.getDriveClass());

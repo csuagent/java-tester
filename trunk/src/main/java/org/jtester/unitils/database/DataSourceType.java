@@ -22,6 +22,11 @@ public enum DataSourceType {
 		public boolean autoExport() {
 			return true;
 		}
+
+		@Override
+		public boolean needCreatDb() {
+			return false;
+		}
 	},
 	/**
 	 * HsqlDb
@@ -36,6 +41,11 @@ public enum DataSourceType {
 		@Override
 		public boolean autoExport() {
 			return true;
+		}
+
+		@Override
+		public boolean needCreatDb() {
+			return false;
 		}
 	},
 	/**
@@ -122,6 +132,10 @@ public enum DataSourceType {
 
 	public boolean autoExport() {
 		return ConfigUtil.autoExport();
+	}
+
+	public boolean needCreatDb() {
+		return true;
 	}
 
 	public abstract DbSupport getDbSupport();
