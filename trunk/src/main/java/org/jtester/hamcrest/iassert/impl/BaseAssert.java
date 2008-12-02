@@ -13,6 +13,7 @@ import org.hamcrest.core.IsNot;
 import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.IBaseAssert;
+import org.mockito.internal.matchers.Same;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
@@ -133,6 +134,11 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 
 	public E notIn(T... values) {
 		Matcher<T> _matcher = IsNot.not(IsIn.isOneOf(values));
+		return this.assertThat(_matcher);
+	}
+
+	public E same(T value) {
+		Matcher _matcher = new Same(value);
 		return this.assertThat(_matcher);
 	}
 }

@@ -9,7 +9,7 @@ public interface IStringAssert extends IComparableAssert<String, IStringAssert> 
 
 	public IStringAssert start(String expected);
 
-	public IStringAssert regular(String regular);
+	public IStringAssert regular(String regex);
 
 	public IStringAssert eqIgnoreCase(String string);
 

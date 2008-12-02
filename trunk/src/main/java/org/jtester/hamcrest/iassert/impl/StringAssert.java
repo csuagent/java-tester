@@ -7,6 +7,7 @@ import org.hamcrest.text.StringContains;
 import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
 import org.jtester.hamcrest.iassert.IStringAssert;
+import org.mockito.internal.matchers.Matches;
 
 public class StringAssert extends ComparableAssert<String, IStringAssert> implements IStringAssert {
 	public StringAssert(Class<IStringAssert> clazE) {
@@ -36,9 +37,9 @@ public class StringAssert extends ComparableAssert<String, IStringAssert> implem
 		return (IStringAssert) this.assertThat(matcher);
 	}
 
-	public IStringAssert regular(String regular) {
-		// TODO Auto-generated method stub
-		return null;
+	public IStringAssert regular(String regex) {
+		Matcher matcher = new Matches(regex);
+		return (IStringAssert) this.assertThat(matcher);
 	}
 
 	public IStringAssert start(String expected) {
