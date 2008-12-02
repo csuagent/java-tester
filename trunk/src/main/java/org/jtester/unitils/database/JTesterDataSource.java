@@ -6,7 +6,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 public class JTesterDataSource extends BasicDataSource implements InitializingBean {
-	@SuppressWarnings("unused")
 	private static Log log = LogFactory.getLog(JTesterDataSource.class);
 
 	private DataSourceType type;
@@ -20,7 +19,9 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 	public void init() {
 		this.type = DataSourceType.type();
 
+		log.info("JTesterDataSource:begin create db?");
 		DbCreator.createDb(type);
+		log.info("JTesterDataSource:end create db.");
 		if (type.autoExport()) {
 			this.export = new DbSchemaExport(type);
 			export.export();
