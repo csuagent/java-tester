@@ -17,7 +17,7 @@ public class TestJTestExpectations extends JTester {
 		callingService.setCalledService(calledService);
 		checking(new JExpectations() {
 			{
-				one(calledService).called(the.string().contains("test1").$(this));
+				one(calledService).called(the.string().contains("test").$(_$));
 			}
 		});
 		callingService.call("i am a test message!");

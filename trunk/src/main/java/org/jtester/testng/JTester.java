@@ -17,6 +17,7 @@ public class JTester extends UnitilsTestNG implements IJTester {
 	}
 
 	public static class JExpectations extends Expectations implements IExpectation {
-		//private int $;
+		protected Expectations _$ = this;
+		// private int $;
 	}
 }
