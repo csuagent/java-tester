@@ -105,7 +105,7 @@ public enum DataSourceType {
 	}
 
 	public String getSchema() {
-		return ConfigUtil.property(this.schema, "database.schemaName");
+		return ConfigUtil.property(this.schema, "database.schemaNames");
 	}
 
 	public static DataSourceType type() {
