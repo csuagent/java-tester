@@ -1,7 +1,6 @@
 package org.jtester.hamcrest.iassert;
 
 import org.hamcrest.Matcher;
-import org.jmock.Expectations;
 
 public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 	public E isEqualTo(T expected);
@@ -28,7 +27,7 @@ public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 
 	//public T match(Expectations expectations);
 	
-	public T $(Expectations _$);
+	//public T $(Expectations $);
 
 	// public E same(T value);
 }

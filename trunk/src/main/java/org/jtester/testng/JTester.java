@@ -1,7 +1,6 @@
 package org.jtester.testng;
 
 import org.jmock.Expectations;
-import org.jtester.core.IExpectation;
 import org.jtester.core.IJTester;
 import org.jtester.unitils.jmock.JmockUnitils;
 import org.unitils.UnitilsTestNG;
@@ -16,8 +15,8 @@ public class JTester extends UnitilsTestNG implements IJTester {
 		assert true == false;
 	}
 
-	public static class JExpectations extends Expectations implements IExpectation {
-		protected Expectations _$ = this;
-		// private int $;
+	public static class JExpectations extends Expectations {
+		// implements IExpectation
+		protected Expectations $ = this;
 	}
 }
