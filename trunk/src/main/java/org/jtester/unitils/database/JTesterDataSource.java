@@ -38,8 +38,10 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 	private BasicDataSource infoSchemaSource() {
 		BasicDataSource source = new BasicDataSource();
 		source.setUsername(type.getUserName());
-		source.setDriverClassName(type.getDriveClass().replaceFirst(type.getSchema(), type.getInfoSchema()));
-		source.setUrl(type.getConnUrl());
+		source.setDriverClassName(type.getDriveClass());
+		String url = type.getConnUrl();
+		url = url.replaceFirst(type.getSchema(), type.getInfoSchema());
+		source.setUrl(url);
 		source.setPassword(type.getUserPass());
 
 		return source;
