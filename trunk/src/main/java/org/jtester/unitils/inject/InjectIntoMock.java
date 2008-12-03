@@ -11,6 +11,11 @@ import org.unitils.inject.util.PropertyAccess;
 @Target(FIELD)
 @Retention(RUNTIME)
 public @interface InjectIntoMock {
+	/**
+	 * property == "" equals to @Mock + @InjectIntoByType
+	 * property != "" equals to @Mock + @InjectInto
+	 * @return
+	 */
 	String target() default "";
 
 	String property() default "";
