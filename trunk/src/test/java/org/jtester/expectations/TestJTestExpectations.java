@@ -23,7 +23,8 @@ public class TestJTestExpectations extends JTester {
 			{
 				$.call.one(calledService).called($.with(the.string().contains("test")));
 				$.will.returnValue("dddd");
-				$.ignoring(calledService).called($.with(the.string().any()));
+				$.call.ignoring(calledService).called($.with(the.string().any()));
+				//$.call.atLeast(1).of(calledService).called($.with(the.string().any()));
 				will(returnValue("dddd"));
 			}
 		});
