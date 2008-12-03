@@ -3,6 +3,7 @@ package org.jtester.unitils.jmock;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.jmock.Expectations;
+import org.jtester.jmock.JTesterExpectations;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.bean.ISay;
 import org.testng.annotations.Test;
@@ -21,7 +22,7 @@ public class TestMockObject extends JTester {
 			}
 		});
 		int count = say.count();
-		//System.out.println(count);
+		// System.out.println(count);
 		MatcherAssert.assertThat(count, IsEqual.equalTo(3));
 	}
 
@@ -34,7 +35,7 @@ public class TestMockObject extends JTester {
 			}
 		});
 		int count = say.count();
-		//System.out.println(count);
+		// System.out.println(count);
 		MatcherAssert.assertThat(count, IsEqual.equalTo(3));
 	}
 }

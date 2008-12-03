@@ -21,10 +21,10 @@ public class TestJTestExpectations extends JTester {
 	public void test1() {
 		checking(new Je() {
 			{
-				$.one(calledService).called($.with(the.string().contains("test")));
-				$.will(returnValue("dddd"));
+				$.call.one(calledService).called($.with(the.string().contains("test")));
+				$.will.returnValue("dddd");
 				$.ignoring(calledService).called($.with(the.string().any()));
-				$.will(returnValue("dddd"));
+				will(returnValue("dddd"));
 			}
 		});
 		callingService.call("i am a test message!");
