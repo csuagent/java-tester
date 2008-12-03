@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.jtester.unitils.inject.InjectedMock;
@@ -41,7 +42,7 @@ public class JmockModule implements Module {
 			Mock mock = mockField.getAnnotation(Mock.class);
 
 			Object mockObject = null;
-			if (mock.value() == null || "".equals(mock.value().trim())) {
+			if (StringUtils.isEmpty(mock.value())) {
 				mockObject = context.mock(mockType);
 			} else {
 				mockObject = context.mock(mockType, mock.value());
@@ -59,7 +60,7 @@ public class JmockModule implements Module {
 			InjectedMock mock = mockField.getAnnotation(InjectedMock.class);
 
 			Object mockObject = null;
-			if (mock.value() == null || "".equals(mock.value().trim())) {
+			if (StringUtils.isEmpty(mock.value())) {
 				mockObject = context.mock(mockType);
 			} else {
 				mockObject = context.mock(mockType, mock.value());

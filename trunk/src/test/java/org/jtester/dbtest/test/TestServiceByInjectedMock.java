@@ -16,7 +16,7 @@ public class TestServiceByInjectedMock extends JTester {
 	@TestedObject
 	private UserService userService;
 
-	@InjectedMock(value = "addressService")
+	@InjectedMock
 	private AddressService addressService;
 
 	@Test
