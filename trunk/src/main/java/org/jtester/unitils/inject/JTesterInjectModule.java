@@ -16,7 +16,7 @@ import org.unitils.inject.annotation.TestedObject;
 import org.unitils.inject.util.InjectionUtils;
 import org.unitils.inject.util.PropertyAccess;
 
-public class InjectModuleEx extends InjectModule {
+public class JTesterInjectModule extends InjectModule {
 	@Override
 	protected void injectByType(Object test, Field fieldToInject) {
 		InjectIntoByType injectIntoByTypeAnnotation = fieldToInject.getAnnotation(InjectIntoByType.class);
