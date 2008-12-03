@@ -3,7 +3,6 @@ package org.jtester.unitils.jmock;
 import static org.unitils.util.AnnotationUtils.getFieldsAnnotatedWith;
 import static org.unitils.util.ReflectionUtils.setFieldValue;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Properties;
@@ -34,8 +33,8 @@ public class JmockModule implements Module {
 		return this.context;
 	}
 
-	private void createAndInjectMocksIntoTest(Object testObject, Class<? extends Annotation> annotation) {
-		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), annotation);
+	private void createMocks(Object testObject) {
+		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), Mock.class);
 		for (Field mockField : mockFields) {
 
 			Class<?> mockType = mockField.getType();
@@ -52,6 +51,15 @@ public class JmockModule implements Module {
 		}
 	}
 
+	private void createInjectedMocks(Object testObject) {
+		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), InjectedMock.class);
+		for (Field mockField : mockFields) {
+			Class<?> mockType = mockField.getType();
+			Object mockObject = context.mock(mockType);
+			setFieldValue(testObject, mockField, mockObject);
+		}
+	}
+
 	protected class JmockTestListener extends TestListener {
 		@Override
 		public void beforeTestSetUp(Object testObject, Method testMethod) {
@@ -60,8 +68,8 @@ public class JmockModule implements Module {
 					setImposteriser(ClassImposteriser.INSTANCE);
 				}
 			};
-			createAndInjectMocksIntoTest(testObject, Mock.class);
-			createAndInjectMocksIntoTest(testObject, InjectedMock.class);
+			createMocks(testObject);
+			createInjectedMocks(testObject);
 		}
 
 		@Override
