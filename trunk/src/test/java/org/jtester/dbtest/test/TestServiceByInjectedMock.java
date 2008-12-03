@@ -32,4 +32,25 @@ public class TestServiceByInjectedMock extends JTester {
 		String address = userService.findAddress();
 		want.string(address).contains("120#");
 	}
+
+	@SpringBean("userService")
+	@TestedObject
+	private UserService userService1;
+
+	@InjectedMock(target = "userService1", property = "addressService", value = "addressService1")
+	private AddressService addressService1;
+
+	@Test
+	public void test012() {
+		want.object(addressService1).notNull();
+		want.object(userService1).notNull();
+		checking(new Je() {
+			{
+				$.call.one(addressService1).findAddress();
+				$.will.returnValue("文二路120#");
+			}
+		});
+		String address = userService1.findAddress();
+		want.string(address).contains("120#");
+	}
 }

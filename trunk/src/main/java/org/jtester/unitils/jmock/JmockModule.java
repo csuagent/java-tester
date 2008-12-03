@@ -54,8 +54,17 @@ public class JmockModule implements Module {
 	private void createInjectedMocks(Object testObject) {
 		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), InjectedMock.class);
 		for (Field mockField : mockFields) {
+
 			Class<?> mockType = mockField.getType();
-			Object mockObject = context.mock(mockType);
+			InjectedMock mock = mockField.getAnnotation(InjectedMock.class);
+
+			Object mockObject = null;
+			if (mock.value() == null || "".equals(mock.value().trim())) {
+				mockObject = context.mock(mockType);
+			} else {
+				mockObject = context.mock(mockType, mock.value());
+			}
+
 			setFieldValue(testObject, mockField, mockObject);
 		}
 	}

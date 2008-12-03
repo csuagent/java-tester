@@ -6,8 +6,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.unitils.inject.util.PropertyAccess;
-
 /**
  * 
  * property == "" equals to @Mock + @InjectIntoByType <br>
@@ -25,5 +23,5 @@ public @interface InjectedMock {
 
 	String property() default "";
 
-	PropertyAccess propertyAccess() default PropertyAccess.DEFAULT;
+	String value() default "";
 }
