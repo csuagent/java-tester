@@ -8,14 +8,19 @@ import java.lang.annotation.Target;
 
 import org.unitils.inject.util.PropertyAccess;
 
+/**
+ * 
+ * property == "" equals to @Mock + @InjectIntoByType <br>
+ * property != "" equals to @Mock + @InjectInto
+ * 
+ * @return
+ * 
+ * @author davey.wu
+ * 
+ */
 @Target(FIELD)
 @Retention(RUNTIME)
-public @interface InjectIntoMock {
-	/**
-	 * property == "" equals to @Mock + @InjectIntoByType
-	 * property != "" equals to @Mock + @InjectInto
-	 * @return
-	 */
+public @interface InjectMock {
 	String target() default "";
 
 	String property() default "";
