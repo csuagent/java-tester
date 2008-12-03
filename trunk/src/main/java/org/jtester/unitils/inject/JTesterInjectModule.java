@@ -14,6 +14,7 @@ import org.jtester.utility.ReflectUtil;
 import org.springframework.aop.framework.Advised;
 import org.unitils.core.UnitilsException;
 import org.unitils.inject.InjectModule;
+import org.unitils.inject.annotation.InjectInto;
 import org.unitils.inject.annotation.InjectIntoByType;
 import org.unitils.inject.annotation.TestedObject;
 import org.unitils.inject.util.InjectionUtils;
@@ -110,6 +111,32 @@ public class JTesterInjectModule extends InjectModule {
 			}
 		}
 	}
+	
+	@Override
+    protected void inject(Object test, Field fieldToInject) {
+        InjectInto injectIntoAnnotation = fieldToInject.getAnnotation(InjectInto.class);
+
+        String ognlExpression = injectIntoAnnotation.property();
+        if (StringUtils.isEmpty(ognlExpression)) {
+            throw new UnitilsException(getSituatedErrorMessage(InjectInto.class, fieldToInject, "Property cannot be empty"));
+        }
+        Object objectToInject = getObjectToInject(test, fieldToInject);
+
+        List<Object> targets = getTargets(InjectInto.class, fieldToInject, injectIntoAnnotation.target(), test);
+        if (targets.size() == 0) {
+            throw new UnitilsException(getSituatedErrorMessage(InjectInto.class, fieldToInject, "The target should either be " +
+                    "specified explicitly using the target property, or by using the @" + TestedObject.class.getSimpleName() +
+                    " annotation"));
+        }
+
+        for (Object target : targets) {
+            try {
+                InjectionUtils.injectInto(objectToInject, target(target), ognlExpression);
+            } catch (UnitilsException e) {
+                throw new UnitilsException(getSituatedErrorMessage(InjectInto.class, fieldToInject, e.getMessage()), e);
+            }
+        }
+    }
 
 	private Map<Class<? extends Annotation>, Map<String, String>> defaultAnnotationPropertyValues() {
 		try {
