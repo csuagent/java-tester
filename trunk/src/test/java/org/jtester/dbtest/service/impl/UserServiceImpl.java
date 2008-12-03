@@ -13,4 +13,8 @@ public class UserServiceImpl implements UserService {
 	public void setAddressService(AddressService addressService) {
 		this.addressService = addressService;
 	}
+
+	public String findAddress() {
+		return this.addressService.findAddress();
+	}
 }
