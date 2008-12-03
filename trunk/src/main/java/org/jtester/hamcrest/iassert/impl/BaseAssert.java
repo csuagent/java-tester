@@ -14,6 +14,8 @@ import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.IBaseAssert;
 import org.mockito.internal.matchers.Any;
+import org.mockito.internal.matchers.NotNull;
+import org.mockito.internal.matchers.Null;
 import org.mockito.internal.matchers.Same;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
@@ -145,6 +147,16 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 
 	public E any() {
 		Matcher _matcher = Any.ANY;
+		return this.assertThat(_matcher);
+	}
+
+	public E isNull() {
+		Matcher _matcher = Null.NULL;
+		return this.assertThat(_matcher);
+	}
+
+	public E notNull() {
+		Matcher _matcher = NotNull.NOT_NULL;
 		return this.assertThat(_matcher);
 	}
 }

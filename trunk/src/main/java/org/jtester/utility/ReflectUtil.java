@@ -18,4 +18,24 @@ public class ReflectUtil {
 			field.setAccessible(accessible);
 		}
 	}
+
+	public static Object getFieldValue(Object obj, String fieldName) throws SecurityException, NoSuchFieldException {
+		assert obj != null : "the obj can't be null";
+		return getFieldValue(obj.getClass(), obj, fieldName);
+	}
+
+	public static Object getFieldValue(Class<?> claz, Object obj, String fieldName) throws SecurityException,
+			NoSuchFieldException {
+		assert obj != null : "the obj can't be null";
+		Field field = claz.getDeclaredField(fieldName);
+		boolean accessible = field.isAccessible();
+		try {
+			field.setAccessible(true);
+			return field.get(obj);
+		} catch (Exception e) {
+			throw new RuntimeException("Unable to get the value in field[" + field.getName() + "]", e);
+		} finally {
+			field.setAccessible(accessible);
+		}
+	}
 }
