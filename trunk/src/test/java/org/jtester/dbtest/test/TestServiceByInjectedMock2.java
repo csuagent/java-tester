@@ -11,25 +11,25 @@ import org.unitils.spring.annotation.SpringBean;
 
 @SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
 @Test(groups = { "JTester" })
-public class TestServiceByInjectedMock extends JTester {
+public class TestServiceByInjectedMock2 extends JTester {
 	@SpringBean("userService")
 	@TestedObject
-	private UserService userService;
+	private UserService userService1;
 
-	@InjectedMock(value = "addressService")
-	private AddressService addressService;
+	@InjectedMock(target = "userService1", property = "addressService", value = "addressService1")
+	private AddressService addressService1;
 
 	@Test
-	public void test01() {
-		want.object(addressService).notNull();
-		want.object(userService).notNull();
+	public void test012() {
+		want.object(addressService1).notNull();
+		want.object(userService1).notNull();
 		checking(new Je() {
 			{
-				$.call.one(addressService).findAddress();
-				$.will.returnValue("文二路120#");
+				$.call.one(addressService1).findAddress();
+				$.will.returnValue("文三路131#");
 			}
 		});
-		String address = userService.findAddress();
-		want.string(address).contains("120#");
+		String address = userService1.findAddress();
+		want.string(address).contains("131#");
 	}
 }
