@@ -8,6 +8,8 @@ import org.springframework.beans.factory.InitializingBean;
 public class JTesterDataSource extends BasicDataSource implements InitializingBean {
 	private static Log log = LogFactory.getLog(JTesterDataSource.class);
 
+	private static boolean db_has_been_created = false;
+
 	private DataSourceType type;
 
 	private DbSchemaExport export;
@@ -19,6 +21,18 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 	public void init() {
 		this.type = DataSourceType.type();
 
+		this.createDataBase();
+
+		this.setUsername(type.getUserName());
+		this.setDriverClassName(type.getDriveClass());
+		this.setUrl(type.getConnUrl());
+		this.setPassword(type.getUserPass());
+	}
+
+	private synchronized void createDataBase() {
+		if (db_has_been_created) {
+			return;
+		}
 		log.info("JTesterDataSource:begin create db?");
 		DbCreator.createDb(type);
 		log.info("JTesterDataSource:end create db.");
@@ -26,9 +40,6 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 			this.export = new DbSchemaExport(type);
 			export.export();
 		}
-		this.setUsername(type.getUserName());
-		this.setDriverClassName(type.getDriveClass());
-		this.setUrl(type.getConnUrl());
-		this.setPassword(type.getUserPass());
+		db_has_been_created = true;
 	}
 }
