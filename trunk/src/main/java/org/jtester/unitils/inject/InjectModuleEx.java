@@ -1,4 +1,4 @@
-package org.jtester.unitils;
+package org.jtester.unitils.inject;
 
 import static org.unitils.util.ModuleUtils.getEnumValueReplaceDefault;
 
