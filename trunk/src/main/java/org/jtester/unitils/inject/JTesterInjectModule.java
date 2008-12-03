@@ -32,11 +32,9 @@ public class JTesterInjectModule extends InjectModule {
 			InjectedMock mock = field.getAnnotation(InjectedMock.class);
 			String ognl = mock.property();
 			if (StringUtils.isEmpty(ognl)) {
-				// equals to @Mock + @InjectIntoByType
-				this.injectMock(test, field, mock);
+				this.injectMock(test, field, mock);// @Mock + @InjectIntoByType
 			} else {
-				// equals to @Mock + @InjectInto
-				this.injectMock(test, field, mock, ognl);
+				this.injectMock(test, field, mock, ognl);// @Mock + @InjectInto
 			}
 		}
 	}
@@ -56,8 +54,7 @@ public class JTesterInjectModule extends InjectModule {
 
 		for (Object target : targets) {
 			try {
-				target = target(target);
-				InjectionUtils.injectIntoByType(objectToInject, objectToInjectType, target, propertyAccess);
+				InjectionUtils.injectIntoByType(objectToInject, objectToInjectType, target(target), propertyAccess);
 			} catch (UnitilsException e) {
 				throw new UnitilsException(getSituatedErrorMessage(InjectedMock.class, fieldToInject, e.getMessage()),
 						e);
@@ -78,7 +75,7 @@ public class JTesterInjectModule extends InjectModule {
 
 		for (Object target : targets) {
 			try {
-				InjectionUtils.injectInto(objectToInject, target, ognl);
+				InjectionUtils.injectInto(objectToInject, target(target), ognl);
 			} catch (UnitilsException e) {
 				throw new UnitilsException(getSituatedErrorMessage(InjectedMock.class, fieldToInject, e.getMessage()),
 						e);
@@ -106,8 +103,7 @@ public class JTesterInjectModule extends InjectModule {
 
 		for (Object target : targets) {
 			try {
-				target = target(target);
-				InjectionUtils.injectIntoByType(objectToInject, objectToInjectType, target, propertyAccess);
+				InjectionUtils.injectIntoByType(objectToInject, objectToInjectType, target(target), propertyAccess);
 			} catch (UnitilsException e) {
 				throw new UnitilsException(getSituatedErrorMessage(InjectIntoByType.class, fieldToInject, e
 						.getMessage()), e);
