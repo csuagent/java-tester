@@ -20,7 +20,7 @@ import org.unitils.inject.util.PropertyAccess;
  */
 @Target(FIELD)
 @Retention(RUNTIME)
-public @interface InjectMock {
+public @interface InjectedMock {
 	String target() default "";
 
 	String property() default "";
