@@ -8,12 +8,8 @@
  http://www.sprin gframework.org/schema/tx http://www.sprin gframework.org/schema/tx/sprin g-tx-2.0.xsd "
  default-lazy-init="true">
 
-    <description>project place holder</description>
-    <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:project.properties</value>
-            </list>
-        </property>
+    <bean id="userService" class="org.jtester.dbtest.service.impl.UserServiceImpl">
+    </bean>
+    <bean id="addressService" class="org.jtester.dbtest.service.impl.AddressServiceImpl">
     </bean>
 </beans>
