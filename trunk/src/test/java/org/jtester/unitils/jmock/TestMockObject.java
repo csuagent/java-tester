@@ -22,7 +22,6 @@ public class TestMockObject extends JTester {
 			}
 		});
 		int count = say.count();
-		// System.out.println(count);
 		MatcherAssert.assertThat(count, IsEqual.equalTo(3));
 	}
 
@@ -35,7 +34,6 @@ public class TestMockObject extends JTester {
 			}
 		});
 		int count = say.count();
-		// System.out.println(count);
 		MatcherAssert.assertThat(count, IsEqual.equalTo(3));
 	}
 }
