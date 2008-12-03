@@ -11,6 +11,11 @@ public class JmockUnitils {
 	public static void checking(ExpectationBuilder expectations) {
 		context().checking(expectations);
 	}
+	
+//	public static void appending(ExpectationBuilder expectations) {
+//		//if( context().)
+//		context().checking(expectations);//TODO
+//	}
 
 	public static void assertIsSatisfied() {
 		context().assertIsSatisfied();

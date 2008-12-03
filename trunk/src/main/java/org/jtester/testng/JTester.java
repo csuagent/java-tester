@@ -11,6 +11,10 @@ public class JTester extends UnitilsTestNG implements IJTester {
 		JmockUnitils.checking(expectations);
 	}
 
+//	public static void appending(JTesterExpectations expectations) {
+//		JmockUnitils.appending(expectations);
+//	}
+
 	public static void fail() {
 		assert true == false;
 	}
