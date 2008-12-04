@@ -29,7 +29,8 @@ public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 	}
 
 	public <E extends BaseBean> E getBeanById(Class<E> clazz, int id) {
-		String hql = "from " + clazz.getName() + " as bean where bean.id=:id and bean.deleted=false";
+		String hql = "from " + clazz.getName()
+				+ " as bean where bean.id=:id and (bean.deleted=false or bean.deleted is null)";
 		Query q = this.sessionFactory.getCurrentSession().createQuery(hql);
 		q.setInteger("id", id);
 		E bean = (E) q.uniqueResult();

@@ -20,12 +20,12 @@ public class User extends BaseBean {
 
 	private Collection<Address> addresses;
 
-	@Column(name = "name", nullable = false, unique = true)
+	@Column(name = "name", nullable = true, unique = true)
 	public String getName() {
 		return name;
 	}
 
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", nullable = true, unique = true)
 	public String getEmail() {
 		return email;
 	}

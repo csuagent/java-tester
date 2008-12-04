@@ -20,6 +20,11 @@ public class TestUserService extends JTester {
 		User user1 = userService.getUser(1);
 		want.object(user1).notNull();
 		User user2 = userService.getUser(2);
-		want.object(user2).isNull();
+		want.object(user2).notNull();
+		
+		User user3 = userService.getUser(3);
+		want.object(user3).isNull();
+		User user4 = userService.getUser(4);
+		want.object(user4).isNull();
 	}
 }
