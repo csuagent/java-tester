@@ -66,7 +66,12 @@ public class ConfigUtil {
 		unitilscfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");
 	}
 
-	public static void setDbUnitDialect(DataSourceType type) {
+	public static void setDbUnitConfig(DataSourceType type) {
+		unitilscfg.setProperty("database.driverClassName", type.getDriveClass());
+		unitilscfg.setProperty("database.url", type.getConnUrl());
+		unitilscfg.setProperty("database.userName", type.getUserName());
+		unitilscfg.setProperty("database.password", type.getUserPass());
+		unitilscfg.setProperty("database.schemaNames", type.getSchema());
 		unitilscfg.setProperty("database.dialect", type.getDbUnitDialect());
 	}
 }
