@@ -12,7 +12,7 @@ import org.unitils.spring.annotation.SpringBean;
 
 @SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
 @Test(groups = { "JTester" })
-public class TestService extends JTester {
+public class TestMockService extends JTester {
 	@SpringBean("userService")
 	@TestedObject
 	private UserService userService;
