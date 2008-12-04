@@ -17,7 +17,9 @@ public class TestUserService extends JTester {
 	@Test
 	@DataSet( { "TestUserService.testFindUser.xml" })
 	public void testFindUser() {
-		User user = userService.getUser(1);
-		want.object(user).isNull();
+		User user1 = userService.getUser(1);
+		want.object(user1).notNull();
+		User user2 = userService.getUser(2);
+		want.object(user2).isNull();
 	}
 }

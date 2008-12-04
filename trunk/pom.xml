@@ -124,7 +124,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
-			<version>3.4.0.GA</version>
+			<version>${hibernate-annotations.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -143,9 +143,10 @@
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
+		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
 		<spring.version>2.0.8</spring.version>
 		<unitils.version>2.0</unitils.version>
-		<dbunit.version>2.4.0</dbunit.version>
+		<dbunit.version>2.2</dbunit.version>
 		<jmock.version>2.5.1</jmock.version>
 		<hamcrest.version>1.1</hamcrest.version>
 		<mockito.version>1.6</mockito.version>
