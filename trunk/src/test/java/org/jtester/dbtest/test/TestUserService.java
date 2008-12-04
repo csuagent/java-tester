@@ -4,6 +4,7 @@ import org.jtester.dbtest.bean.User;
 import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
+import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
@@ -14,6 +15,7 @@ public class TestUserService extends JTester {
 	private UserService userService;
 
 	@Test
+	@DataSet
 	public void testFindUser() {
 		User user = userService.getUser(1);
 		want.object(user).isNull();

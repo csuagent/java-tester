@@ -3,6 +3,7 @@ package org.jtester.unitils.database;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jtester.unitils.config.ConfigUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 public class JTesterDataSource extends BasicDataSource implements InitializingBean {
@@ -20,7 +21,7 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 
 	public void init() {
 		this.type = DataSourceType.type();
-
+		ConfigUtil.setDbUnitDialect(type);
 		this.createDataBase();
 
 		this.setUsername(type.getUserName());

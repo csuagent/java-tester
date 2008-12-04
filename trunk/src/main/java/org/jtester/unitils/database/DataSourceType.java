@@ -11,8 +11,8 @@ public enum DataSourceType {
 	/**
 	 * H2Db
 	 */
-	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "public", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "sa", "",
-			"public") {
+	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "hsqldb", "public", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
+			"sa", "", "public") {
 		@Override
 		public DbSupport getDbSupport() {
 			return new H2DbSupport();
@@ -26,8 +26,8 @@ public enum DataSourceType {
 	/**
 	 * HsqlDb
 	 */
-	HSQLDB("org.hsqldb.jdbcDriver", "org.hibernate.dialect.HSQLDialect", "public", "jdbc:hsqldb:mem:test", "sa", "",
-			"public") {
+	HSQLDB("org.hsqldb.jdbcDriver", "org.hibernate.dialect.HSQLDialect", "hsqldb", "public", "jdbc:hsqldb:mem:test",
+			"sa", "", "public") {
 		@Override
 		public DbSupport getDbSupport() {
 			return new HsqldbDbSupport();
@@ -41,7 +41,7 @@ public enum DataSourceType {
 	/**
 	 * mysql
 	 */
-	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect", "information_schema") {
+	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect", "mysql", "information_schema") {
 		@Override
 		public DbSupport getDbSupport() {
 			return new MySqlDbSupport();
@@ -51,7 +51,7 @@ public enum DataSourceType {
 
 	private String clazz = null;
 
-	private String dialect = null;
+	private String hibernate_dialect = null;
 
 	private String url = null;
 
@@ -63,10 +63,13 @@ public enum DataSourceType {
 
 	private String schema = null;
 
-	private DataSourceType(String clazz, String dialect, String infoSchema, String url, String user, String pass,
-			String schema) {
+	private String dbunit_dialect = null;
+
+	private DataSourceType(String clazz, String hibernate_dialect, String dbunit_dialect, String infoSchema,
+			String url, String user, String pass, String schema) {
 		this.clazz = clazz;
-		this.dialect = dialect;
+		this.hibernate_dialect = hibernate_dialect;
+		this.dbunit_dialect = dbunit_dialect;
 		this.infoSchema = infoSchema;
 		this.url = url;
 		this.user = user;
@@ -74,9 +77,10 @@ public enum DataSourceType {
 		this.schema = schema;
 	}
 
-	private DataSourceType(String clazz, String dialect, String infoSchema) {
+	private DataSourceType(String clazz, String hibernate_dialect, String dbunit_dialect, String infoSchema) {
 		this.clazz = clazz;
-		this.dialect = dialect;
+		this.hibernate_dialect = hibernate_dialect;
+		this.dbunit_dialect = dbunit_dialect;
 		this.infoSchema = infoSchema;
 	}
 
@@ -84,8 +88,12 @@ public enum DataSourceType {
 		return this.clazz;
 	}
 
-	public String getDialect() {
-		return this.dialect;
+	public String getHibernateDialect() {
+		return this.hibernate_dialect;
+	}
+
+	public String getDbUnitDialect() {
+		return this.dbunit_dialect;
 	}
 
 	public String getInfoSchema() {

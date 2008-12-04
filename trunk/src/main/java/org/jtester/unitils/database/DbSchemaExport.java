@@ -62,7 +62,7 @@ public class DbSchemaExport {
 		cfg.setProperty("hibernate.connection.username", type.getUserName());
 		cfg.setProperty("hibernate.connection.password", type.getUserPass());
 
-		cfg.setProperty("hibernate.dialect", type.getDialect());
+		cfg.setProperty("hibernate.dialect", type.getHibernateDialect());
 		cfg.setProperty("hibernate.connection.driver_class", type.getDriveClass());
 		cfg.setProperty("hibernate.connection.url", type.getConnUrl());
 		return cfg;

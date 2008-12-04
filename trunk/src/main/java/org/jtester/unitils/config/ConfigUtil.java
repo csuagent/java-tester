@@ -2,6 +2,7 @@ package org.jtester.unitils.config;
 
 import java.util.Properties;
 
+import org.jtester.unitils.database.DataSourceType;
 import org.unitils.core.Unitils;
 
 public class ConfigUtil {
@@ -63,5 +64,9 @@ public class ConfigUtil {
 		unitilscfg.setProperty("updateDataBaseSchema.enabled", "false");
 		unitilscfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
 		unitilscfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");
+	}
+
+	public static void setDbUnitDialect(DataSourceType type) {
+		unitilscfg.setProperty("database.dialect", type.getDbUnitDialect());
 	}
 }
