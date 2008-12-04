@@ -7,8 +7,7 @@
  http://www.sprin gframework.org/schema/aop http://www.sprin gframework.org/schema/aop/sprin g-aop-2.0.xsd
  http://www.sprin gframework.org/schema/tx http://www.sprin gframework.org/schema/tx/sprin g-tx-2.0.xsd "
  default-dependency-check="none" default-lazy-init="false" default-autowire="byName">
-    <bean id="userService" class="org.jtester.dbtest.service.impl.UserServiceImpl">
-    </bean>
-    <bean id="addressService" class="org.jtester.dbtest.service.impl.AddressServiceImpl">
-    </bean>
+    <bean id="baseService" class="org.jtester.dbtest.service.impl.BeanServiceImpl"/>
+    <bean id="userService" class="org.jtester.dbtest.service.impl.UserServiceImpl"/>
+    <bean id="addressService" class="org.jtester.dbtest.service.impl.AddressServiceImpl"/>
 </beans>
