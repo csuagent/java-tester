@@ -22,7 +22,7 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 	public void init() {
 		this.type = DataSourceType.type();
 		ConfigUtil.setDbUnitDialect(type);
-		this.createDataBase();
+//		this.createDataBase();
 
 		this.setUsername(type.getUserName());
 		this.setDriverClassName(type.getDriveClass());

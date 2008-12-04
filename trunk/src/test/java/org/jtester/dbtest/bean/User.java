@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "table_user")
+@Table(name = "jtester_user")
 public class User extends BaseBean {
 	private String name;
 

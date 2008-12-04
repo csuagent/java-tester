@@ -130,7 +130,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+			<version>${mysql.connection.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -150,5 +150,6 @@
 		<hamcrest.version>1.1</hamcrest.version>
 		<mockito.version>1.6</mockito.version>
 		<h2db.version>1.1.104</h2db.version>
+		<mysql.connection.version>3.1.12</mysql.connection.version>
 	</properties>
 </project>

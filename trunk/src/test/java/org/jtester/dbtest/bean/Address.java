@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "easycrm_user_address")
+@Table(name = "jtester_address")
 public class Address extends BaseBean {
 	private String country;
 

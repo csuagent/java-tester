@@ -15,7 +15,7 @@ public class TestUserService extends JTester {
 	private UserService userService;
 
 	@Test
-	@DataSet
+	@DataSet( { "TestUserService.testFindUser.xml" })
 	public void testFindUser() {
 		User user = userService.getUser(1);
 		want.object(user).isNull();
