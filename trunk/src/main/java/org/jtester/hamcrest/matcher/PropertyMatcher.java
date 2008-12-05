@@ -16,7 +16,7 @@ import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.reflectionassert.difference.Difference;
 
 public class PropertyMatcher<T> extends BaseMatcher<T> {
-	private Object ref;
+	private Object expectedValue;
 
 	private Set<ReflectionComparatorMode> modes = new HashSet<ReflectionComparatorMode>();
 
@@ -26,14 +26,14 @@ public class PropertyMatcher<T> extends BaseMatcher<T> {
 
 	private ReflectionComparator reflectionComparator;
 
-	public PropertyMatcher(Object item) {
+	public PropertyMatcher(Object expectedValue) {
 		this.property = null;
-		this.ref = item;
+		this.expectedValue = expectedValue;
 	}
 
-	public PropertyMatcher(String property, Object item) {
+	public PropertyMatcher(String property, Object expectedValue) {
 		this.property = property;
-		this.ref = item;
+		this.expectedValue = expectedValue;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,9 +41,9 @@ public class PropertyMatcher<T> extends BaseMatcher<T> {
 		this.reflectionComparator = ReflectionComparatorFactory.createRefectionComparator(modes
 				.toArray(new ReflectionComparatorMode[0]));
 		if (property == null) {
-			difference = reflectionComparator.getDifference(item, ref);
+			difference = reflectionComparator.getDifference(item, expectedValue);
 		} else if ((item instanceof Object[] || item instanceof Collection)
-				&& (ref instanceof Object[] || ref instanceof Collection)) {
+				&& (expectedValue instanceof Object[] || expectedValue instanceof Collection)) {
 			if (item instanceof Object[]) {
 				matchesCollection(Arrays.asList((Object[]) item));
 			} else {
@@ -57,17 +57,17 @@ public class PropertyMatcher<T> extends BaseMatcher<T> {
 
 	@SuppressWarnings("unchecked")
 	private void matchesCollection(Collection<Object> item) {
-		if (ref instanceof Object[]) {
-			ref = Arrays.asList((Object[]) ref);
+		if (expectedValue instanceof Object[]) {
+			expectedValue = Arrays.asList((Object[]) expectedValue);
 		}
 		Collection<?> _item = CollectionUtils.collect(item,
 				new JTesterReflectionAssert.OgnlTransformerEx(this.property));
 		try {
-			Collection<?> _ref = CollectionUtils.collect((Collection<Object>) ref,
+			Collection<?> _ref = CollectionUtils.collect((Collection<Object>) expectedValue,
 					new JTesterReflectionAssert.OgnlTransformerEx(this.property));
 			difference = reflectionComparator.getDifference(_item, _ref);
 		} catch (UnitilsException e) {
-			difference = reflectionComparator.getDifference(_item, ref);
+			difference = reflectionComparator.getDifference(_item, expectedValue);
 		}
 	}
 
@@ -77,10 +77,10 @@ public class PropertyMatcher<T> extends BaseMatcher<T> {
 		}
 		Object _expect = JTesterReflectionAssert.getPropertyEx(item, property);
 		try {
-			Object _ref = JTesterReflectionAssert.getPropertyEx(ref, property);
+			Object _ref = JTesterReflectionAssert.getPropertyEx(expectedValue, property);
 			difference = this.reflectionComparator.getDifference(_expect, _ref);
 		} catch (UnitilsException e) {
-			difference = this.reflectionComparator.getDifference(_expect, ref);
+			difference = this.reflectionComparator.getDifference(_expect, expectedValue);
 		}
 	}
 
