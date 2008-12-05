@@ -15,7 +15,7 @@ import org.unitils.reflectionassert.ReflectionComparatorFactory;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.reflectionassert.difference.Difference;
 
-public class ReflectionAssertMatcher<T> extends BaseMatcher<T> {
+public class PropertyMatcher<T> extends BaseMatcher<T> {
 	private Object ref;
 
 	private Set<ReflectionComparatorMode> modes = new HashSet<ReflectionComparatorMode>();
@@ -26,13 +26,14 @@ public class ReflectionAssertMatcher<T> extends BaseMatcher<T> {
 
 	private ReflectionComparator reflectionComparator;
 
-	public ReflectionAssertMatcher() {
-		this.ref = null;
+	public PropertyMatcher(Object item) {
+		this.property = null;
+		this.ref = item;
 	}
 
-	public ReflectionAssertMatcher(String property, Object ref) {
+	public PropertyMatcher(String property, Object item) {
 		this.property = property;
-		this.ref = ref;
+		this.ref = item;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,10 +60,11 @@ public class ReflectionAssertMatcher<T> extends BaseMatcher<T> {
 		if (ref instanceof Object[]) {
 			ref = Arrays.asList((Object[]) ref);
 		}
-		Collection<?> _item = CollectionUtils.collect(item, new ReflectionAssertEx.OgnlTransformerEx(this.property));
+		Collection<?> _item = CollectionUtils.collect(item,
+				new JTesterReflectionAssert.OgnlTransformerEx(this.property));
 		try {
 			Collection<?> _ref = CollectionUtils.collect((Collection<Object>) ref,
-					new ReflectionAssertEx.OgnlTransformerEx(this.property));
+					new JTesterReflectionAssert.OgnlTransformerEx(this.property));
 			difference = reflectionComparator.getDifference(_item, _ref);
 		} catch (UnitilsException e) {
 			difference = reflectionComparator.getDifference(_item, ref);
@@ -73,26 +75,26 @@ public class ReflectionAssertMatcher<T> extends BaseMatcher<T> {
 		if (item == null) {
 			throw new RuntimeException("Actual object can't be null.");
 		}
-		Object _expect = ReflectionAssertEx.getPropertyEx(item, property);
+		Object _expect = JTesterReflectionAssert.getPropertyEx(item, property);
 		try {
-			Object _ref = ReflectionAssertEx.getPropertyEx(ref, property);
+			Object _ref = JTesterReflectionAssert.getPropertyEx(ref, property);
 			difference = this.reflectionComparator.getDifference(_expect, _ref);
 		} catch (UnitilsException e) {
 			difference = this.reflectionComparator.getDifference(_expect, ref);
 		}
 	}
 
-	public ReflectionAssertMatcher<T> ignoreDefaults() {
+	public PropertyMatcher<T> ignoreDefaults() {
 		this.modes.add(ReflectionComparatorMode.IGNORE_DEFAULTS);
 		return this;
 	}
 
-	public ReflectionAssertMatcher<T> lenientDates() {
+	public PropertyMatcher<T> lenientDates() {
 		this.modes.add(ReflectionComparatorMode.LENIENT_DATES);
 		return this;
 	}
 
-	public ReflectionAssertMatcher<T> lenientOrder() {
+	public PropertyMatcher<T> lenientOrder() {
 		this.modes.add(ReflectionComparatorMode.LENIENT_ORDER);
 		return this;
 	}
@@ -101,14 +103,14 @@ public class ReflectionAssertMatcher<T> extends BaseMatcher<T> {
 		description.appendText(difference.getMessage());
 	}
 
-	public static <T extends Object> ReflectionAssertMatcher<T> refEquals(Object ref) {
+	public static <T extends Object> PropertyMatcher<T> refEquals(Object ref) {
 		if (ref == null) {
 			throw new RuntimeException("compare object can't be null.");
 		}
-		return new ReflectionAssertMatcher<T>(null, ref);
+		return new PropertyMatcher<T>(null, ref);
 	}
 
-	private static class ReflectionAssertEx extends ReflectionAssert {
+	private static class JTesterReflectionAssert extends ReflectionAssert {
 		public static Object getPropertyEx(Object object, String ognlExpression) {
 			return getProperty(object, ognlExpression);
 		}
