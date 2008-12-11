@@ -17,7 +17,6 @@ public class PrepareData
 	{
 		(1..3).each
 				{ 	User user = new User(); 
-					int userId = it;
 					user.id = it;
 					user.email = "mail${it}@test.com";
 					user.name = "name${it}";
