@@ -10,5 +10,5 @@ package org.jtester.dbtest.test
  *
  */
 public class PrepareData{
- 
+
 }
