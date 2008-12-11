@@ -92,4 +92,22 @@ public class BaseBean implements Serializable {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	/**
+	 * Constructs a <code>String</code> with all attributes in name = value
+	 * format.
+	 * 
+	 * @return a <code>String</code> representation of this object.
+	 */
+	public String toString() {
+		final String TAB = "    ";
+
+		String retValue = "";
+
+		retValue = "BaseBean ( " + super.toString() + TAB + "id = " + this.id + TAB + "createDate = " + this.createDate
+				+ TAB + "creator = " + this.creator + TAB + "modifiedDate = " + this.modifiedDate + TAB + "modifior = "
+				+ this.modifior + TAB + "deleted = " + this.deleted + TAB + " )";
+
+		return retValue;
+	}
 }

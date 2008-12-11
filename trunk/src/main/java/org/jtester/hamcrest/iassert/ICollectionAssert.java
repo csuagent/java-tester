@@ -30,6 +30,8 @@ public interface ICollectionAssert<T extends Collection, E extends ICollectionAs
 	E hasItems(float values[]);
 
 	E hasItems(double values[]);
+	
+	//E sizeIs(int size);
 
 	// TODO
 }

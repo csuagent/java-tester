@@ -47,4 +47,21 @@ public class User extends BaseBean {
 	public void setAddresses(Collection<Address> addresses) {
 		this.addresses = addresses;
 	}
+
+	/**
+	 * Constructs a <code>String</code> with all attributes in name = value
+	 * format.
+	 * 
+	 * @return a <code>String</code> representation of this object.
+	 */
+	public String toString() {
+		final String TAB = "    ";
+
+		String retValue = "";
+
+		retValue = "User ( " + super.toString() + TAB + "name = " + this.name + TAB + "email = " + this.email + TAB
+				+ "addresses = " + this.addresses + TAB + " )";
+
+		return retValue;
+	}
 }

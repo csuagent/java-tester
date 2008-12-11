@@ -1,5 +1,6 @@
 package org.jtester.dbtest.service;
 
+import org.hibernate.Session;
 import org.jtester.dbtest.bean.BaseBean;
 
 public interface BaseService<T extends BaseBean> {
@@ -32,4 +33,6 @@ public interface BaseService<T extends BaseBean> {
 	 * @return
 	 */
 	<E extends BaseBean> E save(E bean);
+
+	Session session();
 }

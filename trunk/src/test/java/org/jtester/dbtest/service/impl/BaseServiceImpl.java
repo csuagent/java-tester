@@ -43,15 +43,15 @@ public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 
 	public <E extends BaseBean> E save(E bean) {
 		if (bean.getId() == 0) {
-			Serializable pKey = this.currSession().save(bean);
-			return (E) this.currSession().get(bean.getClass(), pKey);
+			Serializable pKey = this.session().save(bean);
+			return (E) this.session().get(bean.getClass(), pKey);
 		} else {
-			this.currSession().saveOrUpdate(bean);
+			this.session().saveOrUpdate(bean);
 			return bean;
 		}
 	}
 
-	public Session currSession() {
+	public Session session() {
 		return this.sessionFactory.getCurrentSession();
 	}
 }
