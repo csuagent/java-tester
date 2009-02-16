@@ -13,12 +13,12 @@ public class GroovyPrepareData extends JTester {
 	@SpringBeanByType
 	private UserService userService;
 
-	@Test
-	public void testFindUser() {
-		PrepareData.prepare(userService.session());
-
-		User user = userService.getBeanById(1);
-		want.object(user).notNull();
-		want.number(user.getAddresses().size()).isEqualTo(3);
-	}
+//	@Test
+//	public void testFindUser() {
+//		PrepareData.prepare(userService.session());
+//
+//		User user = userService.getBeanById(1);
+//		want.object(user).notNull();
+//		want.number(user.getAddresses().size()).isEqualTo(3);
+//	}
 }

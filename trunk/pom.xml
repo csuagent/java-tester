@@ -144,18 +144,33 @@
 			<artifactId>jline</artifactId>
 			<version>0.9.94</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.5.6</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
 		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
 		<spring.version>2.0.8</spring.version>
-		<unitils.version>2.0</unitils.version>
-		<dbunit.version>2.2</dbunit.version>
+		<!-- <unitils.version>2.0</unitils.version>-->
+		<unitils.version>2.2</unitils.version>
+		<!-- <dbunit.version>2.2</dbunit.version> -->
+		<dbunit.version>2.4.3</dbunit.version>
 		<jmock.version>2.5.1</jmock.version>
 		<hamcrest.version>1.1</hamcrest.version>
-		<mockito.version>1.6</mockito.version>
-		<h2db.version>1.1.104</h2db.version>
+		<!-- <mockito.version>1.6</mockito.version>-->
+		<mockito.version>1.7</mockito.version>
+		<!--  <h2db.version>1.1.104</h2db.version>-->
+		<h2db.version>1.1.107</h2db.version>
 		<mysql.connection.version>3.1.12</mysql.connection.version>
 	</properties>
 </project>
