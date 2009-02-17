@@ -10,7 +10,8 @@ import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
 
-public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> implements IAssert<T, E> {
+public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
+		implements IAssert<T, E> {
 
 	protected Class<T> clazT;
 
@@ -23,14 +24,14 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 
 	protected ILinkMatcher<T> link;
 
-	public Assert(Class<? extends IAssert> clazE) {
+	public Assert(Class<? extends IAssert<?, ?>> clazE) {
 		this.value = null;
 		this.type = AssertType.Expectations;
 		this.link = new LinkMatcher<T>();
 		this.clazE = clazE;
 	}
 
-	public Assert(T value, Class<? extends IAssert> clazE) {
+	public Assert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		this.type = AssertType.AssertThat;
 		this.value = value;
 		this.clazE = clazE;
@@ -53,7 +54,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 			return PrimitiveConvertor.value(clazT);
 		}
 	}
-	
+
 	public T $(Expectations expectations) {
 		return this.match(expectations);
 	}

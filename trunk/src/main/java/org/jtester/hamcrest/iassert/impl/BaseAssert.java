@@ -20,16 +20,17 @@ import org.mockito.internal.matchers.Same;
 import org.unitils.reflectionassert.ReflectionAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IBaseAssert<T, E> {
-	public BaseAssert(Class<? extends IAssert> clazE) {
+public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E>
+		implements IBaseAssert<T, E> {
+	public BaseAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
 	}
 
-	public BaseAssert(T value, Class<? extends IAssert> clazE) {
+	public BaseAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		super(value, clazE);
 	}
 
-	public BaseAssert(Class<T> clazT, Class<? extends IAssert> clazE) {
+	public BaseAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
 		super(clazT, clazE);
 	}
 
@@ -43,16 +44,19 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		return this.assertThat(matcher);
 	}
 
+	@SuppressWarnings("unchecked")
 	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes) {
 		ReflectionAssert.assertReflectionEquals(expected, this.value, modes);
 		return (E) this;
 	}
 
+	@SuppressWarnings("unchecked")
 	public E lenientEqualTo(T expected) {
 		ReflectionAssert.assertLenientEquals(expected, this.value);
 		return (E) this;
 	}
 
+	@SuppressWarnings("unchecked")
 	public E propertyEqualTo(String property, T expected) {
 		// ReflectionAssert.assertPropertyLenientEquals(property, expected,
 		// this.value);
@@ -65,7 +69,8 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		if (_actual instanceof Object[]) {
 			_actual = ArrayConvertor.convert((Object[]) _actual);
 		}
-		ReflectionAssert.assertPropertyLenientEquals(property, _expected, _actual);
+		ReflectionAssert.assertPropertyLenientEquals(property, _expected,
+				_actual);
 		return (E) this;
 	}
 
@@ -84,47 +89,50 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		return this.assertThat(_matcher);
 	}
 
-	public E allOf(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
+	public E allOf(IAssert<?, ?> matcher1, IAssert<?, ?> matcher2,
+			IAssert<?, ?>... matchers) {
 		List<Matcher<?>> list = list(matcher1, matcher2, matchers);
 		Matcher<?> matcher = AllOf.allOf(list);
 		return this.assertThat(matcher);
 	}
 
-	public E allOf(Iterable<IAssert> matchers) {
+	public E allOf(Iterable<IAssert<?, ?>> matchers) {
 		List<Matcher<?>> list = list(matchers);
 		Matcher<?> matcher = AllOf.allOf(list);
 		return this.assertThat(matcher);
 	}
 
-	public E anyOf(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
+	public E anyOf(IAssert<?, ?> matcher1, IAssert<?, ?> matcher2,
+			IAssert<?, ?>... matchers) {
 		List<Matcher<?>> list = list(matcher1, matcher2, matchers);
 		Matcher<?> matcher = AnyOf.anyOf(list);
 		return this.assertThat(matcher);
 	}
 
-	private List<Matcher<?>> list(IAssert matcher1, IAssert matcher2, IAssert... matchers) {
+	private List<Matcher<?>> list(IAssert<?, ?> matcher1,
+			IAssert<?, ?> matcher2, IAssert<?, ?>... matchers) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		list.add(matcher1);
 		list.add(matcher2);
 		if (matchers != null) {
-			for (IAssert matcher : matchers) {
+			for (IAssert<?, ?> matcher : matchers) {
 				list.add(matcher);
 			}
 		}
 		return list;
 	}
 
-	private List<Matcher<?>> list(Iterable<IAssert> matchers) {
+	private List<Matcher<?>> list(Iterable<IAssert<?, ?>> matchers) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		if (matchers != null) {
-			for (IAssert matcher : matchers) {
+			for (IAssert<?, ?> matcher : matchers) {
 				list.add(matcher);
 			}
 		}
 		return list;
 	}
 
-	public E anyOf(Iterable<IAssert> matchers) {
+	public E anyOf(Iterable<IAssert<?, ?>> matchers) {
 		List<Matcher<?>> list = list(matchers);
 		Matcher<?> matcher = AnyOf.anyOf(list);
 		return this.assertThat(matcher);
@@ -141,22 +149,22 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 	}
 
 	public E same(T value) {
-		Matcher _matcher = new Same(value);
+		Matcher<?> _matcher = new Same(value);
 		return this.assertThat(_matcher);
 	}
 
 	public E any() {
-		Matcher _matcher = Any.ANY;
+		Matcher<?> _matcher = Any.ANY;
 		return this.assertThat(_matcher);
 	}
 
 	public E isNull() {
-		Matcher _matcher = Null.NULL;
+		Matcher<?> _matcher = Null.NULL;
 		return this.assertThat(_matcher);
 	}
 
 	public E notNull() {
-		Matcher _matcher = NotNull.NOT_NULL;
+		Matcher<?> _matcher = NotNull.NOT_NULL;
 		return this.assertThat(_matcher);
 	}
 }

@@ -11,22 +11,22 @@ import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.ICollectionAssert;
 
-public class CollectionAssert<T extends Collection, E extends ICollectionAssert<T, ?>> extends BaseAssert<T, E>
-		implements ICollectionAssert<T, E> {
+public class CollectionAssert<T extends Collection<?>, E extends ICollectionAssert<T, ?>>
+		extends BaseAssert<T, E> implements ICollectionAssert<T, E> {
 
-	public CollectionAssert(Class<? extends IAssert> clazE) {
+	public CollectionAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
 	}
 
-	public CollectionAssert(Class<T> clazT, Class<? extends IAssert> clazE) {
+	public CollectionAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
 		super(clazT, clazE);
 	}
 
-	public CollectionAssert(T value, Class<? extends IAssert> clazE) {
+	public CollectionAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		super(value, clazE);
 	}
 
-	public E hasItems(Collection collection) {
+	public E hasItems(Collection<?> collection) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		if (collection != null) {
 			for (Object item : collection) {

@@ -1,5 +1,6 @@
 package org.jtester.hamcrest.iassert;
 
-public interface IObjectAssert<T, E extends IObjectAssert<T, ?>> extends IAssert<T, E>, IReflectionAssert<T, E> {
+public interface IObjectAssert extends IAssert<Object, IObjectAssert>,
+		IReflectionAssert<Object, IObjectAssert> {
 
 }

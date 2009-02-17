@@ -1,6 +1,5 @@
 package org.jtester.core;
 
-import org.hibernate.mapping.Map;
 import org.jtester.hamcrest.iassert.IArrayAssert;
 import org.jtester.hamcrest.iassert.IBooleanAssert;
 import org.jtester.hamcrest.iassert.IByteAssert;
@@ -52,7 +51,7 @@ public interface IExpectation {
 		}
 
 		public static IMapAssert map() {
-			return new MapAssert(MapAssert.class);
+			return new MapAssert();
 		}
 
 		public static ICollectionAssert collection() {
@@ -60,7 +59,7 @@ public interface IExpectation {
 		}
 
 		public static IObjectAssert object() {
-			return new ObjectAssert(Object.class);
+			return new ObjectAssert();
 		}
 	}
 }

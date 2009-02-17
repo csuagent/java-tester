@@ -100,39 +100,47 @@ public interface IAssertThat {
 
 		// boolean
 		public static IArrayAssert array(boolean value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		// byte
 		public static IArrayAssert array(byte value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		// char
 		public static IArrayAssert array(char value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		// short int long
 		public static IArrayAssert array(short value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		public static IArrayAssert array(int value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		public static IArrayAssert array(long value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		// float double
 		public static IArrayAssert array(float value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		public static IArrayAssert array(double value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value), ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value),
+					ArrayAssert.class);
 		}
 
 		public static IMapAssert map(Map map) {
@@ -144,7 +152,7 @@ public interface IAssertThat {
 		}
 
 		public static IObjectAssert object(Object bean) {
-			return new ObjectAssert(bean, Object.class);
+			return new ObjectAssert(bean, ObjectAssert.class);
 		}
 	}
 }

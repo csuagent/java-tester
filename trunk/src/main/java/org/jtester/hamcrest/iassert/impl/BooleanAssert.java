@@ -5,17 +5,19 @@ import org.hamcrest.core.IsEqual;
 import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.IBooleanAssert;
 
-public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert> implements IBooleanAssert {
+public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert>
+		implements IBooleanAssert {
 
-	public BooleanAssert(Boolean value, Class<? extends IAssert> clazE) {
+	public BooleanAssert(Boolean value, Class<? extends IAssert<?, ?>> clazE) {
 		super(value, clazE);
 	}
 
-	public BooleanAssert(Class<? extends IAssert> clazE) {
+	public BooleanAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
 	}
 
-	public BooleanAssert(Class<Boolean> clazT, Class<? extends IAssert> clazE) {
+	public BooleanAssert(Class<Boolean> clazT,
+			Class<? extends IAssert<?, ?>> clazE) {
 		super(clazT, clazE);
 	}
 
@@ -24,7 +26,7 @@ public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert> implement
 	}
 
 	public IBooleanAssert is(boolean bl, String message) {
-		Matcher matcher = IsEqual.equalTo(bl);
+		Matcher<?> matcher = IsEqual.equalTo(bl);
 		return this.assertThat(matcher, message);
 	}
 }

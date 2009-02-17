@@ -9,18 +9,18 @@ import org.mockito.internal.matchers.GreaterThan;
 import org.mockito.internal.matchers.LessOrEqual;
 import org.mockito.internal.matchers.LessThan;
 
-public class ComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>> extends BaseAssert<T, E>
-		implements IComparableAssert<T, E> {
+public class ComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>>
+		extends BaseAssert<T, E> implements IComparableAssert<T, E> {
 
-	public ComparableAssert(Class<? extends IAssert> clazE) {
+	public ComparableAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
 	}
 
-	public ComparableAssert(Class<T> clazT, Class<? extends IAssert> clazE) {
+	public ComparableAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
 		super(clazT, clazE);
 	}
 
-	public ComparableAssert(T value, Class<? extends IAssert> clazE) {
+	public ComparableAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		super(value, clazE);
 	}
 
@@ -46,7 +46,8 @@ public class ComparableAssert<T extends Comparable<T>, E extends IComparableAsse
 
 	public E between(T min, T max) {
 		if (min.compareTo(max) > 0) {
-			throw new AssertionError(String.format("arg1[%s] must less than arg2[%s]", min, max));
+			throw new AssertionError(String.format(
+					"arg1[%s] must less than arg2[%s]", min, max));
 		}
 		GreaterOrEqual<T> geq = new GreaterOrEqual<T>(min);
 		LessOrEqual<T> leq = new LessOrEqual<T>(max);
