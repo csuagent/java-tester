@@ -1,5 +1,6 @@
 package org.jtester.core;
 
+import org.hibernate.mapping.Map;
 import org.jtester.hamcrest.iassert.IArrayAssert;
 import org.jtester.hamcrest.iassert.IBooleanAssert;
 import org.jtester.hamcrest.iassert.IByteAssert;
