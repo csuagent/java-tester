@@ -23,23 +23,17 @@ import org.jtester.hamcrest.iassert.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.impl.StringAssert;
 
 public interface IAssertThat {
-	// ImageAssert assertThat(BufferedImage actual);
-	// FileAssert assertThat(File actual);
-	// ObjectAssertEx assertThat(Object actual);
-	// <T extends AssertExtension> T assertThat(T assertion);
-	// ThrowableAssert assertThat(Throwable actual);
-
 	public static class want {
 		public static IStringAssert string(String value) {
-			return new StringAssert(value, StringAssert.class);
+			return new StringAssert(value);
 		}
 
 		public static IBooleanAssert bool(boolean value) {
-			return new BooleanAssert(value, BooleanAssert.class);
+			return new BooleanAssert(value);
 		}
 
 		public static IBooleanAssert bool(Boolean value) {
-			return new BooleanAssert(value, BooleanAssert.class);
+			return new BooleanAssert(value);
 		}
 
 		public static INumberAssert number(Number value) {
@@ -67,11 +61,11 @@ public interface IAssertThat {
 		}
 
 		public static ICharacterAssert character(Character value) {
-			return new CharacterAssert(value, CharacterAssert.class);
+			return new CharacterAssert(value);
 		}
 
 		public static ICharacterAssert character(char value) {
-			return new CharacterAssert(value, CharacterAssert.class);
+			return new CharacterAssert(value);
 		}
 
 		/**
@@ -143,8 +137,8 @@ public interface IAssertThat {
 					ArrayAssert.class);
 		}
 
-		public static IMapAssert map(Map map) {
-			return new MapAssert(map, MapAssert.class);
+		public static IMapAssert map(Map<?, ?> map) {
+			return new MapAssert(map);
 		}
 
 		public static ICollectionAssert collection(Collection collection) {
@@ -152,7 +146,7 @@ public interface IAssertThat {
 		}
 
 		public static IObjectAssert object(Object bean) {
-			return new ObjectAssert(bean, ObjectAssert.class);
+			return new ObjectAssert(bean);
 		}
 	}
 }

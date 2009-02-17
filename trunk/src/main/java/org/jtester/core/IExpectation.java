@@ -22,11 +22,11 @@ import org.jtester.hamcrest.iassert.impl.StringAssert;
 public interface IExpectation {
 	public static class the {
 		public static IStringAssert string() {
-			return new StringAssert(IStringAssert.class);
+			return new StringAssert();
 		}
 
 		public static IBooleanAssert bool() {
-			return new BooleanAssert(BooleanAssert.class);
+			return new BooleanAssert();
 		}
 
 		public static INumberAssert number() {
@@ -34,7 +34,7 @@ public interface IExpectation {
 		}
 
 		public static ICharacterAssert character() {
-			return new CharacterAssert(CharacterAssert.class);
+			return new CharacterAssert();
 		}
 
 		/**

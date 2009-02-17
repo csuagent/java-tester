@@ -45,7 +45,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
 		this.link = new LinkMatcher<T>();
 	}
 
-	@SuppressWarnings("unchecked")
 	public T match(Expectations expectations) {
 		if (this.type == AssertType.AssertThat) {
 			throw new RuntimeException("is not an Expectations");
@@ -63,6 +62,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
 		link.describeTo(description);
 	}
 
+	@SuppressWarnings("unchecked")
 	public E assertThat(Matcher matcher) {
 		if (this.type == AssertType.AssertThat) {
 			MatcherAssert.assertThat(this.value, matcher);
@@ -72,6 +72,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
 		return (E) this;
 	}
 
+	@SuppressWarnings("unchecked")
 	public E assertThat(Matcher matcher, String message) {
 		if (this.type == AssertType.AssertThat) {
 			MatcherAssert.assertThat(message, this.value, matcher);

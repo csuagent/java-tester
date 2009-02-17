@@ -9,18 +9,27 @@ import org.hamcrest.text.StringStartsWith;
 import org.jtester.hamcrest.iassert.IStringAssert;
 import org.mockito.internal.matchers.Matches;
 
-public class StringAssert extends ComparableAssert<String, IStringAssert> implements IStringAssert {
-	public StringAssert(Class<IStringAssert> clazE) {
-		super(clazE);
+public class StringAssert extends ComparableAssert<String, IStringAssert>
+		implements IStringAssert {
+	public StringAssert() {
+		super(IStringAssert.class);
 	}
 
-	public StringAssert(String value, Class<? extends IStringAssert> clazE) {
-		super(value, clazE);
+	public StringAssert(String str) {
+		super(str, IStringAssert.class);
 	}
 
-	public StringAssert(Class<String> clazT, Class<? extends IStringAssert> clazE) {
-		super(clazT, clazE);
-	}
+	// public StringAssert(Class<IStringAssert> clazE) {
+	// super(StringAssert.class);
+	// }
+	// public StringAssert(String value, Class<? extends IStringAssert> clazE) {
+	// super(value, clazE);
+	// }
+	//
+	// public StringAssert(Class<String> clazT, Class<? extends IStringAssert>
+	// clazE) {
+	// super(clazT, clazE);
+	// }
 
 	public IStringAssert contains(String expected) {
 		StringContains matcher = new StringContains(expected);
@@ -33,12 +42,13 @@ public class StringAssert extends ComparableAssert<String, IStringAssert> implem
 	}
 
 	public IStringAssert eqIgnoreCase(String string) {
-		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(string);
+		Matcher<String> matcher = IsEqualIgnoringCase
+				.equalToIgnoringCase(string);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 
 	public IStringAssert regular(String regex) {
-		Matcher matcher = new Matches(regex);
+		Matcher<?> matcher = new Matches(regex);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 
@@ -48,7 +58,8 @@ public class StringAssert extends ComparableAssert<String, IStringAssert> implem
 	}
 
 	public Matcher<String> eqIgnorBlank(String string) {
-		Matcher<String> matcher = IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(string);
+		Matcher<String> matcher = IsEqualIgnoringWhiteSpace
+				.equalToIgnoringWhiteSpace(string);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 }

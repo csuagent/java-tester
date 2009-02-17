@@ -44,6 +44,7 @@ public class ComparableAssert<T extends Comparable<T>, E extends IComparableAsse
 		return this.assertThat(matcher);
 	}
 
+	@SuppressWarnings("unchecked")
 	public E between(T min, T max) {
 		if (min.compareTo(max) > 0) {
 			throw new AssertionError(String.format(
