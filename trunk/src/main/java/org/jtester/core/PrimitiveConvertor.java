@@ -17,6 +17,7 @@ public class PrimitiveConvertor {
 		map.put(Boolean.class, false);
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> T value(Class<T> claz) {
 		if (map.containsKey(claz)) {
 			return (T) map.get(claz);
