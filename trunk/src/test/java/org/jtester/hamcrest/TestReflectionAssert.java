@@ -123,15 +123,15 @@ public class TestReflectionAssert extends JTester {
 	//
 	// }
 
-	// @Test(expectedExceptions = { AssertionFailedError.class })
-	// public void test8() {
-	// User user = new User(1, "John", "Doe");
-	// want.object(user).propertyEqualTo("id", 2);
-	// }
-	//
-	// @Test(expectedExceptions = { AssertionFailedError.class })
-	// public void test9() {
-	// User user = new User("John", "Doe", new Address("First street", "", ""));
-	// want.object(user).propertyEqualTo("address.street", "First street1");
-	// }
+	@Test(expectedExceptions = { AssertionError.class })
+	public void test8() {
+		User user = new User(1, "John", "Doe");
+		want.object(user).propertyEq("id", 2);
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void test9() {
+		User user = new User("John", "Doe", new Address("First street", "", ""));
+		want.object(user).propertyEq("address.street", "First street1");
+	}
 }

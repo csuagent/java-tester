@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.jtester.utility.ReflectUtil;
+import org.unitils.core.UnitilsException;
 import org.unitils.reflectionassert.ReflectionComparator;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.reflectionassert.difference.Difference;
@@ -48,16 +49,13 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 	public boolean matches(Object actual) {
 		assertNotNull("Actual object is null.", actual);
 		// Object propertyValue = getProperty(actualObject, propertyName);
-		try {
-			Collection<?> _actualProps = this.getProperty(actual);
-			Collection<?> _expectedProps = this.getProperty(expected);
+		Collection<?> _actualProps = this.getProperty(actual);
+		Collection<?> _expectedProps = this.getProperty(expected);
 
-			ReflectionComparator reflectionComparator = createRefectionComparator(modes);
-			this.difference = reflectionComparator.getDifference(
-					_expectedProps, _actualProps);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		ReflectionComparator reflectionComparator = createRefectionComparator(modes);
+		this.difference = reflectionComparator.getDifference(_expectedProps,
+				_actualProps);
+
 		return difference == null;
 	}
 
@@ -70,27 +68,31 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 		}
 	}
 
-	public Collection<?> getProperty(Object o) throws SecurityException,
-			NoSuchFieldException {
+	private Collection<?> getProperty(Object o) {
 		Collection<Object> coll = new ArrayList<Object>();
 		if (o == null) {
 			return coll;
 		} else if (o instanceof Collection) {
 			Collection<?> oc = (Collection<?>) o;
 			for (Object o1 : oc) {
-				Object value = ReflectUtil.getFieldValue(o1, this.property);
+				Object value = ReflectUtil.getProperty(o1, this.property);
 				coll.add(value);
 			}
 		} else if (o instanceof Object[]) {
 			Object[] oa = (Object[]) o;
 			for (Object o2 : oa) {
-				Object value = ReflectUtil.getFieldValue(o2, this.property);
+				Object value = ReflectUtil.getProperty(o2, this.property);
 				coll.add(value);
 			}
 		} else {
-			Object value = ReflectUtil.getFieldValue(o, this.property);
-			coll.add(value);
+			try {
+				Object value = ReflectUtil.getProperty(o, this.property);
+				coll.add(value);
+			} catch (UnitilsException e) {
+				coll.add(o);
+			}
 		}
 		return coll;
 	}
+
 }
