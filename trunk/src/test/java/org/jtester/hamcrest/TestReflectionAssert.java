@@ -24,31 +24,31 @@ public class TestReflectionAssert extends JTester {
 	public void test2() {
 		User user1 = new User(1, "John", "Doe");
 		User user2 = new User(1, "John", "Doe");
-		want.object(user1).reflectionEqualTo(user2);
+		want.object(user1).reflectionEq(user2);
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })
 	public void test3() {
 		User user1 = new User(1, "John", "Doe");
 		User user2 = new User(1, "John", "Doe1");
-		want.object(user1).reflectionEqualTo(user2);
+		want.object(user1).reflectionEq(user2);
 	}
 
 	@Test
 	public void test4() {
-		want.object(1).reflectionEqualTo(1L);
+		want.object(1).reflectionEq(1L);
 
 		List<Double> myList = new ArrayList<Double>();
 		myList.add(1.0);
 		myList.add(2.0);
-		want.object(myList).reflectionEqualTo(Arrays.asList(1, 2));
+		want.object(myList).reflectionEq(Arrays.asList(1, 2));
 
 	}
 
 	@Test
 	public void test5() {
 		List<Integer> myList = Arrays.asList(3, 2, 1);
-		want.object(myList).reflectionEqualTo(Arrays.asList(1, 2, 3),
+		want.object(myList).reflectionEq(Arrays.asList(1, 2, 3),
 				opts.CompMode.LENIENT_ORDER);
 
 		User actualUser = new User("John", "Doe", new Address("First street",
@@ -56,7 +56,7 @@ public class TestReflectionAssert extends JTester {
 		User expectedUser = new User("John", null, new Address("First street",
 				null, null));
 		// assertReflectionEquals(expectedUser, actualUser, IGNORE_DEFAULTS);
-		want.object(actualUser).reflectionEqualTo(expectedUser,
+		want.object(actualUser).reflectionEq(expectedUser,
 				opts.CompMode.IGNORE_DEFAULTS);
 	}
 
@@ -65,7 +65,7 @@ public class TestReflectionAssert extends JTester {
 		Date actualDate = new Date(44444);
 		Date expectedDate = new Date();
 		// assertReflectionEquals(expectedDate, actualDate, LENIENT_DATES);
-		want.object(actualDate).reflectionEqualTo(expectedDate,
+		want.object(actualDate).reflectionEq(expectedDate,
 				opts.CompMode.LENIENT_DATES);
 
 	}
@@ -74,16 +74,16 @@ public class TestReflectionAssert extends JTester {
 	public void testLenientAssert() {
 		List<Integer> myList = Arrays.asList(3, 2, 1);
 		// assertLenientEquals(Arrays.asList(1, 2, 3), myList);
-		want.collection(myList).lenientEqualTo(Arrays.asList(1, 2, 3));
+		want.collection(myList).lenientEq(Arrays.asList(1, 2, 3));
 
-		//assertLenientEquals(null, "any"); // Succeeds
-		want.object("any").lenientEqualTo(null);
+		// assertLenientEquals(null, "any"); // Succeeds
+		want.object("any").lenientEq(null);
 	}
-	
+
 	@Test(expectedExceptions = { AssertionError.class })
 	public void testLenientAssert2() {
-		//assertLenientEquals("any", null); // Fails
-		want.object(null).lenientEqualTo("any");
+		// assertLenientEquals("any", null); // Fails
+		want.object(null).lenientEq("any");
 	}
 
 	// @Test
