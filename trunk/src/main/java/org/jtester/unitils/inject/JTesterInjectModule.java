@@ -138,6 +138,7 @@ public class JTesterInjectModule extends InjectModule {
         }
     }
 
+	@SuppressWarnings("unchecked")
 	private Map<Class<? extends Annotation>, Map<String, String>> defaultAnnotationPropertyValues() {
 		try {
 			return (Map<Class<? extends Annotation>, Map<String, String>>) ReflectUtil.getFieldValue(

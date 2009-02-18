@@ -1,29 +1,18 @@
 package org.jtester.hamcrest.iassert;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
+
 public interface IReflectionAssert<T, E extends IAssert<?, ?>> {
-//	public E reflectionEqualTo(List<T> expected,
-//			ReflectionComparatorMode... modes);
-//
-//	public E reflectionEqualTo(Collection<T> expected,
-//			ReflectionComparatorMode... modes);
-//
-//	public E reflectionEqualTo(T[] expected, ReflectionComparatorMode... modes);
-//
+
 //	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes);
-//
+
 //	public E lenientEqualTo(List<T> expected);
 //
 //	public E lenientEqualTo(Collection<T> expected);
 //
 //	public E lenientEqualTo(T[] expected);
-//
-//	public E lenientEqualTo(T expected);
-//
+
 //	public E propertyEqualTo(String property, List<T> expected);
 //
 //	public E propertyEqualTo(String property, Collection<T> expected);

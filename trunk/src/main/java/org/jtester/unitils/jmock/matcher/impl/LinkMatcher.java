@@ -11,7 +11,7 @@ import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 public class LinkMatcher<T> extends BaseMatcher<T> implements ILinkMatcher<T> {
 	private final List<Matcher<?>> matchers = new ArrayList<Matcher<?>>();
 
-	public void add(Matcher matcher) {
+	public void add(Matcher<?> matcher) {
 		this.matchers.add(matcher);
 	}
 
