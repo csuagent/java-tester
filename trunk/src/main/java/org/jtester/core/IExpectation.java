@@ -55,7 +55,7 @@ public interface IExpectation {
 		}
 
 		public static ICollectionAssert collection() {
-			return new CollectionAssert(CollectionAssert.class);
+			return new CollectionAssert(ICollectionAssert.class);
 		}
 
 		public static IObjectAssert object() {

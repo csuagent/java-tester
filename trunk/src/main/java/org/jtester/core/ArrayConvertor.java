@@ -95,11 +95,11 @@ public class ArrayConvertor {
 		}
 	}
 
-	public static List convert(Object values[]) {
+	public static List<?> convert(Object values[]) {
 		if (values == null) {
 			return null;
 		}
-		List list = new ArrayList();
+		List<Object> list = new ArrayList<Object>();
 		for (Object o : values) {
 			list.add(o);
 		}

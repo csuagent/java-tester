@@ -133,8 +133,8 @@ public interface IAssertThat {
 			return new MapAssert(map);
 		}
 
-		public static ICollectionAssert collection(Collection collection) {
-			return new CollectionAssert(collection, CollectionAssert.class);
+		public static ICollectionAssert collection(Collection<?> collection) {
+			return new CollectionAssert(collection, ICollectionAssert.class);
 		}
 
 		public static IObjectAssert object(Object bean) {
