@@ -28,6 +28,7 @@ public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <E extends BaseBean> E getBeanById(Class<E> clazz, int id) {
 		String hql = "from " + clazz.getName()
 				+ " as bean where bean.id=:id and (bean.deleted=false or bean.deleted is null)";
@@ -41,6 +42,7 @@ public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 		return this.getBeanById(claz, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <E extends BaseBean> E save(E bean) {
 		if (bean.getId() == 0) {
 			Serializable pKey = this.session().save(bean);

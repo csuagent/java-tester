@@ -11,6 +11,8 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseBean implements Serializable {
+	private static final long serialVersionUID = -4034487872786324752L;
+
 	private int id;
 
 	/**
@@ -104,9 +106,11 @@ public class BaseBean implements Serializable {
 
 		String retValue = "";
 
-		retValue = "BaseBean ( " + super.toString() + TAB + "id = " + this.id + TAB + "createDate = " + this.createDate
-				+ TAB + "creator = " + this.creator + TAB + "modifiedDate = " + this.modifiedDate + TAB + "modifior = "
-				+ this.modifior + TAB + "deleted = " + this.deleted + TAB + " )";
+		retValue = "BaseBean ( " + super.toString() + TAB + "id = " + this.id
+				+ TAB + "createDate = " + this.createDate + TAB + "creator = "
+				+ this.creator + TAB + "modifiedDate = " + this.modifiedDate
+				+ TAB + "modifior = " + this.modifior + TAB + "deleted = "
+				+ this.deleted + TAB + " )";
 
 		return retValue;
 	}

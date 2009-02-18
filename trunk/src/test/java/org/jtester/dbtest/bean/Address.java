@@ -10,6 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "jtester_address")
 public class Address extends BaseBean {
+	private static final long serialVersionUID = 5950212856893863037L;
+
 	private String country;
 
 	private String province;

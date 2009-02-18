@@ -14,6 +14,8 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "jtester_user")
 public class User extends BaseBean {
+	private static final long serialVersionUID = 1824736038447664368L;
+
 	private String name;
 
 	private String email;
@@ -59,8 +61,9 @@ public class User extends BaseBean {
 
 		String retValue = "";
 
-		retValue = "User ( " + super.toString() + TAB + "name = " + this.name + TAB + "email = " + this.email + TAB
-				+ "addresses = " + this.addresses + TAB + " )";
+		retValue = "User ( " + super.toString() + TAB + "name = " + this.name
+				+ TAB + "email = " + this.email + TAB + "addresses = "
+				+ this.addresses + TAB + " )";
 
 		return retValue;
 	}
