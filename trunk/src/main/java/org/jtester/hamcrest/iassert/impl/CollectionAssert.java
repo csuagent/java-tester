@@ -9,6 +9,7 @@ import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.iassert.ICollectionAssert;
+import org.jtester.hamcrest.matcher.CollectionSizeMatcher;
 
 public class CollectionAssert extends
 		BaseAssert<Collection<?>, ICollectionAssert> implements
@@ -84,7 +85,7 @@ public class CollectionAssert extends
 	}
 
 	public ICollectionAssert sizeIs(int size) {
-		// TODO Auto-generated method stub
-		return null;
+		CollectionSizeMatcher matcher = new CollectionSizeMatcher(size);
+		return this.assertThat(matcher);
 	}
 }
