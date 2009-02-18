@@ -47,7 +47,7 @@ public interface IExpectation {
 		}
 
 		public static IArrayAssert array() {
-			return new ArrayAssert(ArrayAssert.class);
+			return new ArrayAssert();
 		}
 
 		public static IMapAssert map() {

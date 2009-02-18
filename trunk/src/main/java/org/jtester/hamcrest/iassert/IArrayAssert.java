@@ -2,9 +2,9 @@ package org.jtester.hamcrest.iassert;
 
 import java.util.Collection;
 
-public interface IArrayAssert<T, E extends IArrayAssert<T, ?>> extends
-		IAssert<T, E>, IReflectionAssert<T, E> {
-	E hasItems(T item, T... items);
+public interface IArrayAssert extends IAssert<Object[], IArrayAssert>,
+		IReflectionAssert<Object, IArrayAssert> {
+	<T extends Object> IArrayAssert hasItems(T item, T... items);
 
-	E hasItems(Collection<?> collection);
+	<T extends Object> IArrayAssert hasItems(Collection<T> collection);
 }

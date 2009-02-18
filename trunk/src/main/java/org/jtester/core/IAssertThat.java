@@ -88,53 +88,45 @@ public interface IAssertThat {
 			return new ByteAssert(value, ByteAssert.class);
 		}
 
-		public static IArrayAssert array(Object value[]) {
-			return new ArrayAssert(value, ArrayAssert.class);
+		public static <T extends Object> IArrayAssert array(T value[]) {
+			return new ArrayAssert(value);
 		}
 
 		// boolean
 		public static IArrayAssert array(boolean value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		// byte
 		public static IArrayAssert array(byte value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		// char
 		public static IArrayAssert array(char value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		// short int long
 		public static IArrayAssert array(short value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		public static IArrayAssert array(int value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		public static IArrayAssert array(long value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		// float double
 		public static IArrayAssert array(float value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		public static IArrayAssert array(double value[]) {
-			return new ArrayAssert(ArrayConvertor.convert(value),
-					ArrayAssert.class);
+			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
 		public static IMapAssert map(Map<?, ?> map) {

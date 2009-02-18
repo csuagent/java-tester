@@ -10,15 +10,12 @@ import org.hamcrest.core.AnyOf;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
-import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.IBaseAssert;
 import org.mockito.internal.matchers.Any;
 import org.mockito.internal.matchers.NotNull;
 import org.mockito.internal.matchers.Null;
 import org.mockito.internal.matchers.Same;
-import org.unitils.reflectionassert.ReflectionAssert;
-import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E>
 		implements IBaseAssert<T, E> {
@@ -42,36 +39,6 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E>
 	public E notEqualTo(T expected) {
 		Matcher<T> matcher = IsNot.not(IsEqual.equalTo(expected));
 		return this.assertThat(matcher);
-	}
-
-	@SuppressWarnings("unchecked")
-	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes) {
-		ReflectionAssert.assertReflectionEquals(expected, this.value, modes);
-		return (E) this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public E lenientEqualTo(T expected) {
-		ReflectionAssert.assertLenientEquals(expected, this.value);
-		return (E) this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public E propertyEqualTo(String property, T expected) {
-		// ReflectionAssert.assertPropertyLenientEquals(property, expected,
-		// this.value);
-		// Matcher<?> matcher = Is.is(expected);
-		Object _expected = ArrayConvertor.convert(expected);
-		if (_expected instanceof Object[]) {
-			_expected = ArrayConvertor.convert((Object[]) _expected);
-		}
-		Object _actual = ArrayConvertor.convert(this.value);
-		if (_actual instanceof Object[]) {
-			_actual = ArrayConvertor.convert((Object[]) _actual);
-		}
-		ReflectionAssert.assertPropertyLenientEquals(property, _expected,
-				_actual);
-		return (E) this;
 	}
 
 	public E type(Class<?> expected) {

@@ -8,32 +8,27 @@ import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsArrayContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.IArrayAssert;
-import org.jtester.hamcrest.iassert.IAssert;
+import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public class ArrayAssert<T, E extends IArrayAssert<T, E>> extends
-		BaseAssert<T, E> implements IArrayAssert<T, E> {
-
-	public ArrayAssert(Class<? extends IAssert<?, ?>> clazE) {
-		super(clazE);
+public class ArrayAssert extends BaseAssert<Object[], IArrayAssert> implements
+		IArrayAssert {
+	public ArrayAssert() {
+		super(IArrayAssert.class);
 	}
 
-	public ArrayAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
-		super(clazT, clazE);
-	}
-
-	public ArrayAssert(T value[], Class<? extends IAssert<?, ?>> clazE) {
-		super(clazE);
+	public <T extends Object> ArrayAssert(T value[]) {
+		super(IArrayAssert.class);
 		this.value = value;
 		this.type = AssertType.AssertThat;
 	}
 
-	public E hasItems(T item, T... items) {
+	public <T extends Object> IArrayAssert hasItems(T item, T... items) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
-		Matcher matcher1 = IsArrayContaining.hasItemInArray(item);
+		Matcher<?> matcher1 = IsArrayContaining.hasItemInArray(item);
 		list.add(matcher1);
 		if (items != null) {
 			for (Object temp : items) {
-				Matcher matcher2 = IsArrayContaining.hasItemInArray(temp);
+				Matcher<?> matcher2 = IsArrayContaining.hasItemInArray(temp);
 				list.add(matcher2);
 			}
 		}
@@ -41,15 +36,80 @@ public class ArrayAssert<T, E extends IArrayAssert<T, E>> extends
 		return this.assertThat(matcher);
 	}
 
-	public E hasItems(Collection collection) {
+	public <T extends Object> IArrayAssert hasItems(Collection<T> collection) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		if (collection != null) {
 			for (Object temp : collection) {
-				Matcher _matcher = IsArrayContaining.hasItemInArray(temp);
+				Matcher<?> _matcher = IsArrayContaining.hasItemInArray(temp);
 				list.add(_matcher);
 			}
 		}
 		Matcher<?> matcher = AllOf.allOf(list);
 		return this.assertThat(matcher);
+	}
+
+	public IArrayAssert lenientEqualTo(List<Object> expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert lenientEqualTo(Collection<Object> expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert lenientEqualTo(Object[] expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert lenientEqualTo(Object expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert propertyEqualTo(String property, List<Object> expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert propertyEqualTo(String property,
+			Collection<Object> expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert propertyEqualTo(String property, Object[] expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert propertyEqualTo(String property, Object expected) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert reflectionEqualTo(List<Object> expected,
+			ReflectionComparatorMode... modes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert reflectionEqualTo(Collection<Object> expected,
+			ReflectionComparatorMode... modes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert reflectionEqualTo(Object[] expected,
+			ReflectionComparatorMode... modes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IArrayAssert reflectionEqualTo(Object expected,
+			ReflectionComparatorMode... modes) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
