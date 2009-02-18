@@ -8,18 +8,26 @@ import org.jtester.hamcrest.iassert.IBooleanAssert;
 import org.jtester.hamcrest.iassert.IByteAssert;
 import org.jtester.hamcrest.iassert.ICharacterAssert;
 import org.jtester.hamcrest.iassert.ICollectionAssert;
+import org.jtester.hamcrest.iassert.IDoubleAssert;
+import org.jtester.hamcrest.iassert.IFloatAssert;
+import org.jtester.hamcrest.iassert.IIntegerAssert;
+import org.jtester.hamcrest.iassert.ILongAssert;
 import org.jtester.hamcrest.iassert.IMapAssert;
-import org.jtester.hamcrest.iassert.INumberAssert;
 import org.jtester.hamcrest.iassert.IObjectAssert;
+import org.jtester.hamcrest.iassert.IShortAssert;
 import org.jtester.hamcrest.iassert.IStringAssert;
 import org.jtester.hamcrest.iassert.impl.ArrayAssert;
 import org.jtester.hamcrest.iassert.impl.BooleanAssert;
 import org.jtester.hamcrest.iassert.impl.ByteAssert;
 import org.jtester.hamcrest.iassert.impl.CharacterAssert;
 import org.jtester.hamcrest.iassert.impl.CollectionAssert;
+import org.jtester.hamcrest.iassert.impl.DoubleAssert;
+import org.jtester.hamcrest.iassert.impl.FloatAssert;
+import org.jtester.hamcrest.iassert.impl.IntegerAssert;
+import org.jtester.hamcrest.iassert.impl.LongAssert;
 import org.jtester.hamcrest.iassert.impl.MapAssert;
-import org.jtester.hamcrest.iassert.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.impl.ObjectAssert;
+import org.jtester.hamcrest.iassert.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.impl.StringAssert;
 
 public interface IAssertThat {
@@ -36,28 +44,24 @@ public interface IAssertThat {
 			return new BooleanAssert(value);
 		}
 
-		public static INumberAssert number(Number value) {
-			return new NumberAssert(value, INumberAssert.class);
+		public static IIntegerAssert number(Integer value) {
+			return new IntegerAssert(value);
 		}
 
-		public static INumberAssert number(int value) {
-			return new NumberAssert(value, NumberAssert.class);
+		public static IShortAssert number(Short value) {
+			return new ShortAssert(value);
 		}
 
-		public static INumberAssert number(short value) {
-			return new NumberAssert(value, INumberAssert.class);
+		public static ILongAssert number(Long value) {
+			return new LongAssert(value);
 		}
 
-		public static INumberAssert number(long value) {
-			return new NumberAssert(value, NumberAssert.class);
+		public static IDoubleAssert number(Double value) {
+			return new DoubleAssert(value);
 		}
 
-		public static INumberAssert number(double value) {
-			return new NumberAssert(value, NumberAssert.class);
-		}
-
-		public static INumberAssert number(float value) {
-			return new NumberAssert(value, NumberAssert.class);
+		public static IFloatAssert number(Float value) {
+			return new FloatAssert(value);
 		}
 
 		public static ICharacterAssert character(Character value) {

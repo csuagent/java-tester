@@ -29,6 +29,7 @@ public interface IExpectation {
 			return new BooleanAssert();
 		}
 
+		@SuppressWarnings("unchecked")
 		public static INumberAssert number() {
 			return new NumberAssert(NumberAssert.class);
 		}
@@ -54,6 +55,7 @@ public interface IExpectation {
 			return new MapAssert();
 		}
 
+		@SuppressWarnings("unchecked")
 		public static ICollectionAssert collection() {
 			return new CollectionAssert(ICollectionAssert.class);
 		}
