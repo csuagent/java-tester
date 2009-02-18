@@ -105,15 +105,15 @@ public class TestReflectionAssert extends JTester {
 						new User[] { new User("Jane"), new User("John") },
 						opts.CompMode.LENIENT_ORDER);
 
-		// want.array(new User[] { new User("Jane"), new User("John") })
-		// .reflectionEq(
-		// Arrays.asList(new User("John"), new User("Jane")),
-		// opts.CompMode.LENIENT_ORDER);
-		//
-		// want.collection(Arrays.asList(new User("John"), new User("Jane")))
-		// .reflectionEq(
-		// new User[] { new User("Jane"), new User("John") },
-		// opts.CompMode.LENIENT_ORDER);
+		want.array(new User[] { new User("Jane"), new User("John") })
+				.reflectionEq(
+						Arrays.asList(new User("John"), new User("Jane")),
+						opts.CompMode.LENIENT_ORDER);
+
+		want.collection(Arrays.asList(new User("John"), new User("Jane")))
+				.reflectionEq(
+						new User[] { new User("Jane"), new User("John") },
+						opts.CompMode.LENIENT_ORDER);
 
 	}
 

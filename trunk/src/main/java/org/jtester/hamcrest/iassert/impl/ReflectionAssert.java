@@ -7,7 +7,7 @@ import org.jtester.hamcrest.matcher.UnitilsReflectionMatcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public class ReflectionAssert<T, E extends IAssert<T, ?>> extends
-		BaseAssert<T, E> implements IReflectionAssert<T, E> {
+		BaseAssert<T, E> implements IReflectionAssert<E> {
 
 	public ReflectionAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
@@ -21,13 +21,13 @@ public class ReflectionAssert<T, E extends IAssert<T, ?>> extends
 		super(clazT, clazE);
 	}
 
-	public E reflectionEq(T expected, ReflectionComparatorMode... modes) {
+	public E reflectionEq(Object expected, ReflectionComparatorMode... modes) {
 		UnitilsReflectionMatcher matcher = new UnitilsReflectionMatcher(
 				expected, modes);
 		return this.assertThat(matcher);
 	}
 
-	public E lenientEq(T expected) {
+	public E lenientEq(Object expected) {
 		UnitilsReflectionMatcher matcher = new UnitilsReflectionMatcher(
 				expected, new ReflectionComparatorMode[] {
 						ReflectionComparatorMode.IGNORE_DEFAULTS,

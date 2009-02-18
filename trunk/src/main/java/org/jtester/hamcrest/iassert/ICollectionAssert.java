@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public interface ICollectionAssert extends
 		IAssert<Collection<?>, ICollectionAssert>,
-		IReflectionAssert<Collection<?>, ICollectionAssert> {
+		IReflectionAssert<ICollectionAssert> {
 	ICollectionAssert hasItems(Collection<?> collection);
 
 	<T extends Object> ICollectionAssert hasItems(T value, T... values);
