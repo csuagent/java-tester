@@ -10,8 +10,8 @@ import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.IArrayAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public class ArrayAssert extends BaseAssert<Object[], IArrayAssert> implements
-		IArrayAssert {
+public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
+		implements IArrayAssert {
 	public ArrayAssert() {
 		super(IArrayAssert.class);
 	}

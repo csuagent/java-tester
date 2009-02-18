@@ -12,7 +12,7 @@ import org.jtester.hamcrest.iassert.ICollectionAssert;
 import org.jtester.hamcrest.matcher.CollectionSizeMatcher;
 
 public class CollectionAssert extends
-		BaseAssert<Collection<?>, ICollectionAssert> implements
+		ReflectionAssert<Collection<?>, ICollectionAssert> implements
 		ICollectionAssert {
 
 	public CollectionAssert() {

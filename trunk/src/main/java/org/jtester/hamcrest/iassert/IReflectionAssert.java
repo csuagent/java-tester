@@ -4,6 +4,9 @@ import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 
 public interface IReflectionAssert<T, E extends IAssert<?, ?>> {
+	
+	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes);
+	
 
 //	public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes);
 
