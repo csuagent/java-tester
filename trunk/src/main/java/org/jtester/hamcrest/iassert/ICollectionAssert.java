@@ -33,6 +33,4 @@ public interface ICollectionAssert extends
 	ICollectionAssert hasItems(double values[]);
 
 	ICollectionAssert sizeIs(int size);
-
-	// TODO
 }

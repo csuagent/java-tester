@@ -19,19 +19,6 @@ public interface IReflectionAssert<T, E extends IAssert<?, ?>> {
 	// public static class ReflectionAssert<T, E extends IAssert<?, ?>>
 	// implements IReflectionAssert<T, E>{
 	// @SuppressWarnings("unchecked")
-	// public E reflectionEqualTo(T expected, ReflectionComparatorMode... modes)
-	// {
-	// ReflectionAssert.assertReflectionEquals(expected, this.value, modes);
-	// return (E) this;
-	// }
-	//
-	// @SuppressWarnings("unchecked")
-	// public E lenientEqualTo(T expected) {
-	// ReflectionAssert.assertLenientEquals(expected, this.value);
-	// return (E) this;
-	// }
-	//
-	// @SuppressWarnings("unchecked")
 	// public E propertyEqualTo(String property, T expected) {
 	// // ReflectionAssert.assertPropertyLenientEquals(property, expected,
 	// // this.value);
