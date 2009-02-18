@@ -138,7 +138,7 @@ public interface IAssertThat {
 		}
 
 		public static ICollectionAssert collection(Collection<?> collection) {
-			return new CollectionAssert(collection, ICollectionAssert.class);
+			return new CollectionAssert(collection);
 		}
 
 		public static IObjectAssert object(Object bean) {

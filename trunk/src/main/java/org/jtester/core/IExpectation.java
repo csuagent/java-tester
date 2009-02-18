@@ -55,9 +55,8 @@ public interface IExpectation {
 			return new MapAssert();
 		}
 
-		@SuppressWarnings("unchecked")
 		public static ICollectionAssert collection() {
-			return new CollectionAssert(ICollectionAssert.class);
+			return new CollectionAssert();
 		}
 
 		public static IObjectAssert object() {
