@@ -8,25 +8,22 @@ import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.core.ArrayConvertor;
-import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.ICollectionAssert;
 
-public class CollectionAssert<T extends Collection<?>, E extends ICollectionAssert<T, ?>>
-		extends BaseAssert<T, E> implements ICollectionAssert<T, E> {
+public class CollectionAssert<T> extends
+		BaseAssert<Collection<T>, ICollectionAssert<T>> implements
+		ICollectionAssert<T> {
 
-	public CollectionAssert(Class<? extends IAssert<?, ?>> clazE) {
+	public CollectionAssert(Class<? extends ICollectionAssert<T>> clazE) {
 		super(clazE);
 	}
 
-	public CollectionAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
-		super(clazT, clazE);
-	}
-
-	public CollectionAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
+	public CollectionAssert(Collection<T> value,
+			Class<? extends ICollectionAssert<T>> clazE) {
 		super(value, clazE);
 	}
 
-	public E hasItems(Collection<?> collection) {
+	public ICollectionAssert<T> hasItems(Collection<T> collection) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		if (collection != null) {
 			for (Object item : collection) {
@@ -36,7 +33,7 @@ public class CollectionAssert<T extends Collection<?>, E extends ICollectionAsse
 		return assertThat(AllOf.allOf(list));
 	}
 
-	public E hasItems(Object value, Object... values) {
+	public ICollectionAssert<T> hasItems(T value, T... values) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		list.add(IsCollectionContaining.hasItem(value));
 		for (Object item : values) {
@@ -45,7 +42,7 @@ public class CollectionAssert<T extends Collection<?>, E extends ICollectionAsse
 		return assertThat(AllOf.allOf(list));
 	}
 
-	public <F> E hasItems(F[] values) {
+	public ICollectionAssert<T> hasItems(Object[] values) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		if (values != null) {
 			for (Object item : values) {
@@ -55,35 +52,40 @@ public class CollectionAssert<T extends Collection<?>, E extends ICollectionAsse
 		return assertThat(AllOf.allOf(list));
 	}
 
-	public E hasItems(int[] values) {
+	public ICollectionAssert<T> hasItems(int[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(boolean[] values) {
+	public ICollectionAssert<T> hasItems(boolean[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(byte[] values) {
+	public ICollectionAssert<T> hasItems(byte[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(char[] values) {
+	public ICollectionAssert<T> hasItems(char[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(short[] values) {
+	public ICollectionAssert<T> hasItems(short[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(long[] values) {
+	public ICollectionAssert<T> hasItems(long[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(float[] values) {
+	public ICollectionAssert<T> hasItems(float[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
 	}
 
-	public E hasItems(double[] values) {
+	public ICollectionAssert<T> hasItems(double[] values) {
 		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public ICollectionAssert<T> sizeIs(int size) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

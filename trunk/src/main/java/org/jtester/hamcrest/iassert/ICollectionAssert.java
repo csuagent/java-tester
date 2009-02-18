@@ -2,36 +2,37 @@ package org.jtester.hamcrest.iassert;
 
 import java.util.Collection;
 
-public interface ICollectionAssert<T extends Collection<?>, E extends ICollectionAssert<T, ?>>
-		extends IAssert<T, E>, IReflectionAssert<T, E> {
-	E hasItems(Collection<?> collection);
+public interface ICollectionAssert<T> extends
+		IAssert<Collection<T>, ICollectionAssert<T>>,
+		IReflectionAssert<T, ICollectionAssert<T>> {
+	ICollectionAssert<T> hasItems(Collection<T> collection);
 
-	E hasItems(Object value, Object... values);
+	ICollectionAssert<T> hasItems(T value, T... values);
 
-	<F> E hasItems(F values[]);
+	ICollectionAssert<T> hasItems(T[] values);
 
 	// boolean
-	E hasItems(boolean values[]);
+	ICollectionAssert<T> hasItems(boolean values[]);
 
 	// byte
-	E hasItems(byte values[]);
+	ICollectionAssert<T> hasItems(byte values[]);
 
 	// char
-	E hasItems(char values[]);
+	ICollectionAssert<T> hasItems(char values[]);
 
 	// short int long
-	E hasItems(short values[]);
+	ICollectionAssert<T> hasItems(short values[]);
 
-	E hasItems(int values[]);
+	ICollectionAssert<T> hasItems(int values[]);
 
-	E hasItems(long values[]);
+	ICollectionAssert<T> hasItems(long values[]);
 
 	// float double
-	E hasItems(float values[]);
+	ICollectionAssert<T> hasItems(float values[]);
 
-	E hasItems(double values[]);
+	ICollectionAssert<T> hasItems(double values[]);
 
-	// E sizeIs(int size);
+	ICollectionAssert<T> sizeIs(int size);
 
 	// TODO
 }
