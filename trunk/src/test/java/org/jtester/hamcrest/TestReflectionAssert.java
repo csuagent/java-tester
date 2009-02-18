@@ -86,42 +86,36 @@ public class TestReflectionAssert extends JTester {
 		want.object(null).lenientEq("any");
 	}
 
-	// @Test
-	// public void test7() {
-	// User user1 = new User(1, "John", "Doe");
-	// User user2 = new User("John", "Doe",
-	// new Address("First street", "", ""));
-	//
-	// want.object(user1).propertyEqualTo("id", 1);
-	// want.object(user2).propertyEqualTo("address.street", "First street");
-	//
-	// want.object(new User[] { new User("Jane"), new User("John") })
-	// .reflectionEqualTo(
-	// Arrays.asList(new User("John"), new User("Jane")),
-	// opts.CompMode.LENIENT_ORDER);
-	//
-	// want.object(Arrays.asList(new User("John"), new User("Jane")))
-	// .reflectionEqualTo(
-	// new User[] { new User("Jane"), new User("John") },
-	// opts.CompMode.LENIENT_ORDER);
-	//
-	// want.array(new User[] { new User("Jane"), new User("John") })
-	// .reflectionEqualTo(
-	// Arrays.asList(new User("John"), new User("Jane")),
-	// opts.CompMode.LENIENT_ORDER);
-	//
-	// want.collection(Arrays.asList(new User("John"), new User("Jane")))
-	// .reflectionEqualTo(
-	// new User[] { new User("Jane"), new User("John") },
-	// opts.CompMode.LENIENT_ORDER);
-	//
-	// want
-	// .array(
-	// new User[] { new User("Jane", "Doe"),
-	// new User("John", "Doe") }).propertyEqualTo(
-	// "firstName", Arrays.asList("John", "Jane"));
-	//
-	// }
+	@Test
+	public void test7() {
+		User user1 = new User(1, "John", "Doe");
+		User user2 = new User("John", "Doe",
+				new Address("First street", "", ""));
+
+		want.object(user1).propertyEq("id", 1);
+		want.object(user2).propertyEq("address.street", "First street");
+
+		want.object(new User[] { new User("Jane"), new User("John") })
+				.reflectionEq(
+						Arrays.asList(new User("John"), new User("Jane")),
+						opts.CompMode.LENIENT_ORDER);
+
+		want.object(Arrays.asList(new User("John"), new User("Jane")))
+				.reflectionEq(
+						new User[] { new User("Jane"), new User("John") },
+						opts.CompMode.LENIENT_ORDER);
+
+		// want.array(new User[] { new User("Jane"), new User("John") })
+		// .reflectionEq(
+		// Arrays.asList(new User("John"), new User("Jane")),
+		// opts.CompMode.LENIENT_ORDER);
+		//
+		// want.collection(Arrays.asList(new User("John"), new User("Jane")))
+		// .reflectionEq(
+		// new User[] { new User("Jane"), new User("John") },
+		// opts.CompMode.LENIENT_ORDER);
+
+	}
 
 	@Test(expectedExceptions = { AssertionError.class })
 	public void test8() {
@@ -133,5 +127,14 @@ public class TestReflectionAssert extends JTester {
 	public void test9() {
 		User user = new User("John", "Doe", new Address("First street", "", ""));
 		want.object(user).propertyEq("address.street", "First street1");
+	}
+
+	@Test
+	public void test10() {
+		want
+				.array(
+						new User[] { new User("Jane", "Doe"),
+								new User("John", "Doe") }).propertyEq("first",
+						Arrays.asList("Jane", "John"));
 	}
 }

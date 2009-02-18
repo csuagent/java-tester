@@ -6,10 +6,13 @@ import static org.unitils.reflectionassert.ReflectionComparatorFactory.createRef
 import java.util.ArrayList;
 import java.util.Collection;
 
+import ognl.DefaultMemberAccess;
+import ognl.Ognl;
+import ognl.OgnlContext;
+import ognl.OgnlException;
+
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
-import org.jtester.utility.ReflectUtil;
-import org.unitils.core.UnitilsException;
 import org.unitils.reflectionassert.ReflectionComparator;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.reflectionassert.difference.Difference;
@@ -75,24 +78,33 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 		} else if (o instanceof Collection) {
 			Collection<?> oc = (Collection<?>) o;
 			for (Object o1 : oc) {
-				Object value = ReflectUtil.getProperty(o1, this.property);
+				Object value = getProperty(o1, this.property);
 				coll.add(value);
 			}
 		} else if (o instanceof Object[]) {
 			Object[] oa = (Object[]) o;
 			for (Object o2 : oa) {
-				Object value = ReflectUtil.getProperty(o2, this.property);
+				Object value = getProperty(o2, this.property);
 				coll.add(value);
 			}
 		} else {
-			try {
-				Object value = ReflectUtil.getProperty(o, this.property);
-				coll.add(value);
-			} catch (UnitilsException e) {
-				coll.add(o);
-			}
+			Object value = getProperty(o, this.property);
+			coll.add(value);
 		}
 		return coll;
 	}
 
+	private static Object getProperty(Object object, String ognlExpression) {
+		try {
+			OgnlContext ognlContext = new OgnlContext();
+			ognlContext.setMemberAccess(new DefaultMemberAccess(true));
+			Object ognlExprObj = Ognl.parseExpression(ognlExpression);
+			return Ognl.getValue(ognlExprObj, ognlContext, object);
+		} catch (OgnlException e) {
+			// throw new UnitilsException(
+			// "Failed to get property value using OGNL expression "
+			// + ognlExpression, e);
+			return object;
+		}
+	}
 }
