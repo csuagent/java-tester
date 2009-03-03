@@ -1,5 +1,6 @@
 package org.jtester.core;
 
+import org.hamcrest.Matcher;
 import org.jtester.hamcrest.iassert.IArrayAssert;
 import org.jtester.hamcrest.iassert.IBooleanAssert;
 import org.jtester.hamcrest.iassert.IByteAssert;
@@ -18,6 +19,7 @@ import org.jtester.hamcrest.iassert.impl.MapAssert;
 import org.jtester.hamcrest.iassert.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.impl.StringAssert;
+import org.mockito.internal.matchers.Any;
 
 public interface IExpectation {
 	public static class the {
@@ -61,6 +63,12 @@ public interface IExpectation {
 
 		public static IObjectAssert object() {
 			return new ObjectAssert();
+		}
+
+		@SuppressWarnings("unchecked")
+		public static <T extends Object> Matcher<T> any(Class<T> claz) {
+			Matcher<T> _matcher = Any.ANY;
+			return _matcher;
 		}
 	}
 }
