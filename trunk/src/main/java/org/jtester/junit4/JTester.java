@@ -12,8 +12,4 @@ public abstract class JTester extends UnitilsJUnit4 implements IJTester {
 	public static void checking(JTesterExpectations expectations) {
 		JmockUnitils.checking(expectations);
 	}
-
-	public static void fail() {
-		assert true == false;
-	}
 }
