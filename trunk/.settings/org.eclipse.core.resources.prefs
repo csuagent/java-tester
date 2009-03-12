@@ -1,5 +1,6 @@
-#Wed Mar 11 17:31:49 CST 2009
+#Thu Mar 12 17:30:43 CST 2009
 eclipse.preferences.version=1
+encoding//docs/test\ guide.txt=GBK
 encoding//src/test/java/org/jtester/dbtest/test/TestMockService.java=UTF-8
 encoding//src/test/java/org/jtester/dbtest/test/TestServiceByInjectedMock.java=UTF-8
 encoding/<project>=UTF-8
