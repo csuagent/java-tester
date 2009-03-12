@@ -160,7 +160,8 @@
 		<jetty.version>6.1.4</jetty.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
 		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
-		<spring.version>2.0.8</spring.version>
+		<!-- <spring.version>2.0.8</spring.version>-->
+		<spring.version>2.5.4</spring.version>
 		<!-- <unitils.version>2.0</unitils.version>-->
 		<unitils.version>2.2</unitils.version>
 		<!-- <dbunit.version>2.2</dbunit.version> -->

@@ -144,5 +144,9 @@ public interface IAssertThat {
 		public static IObjectAssert object(Object bean) {
 			return new ObjectAssert(bean);
 		}
+
+		public static void failure() {
+			assert true == false;
+		}
 	}
 }

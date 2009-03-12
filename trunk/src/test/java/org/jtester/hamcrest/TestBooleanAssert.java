@@ -19,6 +19,7 @@ public class TestBooleanAssert extends JTester {
 
 	@Test(expectedExceptions = { AssertionError.class })
 	public void test3() {
-		fail();
+		// fail();
+		want.failure();
 	}
 }
