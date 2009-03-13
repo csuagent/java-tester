@@ -75,16 +75,27 @@ Data-Driven testing
 
 如何进行异步测试?
 
+WEB测试，spring MockHttpServletRequest，MockHttpServletResponse
+view test? looks like can't be tested.
+           do(show) what can be test
+	->JspTest,httpUnit
+	->wicketTester
 
 mock测试
    隔离各个接口的交互影响，集中力量测试好当前的接口
    mock 和 stub的区别
    easymock和jmock
 
-数据库测试，开发数据库和测试数据分开，测试数据库需要随时清理数据，保证测试数据的干净。如果条件允许，最好每个开发人员一个测试数据库。
+数据库测试(数据无所不在，凡是有应用的地方就有数据)
+开发数据库和测试数据分开，测试数据库需要随时清理数据，保证测试数据的干净。如果条件允许，最好每个开发人员一个测试数据库。
 准备测试数据，unitils dbunit 
                   dataset
     dbunit maintain data strategy:update,insert,refresh,delete,delete_all,trancate_table,clean_insert
+    Spring’s JdbcTemplate(simpleJdbcTemplate)
+    
+Test-driving the unpredictable
+■ Time-dependent functionality
+■ Multithreaded programming
 
 
 事务测试？
@@ -102,7 +113,6 @@ Spring相关测试
 TestNG,dataProvider
 
 extend testng:ITest,ITestResult,ITestListener,ITestNGMethod
-
 
 TDD pitfalls
   1.microdesign over macrodesign,所有的接口单独跑起来都是ok的，但是集成起来却出现了问题。-> 引出集成测试?
