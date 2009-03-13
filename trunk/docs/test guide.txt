@@ -73,8 +73,6 @@ what is tdd:first we write a test,then we write code to make the test pass.
 
 Data-Driven testing
 
-如何进行异步测试?
-
 WEB测试，spring MockHttpServletRequest，MockHttpServletResponse
 view test? looks like can't be tested.
            do(show) what can be test
@@ -96,6 +94,7 @@ mock测试
 Test-driving the unpredictable
 ■ Time-dependent functionality
 ■ Multithreaded programming
+■ 如何进行异步测试?
 
 
 事务测试？
@@ -136,6 +135,8 @@ tools for TDD
 	jtester?
 	
 	fit/fitness/selenium/Exactor
+		Fit (Framework for Integrated Tests)
+			Fit essentially provides syntax for constructing test fixtures from HTML tables and a way to hook those fixtures into their implementations in various programming languages
 	CI?(Martin Fowler’s article “Continuous Integration”)
 	
 code coverage,测试覆盖率,eclemma,cobertura,clover?  行覆盖率，分支覆盖率？ （类覆盖，方法覆盖）
