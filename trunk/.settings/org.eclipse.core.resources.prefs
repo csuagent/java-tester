@@ -1,6 +1,10 @@
-#Thu Mar 12 17:30:43 CST 2009
+#Wed Mar 18 16:39:50 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
-encoding//src/test/java/org/jtester/dbtest/test/TestMockService.java=UTF-8
-encoding//src/test/java/org/jtester/dbtest/test/TestServiceByInjectedMock.java=UTF-8
+encoding//src/main/java/org/jtester/utility/FindClazUtil.java=UTF-8
+encoding//src/main/java/org/jtester/utility/FindTestUtil.java=UTF-8
+encoding//src/test/java/org/jtester/dbtest/service/FindTestClass.java=UTF-8
+encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_ByInjectedMock.java=UTF-8
+encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_Mock1.java=UTF-8
+encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_Mock2.java=UTF-8
 encoding/<project>=UTF-8
