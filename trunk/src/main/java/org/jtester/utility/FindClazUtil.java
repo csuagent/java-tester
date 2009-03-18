@@ -3,7 +3,6 @@ package org.jtester.utility;
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -196,6 +195,11 @@ public class FindClazUtil {
 		return path.replace('/', '.').replace('\\', '.');
 	}
 
+	/**
+	 * 获得packPath路径下所有的class
+	 * @param packPath
+	 * @return
+	 */
 	public static List<String> findClazz(String packPath) {
 		String classPath = System.getProperty("java.class.path");
 		try {
@@ -210,21 +214,14 @@ public class FindClazUtil {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
 	/**
-	 * main method for test
-	 * 
-	 * @param args
+	 * 获得的与claz的package相同的所有class
+	 * @param claz
+	 * @return
 	 */
-	public static void main(String[] args) {
-		String packagename = FindClazUtil.class.getPackage().getName();
-
-		List<String> clazz = FindClazUtil.findClazz(packagename);
-		if (clazz != null) {
-			Iterator<String> itrClasses = clazz.iterator();
-			while (itrClasses.hasNext()) {
-				System.out.println(itrClasses.next().toString());
-			}
-		}
+	public static List<String> findClazz(Class<?> claz) {
+		String pack = claz.getPackage().getName();
+		return FindClazUtil.findClazz(pack);
 	}
 }
