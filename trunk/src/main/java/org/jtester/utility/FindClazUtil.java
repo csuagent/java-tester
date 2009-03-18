@@ -64,19 +64,19 @@ public class FindClazUtil {
 	 * @throws IOException
 	 */
 	protected static List<String> findClazzInIdeApp(String clazPath, String packPath) throws IOException {
-		List<String> clazz = new LinkedList<String>();
+		List<String> clazzes = new LinkedList<String>();
 		StringTokenizer tokenizer = new StringTokenizer(clazPath, File.pathSeparator);
 		while (tokenizer.hasMoreTokens()) {
 			String entry = tokenizer.nextToken();
 
 			if (entry.endsWith(".jar")) {
-				clazz.addAll(findClazzInJarFile(new JarFile(entry), packPath));
+				clazzes.addAll(findClazzInJarFile(new JarFile(entry), packPath));
 			} else {
-				clazz.addAll(findClazzInIdeTarget(entry, packPath));
+				clazzes.addAll(findClazzInIdeTarget(entry, packPath));
 			}
 		}
 
-		return clazz;
+		return clazzes;
 	}
 
 	/**
@@ -88,14 +88,14 @@ public class FindClazUtil {
 	 * @throws IOException
 	 */
 	protected static List<String> findClazzInJarApp(String jarName, String packPath) throws IOException {
-		List<String> clazz = new LinkedList<String>();
+		List<String> clazzes = new LinkedList<String>();
 
 		JarFile jarFile = new JarFile(jarName);
-		clazz.addAll(findClazzInJarFile(jarFile, packPath));
+		clazzes.addAll(findClazzInJarFile(jarFile, packPath));
 
 		Manifest manifest = jarFile.getManifest();
 		if (manifest == null) {
-			return clazz;
+			return clazzes;
 		}
 
 		String jarClassPath = manifest.getMainAttributes().getValue(Attributes.Name.CLASS_PATH);
@@ -103,10 +103,10 @@ public class FindClazUtil {
 
 		while (tokenizer.hasMoreTokens()) {
 			String jarFileName = (String) tokenizer.nextToken();
-			clazz.addAll(findClazzInJarFile(new JarFile(jarFileName), packPath));
+			clazzes.addAll(findClazzInJarFile(new JarFile(jarFileName), packPath));
 		}
 
-		return clazz;
+		return clazzes;
 	}
 
 	/**
@@ -117,12 +117,12 @@ public class FindClazUtil {
 	 * @return
 	 */
 	protected static List<String> findClazzInIdeTarget(String target, String packPath) {
-		List<String> clazz = new LinkedList<String>();
+		List<String> clazzes = new LinkedList<String>();
 		String dir = target + File.separator + packPath.replace('.', File.separatorChar);
 		File directory = new File(dir);
 		String[] classnames = directory.list();
 		if (classnames == null) {
-			return clazz;
+			return clazzes;
 		}
 
 		for (String clazname : classnames) {
@@ -130,9 +130,9 @@ public class FindClazUtil {
 				continue;
 			}
 			String claz = packPath + "." + clazname.substring(0, clazname.indexOf('.'));
-			clazz.add(claz);
+			clazzes.add(claz);
 		}
-		return clazz;
+		return clazzes;
 	}
 
 	/**
@@ -143,16 +143,16 @@ public class FindClazUtil {
 	 * @return
 	 */
 	private static List<String> findClazzInJarFile(JarFile aJarFile, String packPath) {
-		List<String> clazz = new LinkedList<String>();
+		List<String> clazzes = new LinkedList<String>();
 		Enumeration<JarEntry> jarEntries = aJarFile.entries();
 
 		while (jarEntries.hasMoreElements()) {
 			String clazName = ((JarEntry) jarEntries.nextElement()).getName();
 			if (FindClazUtil.clazInPack(clazName, packPath)) {
-				clazz.add(clazName);
+				clazzes.add(clazName);
 			}
 		}
-		return clazz;
+		return clazzes;
 	}
 
 	/**
@@ -197,26 +197,28 @@ public class FindClazUtil {
 
 	/**
 	 * 获得packPath路径下所有的class
+	 * 
 	 * @param packPath
 	 * @return
 	 */
 	public static List<String> findClazz(String packPath) {
 		String classPath = System.getProperty("java.class.path");
 		try {
-			List<String> clazz = null;
+			List<String> clazzes = null;
 			if (FindClazUtil.isAppRunningInIde(classPath)) {
-				clazz = FindClazUtil.findClazzInIdeApp(classPath, packPath);
+				clazzes = FindClazUtil.findClazzInIdeApp(classPath, packPath);
 			} else {
-				clazz = FindClazUtil.findClazzInJarApp(classPath, packPath);
+				clazzes = FindClazUtil.findClazzInJarApp(classPath, packPath);
 			}
-			return clazz;
+			return clazzes;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	/**
 	 * 获得的与claz的package相同的所有class
+	 * 
 	 * @param claz
 	 * @return
 	 */

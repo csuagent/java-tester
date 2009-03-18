@@ -20,7 +20,7 @@ public class UserServiceTest_Mock1 extends JTester {
 	private AddressService addressService;
 
 	@Test
-	public void test01() {
+	public void findAddress() {
 		want.object(addressService).notNull();
 		want.object(userService).notNull();
 		checking(new Je() {
@@ -34,7 +34,7 @@ public class UserServiceTest_Mock1 extends JTester {
 	}
 	
 	@Test
-	public void test02() {
+	public void findAddress02() {
 		want.object(addressService).notNull();
 		want.object(userService).notNull();
 		checking(new Je() {

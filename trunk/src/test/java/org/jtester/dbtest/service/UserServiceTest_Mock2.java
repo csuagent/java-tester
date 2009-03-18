@@ -18,7 +18,7 @@ public class UserServiceTest_Mock2 extends JTester {
 	private AddressService addressService1;
 
 	@Test
-	public void test012() {
+	public void findAddress() {
 		want.object(addressService1).notNull();
 		want.object(userService1).notNull();
 		checking(new Je() {

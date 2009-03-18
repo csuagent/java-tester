@@ -18,7 +18,7 @@ public class UserServiceTest_ByInjectedMock extends JTester {
 	private AddressService addressService;
 
 	@Test
-	public void test01() {
+	public void findAddress() {
 		want.object(addressService).notNull();
 		want.object(userService).notNull();
 		checking(new Je() {

@@ -18,9 +18,9 @@ public class FindTestUtil {
 	 * @return
 	 */
 	public static List<String> findTestClaz(Class<?> claz) {
-		List<String> clazz = FindClazUtil.findClazz(claz);
+		List<String> clazzes = FindClazUtil.findClazz(claz);
 		String classname = claz.getName();
-		List<String> tests = FindTestUtil.filterClaz(clazz, classname);
+		List<String> tests = FindTestUtil.filterClaz(clazzes, classname);
 
 		return tests;
 	}
@@ -32,19 +32,19 @@ public class FindTestUtil {
 	 * @return
 	 */
 	public static List<String> findTestClaz(String claz) {
-		List<String> clazz = FindClazUtil.findClazz(claz);
+		List<String> clazzes = FindClazUtil.findClazz(claz);
 		String classname = claz.substring(claz.lastIndexOf("."));
-		List<String> tests = FindTestUtil.filterClaz(clazz, classname);
+		List<String> tests = FindTestUtil.filterClaz(clazzes, classname);
 
 		return tests;
 	}
 
-	private static List<String> filterClaz(List<String> clazz, String classname) {
+	private static List<String> filterClaz(List<String> clazzes, String classname) {
 		List<String> tests = new LinkedList<String>();
-		if (clazz == null) {
+		if (clazzes == null) {
 			return tests;
 		}
-		for (String _claz : clazz) {
+		for (String _claz : clazzes) {
 			if (_claz.contains("$") || _claz.equals(classname)) {
 				continue;
 			}
@@ -63,7 +63,7 @@ public class FindTestUtil {
 	 * @return
 	 */
 	public static List<String> findTestMethod(Class<?> claz, Method method) {
-		return null;// TODO
+		return FindTestUtil.findTestMethod(claz.getName(), method.getName());
 	}
 
 	/**
@@ -73,7 +73,41 @@ public class FindTestUtil {
 	 * @param method
 	 * @return
 	 */
-	public static List<String> findTestMethod(Class<?> claz, String method) {
-		return null;// TODO
+	public static List<String> findTestMethod(Class<?> claz, String methodname) {
+		List<String> clazzes = FindTestUtil.findTestClaz(claz);
+		List<String> testmethods = new LinkedList<String>();
+		for (String classname : clazzes) {
+			Class<?> clazz = null;
+			try {
+				clazz = Class.forName(classname);
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException(e);
+			}
+			Method[] methods = clazz.getMethods();
+			for (Method method : methods) {
+				if (method.getName().indexOf(methodname) == 0 || method.getName().indexOf("test_" + methodname) == 0) {
+					testmethods.add(classname + "." + method.getName());
+				}
+			}
+		}
+
+		return testmethods;
+	}
+
+	/**
+	 * 获得method的所有测试方法
+	 * 
+	 * @param claz
+	 * @param method
+	 * @return
+	 * @throws ClassNotFoundException
+	 */
+	public static List<String> findTestMethod(String classname, String methodname) {
+		try {
+			Class<?> claz = Class.forName(classname);
+			return FindTestUtil.findTestMethod(claz, methodname);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -1,6 +1,5 @@
 package org.jtester.dbtest.service;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.jtester.utility.FindClazUtil;
@@ -14,41 +13,32 @@ public class FindTestClass {
 		String packagename = FindClazUtil.class.getPackage().getName();
 
 		List<String> clazz = FindClazUtil.findClazz(packagename);
-		if (clazz != null) {
-			Iterator<String> itrClasses = clazz.iterator();
-			while (itrClasses.hasNext()) {
-				System.out.println(itrClasses.next().toString());
-			}
+		for (String classname : clazz) {
+			System.out.println(classname);
 		}
 		System.out.println("================================");
 	}
-	
+
 	@Test
 	public void test1() {
 		System.out.println("================================");
 		Class<?> claz = UserService.class;
 		List<String> clazz = FindClazUtil.findClazz(claz);
 
-		if (clazz != null) {
-			Iterator<String> itrClasses = clazz.iterator();
-			while (itrClasses.hasNext()) {
-				System.out.println(itrClasses.next().toString());
-			}
+		for (String classname : clazz) {
+			System.out.println(classname);
 		}
 		System.out.println("================================");
 	}
-	
+
 	@Test
 	public void test2() {
 		System.out.println("================================");
 		Class<?> claz = UserService.class;
 		List<String> clazz = FindTestUtil.findTestClaz(claz);
 
-		if (clazz != null) {
-			Iterator<String> itrClasses = clazz.iterator();
-			while (itrClasses.hasNext()) {
-				System.out.println(itrClasses.next().toString());
-			}
+		for (String classname : clazz) {
+			System.out.println(classname);
 		}
 		System.out.println("================================");
 	}
