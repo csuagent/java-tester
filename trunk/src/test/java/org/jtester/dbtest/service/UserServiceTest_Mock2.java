@@ -1,7 +1,5 @@
-package org.jtester.dbtest.test;
+package org.jtester.dbtest.service;
 
-import org.jtester.dbtest.service.AddressService;
-import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.inject.InjectedMock;
 import org.testng.annotations.Test;
@@ -11,7 +9,7 @@ import org.unitils.spring.annotation.SpringBean;
 
 @SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
 @Test(groups = { "JTester" })
-public class TestServiceByInjectedMock2 extends JTester {
+public class UserServiceTest_Mock2 extends JTester {
 	@SpringBean("userService")
 	@TestedObject
 	private UserService userService1;

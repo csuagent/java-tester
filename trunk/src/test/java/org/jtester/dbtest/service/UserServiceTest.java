@@ -1,10 +1,9 @@
-package org.jtester.dbtest.test;
+package org.jtester.dbtest.service;
 
 import java.util.Collection;
 
 import org.jtester.dbtest.bean.Address;
 import org.jtester.dbtest.bean.User;
-import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 import org.unitils.dbunit.annotation.DataSet;
@@ -13,7 +12,7 @@ import org.unitils.spring.annotation.SpringBeanByType;
 
 @SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
 @Test(groups = { "JTester" })
-public class TestUserService extends JTester {
+public class UserServiceTest extends JTester {
 	@SpringBeanByType
 	private UserService userService;
 
