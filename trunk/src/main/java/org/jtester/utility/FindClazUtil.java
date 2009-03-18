@@ -70,6 +70,7 @@ public class FindClazUtil {
 			String entry = tokenizer.nextToken();
 
 			if (entry.endsWith(".jar")) {
+				// System.out.println(entry);
 				clazzes.addAll(findClazzInJarFile(new JarFile(entry), packPath));
 			} else {
 				clazzes.addAll(findClazzInIdeTarget(entry, packPath));
@@ -146,43 +147,25 @@ public class FindClazUtil {
 		List<String> clazzes = new LinkedList<String>();
 		Enumeration<JarEntry> jarEntries = aJarFile.entries();
 
+		String pack = FindClazUtil.pathReplace(packPath);
 		while (jarEntries.hasMoreElements()) {
-			String clazName = ((JarEntry) jarEntries.nextElement()).getName();
-			if (FindClazUtil.clazInPack(clazName, packPath)) {
+			String clazName = jarEntries.nextElement().getName();
+
+			int index = clazName.lastIndexOf(".class");
+			if (index == -1 || index != clazName.length() - 6) {
+				continue;
+			}
+			clazName = FindClazUtil.pathReplace(clazName.substring(0, index));
+			index = clazName.lastIndexOf(".");
+			String packName = "";
+			if (index != -1) {
+				packName = clazName.substring(0, index);
+			}
+			if (packName.equals(pack)) {
 				clazzes.add(clazName);
 			}
 		}
 		return clazzes;
-	}
-
-	/**
-	 * 判断clazName是否在packPath路径下
-	 * 
-	 * @param clazName
-	 * @param packPath
-	 * @return
-	 */
-	private static boolean clazInPack(String clazName, String packPath) {
-		String a = FindClazUtil.pathReplace(packPath);
-		String b = FindClazUtil.getPackPath(clazName);
-		return a.equals(b);
-	}
-
-	/**
-	 * 获得clazName的package
-	 * 
-	 * @param clazName
-	 * @return
-	 */
-	private static String getPackPath(String clazName) {
-		String packName = "";
-		String classname = FindClazUtil.pathReplace(clazName);
-		int index = classname.lastIndexOf('.');
-
-		if (index != -1) {
-			packName = classname.substring(0, index);
-		}
-		return packName;
 	}
 
 	/**
@@ -201,8 +184,14 @@ public class FindClazUtil {
 	 * @param packPath
 	 * @return
 	 */
+	public static final String SUN_BOOT_PATH = "sun.boot.class.path";
+
+	public static final String JAVA_EXT_DIRS = "java.ext.dirs";
+
+	public static final String JAVA_CLASS_PATH = "java.class.path";
+
 	public static List<String> findClazz(String packPath) {
-		String classPath = System.getProperty("java.class.path");
+		String classPath = System.getProperty(JAVA_CLASS_PATH);
 		try {
 			List<String> clazzes = null;
 			if (FindClazUtil.isAppRunningInIde(classPath)) {
@@ -212,6 +201,7 @@ public class FindClazUtil {
 			}
 			return clazzes;
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}

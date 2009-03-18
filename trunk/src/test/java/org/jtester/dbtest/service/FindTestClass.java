@@ -42,4 +42,15 @@ public class FindTestClass {
 		}
 		System.out.println("================================");
 	}
+
+	@Test
+	public void test3() {
+		System.out.println("================================");
+		List<String> clazz = FindClazUtil.findClazz(junit.extensions.ActiveTestSuite.class);
+
+		for (String classname : clazz) {
+			System.out.println(classname);
+		}
+		System.out.println("================================");
+	}
 }
