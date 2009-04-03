@@ -15,6 +15,8 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 
 	E sizeLe(int size);
 
+	E sizeNe(int size);
+
 	E hasItems(Collection<?> coll);
 
 	E hasItems(Object value, Object... values);

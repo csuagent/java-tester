@@ -11,6 +11,8 @@ import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
+import org.jtester.hamcrest.matcher.SizeOrLengthMatcher.MatchType;
+import org.jtester.utility.ArrayConvertor;
 
 public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends ComparableAssert<T, E> implements
 		IObjectContainerAssert<E> {
@@ -73,6 +75,73 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 		}
 	}
 
+	public E hasItems(boolean[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(byte[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(char[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(short[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(int[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(long[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(float[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E hasItems(double[] values) {
+		return this.hasItems(ArrayConvertor.convert(values));
+	}
+
+	public E sizeIs(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.EQ);
+		return this.assertThat(matcher);
+	}
+
+	public E sizeEq(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.EQ);
+		return this.assertThat(matcher);
+	}
+
+	public E sizeGe(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.GE);
+		return this.assertThat(matcher);
+	}
+
+	public E sizeGt(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.GT);
+		return this.assertThat(matcher);
+	}
+
+	public E sizeLe(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.LE);
+		return this.assertThat(matcher);
+	}
+
+	public E sizeLt(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.LT);
+		return this.assertThat(matcher);
+	}
+
+	public E sizeNe(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.NE);
+		return this.assertThat(matcher);
+	}
+
 	public E allItemMatcher(String regular) {
 		// TODO Auto-generated method stub
 		return null;
@@ -81,75 +150,5 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	public E hasItemMatcher(String regular, String... regulars) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public E hasItems(boolean[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(byte[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(char[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(short[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(int[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(long[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(float[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(double[] values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E sizeEq(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E sizeGe(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E sizeGt(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E sizeLe(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E sizeLt(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E sizeIs(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size);
-		return this.assertThat(matcher);
 	}
 }

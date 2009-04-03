@@ -9,7 +9,7 @@ import org.jtester.utility.FindMethodUtil;
 import org.testng.annotations.Test;
 
 /**
- * this test is broken for EclEmma Test
+ * this test will break for EclEmma Test
  * 
  * @author darui.wudr
  * 
@@ -21,7 +21,7 @@ public class FindClazUtilTest extends JTester {
 		String packagename = FindClazUtil.class.getPackage().getName();
 		want.string(packagename).isEqualTo("org.jtester.utility");
 		List<String> clazz = FindClazUtil.findClazz(packagename);
-		want.collection(clazz).sizeIs(9);
+		want.collection(clazz).sizeGe(9);
 		// for (String classname : clazz) {
 		// System.out.println(classname);
 		// }
