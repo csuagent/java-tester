@@ -5,10 +5,10 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
-import org.jtester.core.PrimitiveConvertor;
 import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
+import org.jtester.utility.PrimitiveConvertor;
 
 public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
 		implements IAssert<T, E> {
