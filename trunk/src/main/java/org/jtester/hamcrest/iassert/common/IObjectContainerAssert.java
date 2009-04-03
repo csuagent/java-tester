@@ -1,6 +1,8 @@
 package org.jtester.hamcrest.iassert.common;
 
-public interface IObjectContainerAssert<E extends IBaseAssert<?, ?>> {
+import java.util.Collection;
+
+public interface IObjectContainerAssert<T, E extends IBaseAssert<T, ?>> {
 	E sizeIs(int size);
 
 	E sizeEq(int size);
@@ -13,9 +15,11 @@ public interface IObjectContainerAssert<E extends IBaseAssert<?, ?>> {
 
 	E sizeLe(int size);
 
-	<T extends Object> E hasItems(T value, T... values);
+	E hasItems(Collection<?> coll);
 
-	<T extends Object> E hasItems(T[] values);
+	E hasItems(T value, T... values);
+
+	E hasItems(T[] values);
 
 	// boolean
 	E hasItems(boolean values[]);
