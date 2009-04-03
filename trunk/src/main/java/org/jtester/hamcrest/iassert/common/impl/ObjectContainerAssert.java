@@ -142,13 +142,13 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 		return this.assertThat(matcher);
 	}
 
-	public E allItemMatcher(String regular) {
+	public E allItemMatch(String regular, String... regulars) {
 		assert true == false : "unimplemented";
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public E hasItemMatcher(String regular, String... regulars) {
+	public E hasItemMatch(String regular, String... regulars) {
 		assert true == false : "unimplemented";
 		// TODO Auto-generated method stub
 		return null;

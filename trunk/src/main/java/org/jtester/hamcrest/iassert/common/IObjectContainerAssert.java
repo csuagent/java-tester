@@ -44,7 +44,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 
 	E hasItems(double values[]);
 
-	E hasItemMatcher(String regular, String... regulars);
+	E hasItemMatch(String regular, String... regulars);
 
-	E allItemMatcher(String regular);
+	E allItemMatch(String regular, String... regulars);
 }
