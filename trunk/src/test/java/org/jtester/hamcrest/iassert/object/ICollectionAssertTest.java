@@ -34,7 +34,7 @@ public class ICollectionAssertTest extends JTester {
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })
-	public void hasItems_5() {
+	public void hasItems_test5() {
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems(new String[] { "aaad", "ccc" });
 	}
 

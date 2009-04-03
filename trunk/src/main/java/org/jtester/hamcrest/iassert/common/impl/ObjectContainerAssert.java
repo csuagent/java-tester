@@ -38,6 +38,32 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 		return this.assertThat(matcher);
 	}
 
+	@SuppressWarnings("unchecked")
+	public E hasItems(Object[] values) {
+		if (values == null || values.length == 0) {
+			return (E) this;
+		}
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		for (Object item : values) {
+			list.add(this.getHasItemMatcher(item));
+		}
+
+		return assertThat(AllOf.allOf(list));
+	}
+
+	@SuppressWarnings("unchecked")
+	public E hasItems(Collection<?> collection) {
+		if (collection == null || collection.size() == 0) {
+			return (E) this;
+		}
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		for (Object item : collection) {
+			list.add(this.getHasItemMatcher(item));
+		}
+
+		return assertThat(AllOf.allOf(list));
+	}
+
 	private Matcher<?> getHasItemMatcher(Object item) {
 		assert valueClaz != null : "the value asserted must not be null";
 		if (this.valueClaz == Object[].class) {
@@ -53,11 +79,6 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	}
 
 	public E hasItemMatcher(String regular, String... regulars) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public E hasItems(Object[] values) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -125,18 +146,6 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	public E sizeLt(int size) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public E hasItems(Collection<?> collection) {
-		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
-		if (collection != null) {
-			for (Object temp : collection) {
-				Matcher<?> _matcher = IsArrayContaining.hasItemInArray(temp);
-				list.add(_matcher);
-			}
-		}
-		Matcher<?> matcher = AllOf.allOf(list);
-		return this.assertThat(matcher);
 	}
 
 	public E sizeIs(int size) {
