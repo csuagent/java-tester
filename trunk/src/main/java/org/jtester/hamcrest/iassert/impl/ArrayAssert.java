@@ -8,6 +8,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsArrayContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.IArrayAssert;
+import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
@@ -45,6 +46,11 @@ public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
 			}
 		}
 		Matcher<?> matcher = AllOf.allOf(list);
+		return this.assertThat(matcher);
+	}
+	
+	public <T> IArrayAssert sizeIs(int size) {
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size);
 		return this.assertThat(matcher);
 	}
 

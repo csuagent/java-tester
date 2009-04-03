@@ -29,6 +29,7 @@ import org.jtester.hamcrest.iassert.impl.MapAssert;
 import org.jtester.hamcrest.iassert.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.impl.StringAssert;
+import org.jtester.utility.ArrayConvertor;
 
 public interface IAssertThat {
 	public static class want {

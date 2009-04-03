@@ -7,9 +7,9 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
-import org.jtester.core.ArrayConvertor;
 import org.jtester.hamcrest.iassert.ICollectionAssert;
-import org.jtester.hamcrest.matcher.CollectionSizeMatcher;
+import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
+import org.jtester.utility.ArrayConvertor;
 
 public class CollectionAssert extends
 		ReflectionAssert<Collection<?>, ICollectionAssert> implements
@@ -85,7 +85,7 @@ public class CollectionAssert extends
 	}
 
 	public ICollectionAssert sizeIs(int size) {
-		CollectionSizeMatcher matcher = new CollectionSizeMatcher(size);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size);
 		return this.assertThat(matcher);
 	}
 }
