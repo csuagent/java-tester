@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert;
+package org.jtester.hamcrest.iassert.object;
 
 import org.hamcrest.Matcher;
 import org.jtester.hamcrest.iassert.common.IComparableAssert;

@@ -6,7 +6,7 @@ import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.hamcrest.text.StringContains;
 import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
-import org.jtester.hamcrest.iassert.IStringAssert;
+import org.jtester.hamcrest.iassert.object.IStringAssert;
 import org.mockito.internal.matchers.Matches;
 
 public class StringAssert extends ComparableAssert<String, IStringAssert>

@@ -7,7 +7,7 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
-import org.jtester.hamcrest.iassert.ICollectionAssert;
+import org.jtester.hamcrest.iassert.object.ICollectionAssert;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
 import org.jtester.utility.ArrayConvertor;
 

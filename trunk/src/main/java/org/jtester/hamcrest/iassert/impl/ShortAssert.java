@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.iassert.IShortAssert;
+import org.jtester.hamcrest.iassert.object.IShortAssert;
 
 public class ShortAssert extends NumberAssert<Short, IShortAssert> implements
 		IShortAssert {

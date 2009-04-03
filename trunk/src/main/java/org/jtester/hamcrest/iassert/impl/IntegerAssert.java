@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.iassert.IIntegerAssert;
+import org.jtester.hamcrest.iassert.object.IIntegerAssert;
 
 public class IntegerAssert extends NumberAssert<Integer, IIntegerAssert>
 		implements IIntegerAssert {

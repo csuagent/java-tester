@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.iassert.IFloatAssert;
+import org.jtester.hamcrest.iassert.object.IFloatAssert;
 
 public class FloatAssert extends NumberAssert<Float, IFloatAssert> implements
 		IFloatAssert {
