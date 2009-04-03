@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.object;
 
-import org.jtester.hamcrest.iassert.common.IAssert;
+import org.jtester.hamcrest.iassert.common.IBaseAssert;
 
-public interface IByteAssert extends IAssert<Byte, IByteAssert> {
+public interface IByteAssert extends IBaseAssert<Byte, IByteAssert> {
 	// TODO
 }

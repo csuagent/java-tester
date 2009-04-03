@@ -12,8 +12,7 @@ import org.jtester.hamcrest.iassert.object.IArrayAssert;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
-		implements IArrayAssert {
+public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert> implements IArrayAssert {
 	public ArrayAssert() {
 		super(IArrayAssert.class);
 	}
@@ -49,7 +48,7 @@ public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
 		Matcher<?> matcher = AllOf.allOf(list);
 		return this.assertThat(matcher);
 	}
-	
+
 	public <T> IArrayAssert sizeIs(int size) {
 		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size);
 		return this.assertThat(matcher);
@@ -80,8 +79,7 @@ public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
 		return null;
 	}
 
-	public IArrayAssert propertyEqualTo(String property,
-			Collection<Object> expected) {
+	public IArrayAssert propertyEqualTo(String property, Collection<Object> expected) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -96,26 +94,22 @@ public class ArrayAssert extends ReflectionAssert<Object[], IArrayAssert>
 		return null;
 	}
 
-	public IArrayAssert reflectionEqualTo(List<Object> expected,
-			ReflectionComparatorMode... modes) {
+	public IArrayAssert reflectionEqualTo(List<Object> expected, ReflectionComparatorMode... modes) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public IArrayAssert reflectionEqualTo(Collection<Object> expected,
-			ReflectionComparatorMode... modes) {
+	public IArrayAssert reflectionEqualTo(Collection<Object> expected, ReflectionComparatorMode... modes) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public IArrayAssert reflectionEqualTo(Object[] expected,
-			ReflectionComparatorMode... modes) {
+	public IArrayAssert reflectionEqualTo(Object[] expected, ReflectionComparatorMode... modes) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public IArrayAssert reflectionEqualTo(Object expected,
-			ReflectionComparatorMode... modes) {
+	public IArrayAssert reflectionEqualTo(Object expected, ReflectionComparatorMode... modes) {
 		// TODO Auto-generated method stub
 		return null;
 	}
