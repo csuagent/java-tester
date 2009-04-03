@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.commoninterface;
+package org.jtester.hamcrest.iassert.common;
 
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
