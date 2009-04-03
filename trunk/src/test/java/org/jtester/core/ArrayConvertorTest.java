@@ -4,6 +4,7 @@ import org.jtester.testng.JTester;
 import org.jtester.utility.ArrayConvertor;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class ArrayConvertorTest extends JTester {
 	@Test
 	public void convert_charArr() {

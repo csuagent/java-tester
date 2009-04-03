@@ -13,17 +13,4 @@ public class MapAssert extends BaseAssert<Map<?, ?>, IMapAssert> implements
 	public MapAssert(Map<?, ?> map) {
 		super(map, IMapAssert.class);
 	}
-
-	// public MapAssert(Class<? extends IAssert<?, ?>> clazE) {
-	// super(clazE);
-	// }
-	//
-	// public MapAssert(Class<Map<?, ?>> clazT,
-	// Class<? extends IAssert<?, ?>> clazE) {
-	// super(clazT, clazE);
-	// }
-	//
-	// public MapAssert(Map<?, ?> value, Class<? extends IAssert<?, ?>> clazE) {
-	// super(value, clazE);
-	// }
 }

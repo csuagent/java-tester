@@ -34,7 +34,4 @@ public interface IAssert<T, E extends IAssert<T, ?>> extends Matcher<T> {
 	public E isNull();
 
 	public E notNull();
-
-	// public T match(Expectations expectations);
-	// public T $(Expectations $);
 }

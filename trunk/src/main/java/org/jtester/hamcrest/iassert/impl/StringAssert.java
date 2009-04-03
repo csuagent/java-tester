@@ -19,18 +19,6 @@ public class StringAssert extends ComparableAssert<String, IStringAssert>
 		super(str, IStringAssert.class);
 	}
 
-	// public StringAssert(Class<IStringAssert> clazE) {
-	// super(StringAssert.class);
-	// }
-	// public StringAssert(String value, Class<? extends IStringAssert> clazE) {
-	// super(value, clazE);
-	// }
-	//
-	// public StringAssert(Class<String> clazT, Class<? extends IStringAssert>
-	// clazE) {
-	// super(clazT, clazE);
-	// }
-
 	public IStringAssert contains(String expected) {
 		StringContains matcher = new StringContains(expected);
 		return (IStringAssert) this.assertThat(matcher);
