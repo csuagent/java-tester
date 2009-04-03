@@ -1,7 +1,8 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.Map;
 
+import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
 import org.jtester.hamcrest.iassert.object.IMapAssert;
 
 public class MapAssert extends BaseAssert<Map<?, ?>, IMapAssert> implements

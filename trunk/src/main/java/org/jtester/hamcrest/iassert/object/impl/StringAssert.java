@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.text.IsEqualIgnoringCase;
@@ -6,6 +6,7 @@ import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.hamcrest.text.StringContains;
 import org.hamcrest.text.StringEndsWith;
 import org.hamcrest.text.StringStartsWith;
+import org.jtester.hamcrest.iassert.common.impl.ComparableAssert;
 import org.jtester.hamcrest.iassert.object.IStringAssert;
 import org.mockito.internal.matchers.Matches;
 

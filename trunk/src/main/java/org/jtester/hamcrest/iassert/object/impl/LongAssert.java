@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import org.jtester.hamcrest.iassert.object.ILongAssert;
 

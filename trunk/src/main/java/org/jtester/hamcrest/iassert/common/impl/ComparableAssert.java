@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.common.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;

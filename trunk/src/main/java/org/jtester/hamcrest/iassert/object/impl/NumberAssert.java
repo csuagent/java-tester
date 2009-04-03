@@ -1,6 +1,7 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import org.jtester.hamcrest.iassert.common.ICommonAssert;
+import org.jtester.hamcrest.iassert.common.impl.ComparableAssert;
 import org.jtester.hamcrest.iassert.object.INumberAssert;
 
 public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, ?>>

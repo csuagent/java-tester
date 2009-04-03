@@ -1,7 +1,8 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsEqual;
+import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
 import org.jtester.hamcrest.iassert.object.IBooleanAssert;
 
 public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert>

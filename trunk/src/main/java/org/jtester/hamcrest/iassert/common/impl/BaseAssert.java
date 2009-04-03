@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.common.impl;
 
 import java.util.ArrayList;
 import java.util.List;

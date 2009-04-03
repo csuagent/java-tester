@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +7,7 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
+import org.jtester.hamcrest.iassert.common.impl.ReflectionAssert;
 import org.jtester.hamcrest.iassert.object.ICollectionAssert;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
 import org.jtester.utility.ArrayConvertor;

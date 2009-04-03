@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.impl;
+package org.jtester.hamcrest.iassert.common.impl;
 
 import org.jtester.hamcrest.iassert.common.ICommonAssert;
 import org.jtester.hamcrest.iassert.common.IReflectionAssert;

@@ -1,15 +1,6 @@
 package org.jtester.core;
 
 import org.hamcrest.Matcher;
-import org.jtester.hamcrest.iassert.impl.ArrayAssert;
-import org.jtester.hamcrest.iassert.impl.BooleanAssert;
-import org.jtester.hamcrest.iassert.impl.ByteAssert;
-import org.jtester.hamcrest.iassert.impl.CharacterAssert;
-import org.jtester.hamcrest.iassert.impl.CollectionAssert;
-import org.jtester.hamcrest.iassert.impl.MapAssert;
-import org.jtester.hamcrest.iassert.impl.NumberAssert;
-import org.jtester.hamcrest.iassert.impl.ObjectAssert;
-import org.jtester.hamcrest.iassert.impl.StringAssert;
 import org.jtester.hamcrest.iassert.object.IArrayAssert;
 import org.jtester.hamcrest.iassert.object.IBooleanAssert;
 import org.jtester.hamcrest.iassert.object.IByteAssert;
@@ -19,6 +10,15 @@ import org.jtester.hamcrest.iassert.object.IMapAssert;
 import org.jtester.hamcrest.iassert.object.INumberAssert;
 import org.jtester.hamcrest.iassert.object.IObjectAssert;
 import org.jtester.hamcrest.iassert.object.IStringAssert;
+import org.jtester.hamcrest.iassert.object.impl.ArrayAssert;
+import org.jtester.hamcrest.iassert.object.impl.BooleanAssert;
+import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
+import org.jtester.hamcrest.iassert.object.impl.CharacterAssert;
+import org.jtester.hamcrest.iassert.object.impl.CollectionAssert;
+import org.jtester.hamcrest.iassert.object.impl.MapAssert;
+import org.jtester.hamcrest.iassert.object.impl.NumberAssert;
+import org.jtester.hamcrest.iassert.object.impl.ObjectAssert;
+import org.jtester.hamcrest.iassert.object.impl.StringAssert;
 import org.mockito.internal.matchers.Any;
 
 public interface IExpectation {
