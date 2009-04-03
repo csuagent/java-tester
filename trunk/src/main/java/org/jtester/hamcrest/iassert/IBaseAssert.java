@@ -1,5 +1,7 @@
 package org.jtester.hamcrest.iassert;
 
-public interface IBaseAssert<T, E extends IAssert<T, ?>> extends IAssert<T, E> {
+import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
+
+public interface IBaseAssert<T, E extends ICommonAssert<T, ?>> extends ICommonAssert<T, E> {
 
 }

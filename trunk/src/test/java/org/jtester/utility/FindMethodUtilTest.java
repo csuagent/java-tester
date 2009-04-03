@@ -7,6 +7,12 @@ import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
+/**
+ * this test is broken for EclEmma Test
+ * 
+ * @author darui.wudr
+ * 
+ */
 @Test(groups = { "JTester" })
 public class FindMethodUtilTest extends JTester {
 	@Test

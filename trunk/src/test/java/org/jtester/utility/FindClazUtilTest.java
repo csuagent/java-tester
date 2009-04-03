@@ -8,18 +8,24 @@ import org.jtester.utility.FindClazUtil;
 import org.jtester.utility.FindMethodUtil;
 import org.testng.annotations.Test;
 
+/**
+ * this test is broken for EclEmma Test
+ * 
+ * @author darui.wudr
+ * 
+ */
 @Test(groups = { "JTester" })
 public class FindClazUtilTest extends JTester {
 	@Test
-	public void test0() {
-		System.out.println("================================");
+	public void findClazz_1() {
 		String packagename = FindClazUtil.class.getPackage().getName();
-
+		want.string(packagename).isEqualTo("org.jtester.utility");
 		List<String> clazz = FindClazUtil.findClazz(packagename);
-		for (String classname : clazz) {
-			System.out.println(classname);
-		}
-		System.out.println("================================");
+		want.collection(clazz).sizeIs(9);
+		// for (String classname : clazz) {
+		// System.out.println(classname);
+		// }
+		// System.out.println("================================");
 	}
 
 	@Test

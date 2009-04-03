@@ -2,8 +2,8 @@ package org.jtester.hamcrest.iassert.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
-import org.jtester.hamcrest.iassert.IAssert;
 import org.jtester.hamcrest.iassert.IComparableAssert;
+import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
 import org.mockito.internal.matchers.GreaterOrEqual;
 import org.mockito.internal.matchers.GreaterThan;
 import org.mockito.internal.matchers.LessOrEqual;
@@ -12,15 +12,15 @@ import org.mockito.internal.matchers.LessThan;
 public class ComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>>
 		extends BaseAssert<T, E> implements IComparableAssert<T, E> {
 
-	public ComparableAssert(Class<? extends IAssert<?, ?>> clazE) {
+	public ComparableAssert(Class<? extends ICommonAssert<?, ?>> clazE) {
 		super(clazE);
 	}
 
-	public ComparableAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
+	public ComparableAssert(Class<T> clazT, Class<? extends ICommonAssert<?, ?>> clazE) {
 		super(clazT, clazE);
 	}
 
-	public ComparableAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
+	public ComparableAssert(T value, Class<? extends ICommonAssert<?, ?>> clazE) {
 		super(value, clazE);
 	}
 

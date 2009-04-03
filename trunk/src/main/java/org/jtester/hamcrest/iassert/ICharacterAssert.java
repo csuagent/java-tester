@@ -1,5 +1,7 @@
 package org.jtester.hamcrest.iassert;
 
-public interface ICharacterAssert extends IAssert<Character, ICharacterAssert> {
+import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
+
+public interface ICharacterAssert extends ICommonAssert<Character, ICharacterAssert> {
 	public ICharacterAssert is(char ch);
 }
