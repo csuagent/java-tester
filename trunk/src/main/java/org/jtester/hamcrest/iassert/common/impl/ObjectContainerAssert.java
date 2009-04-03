@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsArrayContaining;
+import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
@@ -20,6 +21,30 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 
 	public ObjectContainerAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		super(value, clazE);
+	}
+
+	public E hasItems(Object item, Object... items) {
+		Matcher<?> matcher1 = this.getHasItemMatcher(item);
+		if (items == null || items.length == 0) {
+			return this.assertThat(matcher1);
+		}
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		list.add(matcher1);
+		for (Object temp : items) {
+			Matcher<?> matcher2 = this.getHasItemMatcher(temp);
+			list.add(matcher2);
+		}
+		Matcher<?> matcher = AllOf.allOf(list);
+		return this.assertThat(matcher);
+	}
+
+	private Matcher<?> getHasItemMatcher(Object item) {
+		assert valueClaz != null : "the value asserted must not be null";
+		if (this.valueClaz == Object[].class) {
+			return IsArrayContaining.hasItemInArray(item);
+		} else {
+			return IsCollectionContaining.hasItem(item);
+		}
 	}
 
 	public E allItemMatcher(String regular) {
@@ -100,20 +125,6 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	public E sizeLt(int size) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public E hasItems(Object item, Object... items) {
-		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
-		Matcher<?> matcher1 = IsArrayContaining.hasItemInArray(item);
-		list.add(matcher1);
-		if (items != null) {
-			for (Object temp : items) {
-				Matcher<?> matcher2 = IsArrayContaining.hasItemInArray(temp);
-				list.add(matcher2);
-			}
-		}
-		Matcher<?> matcher = AllOf.allOf(list);
-		return this.assertThat(matcher);
 	}
 
 	public E hasItems(Collection<?> collection) {

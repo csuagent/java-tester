@@ -10,17 +10,16 @@ import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
 import org.jtester.utility.PrimitiveConvertor;
 
-public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
-		implements IAssert<T, E> {
+public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> implements IAssert<T, E> {
 
-	protected Class<T> clazT;
+	protected Class<?> valueClaz = null;
 
 	protected Object value;
 
 	protected AssertType type;
 
 	@SuppressWarnings("unchecked")
-	protected Class<? extends IAssert> clazE;
+	protected Class<? extends IAssert> assertClaz;
 
 	protected ILinkMatcher<T> link;
 
@@ -28,20 +27,20 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
 		this.value = null;
 		this.type = AssertType.Expectations;
 		this.link = new LinkMatcher<T>();
-		this.clazE = clazE;
+		this.assertClaz = clazE;
 	}
 
 	public Assert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		this.type = AssertType.AssertThat;
 		this.value = value;
-		this.clazE = clazE;
+		this.assertClaz = clazE;
 	}
 
 	@SuppressWarnings("unchecked")
 	public Assert(Class<T> clazT, Class<? extends IAssert> clazE) {
 		this.type = AssertType.Expectations;
-		this.clazT = clazT;
-		this.clazE = clazE;
+		this.valueClaz = clazT;
+		this.assertClaz = clazE;
 		this.link = new LinkMatcher<T>();
 	}
 
@@ -50,7 +49,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
 			throw new RuntimeException("is not an Expectations");
 		} else {
 			expectations.with(this.link);
-			return PrimitiveConvertor.value(clazT);
+			return PrimitiveConvertor.value(valueClaz);
 		}
 	}
 

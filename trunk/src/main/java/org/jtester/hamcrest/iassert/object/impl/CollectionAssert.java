@@ -14,10 +14,12 @@ public class CollectionAssert extends AllAssert<Collection<?>, ICollectionAssert
 
 	public CollectionAssert() {
 		super(ICollectionAssert.class);
+		this.valueClaz = Collection.class;
 	}
 
 	public CollectionAssert(Collection<?> value) {
 		super(value, ICollectionAssert.class);
+		this.valueClaz = Collection.class;
 	}
 
 	public ICollectionAssert hasItems(Collection<?> collection) {
