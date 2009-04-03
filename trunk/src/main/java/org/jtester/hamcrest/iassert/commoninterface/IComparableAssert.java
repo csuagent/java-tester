@@ -1,6 +1,5 @@
-package org.jtester.hamcrest.iassert;
+package org.jtester.hamcrest.iassert.commoninterface;
 
-import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
 
 public interface IComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>> extends ICommonAssert<T, E> {
 	public E lt(T max);

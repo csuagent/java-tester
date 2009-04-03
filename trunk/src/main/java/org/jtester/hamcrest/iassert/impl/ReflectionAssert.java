@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.impl;
 
-import org.jtester.hamcrest.iassert.IReflectionAssert;
 import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
+import org.jtester.hamcrest.iassert.commoninterface.IReflectionAssert;
 import org.jtester.hamcrest.matcher.UnitilsPropertyMatcher;
 import org.jtester.hamcrest.matcher.UnitilsReflectionMatcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;

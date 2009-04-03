@@ -3,6 +3,7 @@ package org.jtester.hamcrest.iassert;
 import java.util.Collection;
 
 import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
+import org.jtester.hamcrest.iassert.commoninterface.IReflectionAssert;
 
 public interface ICollectionAssert extends
 		ICommonAssert<Collection<?>, ICollectionAssert>,

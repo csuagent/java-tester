@@ -1,6 +1,5 @@
-package org.jtester.hamcrest.iassert;
+package org.jtester.hamcrest.iassert.commoninterface;
 
-import org.jtester.hamcrest.iassert.commoninterface.ICommonAssert;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public interface IReflectionAssert<E extends ICommonAssert<?, ?>> {
