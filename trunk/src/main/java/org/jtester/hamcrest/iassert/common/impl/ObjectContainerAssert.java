@@ -143,11 +143,13 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	}
 
 	public E allItemMatcher(String regular) {
+		assert true == false : "unimplemented";
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public E hasItemMatcher(String regular, String... regulars) {
+		assert true == false : "unimplemented";
 		// TODO Auto-generated method stub
 		return null;
 	}
