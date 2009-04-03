@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.common;
 
 
-public interface IComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>> extends ICommonAssert<T, E> {
+public interface IComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>> extends IAssert<T, E> {
 	public E lt(T max);
 
 	public E leq(T max);

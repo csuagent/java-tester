@@ -1,8 +1,8 @@
 package org.jtester.hamcrest.iassert.object;
 
-import org.jtester.hamcrest.iassert.common.ICommonAssert;
+import org.jtester.hamcrest.iassert.common.IAssert;
 
-public interface IBooleanAssert extends ICommonAssert<Boolean, IBooleanAssert> {
+public interface IBooleanAssert extends IAssert<Boolean, IBooleanAssert> {
 	IBooleanAssert is(boolean bl);
 
 	IBooleanAssert is(boolean bl, String description);

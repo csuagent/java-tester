@@ -2,7 +2,7 @@ package org.jtester.hamcrest.iassert.common;
 
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public interface IReflectionAssert<E extends ICommonAssert<?, ?>> {
+public interface IReflectionAssert<E extends IAssert<?, ?>> {
 
 	public E reflectionEq(Object expected, ReflectionComparatorMode... modes);
 

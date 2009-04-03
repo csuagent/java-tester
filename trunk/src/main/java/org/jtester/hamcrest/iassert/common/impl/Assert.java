@@ -5,13 +5,13 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
-import org.jtester.hamcrest.iassert.common.ICommonAssert;
+import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
 import org.jtester.utility.PrimitiveConvertor;
 
-public abstract class Assert<T, E extends ICommonAssert<T, ?>> extends BaseMatcher<T>
-		implements ICommonAssert<T, E> {
+public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T>
+		implements IAssert<T, E> {
 
 	protected Class<T> clazT;
 
@@ -20,25 +20,25 @@ public abstract class Assert<T, E extends ICommonAssert<T, ?>> extends BaseMatch
 	protected AssertType type;
 
 	@SuppressWarnings("unchecked")
-	protected Class<? extends ICommonAssert> clazE;
+	protected Class<? extends IAssert> clazE;
 
 	protected ILinkMatcher<T> link;
 
-	public Assert(Class<? extends ICommonAssert<?, ?>> clazE) {
+	public Assert(Class<? extends IAssert<?, ?>> clazE) {
 		this.value = null;
 		this.type = AssertType.Expectations;
 		this.link = new LinkMatcher<T>();
 		this.clazE = clazE;
 	}
 
-	public Assert(T value, Class<? extends ICommonAssert<?, ?>> clazE) {
+	public Assert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		this.type = AssertType.AssertThat;
 		this.value = value;
 		this.clazE = clazE;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Assert(Class<T> clazT, Class<? extends ICommonAssert> clazE) {
+	public Assert(Class<T> clazT, Class<? extends IAssert> clazE) {
 		this.type = AssertType.Expectations;
 		this.clazT = clazT;
 		this.clazE = clazE;

@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.common;
 
-public interface IObjectContainerAssert<E extends ICommonAssert<?, ?>> {
+public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E sizeIs(int size);
 
 	E sizeEq(int size);

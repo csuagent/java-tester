@@ -2,10 +2,10 @@ package org.jtester.hamcrest.iassert.object;
 
 import java.util.Collection;
 
-import org.jtester.hamcrest.iassert.common.ICommonAssert;
+import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IReflectionAssert;
 
-public interface IArrayAssert extends ICommonAssert<Object[], IArrayAssert>,
+public interface IArrayAssert extends IAssert<Object[], IArrayAssert>,
 		IReflectionAssert<IArrayAssert> {
 	<T extends Object> IArrayAssert hasItems(T item, T... items);
 

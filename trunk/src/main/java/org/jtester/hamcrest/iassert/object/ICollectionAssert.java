@@ -2,11 +2,11 @@ package org.jtester.hamcrest.iassert.object;
 
 import java.util.Collection;
 
-import org.jtester.hamcrest.iassert.common.ICommonAssert;
+import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IReflectionAssert;
 
 public interface ICollectionAssert extends
-		ICommonAssert<Collection<?>, ICollectionAssert>,
+		IAssert<Collection<?>, ICollectionAssert>,
 		IReflectionAssert<ICollectionAssert> {
 	ICollectionAssert hasItems(Collection<?> collection);
 
