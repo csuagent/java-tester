@@ -10,7 +10,7 @@ import java.util.List;
  * @author darui.wudr
  * 
  */
-public class FindTestUtil {
+public class FindMethodUtil {
 	/**
 	 * 获得claz的所有测试类
 	 * 
@@ -20,7 +20,7 @@ public class FindTestUtil {
 	public static List<String> findTestClaz(Class<?> claz) {
 		List<String> clazzes = FindClazUtil.findClazz(claz);
 		String classname = claz.getName();
-		List<String> tests = FindTestUtil.filterClaz(clazzes, classname);
+		List<String> tests = FindMethodUtil.filterClaz(clazzes, classname);
 
 		return tests;
 	}
@@ -34,7 +34,7 @@ public class FindTestUtil {
 	public static List<String> findTestClaz(String claz) {
 		List<String> clazzes = FindClazUtil.findClazz(claz);
 		String classname = claz.substring(claz.lastIndexOf("."));
-		List<String> tests = FindTestUtil.filterClaz(clazzes, classname);
+		List<String> tests = FindMethodUtil.filterClaz(clazzes, classname);
 
 		return tests;
 	}
@@ -63,7 +63,7 @@ public class FindTestUtil {
 	 * @return
 	 */
 	public static List<String> findTestMethod(Class<?> claz, Method method) {
-		return FindTestUtil.findTestMethod(claz.getName(), method.getName());
+		return FindMethodUtil.findTestMethod(claz.getName(), method.getName());
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class FindTestUtil {
 	 * @return
 	 */
 	public static List<String> findTestMethod(Class<?> claz, String methodname) {
-		List<String> clazzes = FindTestUtil.findTestClaz(claz);
+		List<String> clazzes = FindMethodUtil.findTestClaz(claz);
 		List<String> testmethods = new LinkedList<String>();
 		for (String classname : clazzes) {
 			Class<?> clazz = null;
@@ -105,7 +105,7 @@ public class FindTestUtil {
 	public static List<String> findTestMethod(String classname, String methodname) {
 		try {
 			Class<?> claz = Class.forName(classname);
-			return FindTestUtil.findTestMethod(claz, methodname);
+			return FindMethodUtil.findTestMethod(claz, methodname);
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}

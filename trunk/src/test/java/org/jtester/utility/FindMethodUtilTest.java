@@ -1,15 +1,17 @@
-package org.jtester.dbtest.service;
+package org.jtester.utility;
 
 import java.util.List;
 
-import org.jtester.utility.FindTestUtil;
-import org.junit.Test;
+import org.jtester.dbtest.service.UserService;
+import org.jtester.testng.JTester;
+import org.testng.annotations.Test;
 
-public class FindTestMethod {
+@Test(groups = { "JTester" })
+public class FindMethodUtilTest extends JTester {
 	@Test
 	public void test1() {
 		System.out.println("================================");
-		List<String> methods = FindTestUtil.findTestMethod(UserService.class, "findAddress");
+		List<String> methods = FindMethodUtil.findTestMethod(UserService.class, "findAddress");
 		for (String method : methods) {
 			System.out.println(method);
 		}
@@ -19,7 +21,7 @@ public class FindTestMethod {
 	@Test
 	public void test2() {
 		System.out.println("================================");
-		List<String> methods = FindTestUtil.findTestMethod(UserService.class, "getUser");
+		List<String> methods = FindMethodUtil.findTestMethod(UserService.class, "getUser");
 		for (String method : methods) {
 			System.out.println(method);
 		}

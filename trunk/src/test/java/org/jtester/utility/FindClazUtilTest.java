@@ -1,14 +1,15 @@
-package org.jtester.dbtest.service;
+package org.jtester.utility;
 
 import java.util.List;
 
+import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
 import org.jtester.utility.FindClazUtil;
-import org.jtester.utility.FindTestUtil;
+import org.jtester.utility.FindMethodUtil;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class FindTestClass extends JTester {
+public class FindClazUtilTest extends JTester {
 	@Test
 	public void test0() {
 		System.out.println("================================");
@@ -37,7 +38,7 @@ public class FindTestClass extends JTester {
 	public void test2() {
 		System.out.println("================================");
 		Class<?> claz = UserService.class;
-		List<String> clazz = FindTestUtil.findTestClaz(claz);
+		List<String> clazz = FindMethodUtil.findTestClaz(claz);
 
 		for (String classname : clazz) {
 			System.out.println(classname);
