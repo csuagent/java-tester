@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.common;
 
 @SuppressWarnings("unchecked")
-public interface IComparableAssert<T, E extends IBaseAssert<T, ?>> extends IBaseAssert<T, E> {
+public interface IComparableAssert<E extends IAssert<?, ?>> {
 
 	public E lt(Comparable max);
 

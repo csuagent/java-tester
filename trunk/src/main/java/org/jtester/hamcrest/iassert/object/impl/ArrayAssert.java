@@ -3,7 +3,7 @@ package org.jtester.hamcrest.iassert.object.impl;
 import org.jtester.hamcrest.iassert.common.impl.AllAssert;
 import org.jtester.hamcrest.iassert.object.IArrayAssert;
 
-public class ArrayAssert extends AllAssert<Object, IArrayAssert> implements IArrayAssert {
+public class ArrayAssert extends AllAssert<Object[], IArrayAssert> implements IArrayAssert {
 	public ArrayAssert() {
 		super(IArrayAssert.class);
 	}

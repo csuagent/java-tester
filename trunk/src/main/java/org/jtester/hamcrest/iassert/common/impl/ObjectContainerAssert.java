@@ -8,12 +8,11 @@ import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsArrayContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.common.IAssert;
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
 import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
 
-public class ObjectContainerAssert<T, E extends IBaseAssert<T, ?>> extends ComparableAssert<T, E> implements
-		IObjectContainerAssert<T, E> {
+public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends ComparableAssert<T, E> implements
+		IObjectContainerAssert<E> {
 
 	public ObjectContainerAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
@@ -33,7 +32,7 @@ public class ObjectContainerAssert<T, E extends IBaseAssert<T, ?>> extends Compa
 		return null;
 	}
 
-	public E hasItems(T[] values) {
+	public E hasItems(Object[] values) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -103,7 +102,7 @@ public class ObjectContainerAssert<T, E extends IBaseAssert<T, ?>> extends Compa
 		return null;
 	}
 
-	public E hasItems(T item, T... items) {
+	public E hasItems(Object item, Object... items) {
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		Matcher<?> matcher1 = IsArrayContaining.hasItemInArray(item);
 		list.add(matcher1);

@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.common.impl;
 
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
+import org.jtester.hamcrest.iassert.common.IAssert;
 
 /**
  * all assert statements have been implemented by this class <br/>
@@ -9,16 +9,13 @@ import org.jtester.hamcrest.iassert.common.IBaseAssert;
  * @author darui.wudr
  * 
  */
-public class AllAssert<T, E extends IBaseAssert<T, ?>> extends ReflectionAssert<T, E> {
-	public AllAssert(Class<? extends IBaseAssert<?, ?>> clazE) {
+public class AllAssert<T, E extends IAssert<T, ?>> extends ReflectionAssert<T, E> implements IAssert<T, E> {
+
+	public AllAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
 	}
 
-//	public AllAssert(Class<T> clazT, Class<? extends IBaseAssert<?, ?>> clazE) {
-//		super(clazT, clazE);
-//	}
-
-	public AllAssert(T value, Class<? extends IBaseAssert<?, ?>> clazE) {
+	public AllAssert(T value, Class<? extends IAssert<?, ?>> clazE) {
 		super(value, clazE);
 	}
 }

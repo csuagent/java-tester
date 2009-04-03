@@ -2,7 +2,7 @@ package org.jtester.hamcrest.iassert.common;
 
 import org.hamcrest.Matcher;
 
-public interface IBaseAssert<T, E extends IBaseAssert<T, ?>> extends IAssert<T, E> {
+public interface IBaseAssert<T, E extends IAssert<T, ?>> extends IAssert<T, E> {
 	public E isEqualTo(T expected);
 
 	public E notEqualTo(T expected);

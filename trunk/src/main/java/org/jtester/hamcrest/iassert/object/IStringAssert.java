@@ -1,9 +1,10 @@
 package org.jtester.hamcrest.iassert.object;
 
 import org.hamcrest.Matcher;
+import org.jtester.hamcrest.iassert.common.IBaseAssert;
 import org.jtester.hamcrest.iassert.common.IComparableAssert;
 
-public interface IStringAssert extends IComparableAssert<String, IStringAssert> {
+public interface IStringAssert extends IBaseAssert<String, IStringAssert>, IComparableAssert<IStringAssert> {
 	public IStringAssert contains(String expected);
 
 	public IStringAssert end(String expected);

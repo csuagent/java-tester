@@ -9,8 +9,6 @@ import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.common.impl.AllAssert;
 import org.jtester.hamcrest.iassert.object.ICollectionAssert;
-import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
-import org.jtester.utility.ArrayConvertor;
 
 public class CollectionAssert extends AllAssert<Collection<?>, ICollectionAssert> implements ICollectionAssert {
 
@@ -51,40 +49,40 @@ public class CollectionAssert extends AllAssert<Collection<?>, ICollectionAssert
 		return assertThat(AllOf.allOf(list));
 	}
 
-	public ICollectionAssert hasItems(int[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(boolean[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(byte[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(char[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(short[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(long[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(float[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert hasItems(double[] values) {
-		return this.hasItems(ArrayConvertor.convert(values));
-	}
-
-	public ICollectionAssert sizeIs(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size);
-		return this.assertThat(matcher);
-	}
+	// public ICollectionAssert hasItems(int[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(boolean[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(byte[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(char[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(short[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(long[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(float[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert hasItems(double[] values) {
+	// return this.hasItems(ArrayConvertor.convert(values));
+	// }
+	//
+	// public ICollectionAssert sizeIs(int size) {
+	// SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size);
+	// return this.assertThat(matcher);
+	// }
 }
