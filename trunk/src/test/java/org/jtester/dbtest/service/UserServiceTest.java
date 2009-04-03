@@ -17,7 +17,7 @@ public class UserServiceTest extends JTester {
 	private UserService userService;
 
 	@Test
-	@DataSet( { "TestUserService.testFindUser.xml" })
+	@DataSet( { "UserServiceTest.getUser.xml" })
 	public void getUser() {
 		User user1 = userService.getUser(1);
 		want.object(user1).notNull();
@@ -31,7 +31,7 @@ public class UserServiceTest extends JTester {
 	}
 
 	@Test
-	@DataSet( { "TestUserService.testFindUserLazyAddress.xml" })
+	@DataSet( { "UserServiceTest.getUser_LazyAddress.xml" })
 	public void getUser_LazyAddress() {
 		User user = userService.getUser(1);
 		want.object(user).notNull();
