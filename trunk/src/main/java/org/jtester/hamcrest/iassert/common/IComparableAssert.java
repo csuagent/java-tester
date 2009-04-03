@@ -1,14 +1,15 @@
 package org.jtester.hamcrest.iassert.common;
 
-public interface IComparableAssert<T extends Comparable<T>, E extends IComparableAssert<T, ?>> extends
-		IBaseAssert<T, E> {
-	public E lt(T max);
+@SuppressWarnings("unchecked")
+public interface IComparableAssert<T, E extends IBaseAssert<T, ?>> extends IBaseAssert<T, E> {
 
-	public E leq(T max);
+	public E lt(Comparable max);
 
-	public E gt(T min);
+	public E leq(Comparable max);
 
-	public E geq(T min);
+	public E gt(Comparable min);
 
-	public E between(T min, T max);
+	public E geq(Comparable min);
+
+	public E between(Comparable min, Comparable max);
 }

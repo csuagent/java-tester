@@ -2,11 +2,10 @@ package org.jtester.hamcrest.iassert.object.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsEqual;
-import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
+import org.jtester.hamcrest.iassert.common.impl.AllAssert;
 import org.jtester.hamcrest.iassert.object.IBooleanAssert;
 
-public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert>
-		implements IBooleanAssert {
+public class BooleanAssert extends AllAssert<Boolean, IBooleanAssert> implements IBooleanAssert {
 
 	public BooleanAssert() {
 		super(IBooleanAssert.class);
@@ -15,20 +14,6 @@ public class BooleanAssert extends BaseAssert<Boolean, IBooleanAssert>
 	public BooleanAssert(Boolean value) {
 		super(value, IBooleanAssert.class);
 	}
-
-	// public BooleanAssert(Boolean value, Class<? extends IAssert<?, ?>> clazE)
-	// {
-	// super(value, clazE);
-	// }
-	//
-	// public BooleanAssert(Class<? extends IAssert<?, ?>> clazE) {
-	// super(clazE);
-	// }
-	//
-	// public BooleanAssert(Class<Boolean> clazT,
-	// Class<? extends IAssert<?, ?>> clazE) {
-	// super(clazT, clazE);
-	// }
 
 	public IBooleanAssert is(boolean bl) {
 		return super.isEqualTo(bl);

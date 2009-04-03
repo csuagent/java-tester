@@ -7,14 +7,12 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
-import org.jtester.hamcrest.iassert.common.impl.ReflectionAssert;
+import org.jtester.hamcrest.iassert.common.impl.AllAssert;
 import org.jtester.hamcrest.iassert.object.ICollectionAssert;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
 import org.jtester.utility.ArrayConvertor;
 
-public class CollectionAssert extends
-		ReflectionAssert<Collection<?>, ICollectionAssert> implements
-		ICollectionAssert {
+public class CollectionAssert extends AllAssert<Collection<?>, ICollectionAssert> implements ICollectionAssert {
 
 	public CollectionAssert() {
 		super(ICollectionAssert.class);

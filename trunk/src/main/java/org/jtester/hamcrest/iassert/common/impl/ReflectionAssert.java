@@ -6,7 +6,8 @@ import org.jtester.hamcrest.matcher.UnitilsPropertyMatcher;
 import org.jtester.hamcrest.matcher.UnitilsReflectionMatcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
-public class ReflectionAssert<T, E extends IBaseAssert<T, ?>> extends BaseAssert<T, E> implements IReflectionAssert<E> {
+public class ReflectionAssert<T, E extends IBaseAssert<T, ?>> extends ComparableAssert<T, E> implements
+		IReflectionAssert<E> {
 
 	public ReflectionAssert(Class<? extends IBaseAssert<?, ?>> clazE) {
 		super(clazE);
@@ -16,9 +17,10 @@ public class ReflectionAssert<T, E extends IBaseAssert<T, ?>> extends BaseAssert
 		super(value, clazE);
 	}
 
-	public ReflectionAssert(Class<T> clazT, Class<? extends IBaseAssert<?, ?>> clazE) {
-		super(clazT, clazE);
-	}
+	// public ReflectionAssert(Class<T> clazT, Class<? extends IBaseAssert<?,
+	// ?>> clazE) {
+	// super(clazT, clazE);
+	// }
 
 	public E reflectionEq(Object expected, ReflectionComparatorMode... modes) {
 		UnitilsReflectionMatcher matcher = new UnitilsReflectionMatcher(expected, modes);

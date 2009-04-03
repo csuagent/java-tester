@@ -46,7 +46,7 @@ public interface IExpectation {
 		 * @return
 		 */
 		public static IByteAssert bite() {
-			return new ByteAssert(ByteAssert.class);
+			return new ByteAssert();
 		}
 
 		public static IArrayAssert array() {

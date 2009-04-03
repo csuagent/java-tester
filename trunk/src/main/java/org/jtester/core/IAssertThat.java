@@ -80,7 +80,7 @@ public interface IAssertThat {
 		 * @return
 		 */
 		public static IByteAssert bite(Byte value) {
-			return new ByteAssert(value, ByteAssert.class);
+			return new ByteAssert(value);
 		}
 
 		/**
@@ -90,7 +90,7 @@ public interface IAssertThat {
 		 * @return
 		 */
 		public static IByteAssert bite(byte value) {
-			return new ByteAssert(value, ByteAssert.class);
+			return new ByteAssert(value);
 		}
 
 		public static <T extends Object> IArrayAssert array(T value[]) {

@@ -26,9 +26,9 @@ public class BaseAssert<T, E extends IBaseAssert<T, ?>> extends Assert<T, E> imp
 		super(value, clazE);
 	}
 
-	public BaseAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
-		super(clazT, clazE);
-	}
+//	public BaseAssert(Class<T> clazT, Class<? extends IAssert<?, ?>> clazE) {
+//		super(clazT, clazE);
+//	}
 
 	public E isEqualTo(T expected) {
 		Matcher<T> matcher = IsEqual.equalTo(expected);
