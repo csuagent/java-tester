@@ -2,11 +2,13 @@ package org.jtester.dbtest.service;
 
 import java.util.List;
 
+import org.jtester.testng.JTester;
 import org.jtester.utility.FindClazUtil;
 import org.jtester.utility.FindTestUtil;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-public class FindTestClass {
+@Test(groups = { "JTester" })
+public class FindTestClass extends JTester {
 	@Test
 	public void test0() {
 		System.out.println("================================");

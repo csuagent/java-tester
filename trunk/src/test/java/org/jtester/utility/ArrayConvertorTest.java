@@ -1,4 +1,4 @@
-package org.jtester.core;
+package org.jtester.utility;
 
 import org.jtester.testng.JTester;
 import org.jtester.utility.ArrayConvertor;
