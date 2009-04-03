@@ -27,6 +27,11 @@ public class ArrayUtil {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public static Object[] convert(Collection coll) {
+		return coll.toArray(new Object[0]);
+	}
+
 	public static boolean isCollection(Object o) {
 		if (o == null) {
 			return false;
