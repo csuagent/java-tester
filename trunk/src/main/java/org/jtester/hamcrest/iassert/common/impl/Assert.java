@@ -6,8 +6,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
 import org.jtester.hamcrest.iassert.common.IAssert;
-import org.jtester.unitils.jmock.matcher.ILinkMatcher;
-import org.jtester.unitils.jmock.matcher.impl.LinkMatcher;
+import org.jtester.hamcrest.matcher.LinkMatcher;
 import org.jtester.utility.PrimitiveConvertor;
 
 public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> implements IAssert<T, E> {
@@ -21,7 +20,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	@SuppressWarnings("unchecked")
 	protected Class<? extends IAssert> assertClaz;
 
-	protected ILinkMatcher<T> link;
+	protected LinkMatcher<T> link;
 
 	public Assert(Class<? extends IAssert<?, ?>> clazE) {
 		this.value = null;

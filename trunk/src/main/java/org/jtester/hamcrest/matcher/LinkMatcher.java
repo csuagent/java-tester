@@ -1,4 +1,4 @@
-package org.jtester.unitils.jmock.matcher.impl;
+package org.jtester.hamcrest.matcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,8 @@ import java.util.List;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.jtester.unitils.jmock.matcher.ILinkMatcher;
 
-public class LinkMatcher<T> extends BaseMatcher<T> implements ILinkMatcher<T> {
+public class LinkMatcher<T> extends BaseMatcher<T> {
 	private final List<Matcher<?>> matchers = new ArrayList<Matcher<?>>();
 
 	public void add(Matcher<?> matcher) {
