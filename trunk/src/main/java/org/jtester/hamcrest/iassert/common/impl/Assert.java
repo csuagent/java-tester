@@ -53,10 +53,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		}
 	}
 
-	public T $(Expectations expectations) {
-		return this.match(expectations);
-	}
-
 	public void describeTo(Description description) {
 		link.describeTo(description);
 	}
