@@ -13,9 +13,9 @@ public class ICollectionAssertTest_HasItem extends JTester {
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems("aaa", "ccc");
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems(Arrays.asList("aaa", "ccc"));
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems(new String[] { "aaa", "ccc" });
-		want.collection(Arrays.asList(1, 2, 4)).hasItems(new int[] { 1, 4 });
+		want.collection(Arrays.asList(1, 2, 4)).sizeEq(3).hasItems(new int[] { 1, 4 });
 
-		want.collection(Arrays.asList(1, 2, 4)).hasItems(1, 4);
+		want.collection(Arrays.asList(1, 2, 4)).hasItems(1, 4).sizeLt(4);
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })

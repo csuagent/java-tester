@@ -10,7 +10,9 @@ import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
+import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
+import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher.Type;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher.MatchType;
 import org.jtester.utility.ArrayConvertor;
 
@@ -142,10 +144,20 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 		return this.assertThat(matcher);
 	}
 
-	public E allItemMatch(String regular, String... regulars) {
-		assert true == false : "unimplemented";
-		// TODO Auto-generated method stub
-		return null;
+	public E allItemMatch(String regex, String... regexs) {
+		// assert true == false : "unimplemented";
+		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, Type.AND);
+		if (regexs == null || regexs.length == 0) {
+			return this.assertThat(matcher1);
+		}
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		list.add(matcher1);
+		for (String temp : regexs) {
+			ArrayItemRegularMatcher matcher2 = new ArrayItemRegularMatcher(temp, Type.AND);
+			list.add(matcher2);
+		}
+		Matcher<?> matcher = AllOf.allOf(list);
+		return this.assertThat(matcher);
 	}
 
 	public E hasItemMatch(String regular, String... regulars) {
