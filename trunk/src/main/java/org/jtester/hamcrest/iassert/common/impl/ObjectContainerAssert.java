@@ -145,7 +145,6 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	}
 
 	public E allItemMatch(String regex, String... regexs) {
-		// assert true == false : "unimplemented";
 		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, Type.AND);
 		if (regexs == null || regexs.length == 0) {
 			return this.assertThat(matcher1);
@@ -160,9 +159,18 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 		return this.assertThat(matcher);
 	}
 
-	public E hasItemMatch(String regular, String... regulars) {
-		assert true == false : "unimplemented";
-		// TODO Auto-generated method stub
-		return null;
+	public E hasItemMatch(String regex, String... regexs) {
+		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, Type.OR);
+		if (regexs == null || regexs.length == 0) {
+			return this.assertThat(matcher1);
+		}
+		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
+		list.add(matcher1);
+		for (String temp : regexs) {
+			ArrayItemRegularMatcher matcher2 = new ArrayItemRegularMatcher(temp, Type.OR);
+			list.add(matcher2);
+		}
+		Matcher<?> matcher = AllOf.allOf(list);
+		return this.assertThat(matcher);
 	}
 }
