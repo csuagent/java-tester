@@ -51,4 +51,29 @@ public class ObjectContainerAssertTest_ItemMatch extends JTester {
 	public void hasItemMatch_4() {
 		want.collection(list).sizeIs(3).hasItemMatch("test1", ".*four");
 	}
+
+	@Test
+	public void hasItemMatch_arraytest1() {
+		want.array(new String[] { "hello.one", "hello.two" }).sizeIs(2).hasItemMatch(".*one", ".*two");
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void hasItemMatch_arraytest2() {
+		want.array(new String[] { "hello.one", "hello.two" }).sizeIs(2).hasItemMatch("test1", ".*four");
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void allItemMatch_arraytest1() {
+		want.array(new String[] { "hello.one", "heollo.two" }).sizeIs(2).allItemMatch("hello.*");
+	}
+	
+	@Test
+	public void allItemMatch_arraytest3() {
+		want.array(new String[] { "hello.one", "hello.two" }).sizeIs(2).allItemMatch("hello.*");
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void allItemMatch_arraytest2() {
+		want.array(new String[] { "hello.one", "hello.two" }).sizeIs(2).allItemMatch(".*one");
+	}
 }
