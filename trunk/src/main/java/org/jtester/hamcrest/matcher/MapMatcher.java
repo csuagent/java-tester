@@ -11,7 +11,6 @@ public class MapMatcher extends BaseMatcher<Map<?, ?>> {
 	private MapMatcherType type;
 
 	public MapMatcher(Object expected, MapMatcherType type) {
-		System.out.println(expected);
 		this.expected = expected;
 		this.type = type;
 	}
