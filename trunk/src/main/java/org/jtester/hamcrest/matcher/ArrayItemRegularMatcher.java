@@ -9,9 +9,9 @@ import org.jtester.utility.ArrayUtil;
 public class ArrayItemRegularMatcher extends BaseMatcher<Collection<?>> {
 	private String regex = null;
 
-	private Type type = null;
+	private ArrayItemRegularMatcherType type = null;
 
-	public ArrayItemRegularMatcher(String regex, Type type) {
+	public ArrayItemRegularMatcher(String regex, ArrayItemRegularMatcherType type) {
 		this.regex = regex;
 		this.type = type;
 	}
@@ -34,14 +34,14 @@ public class ArrayItemRegularMatcher extends BaseMatcher<Collection<?>> {
 			if (item != null) {
 				match = item.toString().matches(regex);
 			}
-			if (match == false && type == Type.AND) {
+			if (match == false && type == ArrayItemRegularMatcherType.AND) {
 				return false;
 			}
-			if (match == true && type == Type.OR) {
+			if (match == true && type == ArrayItemRegularMatcherType.OR) {
 				return true;
 			}
 		}
-		if (type == Type.AND) {
+		if (type == ArrayItemRegularMatcherType.AND) {
 			return true;
 		} else {
 			return false;
@@ -52,7 +52,7 @@ public class ArrayItemRegularMatcher extends BaseMatcher<Collection<?>> {
 		description.appendText(String.format(type.description(), regex));
 	}
 
-	public static enum Type {
+	public static enum ArrayItemRegularMatcherType {
 		AND {
 			@Override
 			public String description() {

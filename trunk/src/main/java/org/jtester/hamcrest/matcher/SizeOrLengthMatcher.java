@@ -9,9 +9,9 @@ import org.jtester.utility.ArrayUtil;
 public class SizeOrLengthMatcher extends BaseMatcher<Collection<?>> {
 	private int size;
 
-	private MatchType type;
+	private SizeOrLengthMatcherType type;
 
-	public SizeOrLengthMatcher(int size, MatchType type) {
+	public SizeOrLengthMatcher(int size, SizeOrLengthMatcherType type) {
 		this.size = size;
 		this.type = type;
 	}
@@ -42,7 +42,7 @@ public class SizeOrLengthMatcher extends BaseMatcher<Collection<?>> {
 		description.appendText(String.format(type.description(), size));
 	}
 
-	public static enum MatchType {
+	public static enum SizeOrLengthMatcherType {
 		EQ {
 			@Override
 			public String description() {

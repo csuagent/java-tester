@@ -12,8 +12,8 @@ import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
 import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher;
 import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
-import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher.Type;
-import org.jtester.hamcrest.matcher.SizeOrLengthMatcher.MatchType;
+import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher.ArrayItemRegularMatcherType;
+import org.jtester.hamcrest.matcher.SizeOrLengthMatcher.SizeOrLengthMatcherType;
 import org.jtester.utility.ArrayConvertor;
 
 public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends ComparableAssert<T, E> implements
@@ -110,49 +110,49 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	}
 
 	public E sizeIs(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.EQ);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.EQ);
 		return this.assertThat(matcher);
 	}
 
 	public E sizeEq(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.EQ);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.EQ);
 		return this.assertThat(matcher);
 	}
 
 	public E sizeGe(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.GE);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.GE);
 		return this.assertThat(matcher);
 	}
 
 	public E sizeGt(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.GT);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.GT);
 		return this.assertThat(matcher);
 	}
 
 	public E sizeLe(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.LE);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.LE);
 		return this.assertThat(matcher);
 	}
 
 	public E sizeLt(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.LT);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.LT);
 		return this.assertThat(matcher);
 	}
 
 	public E sizeNe(int size) {
-		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, MatchType.NE);
+		SizeOrLengthMatcher matcher = new SizeOrLengthMatcher(size, SizeOrLengthMatcherType.NE);
 		return this.assertThat(matcher);
 	}
 
 	public E allItemMatch(String regex, String... regexs) {
-		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, Type.AND);
+		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, ArrayItemRegularMatcherType.AND);
 		if (regexs == null || regexs.length == 0) {
 			return this.assertThat(matcher1);
 		}
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		list.add(matcher1);
 		for (String temp : regexs) {
-			ArrayItemRegularMatcher matcher2 = new ArrayItemRegularMatcher(temp, Type.AND);
+			ArrayItemRegularMatcher matcher2 = new ArrayItemRegularMatcher(temp, ArrayItemRegularMatcherType.AND);
 			list.add(matcher2);
 		}
 		Matcher<?> matcher = AllOf.allOf(list);
@@ -160,14 +160,14 @@ public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends Comparabl
 	}
 
 	public E hasItemMatch(String regex, String... regexs) {
-		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, Type.OR);
+		ArrayItemRegularMatcher matcher1 = new ArrayItemRegularMatcher(regex, ArrayItemRegularMatcherType.OR);
 		if (regexs == null || regexs.length == 0) {
 			return this.assertThat(matcher1);
 		}
 		List<Matcher<?>> list = new ArrayList<Matcher<?>>();
 		list.add(matcher1);
 		for (String temp : regexs) {
-			ArrayItemRegularMatcher matcher2 = new ArrayItemRegularMatcher(temp, Type.OR);
+			ArrayItemRegularMatcher matcher2 = new ArrayItemRegularMatcher(temp, ArrayItemRegularMatcherType.OR);
 			list.add(matcher2);
 		}
 		Matcher<?> matcher = AllOf.allOf(list);
