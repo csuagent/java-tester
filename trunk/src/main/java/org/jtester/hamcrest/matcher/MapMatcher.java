@@ -1,7 +1,6 @@
 package org.jtester.hamcrest.matcher;
 
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -9,9 +8,10 @@ import org.hamcrest.Description;
 public class MapMatcher extends BaseMatcher<Map<?, ?>> {
 	private Object expected;
 
-	private MapKeysMatcherType type;
+	private MapMatcherType type;
 
-	public MapMatcher(Object expected, MapKeysMatcherType type) {
+	public MapMatcher(Object expected, MapMatcherType type) {
+		System.out.println(expected);
 		this.expected = expected;
 		this.type = type;
 	}
@@ -21,27 +21,22 @@ public class MapMatcher extends BaseMatcher<Map<?, ?>> {
 			return false;
 		}
 		Map<?, ?> actual = (Map<?, ?>) _actual;
-		if (type == MapKeysMatcherType.KEY) {
+		if (type == MapMatcherType.KEY) {
 			return actual.containsKey(expected);
-		} else if (type == MapKeysMatcherType.VALUE) {
-			return actual.containsValue(expected);
 		} else {
-			if (!(expected instanceof Entry)) {
-				return false;
-			}
-			Entry<?, ?> entry = (Entry<?, ?>) expected;
-			Object value = actual.get(entry.getKey());
-			return entry.getValue().equals(value);
+			return actual.containsValue(expected);
 		}
 	}
 
 	public void describeTo(Description description) {
-		// TODO Auto-generated method stub
-
+		if (type == MapMatcherType.KEY) {
+			description.appendText(String.format("the map must have the key %s", expected));
+		} else {
+			description.appendText(String.format("the map must have the value %s", expected));
+		}
 	}
 
-	public static enum MapKeysMatcherType {
-		KEY, VALUE, ENTRY;
+	public static enum MapMatcherType {
+		KEY, VALUE;
 	}
-
 }
