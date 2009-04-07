@@ -9,42 +9,20 @@ public class ICollectionAssertTest_HasItem_DataProvider extends JTester {
 
 	@DataProvider(name = "provide_hasitems")
 	public Object[][] provideArray() {
-		Object[][] result = new Object[4][1];
-		result[0][0] = new HasItems(new Integer[] { 1, 2, 3 }, new Integer[] { 1, 2 });
-		result[1][0] = new HasItems(new Character[] { 'a', 'b', 'c' }, new Character[] { 'a', 'b' });
-		result[2][0] = new HasItems(new Boolean[] { true, false }, new Boolean[] { true });
-		result[3][0] = new HasItems(new Double[] { 1.2d, 2.8d, 3.9d }, new Double[] { 1.2d, 3.9d });
+		Object[][] result = new Object[4][2];
+		result[0][0] = new Integer[] { 1, 2, 3 };
+		result[0][1] = new Integer[] { 1, 2 };
+		result[1][0] = new Character[] { 'a', 'b', 'c' };
+		result[1][1] = new Character[] { 'a', 'b' };
+		result[2][0] = new Boolean[] { true, false };
+		result[2][1] = new Boolean[] { true };
+		result[3][0] = new Double[] { 1.2d, 2.8d, 3.9d };
+		result[3][1] = new Double[] { 1.2d, 3.9d };
 		return result;
 	}
 
 	@Test(dataProvider = "provide_hasitems")
-	public void hasItems(HasItems item) {
-		want.array(item.getActual()).hasItems(item.getExpected());
-	}
-
-	public static class HasItems {
-		private Object[] actual;
-		private Object[] expected;
-
-		public HasItems(Object[] actual, Object[] expected) {
-			this.actual = actual;
-			this.expected = expected;
-		}
-
-		public Object[] getActual() {
-			return actual;
-		}
-
-		public void setActual(Object[] actual) {
-			this.actual = actual;
-		}
-
-		public Object[] getExpected() {
-			return expected;
-		}
-
-		public void setExpected(Object[] expected) {
-			this.expected = expected;
-		}
+	public void hasItems(Object[] actual, Object[] expected) {
+		want.array(actual).hasItems(expected);
 	}
 }
