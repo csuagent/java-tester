@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
-import org.jtester.utility.FindClazUtil;
-import org.jtester.utility.FindMethodUtil;
-import org.testng.annotations.Test;
 
 /**
  * this test will break for EclEmma Test
@@ -14,7 +11,7 @@ import org.testng.annotations.Test;
  * @author darui.wudr
  * 
  */
-@Test(groups = { "JTester" })
+//@Test(groups = { "JTester" })
 public class FindClazUtilTest extends JTester {
 	public void findClazz_1() {
 		String packagename = FindClazUtil.class.getPackage().getName();

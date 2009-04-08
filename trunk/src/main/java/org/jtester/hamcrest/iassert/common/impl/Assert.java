@@ -43,12 +43,13 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		this.link = new LinkMatcher<T>();
 	}
 
+	@SuppressWarnings("unchecked")
 	public T match(Expectations expectations) {
 		if (this.type == AssertType.AssertThat) {
 			throw new RuntimeException("is not an Expectations");
 		} else {
 			expectations.with(this.link);
-			return PrimitiveConvertor.value(valueClaz);
+			return (T) PrimitiveConvertor.value(valueClaz);
 		}
 	}
 
