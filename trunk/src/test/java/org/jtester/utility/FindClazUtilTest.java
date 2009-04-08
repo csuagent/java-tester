@@ -16,19 +16,13 @@ import org.testng.annotations.Test;
  */
 @Test(groups = { "JTester" })
 public class FindClazUtilTest extends JTester {
-	@Test
 	public void findClazz_1() {
 		String packagename = FindClazUtil.class.getPackage().getName();
 		want.string(packagename).isEqualTo("org.jtester.utility");
 		List<String> clazz = FindClazUtil.findClazz(packagename);
 		want.collection(clazz).sizeGe(9);
-		// for (String classname : clazz) {
-		// System.out.println(classname);
-		// }
-		// System.out.println("================================");
 	}
 
-	@Test
 	public void test1() {
 		System.out.println("================================");
 		Class<?> claz = UserService.class;
@@ -40,7 +34,6 @@ public class FindClazUtilTest extends JTester {
 		System.out.println("================================");
 	}
 
-	@Test
 	public void test2() {
 		System.out.println("================================");
 		Class<?> claz = UserService.class;
@@ -52,7 +45,6 @@ public class FindClazUtilTest extends JTester {
 		System.out.println("================================");
 	}
 
-	@Test
 	public void test3() {
 		System.out.println("================================");
 		List<String> clazz = FindClazUtil.findClazz(junit.extensions.ActiveTestSuite.class);
