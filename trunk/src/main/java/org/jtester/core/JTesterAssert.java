@@ -31,7 +31,7 @@ import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
 import org.jtester.utility.ArrayConvertor;
 
-public interface IAssertThat {
+public interface JTesterAssert {
 	public static class want {
 		public static IStringAssert string(String value) {
 			return new StringAssert(value);
