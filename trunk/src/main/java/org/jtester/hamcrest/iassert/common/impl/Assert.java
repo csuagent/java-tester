@@ -84,4 +84,9 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	protected static enum AssertType {
 		AssertThat, Expectations;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		throw new RuntimeException("the method can't be used,please use isEqualTo() instead");
+	}
 }
