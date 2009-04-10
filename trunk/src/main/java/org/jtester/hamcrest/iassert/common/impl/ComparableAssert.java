@@ -20,22 +20,22 @@ public class ComparableAssert<T, E extends IAssert<T, ?>> extends BaseAssert<T, 
 		super(value, clazE);
 	}
 
-	public E geq(Comparable min) {
+	public E greaterEqual(Comparable min) {
 		GreaterOrEqual matcher = new GreaterOrEqual(min);
 		return this.assertThat(matcher);
 	}
 
-	public E gt(Comparable min) {
+	public E greaterThan(Comparable min) {
 		GreaterThan matcher = new GreaterThan(min);
 		return this.assertThat(matcher);
 	}
 
-	public E leq(Comparable max) {
+	public E lessEqual(Comparable max) {
 		LessOrEqual matcher = new LessOrEqual(max);
 		return this.assertThat(matcher);
 	}
 
-	public E lt(Comparable max) {
+	public E lessThan(Comparable max) {
 		LessThan matcher = new LessThan(max);
 		return this.assertThat(matcher);
 	}
