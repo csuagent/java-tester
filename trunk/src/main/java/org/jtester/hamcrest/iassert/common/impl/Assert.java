@@ -7,6 +7,7 @@ import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
 import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.matcher.LinkMatcher;
+import org.jtester.jmock.ExpectationsUtil;
 import org.jtester.utility.PrimitiveConvertor;
 
 public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> implements IAssert<T, E> {
@@ -41,16 +42,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		this.valueClaz = clazT;
 		this.assertClaz = clazE;
 		this.link = new LinkMatcher<T>();
-	}
-
-	@SuppressWarnings("unchecked")
-	public T match(Expectations expectations) {
-		if (this.type == AssertType.AssertThat) {
-			throw new RuntimeException("is not an Expectations");
-		} else {
-			expectations.with(this.link);
-			return (T) PrimitiveConvertor.value(valueClaz);
-		}
 	}
 
 	public void describeTo(Description description) {
@@ -88,5 +79,26 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	@Override
 	public boolean equals(Object obj) {
 		throw new RuntimeException("the method can't be used,please use isEqualTo() instead");
+	}
+
+	// @SuppressWarnings("unchecked")
+	// public T match(Expectations expectations) {
+	// if (this.type == AssertType.AssertThat) {
+	// throw new RuntimeException("is not an Expectations");
+	// } else {
+	// expectations.with(this.link);
+	// return (T) PrimitiveConvertor.value(valueClaz);
+	// }
+	// }
+
+	@SuppressWarnings("unchecked")
+	public T wanted() {
+		if (this.type == AssertType.AssertThat) {
+			throw new RuntimeException("is not an Expectations");
+		} else {
+			Expectations ex = ExpectationsUtil.getExpectations(Thread.currentThread().getId());
+			ex.with(this.link);
+			return (T) PrimitiveConvertor.value(valueClaz);
+		}
 	}
 }

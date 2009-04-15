@@ -5,14 +5,14 @@ import org.hamcrest.core.IsEqual;
 import org.jmock.Expectations;
 import org.jtester.jmock.JTesterExpectations;
 import org.jtester.testng.JTester;
-import org.jtester.unitils.jmock.bean.ISay;
+import org.jtester.unitils.jmock.bean.ISpeak;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class TestMockObject extends JTester {
+public class MockTest_One extends JTester {
 	@Mock
-	private ISay say;
+	private ISpeak say;
 
 	@BeforeMethod
 	public void before() {
@@ -25,7 +25,7 @@ public class TestMockObject extends JTester {
 	}
 
 	@Test
-	public void testMock1() {
+	public void mock_test1() {
 		JmockUnitils.checking(new Expectations() {
 			{
 				one(say).count();
@@ -39,7 +39,7 @@ public class TestMockObject extends JTester {
 	}
 
 	@Test
-	public void testMock2() {
+	public void mock_test2() {
 		checking(new JTesterExpectations() {
 			{
 				allowing(say).count();
