@@ -31,122 +31,284 @@ import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
 import org.jtester.utility.ArrayConvertor;
 
+/**
+ * asserter's factory
+ * 
+ * @author darui.wudr
+ * 
+ */
 public interface JTesterAssert {
-	public static class want {
-		public static IStringAssert string(String value) {
+	public static final Want want = new Want();
+
+	public static class Want {
+		/**
+		 * a string argument asserter
+		 * 
+		 * @param value
+		 *            a string variable
+		 * @return
+		 */
+		public IStringAssert string(String value) {
 			return new StringAssert(value);
 		}
 
-		public static IBooleanAssert bool(boolean value) {
+		/**
+		 * a boolean argument asserter
+		 * 
+		 * @param value
+		 *            a boolean variable
+		 * @return
+		 */
+		public IBooleanAssert bool(boolean value) {
 			return new BooleanAssert(value);
 		}
 
-		public static IBooleanAssert bool(Boolean value) {
+		/**
+		 * a boolean argument asserter
+		 * 
+		 * @param value
+		 *            a boolean variable
+		 * @return
+		 */
+		public IBooleanAssert bool(Boolean value) {
 			return new BooleanAssert(value);
 		}
 
-		public static IIntegerAssert number(Integer value) {
+		/**
+		 * an integer argument asserter
+		 * 
+		 * @param value
+		 *            a integer variable
+		 * @return
+		 */
+		public IIntegerAssert number(Integer value) {
 			return new IntegerAssert(value);
 		}
 
-		public static IShortAssert number(Short value) {
+		/**
+		 * a short argument asserter
+		 * 
+		 * @param value
+		 *            a short variable
+		 * @return
+		 */
+		public IShortAssert number(Short value) {
 			return new ShortAssert(value);
 		}
 
-		public static ILongAssert number(Long value) {
+		/**
+		 * a long argument asserter
+		 * 
+		 * @param value
+		 *            a long variable
+		 * @return
+		 */
+		public ILongAssert number(Long value) {
 			return new LongAssert(value);
 		}
 
-		public static IDoubleAssert number(Double value) {
+		/**
+		 * a double argument asserter
+		 * 
+		 * @param value
+		 *            a double variable
+		 * @return
+		 */
+		public IDoubleAssert number(Double value) {
 			return new DoubleAssert(value);
 		}
 
-		public static IFloatAssert number(Float value) {
+		/**
+		 * a float argument asserter
+		 * 
+		 * @param value
+		 *            a float variable
+		 * @return
+		 */
+		public IFloatAssert number(Float value) {
 			return new FloatAssert(value);
 		}
 
-		public static ICharacterAssert character(Character value) {
-			return new CharacterAssert(value);
-		}
-
-		public static ICharacterAssert character(char value) {
+		/**
+		 * a character argument asserter
+		 * 
+		 * @param value
+		 *            a character variable
+		 * @return
+		 */
+		public ICharacterAssert character(Character value) {
 			return new CharacterAssert(value);
 		}
 
 		/**
-		 * bite is byte
+		 * a character argument asserter
 		 * 
 		 * @param value
+		 *            a character variable
 		 * @return
 		 */
-		public static IByteAssert bite(Byte value) {
+		public ICharacterAssert character(char value) {
+			return new CharacterAssert(value);
+		}
+
+		/**
+		 * a byte argument asserter
+		 * 
+		 * @param value
+		 *            a byte variable
+		 * @return
+		 */
+		public IByteAssert bite(Byte value) {
 			return new ByteAssert(value);
 		}
 
 		/**
-		 * bite is byte
+		 * a byte argument asserter
 		 * 
 		 * @param value
+		 *            a byte variable
 		 * @return
 		 */
-		public static IByteAssert bite(byte value) {
+		public IByteAssert bite(byte value) {
 			return new ByteAssert(value);
 		}
 
-		public static <T extends Object> IArrayAssert array(T value[]) {
+		/**
+		 * an array argument asserter
+		 * 
+		 * @param value
+		 *            a array variable
+		 * @return
+		 */
+		public <T extends Object> IArrayAssert array(T value[]) {
 			return new ArrayAssert(value);
 		}
 
-		// boolean
-		public static IArrayAssert array(boolean value[]) {
+		/**
+		 * a boolean array argument asserter
+		 * 
+		 * @param value
+		 *            a boolean array
+		 * @return
+		 */
+		public IArrayAssert array(boolean value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		// byte
-		public static IArrayAssert array(byte value[]) {
+		/**
+		 * a byte array argument asserter
+		 * 
+		 * @param value
+		 *            a byte array
+		 * @return
+		 */
+		public IArrayAssert array(byte value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		// char
-		public static IArrayAssert array(char value[]) {
+		/**
+		 * a character array argument asserter
+		 * 
+		 * @param value
+		 *            a character array
+		 * @return
+		 */
+		public IArrayAssert array(char value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		// short int long
-		public static IArrayAssert array(short value[]) {
+		/**
+		 * a short array argument asserter
+		 * 
+		 * @param value
+		 *            a short array
+		 * @return
+		 */
+		public IArrayAssert array(short value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		public static IArrayAssert array(int value[]) {
+		/**
+		 * an integer array argument asserter
+		 * 
+		 * @param value
+		 *            a integer array
+		 * @return
+		 */
+		public IArrayAssert array(int value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		public static IArrayAssert array(long value[]) {
+		/**
+		 * a long array argument asserter
+		 * 
+		 * @param value
+		 *            a long array
+		 * @return
+		 */
+		public IArrayAssert array(long value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		// float double
-		public static IArrayAssert array(float value[]) {
+		/**
+		 * a float array argument asserter
+		 * 
+		 * @param value
+		 *            a float array
+		 * @return
+		 */
+		public IArrayAssert array(float value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		public static IArrayAssert array(double value[]) {
+		/**
+		 * a double array argument asserter
+		 * 
+		 * @param value
+		 *            a double array
+		 * @return
+		 */
+		public IArrayAssert array(double value[]) {
 			return new ArrayAssert(ArrayConvertor.convert(value));
 		}
 
-		public static IMapAssert map(Map<?, ?> map) {
+		/**
+		 * a map argument asserter
+		 * 
+		 * @param value
+		 *            a map argument
+		 * @return
+		 */
+		public IMapAssert map(Map<?, ?> map) {
 			return new MapAssert(map);
 		}
 
-		public static ICollectionAssert collection(Collection<?> collection) {
+		/**
+		 * a collection argument asserter
+		 * 
+		 * @param value
+		 *            a collection argument
+		 * @return
+		 */
+		public ICollectionAssert collection(Collection<?> collection) {
 			return new CollectionAssert(collection);
 		}
 
-		public static IObjectAssert object(Object bean) {
+		/**
+		 * an object argument asserter
+		 * 
+		 * @param value
+		 *            a object argument
+		 * @return
+		 */
+		public IObjectAssert object(Object bean) {
 			return new ObjectAssert(bean);
 		}
 
-		public static void failure() {
+		/**
+		 * an assert statement always throw an AssertError exception
+		 */
+		public void failure() {
 			assert true == false;
 		}
 	}
