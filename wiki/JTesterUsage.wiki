@@ -7,7 +7,7 @@ JMock的使用
 {{{
    先继承接口org.jtester.core.JTesterAssert
    例子：want.string("this is a example").contains("is").contains("example");
-   断言都是以want语法开头,后面可以对具体的变量实例进行断言，目前支持的类型包括6个java基本类型,collection,数组，以及object对象。
+   断言都是以want语法开头,后面可以对具体的变量实例进行断言，目前支持的类型包括6个java基本类型,collection,数组，map，以及object对象。
 }}}
 {{{
 List<String> list = new ArrayList<String>();
