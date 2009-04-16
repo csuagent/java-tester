@@ -166,11 +166,5 @@ public interface IExpectation {
 		public IObjectAssert object() {
 			return new ObjectAssert();
 		}
-
-		// @SuppressWarnings("unchecked")
-		// public <T extends Object> Matcher<T> any(Class<T> claz) {
-		// Matcher<T> _matcher = Any.ANY;
-		// return _matcher;
-		// }
 	}
 }
