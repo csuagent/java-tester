@@ -1,6 +1,5 @@
 package org.jtester.core;
 
-import org.hamcrest.Matcher;
 import org.jtester.hamcrest.iassert.object.IArrayAssert;
 import org.jtester.hamcrest.iassert.object.IBooleanAssert;
 import org.jtester.hamcrest.iassert.object.IByteAssert;
@@ -29,76 +28,149 @@ import org.jtester.hamcrest.iassert.object.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.object.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
-import org.mockito.internal.matchers.Any;
 
+/**
+ * the jmock parameter expectation factory
+ * 
+ * @author darui.wudr
+ * 
+ */
 public interface IExpectation {
-	public static class the {
-		public static IStringAssert string() {
+	public static final TheExpectation the = new TheExpectation();
+
+	public static class TheExpectation {
+		/**
+		 * a string parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IStringAssert string() {
 			return new StringAssert();
 		}
 
-		public static IBooleanAssert bool() {
+		/**
+		 * a boolean parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IBooleanAssert bool() {
 			return new BooleanAssert();
 		}
 
+		/**
+		 * a number(integer, long, double,short,float) parameter should be
+		 * expected
+		 * 
+		 * @return
+		 */
 		@SuppressWarnings("unchecked")
-		public static INumberAssert number() {
+		public INumberAssert number() {
 			return new NumberAssert(NumberAssert.class);
 		}
 
-		public static IIntegerAssert integer() {
+		/**
+		 * a integer number parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IIntegerAssert integer() {
 			return new IntegerAssert();
 		}
 
-		public static ILongAssert longnum() {
+		/**
+		 * a long number parameter should be expected
+		 * 
+		 * @return
+		 */
+		public ILongAssert longnum() {
 			return new LongAssert();
 		}
 
-		public static IDoubleAssert doublenum() {
+		/**
+		 * a double number parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IDoubleAssert doublenum() {
 			return new DoubleAssert();
 		}
 
-		public static IFloatAssert floatnum() {
+		/**
+		 * a float number parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IFloatAssert floatnum() {
 			return new FloatAssert();
 		}
 
-		public static IShortAssert shortnum() {
+		/**
+		 * a short number parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IShortAssert shortnum() {
 			return new ShortAssert();
 		}
 
-		public static ICharacterAssert character() {
+		/**
+		 * a character parameter should be expected
+		 * 
+		 * @return
+		 */
+		public ICharacterAssert character() {
 			return new CharacterAssert();
 		}
 
 		/**
-		 * bite is byte
+		 * a bite parameter should be expected
 		 * 
 		 * @return
 		 */
-		public static IByteAssert bite() {
+		public IByteAssert bite() {
 			return new ByteAssert();
 		}
 
-		public static IArrayAssert array() {
+		/**
+		 * a array parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IArrayAssert array() {
 			return new ArrayAssert();
 		}
 
-		public static IMapAssert map() {
+		/**
+		 * a map parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IMapAssert map() {
 			return new MapAssert();
 		}
 
-		public static ICollectionAssert collection() {
+		/**
+		 * a collection parameter should be expected
+		 * 
+		 * @return
+		 */
+		public ICollectionAssert collection() {
 			return new CollectionAssert();
 		}
 
-		public static IObjectAssert object() {
+		/**
+		 * a general object parameter should be expected
+		 * 
+		 * @return
+		 */
+		public IObjectAssert object() {
 			return new ObjectAssert();
 		}
 
-		@SuppressWarnings("unchecked")
-		public static <T extends Object> Matcher<T> any(Class<T> claz) {
-			Matcher<T> _matcher = Any.ANY;
-			return _matcher;
-		}
+		// @SuppressWarnings("unchecked")
+		// public <T extends Object> Matcher<T> any(Class<T> claz) {
+		// Matcher<T> _matcher = Any.ANY;
+		// return _matcher;
+		// }
 	}
 }
