@@ -4,9 +4,11 @@
 JMock的使用
 
 断言的使用
+{{{
    先继承接口org.jtester.core.JTesterAssert
    例子：want.string("this is a example").contains("is").contains("example");
    断言都是以want语法开头,后面可以对具体的变量实例进行断言，目前支持的类型包括6个java基本类型,collection,数组，以及object对象。
+}}}
 {{{
 List<String> list = new ArrayList<String>();
 list.add("test.hello.one");
@@ -20,4 +22,3 @@ want.array(new double[] { 1, 2.0d }).hasItems(1d);
 
 want.array(new int[] { 1, 2, 3 }).hasItems(Arrays.asList(1, 3));
 }}}
-
