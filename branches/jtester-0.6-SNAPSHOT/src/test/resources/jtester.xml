@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="JTester">
+    <test name="JTester">
+        <groups>
+            <run>
+                <include name="JTester"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="org.jtester.*"/>
+        </packages>
+    </test>
+</suite>
