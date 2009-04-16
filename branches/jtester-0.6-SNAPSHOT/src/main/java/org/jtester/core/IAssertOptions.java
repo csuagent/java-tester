@@ -2,6 +2,11 @@ package org.jtester.core;
 
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
+/**
+ * 
+ * @author darui.wudr
+ * 
+ */
 public interface IAssertOptions {
 	/**
 	 * reflection assert modes

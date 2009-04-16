@@ -4,7 +4,7 @@ package org.jtester.hamcrest.iassert.common;
 public interface IComparableAssert<E extends IAssert<?, ?>> {
 
 	/**
-	 * the object asserted less than $max
+	 * the asserted object less than $max
 	 * 
 	 * @param max
 	 * @return
@@ -12,7 +12,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	public E lessThan(Comparable max);
 
 	/**
-	 * the object asserted less than or equals to $max
+	 * the asserted object less than or equals to $max
 	 * 
 	 * @param max
 	 * @return
@@ -20,7 +20,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	public E lessEqual(Comparable max);
 
 	/**
-	 * the object asserted greater than $min
+	 * the asserted object greater than $min
 	 * 
 	 * @param min
 	 * @return
@@ -28,7 +28,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	public E greaterThan(Comparable min);
 
 	/**
-	 * the object asserted greater than or equals to $min
+	 * the asserted object greater than or equals to $min
 	 * 
 	 * @param min
 	 * @return
@@ -36,7 +36,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	public E greaterEqual(Comparable min);
 
 	/**
-	 * the object asserted is between $min and $max
+	 * the asserted object is between $min and $max
 	 * 
 	 * @param min
 	 * @param max
