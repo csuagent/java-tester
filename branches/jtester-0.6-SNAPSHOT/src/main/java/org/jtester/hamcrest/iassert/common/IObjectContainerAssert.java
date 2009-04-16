@@ -79,6 +79,14 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	 */
 	E sizeNe(int size);
 
+	/**
+	 * the array or collection should be contain the expected items in the
+	 * para's collection
+	 * 
+	 * @param coll
+	 *            a collection contains expected items
+	 * @return
+	 */
 	E hasItems(Collection<?> coll);
 
 	E hasItems(Object value, Object... values);
