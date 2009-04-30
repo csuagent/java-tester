@@ -10,19 +10,19 @@ import org.testng.annotations.Test;
 public class SerializeUtilTest extends JTester {
 
 	@Test
-	public void encoded2dat() {
+	public void pojoToDat() {
 		String filename = "d:/temp.dat";
 		want.file(filename).unExists();
-		SerializeUtil.encoded2dat(this.mock(), filename);
+		SerializeUtil.pojoToDat(this.mock(), filename);
 		want.file(filename).isExists();
 	}
 
-	@Test(dependsOnMethods = { "encoded2dat" })
-	public void decoded4dat() {
+	@Test(dependsOnMethods = { "pojoToDat" })
+	public void pojoFrDat() {
 		String filename = "d:/temp.dat";
 		want.file(filename).isExists();
 
-		Manager manager = SerializeUtil.decoded4dat(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFrDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 
 		File file = new File(filename);
@@ -30,26 +30,26 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test
-	public void decoded4dat_classpath() {
+	public void pojoFrDat_classpath() {
 		String filename = "classpath:org/jtester/utility/manager.dat";
-		Manager manager = SerializeUtil.decoded4dat(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFrDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 	}
 
 	@Test
-	public void encoded2xml() {
+	public void pojoToxml() {
 		String filename = "d:/temp.xml";
 		want.file(filename).unExists();
-		SerializeUtil.encoded2xml(this.mock(), filename);
+		SerializeUtil.pojoToXml(this.mock(), filename);
 		want.file(filename).isExists();
 	}
 
-	@Test(dependsOnMethods = { "encoded2xml" })
-	public void decoded4xml() {
+	@Test(dependsOnMethods = { "pojoToxml" })
+	public void pojoFrXml() {
 		String filename = "d:/temp.xml";
 		want.file(filename).isExists();
 
-		Manager manager = SerializeUtil.decoded4xml(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFrXml(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 
 		File file = new File(filename);
@@ -57,9 +57,9 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test
-	public void decoded4xml_classpath() {
+	public void pojoFrXml_classpath() {
 		String filename = "classpath:org/jtester/utility/manager.xml";
-		Manager manager = SerializeUtil.decoded4xml(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFrXml(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester1");
 		System.out.println(manager.getDate());
 		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(14);

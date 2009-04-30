@@ -13,7 +13,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class SerializeUtil {
-	public static <T> void encoded2dat(T o, String filename) {
+	public static <T> void pojoToDat(T o, String filename) {
 		SerializeUtil.mkdirs(filename);
 
 		try {
@@ -27,7 +27,7 @@ public class SerializeUtil {
 		}
 	}
 
-	public static <T> void encoded2xml(T o, String filename) {
+	public static <T> void pojoToXml(T o, String filename) {
 		try {
 			XStream xs = new XStream(new DomDriver());
 			FileOutputStream fos = new FileOutputStream(filename);
@@ -41,7 +41,7 @@ public class SerializeUtil {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> T decoded4dat(Class<T> claz, String filename) {
+	public static <T> T pojoFrDat(Class<T> claz, String filename) {
 		try {
 			InputStream inputStream = SerializeUtil.isFileExisted(filename);
 			ObjectInputStream in = new ObjectInputStream(inputStream);
@@ -57,7 +57,7 @@ public class SerializeUtil {
 		}
 	}
 
-	public static <T> T decoded4xml(Class<T> claz, String filename) {
+	public static <T> T pojoFrXml(Class<T> claz, String filename) {
 		try {
 			InputStream fis = SerializeUtil.isFileExisted(filename);
 			XStream xs = new XStream(new DomDriver());
