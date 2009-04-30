@@ -60,6 +60,9 @@ public class SerializeUtil {
 	public static <T> T getPojoFromXml(Class<T> claz, String filename) {
 		try {
 			InputStream fis = SerializeUtil.isFileExisted(filename);
+			if (fis == null) {
+				throw new RuntimeException(String.format("file '%s' doesn't exist", filename));
+			}
 			XStream xs = new XStream(new DomDriver());
 			T o = claz.newInstance();
 			xs.fromXML(fis, o);
