@@ -45,9 +45,8 @@ public class SerializeUtil {
 		filename = filename.replace('/', File.separatorChar);
 		filename = filename.replace('\\', File.separatorChar);
 		File fo = new File(filename);
-		// 文件不存在,就创建该文件
+		// 文件不存在,就创建该文件,先创建文件的目录
 		if (!fo.exists()) {
-			// 先创建文件的目录
 			String path = filename.substring(0, filename.lastIndexOf(File.separatorChar));
 			File pFile = new File(path);
 			pFile.mkdirs();
