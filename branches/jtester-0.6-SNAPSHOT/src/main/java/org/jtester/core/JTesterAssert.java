@@ -308,8 +308,15 @@ public interface JTesterAssert {
 		/**
 		 * an assert statement always throw an AssertError exception
 		 */
-		public void failure() {
+		public void fail() {
 			assert true == false;
+		}
+
+		/**
+		 * an assert statement always throw an AssertError exception
+		 */
+		public void fail(String message) {
+			assert true == false : message;
 		}
 	}
 }
