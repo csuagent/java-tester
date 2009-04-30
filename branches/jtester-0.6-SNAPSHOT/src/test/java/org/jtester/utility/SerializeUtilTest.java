@@ -8,6 +8,7 @@ import org.jtester.utility.beans.Manager;
 import org.jtester.utility.beans.PhoneNumber;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class SerializeUtilTest extends JTester {
 
 	@Test
