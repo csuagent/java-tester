@@ -62,8 +62,7 @@ public class SerializeUtilTest extends JTester {
 		Manager manager = SerializeUtil.decoded4xml(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester1");
 		System.out.println(manager.getDate());
-		// want.object(manager).propertyEq("date",
-		// "2009-04-30 14:51:36.313 CST");
+		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(14);
 	}
 
 	private Manager mock() {

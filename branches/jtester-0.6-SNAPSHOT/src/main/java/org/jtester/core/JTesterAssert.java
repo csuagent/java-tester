@@ -1,12 +1,15 @@
 package org.jtester.core;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 import org.jtester.hamcrest.iassert.object.IArrayAssert;
 import org.jtester.hamcrest.iassert.object.IBooleanAssert;
 import org.jtester.hamcrest.iassert.object.IByteAssert;
+import org.jtester.hamcrest.iassert.object.ICalendarAssert;
 import org.jtester.hamcrest.iassert.object.ICharacterAssert;
 import org.jtester.hamcrest.iassert.object.ICollectionAssert;
 import org.jtester.hamcrest.iassert.object.IDoubleAssert;
@@ -21,6 +24,7 @@ import org.jtester.hamcrest.iassert.object.IStringAssert;
 import org.jtester.hamcrest.iassert.object.impl.ArrayAssert;
 import org.jtester.hamcrest.iassert.object.impl.BooleanAssert;
 import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
+import org.jtester.hamcrest.iassert.object.impl.CalendarAssert;
 import org.jtester.hamcrest.iassert.object.impl.CharacterAssert;
 import org.jtester.hamcrest.iassert.object.impl.CollectionAssert;
 import org.jtester.hamcrest.iassert.object.impl.DoubleAssert;
@@ -341,6 +345,28 @@ public interface JTesterAssert {
 		 */
 		public IFileAssert file(File file) {
 			return new FileAssert(file);
+		}
+
+		/**
+		 * a calendar argument asserter
+		 * 
+		 * @param cal
+		 * @return
+		 */
+		public ICalendarAssert date(Calendar cal) {
+			return new CalendarAssert(cal);
+		}
+
+		/**
+		 * a date argument asserter
+		 * 
+		 * @param date
+		 * @return
+		 */
+		public ICalendarAssert date(Date date) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			return new CalendarAssert(cal);
 		}
 	}
 }
