@@ -44,7 +44,7 @@ public class SerializeUtil {
 	private static InputStream isFileExisted(String filename) throws FileNotFoundException {
 		if (filename.startsWith("classpath:")) {
 			String file = filename.replaceFirst("classpath:", "");
-			return SerializeUtil.class.getClassLoader().getResourceAsStream(file);
+			return ClassLoader.getSystemResourceAsStream(file);
 		} else {
 			File file = new File(filename);
 			if (!file.exists()) {
