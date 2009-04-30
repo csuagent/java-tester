@@ -9,8 +9,11 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
 public class SerializeUtil {
-	public static <T> void serialize(T o, String filename) {
+	public static <T> void encoded2dat(T o, String filename) {
 		SerializeUtil.mkdirs(filename);
 
 		try {
@@ -24,8 +27,21 @@ public class SerializeUtil {
 		}
 	}
 
+	public static <T> void encoded2xml(T o, String filename) {
+		try {
+			XStream xs = new XStream(new DomDriver());
+			FileOutputStream fos = new FileOutputStream(filename);
+			xs.toXML(o, fos);
+			fos.close();
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	public static <T> T deSerialize(Class<T> claz, String filename) {
+	public static <T> T decoded4dat(Class<T> claz, String filename) {
 		try {
 			InputStream inputStream = SerializeUtil.isFileExisted(filename);
 			ObjectInputStream in = new ObjectInputStream(inputStream);
@@ -37,6 +53,22 @@ public class SerializeUtil {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static <T> T decoded4xml(Class<T> claz, String filename) {
+		try {
+			InputStream fis = SerializeUtil.isFileExisted(filename);
+			XStream xs = new XStream(new DomDriver());
+			T o = claz.newInstance();
+			xs.fromXML(fis, o);
+			return o;
+		} catch (InstantiationException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 	}

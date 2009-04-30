@@ -10,23 +10,19 @@ import org.testng.annotations.Test;
 public class SerializeUtilTest extends JTester {
 
 	@Test
-	public void testSerialize() {
+	public void encoded2dat() {
 		String filename = "d:/temp.dat";
 		want.file(filename).unExists();
-		Employee harry = new Employee("Harry Hacker", 50000);
-		Manager manager = new Manager("Tony Tester", 80000);
-		manager.setSecretary(harry);
-
-		SerializeUtil.serialize(manager, filename);
+		SerializeUtil.encoded2dat(this.mock(), filename);
 		want.file(filename).isExists();
 	}
 
-	@Test(dependsOnMethods = { "testSerialize" })
-	public void testDeSerialize() {
+	@Test(dependsOnMethods = { "encoded2dat" })
+	public void decoded4dat() {
 		String filename = "d:/temp.dat";
 		want.file(filename).isExists();
 
-		Manager manager = SerializeUtil.deSerialize(Manager.class, filename);
+		Manager manager = SerializeUtil.decoded4dat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 
 		File file = new File(filename);
@@ -34,9 +30,44 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test
-	public void tetDeSerialize_classpath() {
+	public void decoded4dat_classpath() {
 		String filename = "classpath:org/jtester/utility/manager.dat";
-		Manager manager = SerializeUtil.deSerialize(Manager.class, filename);
+		Manager manager = SerializeUtil.decoded4dat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
+	}
+
+	@Test
+	public void encoded2xml() {
+		String filename = "d:/temp.xml";
+		want.file(filename).unExists();
+		SerializeUtil.encoded2xml(this.mock(), filename);
+		want.file(filename).isExists();
+	}
+
+	@Test(dependsOnMethods = { "encoded2xml" })
+	public void decoded4xml() {
+		String filename = "d:/temp.xml";
+		want.file(filename).isExists();
+
+		Manager manager = SerializeUtil.decoded4xml(Manager.class, filename);
+		want.object(manager).propertyEq("name", "Tony Tester");
+
+		File file = new File(filename);
+		file.delete();
+	}
+
+	@Test
+	public void decoded4xml_classpath() {
+		String filename = "classpath:org/jtester/utility/manager.xml";
+		Manager manager = SerializeUtil.decoded4xml(Manager.class, filename);
+		want.object(manager).propertyEq("name", "Tony Tester1");
+		want.object(manager).propertyEq("date", "2009-04-30 14:51:36.313 CST");
+	}
+
+	private Manager mock() {
+		Employee harry = new Employee("Harry Hacker", 50000);
+		Manager manager = new Manager("Tony Tester", 80000);
+		manager.setSecretary(harry);
+		return manager;
 	}
 }

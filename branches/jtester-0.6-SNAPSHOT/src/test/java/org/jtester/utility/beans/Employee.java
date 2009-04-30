@@ -1,5 +1,7 @@
 package org.jtester.utility.beans;
 
+import java.util.Date;
+
 public class Employee implements java.io.Serializable {
 	private static final long serialVersionUID = -7583085914565894622L;
 
@@ -7,6 +9,12 @@ public class Employee implements java.io.Serializable {
 
 	private transient double sarary;
 
+	private Date date;
+
+	public Employee() {
+		super();
+	}
+	
 	public Employee(String name, double sarary) {
 		this.name = name;
 		this.sarary = sarary;
@@ -30,5 +38,13 @@ public class Employee implements java.io.Serializable {
 
 	public void raiseSalary(double raise) {
 		this.sarary += raise;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

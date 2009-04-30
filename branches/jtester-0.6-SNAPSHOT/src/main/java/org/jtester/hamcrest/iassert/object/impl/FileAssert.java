@@ -20,7 +20,7 @@ public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAs
 	}
 
 	public IFileAssert unExists() {
-		assert this.value.exists() == false;
+		assert this.value.exists() == false : String.format("file '%s' exists", this.value.getAbsolutePath());
 		return this;
 	}
 
