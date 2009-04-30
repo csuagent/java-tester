@@ -17,16 +17,17 @@ public class CalendarEqualsMatcher extends BaseMatcher<Calendar> {
 	}
 
 	public boolean matches(Object actual) {
+		if (actual == null) {
+			throw new RuntimeException("the actual value can't be null");
+		}
 		Calendar cal = null;
 
 		if (actual instanceof Calendar) {
 			cal = (Calendar) actual;
-		}
-		if (actual instanceof Date) {
+		} else if (actual instanceof Date) {
 			cal = Calendar.getInstance();
 			cal.setTime((Date) actual);
-		}
-		if (cal == null) {
+		} else {
 			throw new RuntimeException(
 					"the actual value must be a java.util.Date instance or a java.util.Calendar instance");
 		}

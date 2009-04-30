@@ -2,6 +2,10 @@
   <Secretary>
     <name>Harry Hacker</name>
   </Secretary>
-  <name>Tony Tester1</name>
-  <date>2009-04-30 14:51:36.313 CST</date>
+  <phoneNumber class="org.jtester.utility.beans.PhoneNumber">
+    <code>571</code>
+    <number>0571-88886666</number>
+  </phoneNumber>
+  <name>Tony Tester</name>
+  <date>2009-04-30 16:54:53.441 CST</date>
 </org.jtester.utility.beans.Manager>

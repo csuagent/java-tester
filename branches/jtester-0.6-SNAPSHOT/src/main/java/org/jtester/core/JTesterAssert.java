@@ -364,8 +364,11 @@ public interface JTesterAssert {
 		 * @return
 		 */
 		public ICalendarAssert date(Date date) {
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(date);
+			Calendar cal = null;
+			if (date != null) {
+				cal = Calendar.getInstance();
+				cal.setTime(date);
+			}
 			return new CalendarAssert(cal);
 		}
 	}
