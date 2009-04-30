@@ -32,4 +32,11 @@ public class SerializeUtilTest extends JTester {
 		File file = new File(filename);
 		file.delete();
 	}
+
+	@Test
+	public void tetDeSerialize_classpath() {
+		String filename = "classpath:org/jtester/utility/manager.dat";
+		Manager manager = SerializeUtil.deSerialize(Manager.class, filename);
+		want.object(manager).propertyEq("name", "Tony Tester");
+	}
 }

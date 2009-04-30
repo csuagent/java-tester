@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -25,10 +26,9 @@ public class SerializeUtil {
 
 	@SuppressWarnings("unchecked")
 	public static <T> T deSerialize(Class<T> claz, String filename) {
-		File file = SerializeUtil.isFileExisted(filename);
-
 		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+			InputStream inputStream = SerializeUtil.isFileExisted(filename);
+			ObjectInputStream in = new ObjectInputStream(inputStream);
 			Object obj = in.readObject();
 			in.close();
 			return (T) obj;
@@ -38,6 +38,19 @@ public class SerializeUtil {
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	private static InputStream isFileExisted(String filename) throws FileNotFoundException {
+		if (filename.startsWith("classpath:")) {
+			String file = filename.replaceFirst("classpath:", "");
+			return SerializeUtil.class.getClassLoader().getResourceAsStream(file);
+		} else {
+			File file = new File(filename);
+			if (!file.exists()) {
+				throw new RuntimeException("object serializable file doesn't exist");
+			}
+			return new FileInputStream(file);
 		}
 	}
 
@@ -51,13 +64,5 @@ public class SerializeUtil {
 			File pFile = new File(path);
 			pFile.mkdirs();
 		}
-	}
-
-	private static File isFileExisted(String filename) {
-		File file = new File(filename);
-		if (!file.exists()) {
-			throw new RuntimeException("object serializable file doesn't exist");
-		}
-		return file;
 	}
 }

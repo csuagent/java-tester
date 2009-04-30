@@ -15,7 +15,7 @@ public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAs
 	}
 
 	public IFileAssert isExists() {
-		assert this.value.exists() == true;
+		assert this.value.exists() == true : String.format("file '%s' doesn't exists", this.value.getAbsolutePath());
 		return this;
 	}
 
