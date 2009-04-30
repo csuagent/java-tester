@@ -81,16 +81,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		throw new RuntimeException("the method can't be used,please use isEqualTo() instead");
 	}
 
-	// @SuppressWarnings("unchecked")
-	// public T match(Expectations expectations) {
-	// if (this.type == AssertType.AssertThat) {
-	// throw new RuntimeException("is not an Expectations");
-	// } else {
-	// expectations.with(this.link);
-	// return (T) PrimitiveConvertor.value(valueClaz);
-	// }
-	// }
-
 	@SuppressWarnings("unchecked")
 	public T wanted() {
 		if (this.type == AssertType.AssertThat) {

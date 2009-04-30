@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.matcher;
+package org.jtester.hamcrest.matcher.property;
 
 import static org.unitils.reflectionassert.ReflectionComparatorFactory.createRefectionComparator;
 

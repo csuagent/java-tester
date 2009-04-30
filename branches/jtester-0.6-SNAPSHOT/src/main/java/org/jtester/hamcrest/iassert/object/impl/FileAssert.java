@@ -4,8 +4,8 @@ import java.io.File;
 
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
 import org.jtester.hamcrest.iassert.object.IFileAssert;
-import org.jtester.hamcrest.matcher.FileExistsMatcher;
-import org.jtester.hamcrest.matcher.FileExistsMatcher.FileExistsMatcherType;
+import org.jtester.hamcrest.matcher.file.FileExistsMatcher;
+import org.jtester.hamcrest.matcher.file.FileExistsMatcher.FileExistsMatcherType;
 
 public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAssert {
 	public FileAssert() {

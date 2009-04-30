@@ -2,8 +2,8 @@ package org.jtester.hamcrest.iassert.common.impl;
 
 import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.IReflectionAssert;
-import org.jtester.hamcrest.matcher.UnitilsPropertyMatcher;
-import org.jtester.hamcrest.matcher.UnitilsReflectionMatcher;
+import org.jtester.hamcrest.matcher.property.UnitilsPropertyMatcher;
+import org.jtester.hamcrest.matcher.property.UnitilsReflectionMatcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 public class ReflectionAssert<T, E extends IAssert<T, ?>> extends ObjectContainerAssert<T, E> implements
