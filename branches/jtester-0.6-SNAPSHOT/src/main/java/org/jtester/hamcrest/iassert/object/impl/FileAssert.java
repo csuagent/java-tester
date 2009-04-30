@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
 import org.jtester.hamcrest.iassert.object.IFileAssert;
+import org.jtester.hamcrest.matcher.FileExistsMatcher;
+import org.jtester.hamcrest.matcher.FileExistsMatcher.FileExistsMatcherType;
 
 public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAssert {
 	public FileAssert() {
@@ -15,13 +17,12 @@ public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAs
 	}
 
 	public IFileAssert isExists() {
-		assert this.value.exists() == true : String.format("file '%s' doesn't exists", this.value.getAbsolutePath());
-		return this;
+		FileExistsMatcher matcher = new FileExistsMatcher(this.value, FileExistsMatcherType.ISEXISTS);
+		return this.assertThat(matcher);
 	}
 
 	public IFileAssert unExists() {
-		assert this.value.exists() == false : String.format("file '%s' exists", this.value.getAbsolutePath());
-		return this;
+		FileExistsMatcher matcher = new FileExistsMatcher(this.value, FileExistsMatcherType.UNEXISTS);
+		return this.assertThat(matcher);
 	}
-
 }
