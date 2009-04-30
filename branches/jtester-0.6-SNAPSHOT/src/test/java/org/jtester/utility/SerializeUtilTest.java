@@ -18,11 +18,11 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test(dependsOnMethods = { "pojoToDat" })
-	public void pojoFrDat() {
+	public void pojoFromDat() {
 		String filename = "d:/temp.dat";
 		want.file(filename).isExists();
 
-		Manager manager = SerializeUtil.pojoFrDat(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 
 		File file = new File(filename);
@@ -30,9 +30,9 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test
-	public void pojoFrDat_classpath() {
+	public void pojoFromDat_classpath() {
 		String filename = "classpath:org/jtester/utility/manager.dat";
-		Manager manager = SerializeUtil.pojoFrDat(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 	}
 
@@ -45,11 +45,11 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test(dependsOnMethods = { "pojoToxml" })
-	public void pojoFrXml() {
+	public void pojoFromXml() {
 		String filename = "d:/temp.xml";
 		want.file(filename).isExists();
 
-		Manager manager = SerializeUtil.pojoFrXml(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFromXml(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 
 		File file = new File(filename);
@@ -57,9 +57,9 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test
-	public void pojoFrXml_classpath() {
+	public void pojoFromXml_classpath() {
 		String filename = "classpath:org/jtester/utility/manager.xml";
-		Manager manager = SerializeUtil.pojoFrXml(Manager.class, filename);
+		Manager manager = SerializeUtil.pojoFromXml(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester1");
 		System.out.println(manager.getDate());
 		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(14);
