@@ -1,5 +1,6 @@
 package org.jtester.core;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.jtester.hamcrest.iassert.object.IByteAssert;
 import org.jtester.hamcrest.iassert.object.ICharacterAssert;
 import org.jtester.hamcrest.iassert.object.ICollectionAssert;
 import org.jtester.hamcrest.iassert.object.IDoubleAssert;
+import org.jtester.hamcrest.iassert.object.IFileAssert;
 import org.jtester.hamcrest.iassert.object.IFloatAssert;
 import org.jtester.hamcrest.iassert.object.IIntegerAssert;
 import org.jtester.hamcrest.iassert.object.ILongAssert;
@@ -22,6 +24,7 @@ import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
 import org.jtester.hamcrest.iassert.object.impl.CharacterAssert;
 import org.jtester.hamcrest.iassert.object.impl.CollectionAssert;
 import org.jtester.hamcrest.iassert.object.impl.DoubleAssert;
+import org.jtester.hamcrest.iassert.object.impl.FileAssert;
 import org.jtester.hamcrest.iassert.object.impl.FloatAssert;
 import org.jtester.hamcrest.iassert.object.impl.IntegerAssert;
 import org.jtester.hamcrest.iassert.object.impl.LongAssert;
@@ -317,6 +320,27 @@ public interface JTesterAssert {
 		 */
 		public void fail(String message) {
 			assert true == false : message;
+		}
+
+		/**
+		 * a file argument asserter
+		 * 
+		 * @param filename
+		 * @return
+		 */
+		public IFileAssert file(String filename) {
+			File file = new File(filename);
+			return new FileAssert(file);
+		}
+
+		/**
+		 * a file argument asserter
+		 * 
+		 * @param file
+		 * @return
+		 */
+		public IFileAssert file(File file) {
+			return new FileAssert(file);
 		}
 	}
 }

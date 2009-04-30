@@ -14,7 +14,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 
 	protected Class<?> valueClaz = null;
 
-	protected Object value;
+	protected T value;
 
 	protected AssertType type;
 
