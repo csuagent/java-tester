@@ -10,6 +10,7 @@ import org.jtester.hamcrest.bean.User;
 import org.jtester.testng.JTester;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 @Test(groups = { "JTester" })
 public class TestReflectionAssert extends JTester {
@@ -48,12 +49,12 @@ public class TestReflectionAssert extends JTester {
 	@Test
 	public void test5() {
 		List<Integer> myList = Arrays.asList(3, 2, 1);
-		want.object(myList).reflectionEq(Arrays.asList(1, 2, 3), opts.LENIENT_ORDER);
+		want.object(myList).reflectionEq(Arrays.asList(1, 2, 3), ReflectionComparatorMode.LENIENT_ORDER);
 
 		User actualUser = new User("John", "Doe", new Address("First street", "12", "Brussels"));
 		User expectedUser = new User("John", null, new Address("First street", null, null));
 		// assertReflectionEquals(expectedUser, actualUser, IGNORE_DEFAULTS);
-		want.object(actualUser).reflectionEq(expectedUser, opts.IGNORE_DEFAULTS);
+		want.object(actualUser).reflectionEq(expectedUser, ReflectionComparatorMode.IGNORE_DEFAULTS);
 	}
 
 	@Test
@@ -61,7 +62,7 @@ public class TestReflectionAssert extends JTester {
 		Date actualDate = new Date(44444);
 		Date expectedDate = new Date();
 		// assertReflectionEquals(expectedDate, actualDate, LENIENT_DATES);
-		want.object(actualDate).reflectionEq(expectedDate, opts.LENIENT_DATES);
+		want.object(actualDate).reflectionEq(expectedDate, ReflectionComparatorMode.LENIENT_DATES);
 
 	}
 
@@ -90,16 +91,16 @@ public class TestReflectionAssert extends JTester {
 		want.object(user2).propertyEq("address.street", "First street");
 
 		want.object(new User[] { new User("Jane"), new User("John") }).reflectionEq(
-				Arrays.asList(new User("John"), new User("Jane")), opts.LENIENT_ORDER);
+				Arrays.asList(new User("John"), new User("Jane")), ReflectionComparatorMode.LENIENT_ORDER);
 
 		want.object(Arrays.asList(new User("John"), new User("Jane"))).reflectionEq(
-				new User[] { new User("Jane"), new User("John") }, opts.LENIENT_ORDER);
+				new User[] { new User("Jane"), new User("John") }, ReflectionComparatorMode.LENIENT_ORDER);
 
 		want.array(new User[] { new User("Jane"), new User("John") }).reflectionEq(
-				Arrays.asList(new User("John"), new User("Jane")), opts.LENIENT_ORDER);
+				Arrays.asList(new User("John"), new User("Jane")), ReflectionComparatorMode.LENIENT_ORDER);
 
 		want.collection(Arrays.asList(new User("John"), new User("Jane"))).reflectionEq(
-				new User[] { new User("Jane"), new User("John") }, opts.LENIENT_ORDER);
+				new User[] { new User("Jane"), new User("John") }, ReflectionComparatorMode.LENIENT_ORDER);
 
 	}
 
