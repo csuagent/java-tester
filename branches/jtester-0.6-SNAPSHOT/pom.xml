@@ -4,6 +4,25 @@
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
 	<version>0.6-SNAPSHOT</version>
+	<properties>
+		<jetty.version>6.1.4</jetty.version>
+		<hibernate.version>3.2.5.ga</hibernate.version>
+		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
+		<!-- <spring.version>2.0.8</spring.version>-->
+		<spring.version>2.5.4</spring.version>
+		<!-- <unitils.version>2.0</unitils.version>-->
+		<unitils.version>2.2</unitils.version>
+		<!-- dbunit 2.4.2,2.4.4 has problem with unitils -->
+		<!-- <dbunit.version>2.2</dbunit.version> -->
+		<dbunit.version>2.4.3</dbunit.version>
+		<jmock.version>2.5.1</jmock.version>
+		<hamcrest.version>1.1</hamcrest.version>
+		<!-- <mockito.version>1.6</mockito.version>-->
+		<mockito.version>1.7</mockito.version>
+		<!--  <h2db.version>1.1.104</h2db.version>-->
+		<h2db.version>1.1.107</h2db.version>
+		<mysql.connection.version>3.1.12</mysql.connection.version>
+	</properties>
 	<build>
 		<finalName>${artifactId}-${version}</finalName>
 		<plugins>
@@ -123,6 +142,12 @@
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils</artifactId>
 			<version>${unitils.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ant</groupId>
+					<artifactId>ant</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.dbunit</groupId>
@@ -134,13 +159,14 @@
 			<artifactId>testng</artifactId>
 			<version>5.8</version>
 			<classifier>jdk15</classifier>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.5</version>
 			<type>jar</type>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -196,6 +222,7 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -227,23 +254,5 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<properties>
-		<jetty.version>6.1.4</jetty.version>
-		<hibernate.version>3.2.5.ga</hibernate.version>
-		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
-		<!-- <spring.version>2.0.8</spring.version>-->
-		<spring.version>2.5.4</spring.version>
-		<!-- <unitils.version>2.0</unitils.version>-->
-		<unitils.version>2.2</unitils.version>
-		<!-- dbunit 2.4.2,2.4.4 has problem with unitils -->
-		<!-- <dbunit.version>2.2</dbunit.version> -->
-		<dbunit.version>2.4.3</dbunit.version>
-		<jmock.version>2.5.1</jmock.version>
-		<hamcrest.version>1.1</hamcrest.version>
-		<!-- <mockito.version>1.6</mockito.version>-->
-		<mockito.version>1.7</mockito.version>
-		<!--  <h2db.version>1.1.104</h2db.version>-->
-		<h2db.version>1.1.107</h2db.version>
-		<mysql.connection.version>3.1.12</mysql.connection.version>
-	</properties>
+
 </project>
