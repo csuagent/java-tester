@@ -12,6 +12,12 @@ import java.io.ObjectOutputStream;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+/**
+ * POJO对象序列化和反序列化工具类
+ * 
+ * @author darui.wudr
+ * 
+ */
 public class SerializeUtil {
 	/**
 	 * 将pojo序列化后存储在dat类型的文件中
