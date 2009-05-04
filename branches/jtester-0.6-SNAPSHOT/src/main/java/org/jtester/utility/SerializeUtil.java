@@ -30,8 +30,10 @@ public class SerializeUtil {
 	public static <T> void setPojoToXml(T o, String filename) {
 		try {
 			XStream xs = new XStream(new DomDriver());
+			// XStream xs = new XStream();
 			FileOutputStream fos = new FileOutputStream(filename);
 			xs.toXML(o, fos);
+			System.out.println(xs.toXML(o));
 			fos.close();
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
@@ -57,6 +59,7 @@ public class SerializeUtil {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> T getPojoFromXml(Class<T> claz, String filename) {
 		try {
 			InputStream fis = SerializeUtil.isFileExisted(filename);
@@ -64,13 +67,9 @@ public class SerializeUtil {
 				throw new RuntimeException(String.format("file '%s' doesn't exist", filename));
 			}
 			XStream xs = new XStream(new DomDriver());
-			T o = claz.newInstance();
-			xs.fromXML(fis, o);
-			return o;
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
+			// XStream xs = new XStream();
+			Object o = xs.fromXML(fis);
+			return (T) o;
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
 		}
