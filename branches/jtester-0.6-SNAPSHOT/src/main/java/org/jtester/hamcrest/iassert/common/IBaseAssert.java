@@ -12,70 +12,73 @@ import org.hamcrest.Matcher;
  */
 public interface IBaseAssert<T, E extends IAssert<T, ?>> extends IAssert<T, E> {
 	/**
-	 * the asserted object should be equal to 'expected' parameter
+	 * 被断言的对象等于期望的值
 	 * 
 	 * @param expected
-	 *            the expected parameter
+	 *            期望值
 	 * @return
 	 */
 	public E isEqualTo(T expected);
 
 	/**
-	 * the asserted object shouldn't be equal to the 'expected' parameter
+	 * 被断言的对象不等于期望的值
 	 * 
 	 * @param expected
-	 *            the expected parameter
+	 *            期望值
 	 * @return
 	 */
 	public E notEqualTo(T expected);
 
 	/**
-	 * the asserted object should in the expected parameters
+	 * 被断言对象可以在期望值里面找到
 	 * 
 	 * @param values
-	 *            the expected parameters
+	 *            期望值
 	 * @return
 	 */
 	public E in(T... values);
 
 	/**
-	 * the asserted object shouldn't in the expected parameters
+	 * 被断言对象不可以在期望值里面找到
 	 * 
 	 * @param values
-	 *            the expected parameter
+	 *            期望值
 	 * @return
 	 */
 	public E notIn(T... values);
 
 	/**
-	 * the class of asserted object should be equals to the expected parameter
+	 * 被断言对象的类型等于期望类型
 	 * 
 	 * @param claz
-	 *            the expected class
+	 *            期望类型
 	 * @return
 	 */
 	public E type(Class<?> claz);
 
 	/**
-	 * the asserted object should be matched by the expected matcher
+	 * 被断言对象符合matcher所定义的行为
 	 * 
 	 * @param matcher
+	 *            对象行为定义，具体定义参见 org.hamcrest.Matcher
 	 * @return
 	 */
 	public E is(Matcher<T> matcher);
 
 	/**
-	 * the asserted object shouldn't be matched by the expected matcher
+	 * 被断言对象不符合matcher所定义的行为
 	 * 
 	 * @param matcher
+	 *            对象行为定义，具体定义参见 org.hamcrest.Matcher
 	 * @return
 	 */
 	public E not(Matcher<T> matcher);
 
 	/**
-	 * the asserted object should be matched by all of the expected matchers
+	 * 被断言对象符合所有的对象行为定义
 	 * 
 	 * @param matcher1
+	 *            对象行为定义，具体定义参见 org.hamcrest.Matcher
 	 * @param matcher2
 	 * @param matchers
 	 * @return
@@ -83,18 +86,19 @@ public interface IBaseAssert<T, E extends IAssert<T, ?>> extends IAssert<T, E> {
 	public E allOf(IAssert<?, ?> matcher1, IAssert<?, ?> matcher2, IAssert<?, ?>... matchers);
 
 	/**
-	 * the asserted object should be matched by all of the expected matchers
+	 * 被断言对象符合所有的对象行为定义
 	 * 
 	 * @param matchers
+	 *            对象行为定义，具体定义参见 org.hamcrest.Matcher
 	 * @return
 	 */
 	public E allOf(Iterable<IAssert<?, ?>> matchers);
 
 	/**
-	 * the asserted object should be at least matched by one of the expected
-	 * matchers
+	 * 被断言对象符合任一个对象行为定义
 	 * 
 	 * @param matcher1
+	 *            对象行为定义，具体定义参见 org.hamcrest.Matcher
 	 * @param matcher2
 	 * @param matchers
 	 * @return
@@ -102,39 +106,39 @@ public interface IBaseAssert<T, E extends IAssert<T, ?>> extends IAssert<T, E> {
 	public E anyOf(IAssert<?, ?> matcher1, IAssert<?, ?> matcher2, IAssert<?, ?>... matchers);
 
 	/**
-	 * the asserted object should be at least matched by one of the expected
-	 * matchers
+	 * 被断言对象符合任一个对象行为定义
 	 * 
 	 * @param matchers
+	 *            对象行为定义，具体定义参见 org.hamcrest.Matcher
 	 * @return
 	 */
 	public E anyOf(Iterable<IAssert<?, ?>> matchers);
 
 	/**
-	 * the asserted object and the expected object must be with an object,not
-	 * only their values should be equaled.
+	 * 被断言对象和期望值是同一个对象
 	 * 
 	 * @param value
+	 *            期望值
 	 * @return
 	 */
 	public E same(T value);
 
 	/**
-	 * the asserted object can be anything
+	 * 被断言对象可以使任意的值
 	 * 
 	 * @return
 	 */
 	public E any();
 
 	/**
-	 * the asserted object should be null
+	 * 被断言对象值等于null
 	 * 
 	 * @return
 	 */
 	public E isNull();
 
 	/**
-	 * the asserted object shouldn't be null
+	 * 被断言对象值不等于null
 	 * 
 	 * @return
 	 */
