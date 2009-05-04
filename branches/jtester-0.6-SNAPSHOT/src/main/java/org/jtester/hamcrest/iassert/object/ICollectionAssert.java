@@ -2,9 +2,9 @@ package org.jtester.hamcrest.iassert.object;
 
 import java.util.Collection;
 
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
-import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
-import org.jtester.hamcrest.iassert.common.IReflectionAssert;
+import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
+import org.jtester.hamcrest.iassert.common.intf.IObjectContainerAssert;
+import org.jtester.hamcrest.iassert.common.intf.IReflectionAssert;
 
 /**
  * 集合类型对象断言接口

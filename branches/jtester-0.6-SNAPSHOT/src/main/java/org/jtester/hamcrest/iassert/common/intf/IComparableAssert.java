@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.common;
+package org.jtester.hamcrest.iassert.common.intf;
 
 /**
  * 类型值可以比较大小的断言

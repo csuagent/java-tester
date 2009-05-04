@@ -5,7 +5,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
-import org.jtester.hamcrest.iassert.common.IAssert;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
 import org.jtester.hamcrest.matcher.LinkMatcher;
 import org.jtester.jmock.ExpectationsUtil;
 import org.jtester.utility.PrimitiveConvertor;

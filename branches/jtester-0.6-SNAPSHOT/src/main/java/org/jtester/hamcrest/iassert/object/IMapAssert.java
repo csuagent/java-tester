@@ -2,7 +2,7 @@ package org.jtester.hamcrest.iassert.object;
 
 import java.util.Map;
 
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
+import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
 
 /**
  * map对象断言接口

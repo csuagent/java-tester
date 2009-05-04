@@ -1,8 +1,8 @@
 package org.jtester.hamcrest.iassert.object;
 
 import org.hamcrest.Matcher;
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
-import org.jtester.hamcrest.iassert.common.IComparableAssert;
+import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
+import org.jtester.hamcrest.iassert.common.intf.IComparableAssert;
 
 /**
  * 字符串对象断言接口

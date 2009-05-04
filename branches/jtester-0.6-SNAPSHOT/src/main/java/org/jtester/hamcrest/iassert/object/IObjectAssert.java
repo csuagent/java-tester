@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.object;
 
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
-import org.jtester.hamcrest.iassert.common.IReflectionAssert;
+import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
+import org.jtester.hamcrest.iassert.common.intf.IReflectionAssert;
 
 /**
  * 通用对象断言接口

@@ -2,7 +2,7 @@ package org.jtester.hamcrest.iassert.object;
 
 import java.io.File;
 
-import org.jtester.hamcrest.iassert.common.IBaseAssert;
+import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
 
 /**
  * 文件类型对象断言接口

@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.common;
+package org.jtester.hamcrest.iassert.common.intf;
 
 import java.util.Collection;
 

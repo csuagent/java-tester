@@ -10,7 +10,7 @@ import org.hamcrest.core.AnyOf;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
-import org.jtester.hamcrest.iassert.common.IAssert;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
 import org.mockito.internal.matchers.Any;
 import org.mockito.internal.matchers.NotNull;
 import org.mockito.internal.matchers.Null;
