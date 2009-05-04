@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.Arrays;
 
@@ -6,7 +6,7 @@ import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class ICollectionAssertTest_HasItem extends JTester {
+public class CollectionAssertTest_HasItem extends JTester {
 	@Test
 	public void hasItems_test1() {
 		want.collection(Arrays.asList("aaa", "bbb", "ccc")).hasItems("aaa");

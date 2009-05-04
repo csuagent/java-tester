@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class IObjectContainerAssertTest_ItemMatch extends JTester {
+public class ObjectContainerAssertTest_ItemMatch extends JTester {
 	private List<String> list = new ArrayList<String>();
 
 	@BeforeMethod

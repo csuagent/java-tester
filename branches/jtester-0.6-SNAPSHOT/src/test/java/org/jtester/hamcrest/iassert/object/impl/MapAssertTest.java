@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class IMapAssertTest extends JTester {
+public class MapAssertTest extends JTester {
 	private Map<String, String> maps = null;
 
 	@BeforeMethod

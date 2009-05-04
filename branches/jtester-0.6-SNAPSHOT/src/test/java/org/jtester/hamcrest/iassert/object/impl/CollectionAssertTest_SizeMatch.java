@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.Arrays;
 
@@ -6,7 +6,7 @@ import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class ICollectionAssertTest_SizeMatch extends JTester {
+public class CollectionAssertTest_SizeMatch extends JTester {
 
 	@Test
 	public void sizeIs() {

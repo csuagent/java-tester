@@ -1,11 +1,11 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.impl;
 
 import org.jtester.testng.JTester;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class ICollectionAssertTest_HasItem_DataProvider extends JTester {
+public class CollectionAssertTest_HasItem_DataProvider extends JTester {
 
 	@DataProvider(name = "provide_hasitems")
 	public Object[][] provideArray() {
