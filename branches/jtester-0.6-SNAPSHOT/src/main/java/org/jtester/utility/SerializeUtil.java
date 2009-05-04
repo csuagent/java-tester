@@ -57,7 +57,6 @@ public class SerializeUtil {
 			// XStream xs = new XStream();
 			FileOutputStream fos = new FileOutputStream(filename);
 			xs.toXML(o, fos);
-			System.out.println(xs.toXML(o));
 			fos.close();
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
