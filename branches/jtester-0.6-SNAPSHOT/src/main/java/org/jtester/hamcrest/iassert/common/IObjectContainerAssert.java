@@ -170,9 +170,9 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	 * 参数中列出的正则表达式可以被数组或集合中的元素满足
 	 * 
 	 * @param regular
-	 *            足期望的正则表达式
+	 *            期望的正则表达式
 	 * @param regulars
-	 *            足期望的正则表达式
+	 *            期望的正则表达式
 	 * @return
 	 */
 	E hasItemMatch(String regular, String... regulars);
@@ -181,7 +181,9 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	 * 数组或集合中所有的元素toString()必须满足所有列出期望的正则表达式
 	 * 
 	 * @param regular
+	 *            期望的正则表达式
 	 * @param regulars
+	 *            期望的正则表达式
 	 * @return
 	 */
 	E allItemMatch(String regular, String... regulars);
