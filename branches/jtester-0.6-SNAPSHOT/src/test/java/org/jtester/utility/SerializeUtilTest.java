@@ -15,92 +15,106 @@ import org.testng.annotations.Test;
 public class SerializeUtilTest extends JTester {
 
 	@Test
-	public void setPojoToDat() {
+	public void toDat() {
 		String filename = "d:/manager.dat";
 		// want.file(filename).unExists();
-		SerializeUtil.setPojoToDat(this.mock(), filename);
+		SerializeUtil.toDat(this.mock(), filename);
 		want.file(filename).isExists();
 	}
 
-	@Test
-	public void setPojoToDat_list() {
-		String filename = "d:/managers.dat";
-		List<?> list = Arrays.asList(mock(), mock());
-		SerializeUtil.setPojoToDat(list, filename);
-		want.file(filename).isExists();
-	}
-
-	@Test(dependsOnMethods = { "setPojoToDat" })
-	public void getPojoFromDat() {
+	@Test(dependsOnMethods = { "toDat" })
+	public void fromDat() {
 		String filename = "d:/manager.dat";
 		want.file(filename).isExists();
 
-		Manager manager = SerializeUtil.getPojoFromDat(Manager.class, filename);
+		Manager manager = SerializeUtil.fromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester");
 	}
 
 	@Test
-	public void getPojoFromDat_classpath() {
+	public void fromDat_Classpath() {
 		String filename = "classpath:org/jtester/utility/manager.dat";
-		Manager manager = SerializeUtil.getPojoFromDat(Manager.class, filename);
+		Manager manager = SerializeUtil.fromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
 		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
 	}
 
 	@Test
-	public void getPojoFromDat_list() {
-		String filename = "classpath:org/jtester/utility/managers.dat";
-		List<?> managers = SerializeUtil.getPojoFromDat(List.class, filename);
-		want.collection(managers).sizeEq(2).propertyEq("name", new String[] { "Tony Tester", "Tony Tester" });
-	}
-
-	@Test
-	public void setPojoToXml() {
-		String filename = "d:/manager.xml";
-		// want.file(filename).unExists();
-		SerializeUtil.setPojoToXml(this.mock(), filename);
+	public void toDat_List() {
+		String filename = "d:/managers.dat";
+		List<?> list = Arrays.asList(mock(), mock());
+		SerializeUtil.toDat(list, filename);
 		want.file(filename).isExists();
 	}
 
 	@Test
-	public void setPojoToXml_list() {
+	public void fromDat_List() {
+		String filename = "classpath:org/jtester/utility/managers.dat";
+		List<?> managers = SerializeUtil.fromDat(List.class, filename);
+		want.collection(managers).sizeEq(2).propertyEq("name", new String[] { "Tony Tester", "Tony Tester" });
+	}
+
+	@Test
+	public void toXML() {
+		String filename = "d:/manager.xml";
+		// want.file(filename).unExists();
+		SerializeUtil.toXML(this.mock(), filename);
+		want.file(filename).isExists();
+	}
+
+	@Test(dependsOnMethods = { "toXML" })
+	public void fromXML() {
+		String filename = "d:/manager.xml";
+		want.file(filename).isExists();
+
+		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
+		want.object(manager).propertyEq("name", "Tony Tester");
+	}
+
+	@Test
+	public void fromXML_Classpath() {
+		String filename = "classpath:org/jtester/utility/manager.xml";
+		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
+		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
+		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
+	}
+
+	@Test
+	public void toXML_List() {
 		String filename = "d:/managers.xml";
 		List<Manager> list = new ArrayList<Manager>();
 		list.add(mock());
 		list.add(mock());
-		SerializeUtil.setPojoToXml(list, filename);
+		SerializeUtil.toXML(list, filename);
 		want.file(filename).isExists();
 	}
 
-	@Test(dependsOnMethods = { "setPojoToXml" })
-	public void getPojoFromXml() {
-		String filename = "d:/manager.xml";
-		want.file(filename).isExists();
-
-		Manager manager = SerializeUtil.getPojoFromXml(Manager.class, filename);
-		want.object(manager).propertyEq("name", "Tony Tester");
-	}
-
 	@Test
-	public void getPojoFromXml_classpath() {
-		String filename = "classpath:org/jtester/utility/manager.xml";
-		Manager manager = SerializeUtil.getPojoFromXml(Manager.class, filename);
-		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
-	}
-
-	@Test
-	public void getPojoFromXml_list() {
+	public void fromXML_List() {
 		String filename = "classpath:org/jtester/utility/managers.xml";
-		List<?> managers = SerializeUtil.getPojoFromXml(List.class, filename);
+		List<?> managers = SerializeUtil.fromXML(List.class, filename);
 		want.collection(managers).sizeEq(2).propertyEq("name", new String[] { "Tony Tester", "Tony Tester" });
 	}
 
 	@Test
-	public void getPojoFromXml_list2() {
+	public void fromXML_List2() {
 		String filename = "classpath:org/jtester/utility/managers2.xml";
-		List<?> managers = SerializeUtil.getPojoFromXml(List.class, filename);
+		List<?> managers = SerializeUtil.fromXML(List.class, filename);
 		want.collection(managers).sizeEq(2).propertyEq("name", new String[] { "Tony Tester", "Tony Tester" });
+	}
+
+	@Test
+	public void getPojoToXml_Array() {
+		Manager[] managers = new Manager[2];
+		managers[0] = mock();
+		managers[1] = mock();
+		SerializeUtil.toXML(managers, "d:/managers-array.xml");
+	}
+
+	@Test
+	public void fromXML_Array() {
+		Manager[] managers = SerializeUtil.fromXML(Manager[].class, "classpath:org/jtester/utility/managers-array.xml");
+		want.array(managers).sizeEq(2).propertyEq("name", new String[] { "Tony Tester", "Tony Tester" });
 	}
 
 	private Manager mock() {

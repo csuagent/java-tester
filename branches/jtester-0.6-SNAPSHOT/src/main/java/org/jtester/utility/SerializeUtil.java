@@ -13,7 +13,16 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class SerializeUtil {
-	public static <T> void setPojoToDat(T o, String filename) {
+	/**
+	 * 将pojo序列化后存储在dat类型的文件中
+	 * 
+	 * @param <T>
+	 * @param o
+	 *            需要序列化的对象
+	 * @param filename
+	 *            存储文件的路径名称
+	 */
+	public static <T> void toDat(T o, String filename) {
 		SerializeUtil.mkdirs(filename);
 
 		try {
@@ -27,7 +36,16 @@ public class SerializeUtil {
 		}
 	}
 
-	public static <T> void setPojoToXml(T o, String filename) {
+	/**
+	 * 利用XStream将pojo保存为xml格式的文件
+	 * 
+	 * @param <T>
+	 * @param o
+	 *            需要序列化的对象
+	 * @param filename
+	 *            存储文件的路径名称
+	 */
+	public static <T> void toXML(T o, String filename) {
 		try {
 			XStream xs = new XStream(new DomDriver());
 			// XStream xs = new XStream();
@@ -42,8 +60,18 @@ public class SerializeUtil {
 		}
 	}
 
+	/**
+	 * 从dat文件中将pojo反序列化出来
+	 * 
+	 * @param <T>
+	 * @param claz
+	 *            反序列化出来的pojo class类型
+	 * @param filename
+	 *            pojo序列化信息文件,如果以"classpath:"开头表示文件存储在classpth的package路径下，否则表示文件的绝对路径
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T getPojoFromDat(Class<T> claz, String filename) {
+	public static <T> T fromDat(Class<T> claz, String filename) {
 		try {
 			InputStream inputStream = SerializeUtil.isFileExisted(filename);
 			ObjectInputStream in = new ObjectInputStream(inputStream);
@@ -59,8 +87,18 @@ public class SerializeUtil {
 		}
 	}
 
+	/**
+	 * 利用xstream将pojo从xml文件中反序列化出来
+	 * 
+	 * @param <T>
+	 * @param claz
+	 *            反序列化出来的pojo class类型
+	 * @param filename
+	 *            pojo序列化信息文件,如果以"classpath:"开头表示文件存储在classpth的package路径下，否则表示文件的绝对路径
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T getPojoFromXml(Class<T> claz, String filename) {
+	public static <T> T fromXML(Class<T> claz, String filename) {
 		try {
 			InputStream fis = SerializeUtil.isFileExisted(filename);
 			if (fis == null) {
