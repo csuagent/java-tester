@@ -3,6 +3,7 @@ package org.jtester.hamcrest.iassert.common;
 import java.util.Collection;
 
 /**
+ * 数组或collection类型的对象容器断言
  * 
  * @author darui.wudr
  * 
@@ -10,104 +11,99 @@ import java.util.Collection;
  */
 public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	/**
-	 * the size of a collection or the length of an array should equal to the
-	 * expected size
+	 * 数组长度或collection中元素个数等于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeIs(int size);
 
 	/**
-	 * the size of a collection or the length of an array should equal to the
-	 * expected size
+	 * 数组长度或collection中元素个数等于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeEq(int size);
 
 	/**
-	 * the size of a collection or the length of an array should greater than
-	 * the expected size
+	 * 数组长度或collection中元素个数大于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeGt(int size);
 
 	/**
-	 * the size of a collection or the length of an array should greater than or
-	 * equal to the expected size
+	 * 数组长度或collection中元素个数大于等于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeGe(int size);
 
 	/**
-	 * the size of a collection or the length of an array should less than the
-	 * expected size
+	 * 数组长度或collection中元素个数小于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeLt(int size);
 
 	/**
-	 * the size of a collection or the length of an array should less then or
-	 * equal to the expected size
+	 * 数组长度或collection中元素个数小于等于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeLe(int size);
 
 	/**
-	 * the size of a collection or the length of an array should not equal to
-	 * the expected size
+	 * 数组长度或collection中元素个数不等于期望值
 	 * 
 	 * @param size
-	 *            the expected size
+	 *            期望值
 	 * @return
 	 */
 	E sizeNe(int size);
 
 	/**
-	 * the array or collection should contain the expected items in the para's
-	 * collection
+	 * 数组或集合中的元素包含期望集合中列出的元素
 	 * 
 	 * @param coll
-	 *            a collection contains expected items
+	 *            期望元素集合
 	 * @return
 	 */
 	E hasItems(Collection<?> coll);
 
 	/**
-	 * the array or collection should contain the expected objects.
+	 * 数组或集合中的元素包含期望元素
 	 * 
 	 * @param value
+	 *            期望元素
 	 * @param values
+	 *            期望元素
 	 * @return
 	 */
 	E hasItems(Object value, Object... values);
 
 	/**
-	 * the array or collection should contain the expected objects.
+	 * 数组或集合中的元素包含期望数组中列出的元素
 	 * 
 	 * @param values
+	 *            期望元素数组
 	 * @return
 	 */
 	E hasItems(Object[] values);
 
 	/**
-	 * the array or collection should contain the expected boolean values.
+	 * 数组或集合中的元素包含期望数组中列出的布尔值
 	 * 
 	 * @param values
 	 * @return
@@ -115,7 +111,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(boolean values[]);
 
 	/**
-	 * the array or collection should contain the expected byte values.
+	 * 数组或集合中的元素包含期望数组中列出的byte类型值
 	 * 
 	 * @param values
 	 * @return
@@ -123,7 +119,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(byte values[]);
 
 	/**
-	 * the array or collection should contain the expected character values.
+	 * 数组或集合中的元素包含期望数组中列出的char类型值
 	 * 
 	 * @param values
 	 * @return
@@ -131,7 +127,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(char values[]);
 
 	/**
-	 * the array or collection should contain the expected short number values.
+	 * 数组或集合中的元素包含期望数组中列出的short类型值
 	 * 
 	 * @param values
 	 * @return
@@ -139,8 +135,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(short values[]);
 
 	/**
-	 * the array or collection should contain the expected integer number
-	 * values.
+	 * 数组或集合中的元素包含期望数组中列出的int类型值
 	 * 
 	 * @param values
 	 * @return
@@ -148,7 +143,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(int values[]);
 
 	/**
-	 * the array or collection should contain the expected long number values.
+	 * 数组或集合中的元素包含期望数组中列出的long类型值
 	 * 
 	 * @param values
 	 * @return
@@ -156,7 +151,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(long values[]);
 
 	/**
-	 * the array or collection should contain the expected float number values.
+	 * 数组或集合中的元素包含期望数组中列出的float类型值
 	 * 
 	 * @param values
 	 * @return
@@ -164,7 +159,7 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(float values[]);
 
 	/**
-	 * the array or collection should contain the expected double number values.
+	 * 数组或集合中的元素包含期望数组中列出的double类型值
 	 * 
 	 * @param values
 	 * @return
@@ -172,17 +167,18 @@ public interface IObjectContainerAssert<E extends IAssert<?, ?>> {
 	E hasItems(double values[]);
 
 	/**
-	 * at least one of items contained in the array or the collection must match
-	 * the those regular expression.
+	 * 参数中列出的正则表达式可以被数组或集合中的元素满足
 	 * 
-	 * @param values
+	 * @param regular
+	 *            足期望的正则表达式
+	 * @param regulars
+	 *            足期望的正则表达式
 	 * @return
 	 */
 	E hasItemMatch(String regular, String... regulars);
 
 	/**
-	 * all of items contained in the array or the collection must match the
-	 * those regular expression.
+	 * 数组或集合中所有的元素toString()必须满足所有列出期望的正则表达式
 	 * 
 	 * @param regular
 	 * @param regulars
