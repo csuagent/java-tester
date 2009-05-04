@@ -1,9 +1,14 @@
-#Thu Apr 30 11:52:02 CST 2009
+#Mon May 04 11:02:09 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
 encoding//src/main/java/org/jtester/core/JTesterAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/common/IAssert.java=UTF-8
+encoding//src/main/java/org/jtester/utility/ArrayConvertor.java=UTF-8
+encoding//src/main/java/org/jtester/utility/ArrayUtil.java=UTF-8
 encoding//src/main/java/org/jtester/utility/FindClazUtil.java=UTF-8
 encoding//src/main/java/org/jtester/utility/FindMethodUtil.java=UTF-8
+encoding//src/main/java/org/jtester/utility/PrimitiveConvertor.java=UTF-8
+encoding//src/main/java/org/jtester/utility/ReflectUtil.java=UTF-8
 encoding//src/main/java/org/jtester/utility/SerializeUtil.java=UTF-8
 encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_ByInjectedMock.java=UTF-8
 encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_Mock1.java=UTF-8
