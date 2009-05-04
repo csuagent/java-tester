@@ -3,7 +3,7 @@ package org.jtester.hamcrest.iassert.object;
 import org.jtester.hamcrest.iassert.common.IBaseAssert;
 
 /**
- * 布尔值对象断言接口
+ * 甯冨皵鍊兼柇瑷�鎺ュ彛
  * 
  * @author darui.wudr
  * 
