@@ -16,7 +16,7 @@ public interface IReflectionAssert<E extends IAssert<?, ?>> {
 	 * @param expected
 	 *            期望对象
 	 * @param modes
-	 *            比较模式
+	 *            比较模式,详见org.unitils.reflectionassert.ReflectionComparatorMode
 	 * @return
 	 */
 	public E reflectionEq(Object expected, ReflectionComparatorMode... modes);
