@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.intf;
 
 /**
  * short数值断言接口

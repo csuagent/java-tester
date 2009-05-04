@@ -1,4 +1,4 @@
-#Mon May 04 15:55:22 CST 2009
+#Mon May 04 15:57:20 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
 encoding//src/main/java/org/jtester/core/JTesterAssert.java=UTF-8
@@ -7,22 +7,22 @@ encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IBaseAssert.jav
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IComparableAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IObjectContainerAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IReflectionAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IArrayAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IBooleanAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IByteAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/ICalendarAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/ICharacterAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/ICollectionAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IDoubleAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IFileAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IFloatAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IIntegerAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/ILongAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IMapAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/INumberAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IObjectAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IShortAssert.java=UTF-8
-encoding//src/main/java/org/jtester/hamcrest/iassert/object/IStringAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IArrayAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IBooleanAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IByteAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/ICalendarAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/ICharacterAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/ICollectionAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IDoubleAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IFileAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IFloatAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IIntegerAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/ILongAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IMapAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/INumberAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IObjectAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IShortAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IStringAssert.java=UTF-8
 encoding//src/main/java/org/jtester/utility/ArrayConvertor.java=UTF-8
 encoding//src/main/java/org/jtester/utility/ArrayUtil.java=UTF-8
 encoding//src/main/java/org/jtester/utility/FindClazUtil.java=UTF-8

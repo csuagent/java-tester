@@ -3,7 +3,7 @@ package org.jtester.hamcrest.iassert.object.impl;
 import java.util.Calendar;
 
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
-import org.jtester.hamcrest.iassert.object.ICalendarAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICalendarAssert;
 import org.jtester.hamcrest.matcher.calendar.CalendarEqualsMatcher;
 import org.jtester.hamcrest.matcher.calendar.CalendarEqualsMatcher.CalendarFieldType;
 

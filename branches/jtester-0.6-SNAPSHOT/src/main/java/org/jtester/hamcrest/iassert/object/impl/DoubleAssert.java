@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
-import org.jtester.hamcrest.iassert.object.IDoubleAssert;
+import org.jtester.hamcrest.iassert.object.intf.IDoubleAssert;
 
 public class DoubleAssert extends NumberAssert<Double, IDoubleAssert> implements IDoubleAssert {
 	

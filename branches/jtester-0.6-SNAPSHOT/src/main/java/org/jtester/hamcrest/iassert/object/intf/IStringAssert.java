@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.iassert.object;
+package org.jtester.hamcrest.iassert.object.intf;
 
 import org.hamcrest.Matcher;
 import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;

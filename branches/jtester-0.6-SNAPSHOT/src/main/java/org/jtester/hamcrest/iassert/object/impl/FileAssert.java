@@ -3,7 +3,7 @@ package org.jtester.hamcrest.iassert.object.impl;
 import java.io.File;
 
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
-import org.jtester.hamcrest.iassert.object.IFileAssert;
+import org.jtester.hamcrest.iassert.object.intf.IFileAssert;
 import org.jtester.hamcrest.matcher.file.FileExistsMatcher;
 import org.jtester.hamcrest.matcher.file.FileExistsMatcher.FileExistsMatcherType;
 

@@ -1,19 +1,5 @@
 package org.jtester.core;
 
-import org.jtester.hamcrest.iassert.object.IArrayAssert;
-import org.jtester.hamcrest.iassert.object.IBooleanAssert;
-import org.jtester.hamcrest.iassert.object.IByteAssert;
-import org.jtester.hamcrest.iassert.object.ICharacterAssert;
-import org.jtester.hamcrest.iassert.object.ICollectionAssert;
-import org.jtester.hamcrest.iassert.object.IDoubleAssert;
-import org.jtester.hamcrest.iassert.object.IFloatAssert;
-import org.jtester.hamcrest.iassert.object.IIntegerAssert;
-import org.jtester.hamcrest.iassert.object.ILongAssert;
-import org.jtester.hamcrest.iassert.object.IMapAssert;
-import org.jtester.hamcrest.iassert.object.INumberAssert;
-import org.jtester.hamcrest.iassert.object.IObjectAssert;
-import org.jtester.hamcrest.iassert.object.IShortAssert;
-import org.jtester.hamcrest.iassert.object.IStringAssert;
 import org.jtester.hamcrest.iassert.object.impl.ArrayAssert;
 import org.jtester.hamcrest.iassert.object.impl.BooleanAssert;
 import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
@@ -28,6 +14,20 @@ import org.jtester.hamcrest.iassert.object.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.object.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
+import org.jtester.hamcrest.iassert.object.intf.IArrayAssert;
+import org.jtester.hamcrest.iassert.object.intf.IBooleanAssert;
+import org.jtester.hamcrest.iassert.object.intf.IByteAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICharacterAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICollectionAssert;
+import org.jtester.hamcrest.iassert.object.intf.IDoubleAssert;
+import org.jtester.hamcrest.iassert.object.intf.IFloatAssert;
+import org.jtester.hamcrest.iassert.object.intf.IIntegerAssert;
+import org.jtester.hamcrest.iassert.object.intf.ILongAssert;
+import org.jtester.hamcrest.iassert.object.intf.IMapAssert;
+import org.jtester.hamcrest.iassert.object.intf.INumberAssert;
+import org.jtester.hamcrest.iassert.object.intf.IObjectAssert;
+import org.jtester.hamcrest.iassert.object.intf.IShortAssert;
+import org.jtester.hamcrest.iassert.object.intf.IStringAssert;
 
 /**
  * the jmock parameter expectation factory

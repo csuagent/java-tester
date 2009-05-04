@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
-import org.jtester.hamcrest.iassert.object.ILongAssert;
+import org.jtester.hamcrest.iassert.object.intf.ILongAssert;
 
 public class LongAssert extends NumberAssert<Long, ILongAssert> implements
 		ILongAssert {

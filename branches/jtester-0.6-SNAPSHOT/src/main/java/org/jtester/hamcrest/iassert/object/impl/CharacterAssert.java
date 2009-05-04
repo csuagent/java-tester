@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
 import org.jtester.hamcrest.iassert.common.impl.AllAssert;
-import org.jtester.hamcrest.iassert.object.ICharacterAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICharacterAssert;
 
 public class CharacterAssert extends AllAssert<Character, ICharacterAssert> implements ICharacterAssert {
 
