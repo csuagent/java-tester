@@ -21,16 +21,24 @@ public interface IReflectionAssert<E extends IAssert<?, ?>> {
 	 */
 	public E reflectionEq(Object expected, ReflectionComparatorMode... modes);
 
+	/**
+	 * reflectionEq指定比较模式为<br>
+	 * org.unitils.reflectionassert.ReflectionComparatorMode.IGNORE_DEFAULTS + <br>
+	 * org.unitils.reflectionassert.ReflectionComparatorMode.LENIENT_ORDER<br>
+	 * 的快捷方法
+	 * 
+	 * @param expected
+	 * @return
+	 */
 	public E lenientEq(Object expected);
 
 	/**
-	 * the specified property of asserted object should equal to the expected
-	 * value
+	 * 断言对象指定的属性(property)值等于期望值
 	 * 
 	 * @param property
-	 *            specified property
+	 *            对象属性名称
 	 * @param expected
-	 *            value expected to equal to
+	 *            期望值
 	 * @return
 	 */
 	public E propertyEq(String property, Object expected);
