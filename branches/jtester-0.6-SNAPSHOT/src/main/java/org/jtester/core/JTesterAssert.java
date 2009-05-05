@@ -353,7 +353,7 @@ public interface JTesterAssert {
 		 * @param cal
 		 * @return
 		 */
-		public ICalendarAssert<Calendar> date(Calendar cal) {
+		public ICalendarAssert<Calendar> calendar(Calendar cal) {
 			return new CalendarAssert<Calendar>(cal);
 		}
 
