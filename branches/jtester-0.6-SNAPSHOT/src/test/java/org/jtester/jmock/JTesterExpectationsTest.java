@@ -24,8 +24,8 @@ public class JTesterExpectationsTest extends JTester {
 				will.call.one(calledService).called(the.string().contains("test").wanted());
 				will.returns.value("dddd");
 				will.call.ignoring(calledService).called(the.string().any().wanted());
-				// $.call.atLeast(1).of(calledService).called($.with(the.string().any()));
-				will(returnValue("dddd"));
+				// will(returnValue("dddd"));
+				will.returns.value("dddd");
 			}
 		});
 		callingService.call("i am a test message!");

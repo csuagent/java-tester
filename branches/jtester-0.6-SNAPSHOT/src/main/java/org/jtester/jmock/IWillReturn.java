@@ -3,7 +3,6 @@ package org.jtester.jmock;
 import java.util.Collection;
 
 import org.jmock.Expectations;
-import org.jmock.api.Action;
 
 public class IWillReturn {
 	private Expectations expectations;
@@ -14,10 +13,6 @@ public class IWillReturn {
 
 	public void value(Object result) {
 		expectations.will(Expectations.returnValue(result));
-	}
-
-	public void exception(Throwable throwable) {
-		expectations.will(Expectations.throwException(throwable));
 	}
 
 	public void iterator(Collection<?> collection) {
@@ -34,13 +29,5 @@ public class IWillReturn {
 
 	public <T> void enumeration(T... items) {
 		expectations.will(Expectations.returnEnumeration(items));
-	}
-
-	public void doAll(Action... actions) {
-		expectations.will(Expectations.doAll(actions));
-	}
-
-	public void onConsecutiveCalls(Action... actions) {
-		expectations.will(Expectations.onConsecutiveCalls(actions));
 	}
 }
