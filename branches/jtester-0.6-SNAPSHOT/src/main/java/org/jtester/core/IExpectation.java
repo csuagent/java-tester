@@ -1,8 +1,12 @@
 package org.jtester.core;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.jtester.hamcrest.iassert.object.impl.ArrayAssert;
 import org.jtester.hamcrest.iassert.object.impl.BooleanAssert;
 import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
+import org.jtester.hamcrest.iassert.object.impl.CalendarAssert;
 import org.jtester.hamcrest.iassert.object.impl.CharacterAssert;
 import org.jtester.hamcrest.iassert.object.impl.CollectionAssert;
 import org.jtester.hamcrest.iassert.object.impl.DoubleAssert;
@@ -15,7 +19,6 @@ import org.jtester.hamcrest.iassert.object.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.object.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
-import org.jtester.hamcrest.iassert.object.impl.CalendarAssert;
 import org.jtester.hamcrest.iassert.object.intf.IArrayAssert;
 import org.jtester.hamcrest.iassert.object.intf.IBooleanAssert;
 import org.jtester.hamcrest.iassert.object.intf.IByteAssert;
@@ -185,8 +188,17 @@ public interface IExpectation {
 		 * 
 		 * @return
 		 */
-		public ICalendarAssert calendar() {
-			return new CalendarAssert();
+		public ICalendarAssert<Calendar> calendar() {
+			return new CalendarAssert<Calendar>();
+		}
+
+		/**
+		 * a parameter date will be asserted
+		 * 
+		 * @return
+		 */
+		public ICalendarAssert<Date> date() {
+			return new CalendarAssert<Date>();
 		}
 	}
 }

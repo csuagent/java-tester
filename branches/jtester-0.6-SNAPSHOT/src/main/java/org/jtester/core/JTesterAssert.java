@@ -353,8 +353,8 @@ public interface JTesterAssert {
 		 * @param cal
 		 * @return
 		 */
-		public ICalendarAssert date(Calendar cal) {
-			return new CalendarAssert(cal);
+		public ICalendarAssert<Calendar> date(Calendar cal) {
+			return new CalendarAssert<Calendar>(cal);
 		}
 
 		/**
@@ -363,13 +363,8 @@ public interface JTesterAssert {
 		 * @param date
 		 * @return
 		 */
-		public ICalendarAssert date(Date date) {
-			Calendar cal = null;
-			if (date != null) {
-				cal = Calendar.getInstance();
-				cal.setTime(date);
-			}
-			return new CalendarAssert(cal);
+		public ICalendarAssert<Date> date(Date date) {
+			return new CalendarAssert<Date>(date);
 		}
 	}
 }

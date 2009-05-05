@@ -1,76 +1,82 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
-import java.util.Calendar;
-
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
 import org.jtester.hamcrest.iassert.object.intf.ICalendarAssert;
+import org.jtester.hamcrest.matcher.LinkMatcher;
 import org.jtester.hamcrest.matcher.calendar.CalendarEqualsMatcher;
 import org.jtester.hamcrest.matcher.calendar.CalendarEqualsMatcher.CalendarFieldType;
 
-public class CalendarAssert extends BaseAssert<Calendar, ICalendarAssert> implements ICalendarAssert {
+public class CalendarAssert<T> extends BaseAssert<T, ICalendarAssert<T>> implements ICalendarAssert<T> {
 
 	public CalendarAssert() {
-		super(ICalendarAssert.class);
+		super();
+		this.value = null;
+		this.type = AssertType.Expectations;
+		this.link = new LinkMatcher<T>();
+		this.assertClaz = ICalendarAssert.class;
 	}
 
-	public CalendarAssert(Calendar calendar) {
-		super(calendar, ICalendarAssert.class);
+	public CalendarAssert(T value) {
+		super();
+		this.type = AssertType.AssertThat;
+		this.value = value;
+		this.assertClaz = ICalendarAssert.class;
 	}
 
-	public ICalendarAssert yearIs(int year) {
+	public ICalendarAssert<T> yearIs(int year) {
 		return this.assertThat(year, CalendarFieldType.YEAR);
 	}
 
-	public ICalendarAssert yearIs(String year) {
+	public ICalendarAssert<T> yearIs(String year) {
 		return this.assertThat(year, CalendarFieldType.YEAR);
 	}
 
-	public ICalendarAssert dayIs(int day) {
+	public ICalendarAssert<T> dayIs(int day) {
 		return this.assertThat(day, CalendarFieldType.DATE);
 	}
 
-	public ICalendarAssert dayIs(String day) {
+	public ICalendarAssert<T> dayIs(String day) {
 		return this.assertThat(day, CalendarFieldType.DATE);
 	}
 
-	public ICalendarAssert hourIs(int hour) {
+	public ICalendarAssert<T> hourIs(int hour) {
 		return this.assertThat(hour, CalendarFieldType.HOUR);
 	}
 
-	public ICalendarAssert hourIs(String hour) {
+	public ICalendarAssert<T> hourIs(String hour) {
 		return this.assertThat(hour, CalendarFieldType.HOUR);
 	}
 
-	public ICalendarAssert minuteIs(int minute) {
+	public ICalendarAssert<T> minuteIs(int minute) {
 		return this.assertThat(minute, CalendarFieldType.MINUTE);
 	}
 
-	public ICalendarAssert minuteIs(String minute) {
+	public ICalendarAssert<T> minuteIs(String minute) {
 		return this.assertThat(minute, CalendarFieldType.MINUTE);
 	}
 
-	public ICalendarAssert monthIs(int month) {
+	public ICalendarAssert<T> monthIs(int month) {
 		return this.assertThat(month, CalendarFieldType.MONTH);
 	}
 
-	public ICalendarAssert monthIs(String month) {
+	public ICalendarAssert<T> monthIs(String month) {
 		return this.assertThat(month, CalendarFieldType.MONTH);
 	}
 
-	public ICalendarAssert secondIs(int second) {
+	public ICalendarAssert<T> secondIs(int second) {
 		return this.assertThat(second, CalendarFieldType.SECOND);
 	}
 
-	public ICalendarAssert secondIs(String second) {
+	public ICalendarAssert<T> secondIs(String second) {
 		return this.assertThat(second, CalendarFieldType.SECOND);
 	}
 
-	private ICalendarAssert assertThat(int value, CalendarFieldType type) {
+	private ICalendarAssert<T> assertThat(int value, CalendarFieldType type) {
 		CalendarEqualsMatcher matcher = new CalendarEqualsMatcher(value, type);
 		return this.assertThat(matcher);
 	}
 
-	private ICalendarAssert assertThat(String value, CalendarFieldType type) {
+	private ICalendarAssert<T> assertThat(String value, CalendarFieldType type) {
 		CalendarEqualsMatcher matcher = new CalendarEqualsMatcher(Integer.valueOf(value), type);
 		return this.assertThat(matcher);
 	}

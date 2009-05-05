@@ -1,7 +1,5 @@
 package org.jtester.hamcrest.iassert.object.intf;
 
-import java.util.Calendar;
-
 import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
 
 /**
@@ -10,7 +8,7 @@ import org.jtester.hamcrest.iassert.common.intf.IBaseAssert;
  * @author darui.wudr
  * 
  */
-public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> {
+public interface ICalendarAssert<T> extends IBaseAssert<T, ICalendarAssert<T>> {
 	/**
 	 * 日历值的年等于期望值
 	 * 
@@ -18,7 +16,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert yearIs(int year);
+	public ICalendarAssert<T> yearIs(int year);
 
 	/**
 	 * 日历值的年等于期望值
@@ -27,7 +25,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert yearIs(String year);
+	public ICalendarAssert<T> yearIs(String year);
 
 	/**
 	 * 日历值的月份等于期望值
@@ -36,7 +34,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert monthIs(int month);
+	public ICalendarAssert<T> monthIs(int month);
 
 	/**
 	 * 日历值的月份等于期望值
@@ -45,7 +43,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert monthIs(String month);
+	public ICalendarAssert<T> monthIs(String month);
 
 	/**
 	 * 日历值的日期等于期望值
@@ -54,7 +52,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert dayIs(int day);
+	public ICalendarAssert<T> dayIs(int day);
 
 	/**
 	 * 日历值的日期等于期望值
@@ -63,7 +61,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert dayIs(String day);
+	public ICalendarAssert<T> dayIs(String day);
 
 	/**
 	 * 日历值的小时(24小时制)等于期望值
@@ -72,7 +70,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert hourIs(int hour);
+	public ICalendarAssert<T> hourIs(int hour);
 
 	/**
 	 * 日历值的小时(24小时制)等于期望值
@@ -81,7 +79,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert hourIs(String hour);
+	public ICalendarAssert<T> hourIs(String hour);
 
 	/**
 	 * 日历值的分钟等于期望值
@@ -90,7 +88,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert minuteIs(int minute);
+	public ICalendarAssert<T> minuteIs(int minute);
 
 	/**
 	 * 日历值的分钟等于期望值
@@ -99,7 +97,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert minuteIs(String minute);
+	public ICalendarAssert<T> minuteIs(String minute);
 
 	/**
 	 * 日历值的秒等于期望值
@@ -108,7 +106,7 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert secondIs(int second);
+	public ICalendarAssert<T> secondIs(int second);
 
 	/**
 	 * 日历值的秒等于期望值
@@ -117,5 +115,5 @@ public interface ICalendarAssert extends IBaseAssert<Calendar, ICalendarAssert> 
 	 *            期望值
 	 * @return
 	 */
-	public ICalendarAssert secondIs(String second);
+	public ICalendarAssert<T> secondIs(String second);
 }
