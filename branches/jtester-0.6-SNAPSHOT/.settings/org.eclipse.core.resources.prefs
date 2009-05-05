@@ -1,6 +1,8 @@
-#Mon May 04 15:57:20 CST 2009
+#Tue May 05 09:37:33 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
+encoding//src/main/java/org/jtester/core/IExpectation.java=UTF-8
+encoding//src/main/java/org/jtester/core/IJTester.java=UTF-8
 encoding//src/main/java/org/jtester/core/JTesterAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IBaseAssert.java=UTF-8
