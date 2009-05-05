@@ -39,8 +39,8 @@ public class CalendarAssertTest extends JTester {
 		want.calendar(cal).yearIs(2009).yearIs("2009");
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().yearIs(2009).yearIs("2009").wanted());
-				want.one(idate).setCalendar(the.calendar().yearIs(2009).yearIs("2009").wanted());
+				will.call.one(idate).setDate(the.date().yearIs(2009).yearIs("2009").wanted());
+				will.call.one(idate).setCalendar(the.calendar().yearIs(2009).yearIs("2009").wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -55,8 +55,8 @@ public class CalendarAssertTest extends JTester {
 	public void yearIs_failure2() {
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().yearIs(2009).yearIs("2008").wanted());
-				want.one(idate).setCalendar(the.calendar().yearIs(2009).yearIs("2009").wanted());
+				will.call.one(idate).setDate(the.date().yearIs(2009).yearIs("2008").wanted());
+				will.call.one(idate).setCalendar(the.calendar().yearIs(2009).yearIs("2009").wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -66,8 +66,8 @@ public class CalendarAssertTest extends JTester {
 	public void yearIs_failure3() {
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().yearIs(2009).yearIs("2009").wanted());
-				want.one(idate).setCalendar(the.calendar().yearIs(2008).wanted());
+				will.call.one(idate).setDate(the.date().yearIs(2009).yearIs("2009").wanted());
+				will.call.one(idate).setCalendar(the.calendar().yearIs(2008).wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -77,8 +77,8 @@ public class CalendarAssertTest extends JTester {
 		want.calendar(cal).monthIs(4).monthIs("04");
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().monthIs(4).monthIs("04").wanted());
-				want.one(idate).setCalendar(the.calendar().monthIs(4).monthIs("4").wanted());
+				will.call.one(idate).setDate(the.date().monthIs(4).monthIs("04").wanted());
+				will.call.one(idate).setCalendar(the.calendar().monthIs(4).monthIs("4").wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -88,8 +88,8 @@ public class CalendarAssertTest extends JTester {
 		want.calendar(cal).dayIs(12).dayIs("12");
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().dayIs(12).dayIs("12").wanted());
-				want.one(idate).setCalendar(the.calendar().dayIs(12).dayIs("12").wanted());
+				will.call.one(idate).setDate(the.date().dayIs(12).dayIs("12").wanted());
+				will.call.one(idate).setCalendar(the.calendar().dayIs(12).dayIs("12").wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -99,8 +99,8 @@ public class CalendarAssertTest extends JTester {
 		want.calendar(cal).hourIs(15).hourIs("15");
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().hourIs(15).hourIs("15").wanted());
-				want.one(idate).setCalendar(the.calendar().hourIs(15).hourIs("15").wanted());
+				will.call.one(idate).setDate(the.date().hourIs(15).hourIs("15").wanted());
+				will.call.one(idate).setCalendar(the.calendar().hourIs(15).hourIs("15").wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -110,8 +110,8 @@ public class CalendarAssertTest extends JTester {
 		want.calendar(cal).minuteIs(36).minuteIs("36");
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().minuteIs(36).minuteIs("36").wanted());
-				want.one(idate).setCalendar(the.calendar().minuteIs(36).minuteIs("36").wanted());
+				will.call.one(idate).setDate(the.date().minuteIs(36).minuteIs("36").wanted());
+				will.call.one(idate).setCalendar(the.calendar().minuteIs(36).minuteIs("36").wanted());
 			}
 		});
 		testApp.setTime(date, cal);
@@ -121,8 +121,8 @@ public class CalendarAssertTest extends JTester {
 		want.calendar(cal).secondIs(24).secondIs("24");
 		checking(new Je() {
 			{
-				want.one(idate).setDate(the.date().secondIs(24).secondIs("24").wanted());
-				want.one(idate).setCalendar(the.calendar().secondIs(24).secondIs("24").wanted());
+				will.call.one(idate).setDate(the.date().secondIs(24).secondIs("24").wanted());
+				will.call.one(idate).setCalendar(the.calendar().secondIs(24).secondIs("24").wanted());
 			}
 		});
 		testApp.setTime(date, cal);

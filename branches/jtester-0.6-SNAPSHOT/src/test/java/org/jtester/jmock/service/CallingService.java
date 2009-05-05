@@ -1,4 +1,4 @@
-package org.jtester.expectations.service;
+package org.jtester.jmock.service;
 
 public class CallingService {
 	private CalledService calledService;

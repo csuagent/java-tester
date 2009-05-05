@@ -18,7 +18,7 @@ public class MockTest_Two extends JTester {
 	public void sayHello() {
 		checking(new Je() {
 			{
-				want.oneOf(speak).say(the.string().contains("darui.wu").wanted());
+				will.call.oneOf(speak).say(the.string().contains("darui.wu").wanted());
 			}
 		});
 		person.sayHelloTo("darui.wu");
@@ -27,7 +27,7 @@ public class MockTest_Two extends JTester {
 	public void sayHello_2() {
 		checking(new Je() {
 			{
-				want.oneOf(speak).say(with(the.string().contains("darui.wu")));
+				will.call.oneOf(speak).say(with(the.string().contains("darui.wu")));
 			}
 		});
 		person.sayHelloTo("darui.wu");

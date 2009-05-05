@@ -6,41 +6,41 @@ import org.jmock.Expectations;
 import org.jmock.api.Action;
 
 public class IWillReturn {
-	private Expectations will;
+	private Expectations expectations;
 
-	public IWillReturn(Expectations will) {
-		this.will = will;
+	public IWillReturn(Expectations expectations) {
+		this.expectations = expectations;
 	}
 
-	public void returnValue(Object result) {
-		will.will(Expectations.returnValue(result));
+	public void value(Object result) {
+		expectations.will(Expectations.returnValue(result));
 	}
 
-	public void throwException(Throwable throwable) {
-		will.will(Expectations.throwException(throwable));
+	public void exception(Throwable throwable) {
+		expectations.will(Expectations.throwException(throwable));
 	}
 
-	public void returnIterator(Collection<?> collection) {
-		will.will(Expectations.returnIterator(collection));
+	public void iterator(Collection<?> collection) {
+		expectations.will(Expectations.returnIterator(collection));
 	}
 
-	public <T> void returnIterator(T... items) {
-		will.will(Expectations.returnIterator(items));
+	public <T> void iterator(T... items) {
+		expectations.will(Expectations.returnIterator(items));
 	}
 
-	public void returnEnumeration(Collection<?> collection) {
-		will.will(Expectations.returnEnumeration(collection));
+	public void enumeration(Collection<?> collection) {
+		expectations.will(Expectations.returnEnumeration(collection));
 	}
 
-	public <T> void returnEnumeration(T... items) {
-		will.will(Expectations.returnEnumeration(items));
+	public <T> void enumeration(T... items) {
+		expectations.will(Expectations.returnEnumeration(items));
 	}
 
 	public void doAll(Action... actions) {
-		will.will(Expectations.doAll(actions));
+		expectations.will(Expectations.doAll(actions));
 	}
 
 	public void onConsecutiveCalls(Action... actions) {
-		will.will(Expectations.onConsecutiveCalls(actions));
+		expectations.will(Expectations.onConsecutiveCalls(actions));
 	}
 }

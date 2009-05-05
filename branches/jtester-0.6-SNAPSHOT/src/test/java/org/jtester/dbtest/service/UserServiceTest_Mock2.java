@@ -23,8 +23,8 @@ public class UserServiceTest_Mock2 extends JTester {
 		want.object(userService1).notNull();
 		checking(new Je() {
 			{
-				want.one(addressService1).findAddress();
-				will.returnValue("文三路131#");
+				will.call.one(addressService1).findAddress();
+				will.returns.value("文三路131#");
 			}
 		});
 		String address = userService1.findAddress();

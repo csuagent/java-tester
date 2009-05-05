@@ -25,8 +25,8 @@ public class UserServiceTest_Mock1 extends JTester {
 		want.object(userService).notNull();
 		checking(new Je() {
 			{
-				want.one(addressService).findAddress();
-				will.returnValue("文二路120#");
+				will.call.one(addressService).findAddress();
+				will.returns.value("文二路120#");
 			}
 		});
 		String address = userService.findAddress();
@@ -39,8 +39,8 @@ public class UserServiceTest_Mock1 extends JTester {
 		want.object(userService).notNull();
 		checking(new Je() {
 			{
-				want.one(addressService).findAddress();
-				will.returnValue("文二路120#");
+				will.call.one(addressService).findAddress();
+				will.returns.value("文二路120#");
 			}
 		});
 		String address = userService.findAddress();
