@@ -23,6 +23,9 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 
 	protected LinkMatcher<T> link;
 
+	public Assert() {
+	}
+
 	public Assert(Class<? extends IAssert<?, ?>> clazE) {
 		this.value = null;
 		this.type = AssertType.Expectations;

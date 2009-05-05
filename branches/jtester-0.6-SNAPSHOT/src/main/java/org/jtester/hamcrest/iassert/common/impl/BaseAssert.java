@@ -17,6 +17,10 @@ import org.mockito.internal.matchers.Null;
 import org.mockito.internal.matchers.Same;
 
 public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> implements IAssert<T, E> {
+	public BaseAssert() {
+		super();
+	}
+
 	public BaseAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
 	}
