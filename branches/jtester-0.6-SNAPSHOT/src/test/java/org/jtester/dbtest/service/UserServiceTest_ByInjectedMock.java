@@ -25,6 +25,9 @@ public class UserServiceTest_ByInjectedMock extends JTester {
 			{
 				want.one(addressService).findAddress();
 				will.returnValue("文二路120#");
+
+				// will.return_value("").when_call_one(addressService).findAddress();
+				// want.call_one(addressService).findAddress();
 			}
 		});
 		String address = userService.findAddress();
