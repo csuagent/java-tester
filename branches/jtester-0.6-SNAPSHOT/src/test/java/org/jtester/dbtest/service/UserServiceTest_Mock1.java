@@ -25,22 +25,22 @@ public class UserServiceTest_Mock1 extends JTester {
 		want.object(userService).notNull();
 		checking(new Je() {
 			{
-				$.call.one(addressService).findAddress();
-				$.will.returnValue("文二路120#");
+				want.one(addressService).findAddress();
+				will.returnValue("文二路120#");
 			}
 		});
 		String address = userService.findAddress();
 		want.string(address).contains("120#");
 	}
-	
+
 	@Test
 	public void findAddress02() {
 		want.object(addressService).notNull();
 		want.object(userService).notNull();
 		checking(new Je() {
 			{
-				$.call.one(addressService).findAddress();
-				$.will.returnValue("文二路120#");
+				want.one(addressService).findAddress();
+				will.returnValue("文二路120#");
 			}
 		});
 		String address = userService.findAddress();

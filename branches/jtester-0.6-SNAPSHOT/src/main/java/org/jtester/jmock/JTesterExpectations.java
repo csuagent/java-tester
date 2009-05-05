@@ -7,9 +7,9 @@ public abstract class JTesterExpectations extends Expectations implements ICallM
 		ExpectationsUtil.register(this);
 	}
 
-	protected JTesterExpectations $ = this;
+	// protected JTesterExpectations $ = this;
 
-	public ICallMethod call = this;
+	public ICallMethod want = this;
 
 	public IWillReturn will = new IWillReturn(this);
 }

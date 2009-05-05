@@ -18,8 +18,8 @@ public class MockTest_One extends JTester {
 	public void before() {
 		checking(new Je() {
 			{
-				$.call.one(say).count();
-				$.will.returnValue(4);
+				want.one(say).count();
+				will.returnValue(4);
 			}
 		});
 	}
@@ -42,8 +42,9 @@ public class MockTest_One extends JTester {
 	public void mock_test2() {
 		checking(new JTesterExpectations() {
 			{
-				allowing(say).count();
-				will(returnValue(3));
+				want.allowing(say).count();
+				will.returnValue(3);
+				// will(returnValue(3));
 			}
 		});
 		int count1 = say.count();

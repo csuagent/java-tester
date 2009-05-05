@@ -6,41 +6,41 @@ import org.jmock.Expectations;
 import org.jmock.api.Action;
 
 public class IWillReturn {
-	private Expectations $;
+	private Expectations will;
 
-	public IWillReturn(Expectations $) {
-		this.$ = $;
+	public IWillReturn(Expectations will) {
+		this.will = will;
 	}
 
 	public void returnValue(Object result) {
-		$.will(Expectations.returnValue(result));
+		will.will(Expectations.returnValue(result));
 	}
 
 	public void throwException(Throwable throwable) {
-		$.will(Expectations.throwException(throwable));
+		will.will(Expectations.throwException(throwable));
 	}
 
 	public void returnIterator(Collection<?> collection) {
-		$.will(Expectations.returnIterator(collection));
+		will.will(Expectations.returnIterator(collection));
 	}
 
 	public <T> void returnIterator(T... items) {
-		$.will(Expectations.returnIterator(items));
+		will.will(Expectations.returnIterator(items));
 	}
 
 	public void returnEnumeration(Collection<?> collection) {
-		$.will(Expectations.returnEnumeration(collection));
+		will.will(Expectations.returnEnumeration(collection));
 	}
 
 	public <T> void returnEnumeration(T... items) {
-		$.will(Expectations.returnEnumeration(items));
+		will.will(Expectations.returnEnumeration(items));
 	}
 
 	public void doAll(Action... actions) {
-		$.will(Expectations.doAll(actions));
+		will.will(Expectations.doAll(actions));
 	}
 
 	public void onConsecutiveCalls(Action... actions) {
-		$.will(Expectations.onConsecutiveCalls(actions));
+		will.will(Expectations.onConsecutiveCalls(actions));
 	}
 }

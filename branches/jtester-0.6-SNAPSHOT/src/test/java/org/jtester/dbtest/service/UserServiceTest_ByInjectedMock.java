@@ -23,8 +23,8 @@ public class UserServiceTest_ByInjectedMock extends JTester {
 		want.object(userService).notNull();
 		checking(new Je() {
 			{
-				$.call.one(addressService).findAddress();
-				$.will.returnValue("文二路120#");
+				want.one(addressService).findAddress();
+				will.returnValue("文二路120#");
 			}
 		});
 		String address = userService.findAddress();
