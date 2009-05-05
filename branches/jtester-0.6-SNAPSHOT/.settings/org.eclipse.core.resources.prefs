@@ -1,4 +1,4 @@
-#Tue May 05 09:37:33 CST 2009
+#Tue May 05 13:41:49 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
 encoding//src/main/java/org/jtester/core/IExpectation.java=UTF-8
@@ -25,6 +25,9 @@ encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/INumberAssert.j
 encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IObjectAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IShortAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IStringAssert.java=UTF-8
+encoding//src/main/java/org/jtester/jmock/ExpectationsUtil.java=UTF-8
+encoding//src/main/java/org/jtester/jmock/ICallMethod.java=UTF-8
+encoding//src/main/java/org/jtester/jmock/JTesterExpectations.java=UTF-8
 encoding//src/main/java/org/jtester/utility/ArrayConvertor.java=UTF-8
 encoding//src/main/java/org/jtester/utility/ArrayUtil.java=UTF-8
 encoding//src/main/java/org/jtester/utility/FindClazUtil.java=UTF-8
