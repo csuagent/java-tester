@@ -8,7 +8,7 @@ import org.unitils.inject.annotation.InjectIntoByType;
 import org.unitils.inject.annotation.TestedObject;
 
 @Test(groups = { "JTester" })
-public class MockTest_Two extends JTester {
+public class JmockModuleTest_Two extends JTester {
 	@TestedObject
 	private Person person = new Person();
 	@Mock

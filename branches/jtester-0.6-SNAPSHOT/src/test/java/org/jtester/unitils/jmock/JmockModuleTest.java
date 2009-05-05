@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
-public class MockTest extends JTester {
+public class JmockModuleTest extends JTester {
 	@Mock
 	private ISpeak say;
 
