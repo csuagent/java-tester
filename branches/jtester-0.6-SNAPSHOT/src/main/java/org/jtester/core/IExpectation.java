@@ -6,6 +6,7 @@ import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
 import org.jtester.hamcrest.iassert.object.impl.CharacterAssert;
 import org.jtester.hamcrest.iassert.object.impl.CollectionAssert;
 import org.jtester.hamcrest.iassert.object.impl.DoubleAssert;
+import org.jtester.hamcrest.iassert.object.impl.FileAssert;
 import org.jtester.hamcrest.iassert.object.impl.FloatAssert;
 import org.jtester.hamcrest.iassert.object.impl.IntegerAssert;
 import org.jtester.hamcrest.iassert.object.impl.LongAssert;
@@ -14,12 +15,15 @@ import org.jtester.hamcrest.iassert.object.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.object.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
+import org.jtester.hamcrest.iassert.object.impl.CalendarAssert;
 import org.jtester.hamcrest.iassert.object.intf.IArrayAssert;
 import org.jtester.hamcrest.iassert.object.intf.IBooleanAssert;
 import org.jtester.hamcrest.iassert.object.intf.IByteAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICalendarAssert;
 import org.jtester.hamcrest.iassert.object.intf.ICharacterAssert;
 import org.jtester.hamcrest.iassert.object.intf.ICollectionAssert;
 import org.jtester.hamcrest.iassert.object.intf.IDoubleAssert;
+import org.jtester.hamcrest.iassert.object.intf.IFileAssert;
 import org.jtester.hamcrest.iassert.object.intf.IFloatAssert;
 import org.jtester.hamcrest.iassert.object.intf.IIntegerAssert;
 import org.jtester.hamcrest.iassert.object.intf.ILongAssert;
@@ -40,7 +44,7 @@ public interface IExpectation {
 
 	public static class TheExpectation {
 		/**
-		 * a string parameter should be expected
+		 * a parameter string will be asserted
 		 * 
 		 * @return
 		 */
@@ -49,7 +53,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a boolean parameter should be expected
+		 * a parameter boolean will be expected
 		 * 
 		 * @return
 		 */
@@ -58,7 +62,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a number(integer, long, double,short,float) parameter should be
+		 * a parameter number(integer, long, double,short,float) will be
 		 * expected
 		 * 
 		 * @return
@@ -69,7 +73,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a integer number parameter should be expected
+		 * a parameter integer number will be asserted
 		 * 
 		 * @return
 		 */
@@ -78,7 +82,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a long number parameter should be expected
+		 * a parameter long number will be asserted
 		 * 
 		 * @return
 		 */
@@ -87,7 +91,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a double number parameter should be expected
+		 * a parameter double number will be asserted
 		 * 
 		 * @return
 		 */
@@ -96,7 +100,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a float number parameter should be expected
+		 * a parameter float number will be asserted
 		 * 
 		 * @return
 		 */
@@ -105,7 +109,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a short number parameter should be expected
+		 * a parameter short number will be asserted
 		 * 
 		 * @return
 		 */
@@ -114,7 +118,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a character parameter should be expected
+		 * a parameter character will be asserted
 		 * 
 		 * @return
 		 */
@@ -123,7 +127,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a bite parameter should be expected
+		 * a parameter bite will be asserted
 		 * 
 		 * @return
 		 */
@@ -132,7 +136,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a array parameter should be expected
+		 * a parameter array will be asserted
 		 * 
 		 * @return
 		 */
@@ -141,7 +145,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a map parameter should be expected
+		 * a parameter map will be asserted
 		 * 
 		 * @return
 		 */
@@ -150,7 +154,7 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a collection parameter should be expected
+		 * a parameter collection will be asserted
 		 * 
 		 * @return
 		 */
@@ -159,12 +163,30 @@ public interface IExpectation {
 		}
 
 		/**
-		 * a general object parameter should be expected
+		 * a parameter general object will be asserted
 		 * 
 		 * @return
 		 */
 		public IObjectAssert object() {
 			return new ObjectAssert();
+		}
+
+		/**
+		 * a parameter file will be asserted
+		 * 
+		 * @return
+		 */
+		public IFileAssert file() {
+			return new FileAssert();
+		}
+
+		/**
+		 * a parameter calendar will be asserted
+		 * 
+		 * @return
+		 */
+		public ICalendarAssert calendar() {
+			return new CalendarAssert();
 		}
 	}
 }
