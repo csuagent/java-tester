@@ -2,33 +2,58 @@ package org.jtester.unitils.dbwiki;
 
 import java.util.List;
 
+/**
+ * 解析wiki中table的工具类
+ * 
+ * @author darui.wudr
+ * 
+ */
 public class WikiTableUtil {
+	/**
+	 * 解析wiki table中表名称
+	 * 
+	 * @param meta
+	 * @param line
+	 */
 	public static void parseSchema(final WikiTableMeta meta, final String line) {
 		String schema = split(line)[1];
 
 		meta.setSchemaName(schema.trim());
 	}
 
+	/**
+	 * 解析wiki table中字段列表
+	 * 
+	 * @param meta
+	 * @param line
+	 */
 	public static void parseHeader(final WikiTableMeta meta, final String line) {
 		String[] fields = split(line);
 		for (String field : fields) {
 			meta.addFieldName(field.trim());
-			// System.out.print(field + ",");
 		}
-		// System.out.println();
 	}
 
+	/**
+	 * 解析wiki table中字段值
+	 * 
+	 * @param meta
+	 * @param line
+	 */
 	public static void parseFields(final WikiTableMeta meta, final String line) {
 		String[] fields = split(line);
 		meta.newFieldLine();
 		for (String field : fields) {
 			meta.addFieldValue(field.trim());
-			// System.out.print(field + ",");
 		}
 		meta.endFieldLine();
-		// System.out.println();
 	}
 
+	/**
+	 * 将所有的wiki table合并成一个xml dataset
+	 * @param metas
+	 * @return
+	 */
 	public static String parseMetas(final List<WikiTableMeta> metas) {
 		StringBuffer xml = new StringBuffer();
 		xml.append("<?xml version='1.0' encoding='UTF-8'?>");
