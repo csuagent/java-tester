@@ -46,7 +46,7 @@ public class JmockModule implements Module {
 			Mock mock = mockField.getAnnotation(Mock.class);
 
 			String name = mock.value();
-			if (StringUtils.isEmpty(name)) {
+			if (StringUtils.isBlank(name)) {
 				name = namingScheme.defaultNameFor(mockType);
 			}
 			name = name + "_" + Thread.currentThread().getId();
@@ -64,7 +64,7 @@ public class JmockModule implements Module {
 			InjectedMock mock = mockField.getAnnotation(InjectedMock.class);
 
 			Object mockObject = null;
-			if (StringUtils.isEmpty(mock.value())) {
+			if (StringUtils.isBlank(mock.value())) {
 				mockObject = context.mock(mockType);
 			} else {
 				mockObject = context.mock(mockType, mock.value());

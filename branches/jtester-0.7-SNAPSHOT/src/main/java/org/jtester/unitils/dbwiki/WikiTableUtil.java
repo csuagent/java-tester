@@ -2,6 +2,8 @@ package org.jtester.unitils.dbwiki;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * 解析wiki中table的工具类
  * 
@@ -17,7 +19,9 @@ public class WikiTableUtil {
 	 */
 	public static void parseSchema(final WikiTableMeta meta, final String line) {
 		String schema = split(line)[1];
-
+		if (StringUtils.isBlank(schema)) {
+			throw new RuntimeException("can't parse schema name from line:" + line);
+		}
 		meta.setSchemaName(schema.trim());
 	}
 
@@ -30,6 +34,9 @@ public class WikiTableUtil {
 	public static void parseHeader(final WikiTableMeta meta, final String line) {
 		String[] fields = split(line);
 		for (String field : fields) {
+			if (StringUtils.isBlank(field)) {
+				throw new RuntimeException("there are a blank field name parsed from line:" + line);
+			}
 			meta.addFieldName(field.trim());
 		}
 	}
@@ -51,6 +58,7 @@ public class WikiTableUtil {
 
 	/**
 	 * 将所有的wiki table合并成一个xml dataset
+	 * 
 	 * @param metas
 	 * @return
 	 */
