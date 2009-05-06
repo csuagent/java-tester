@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
-	<version>0.6-SNAPSHOT</version>
+	<version>0.6</version>
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
