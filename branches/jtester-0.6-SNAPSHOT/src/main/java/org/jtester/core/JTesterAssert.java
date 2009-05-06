@@ -49,10 +49,10 @@ public interface JTesterAssert {
 
 	public static class Want {
 		/**
-		 * a string argument asserter
+		 * 字符串断言
 		 * 
 		 * @param value
-		 *            a string variable
+		 *            字符串变量
 		 * @return
 		 */
 		public IStringAssert string(String value) {
@@ -60,7 +60,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a boolean argument asserter
+		 * 布尔变量断言
 		 * 
 		 * @param value
 		 *            a boolean variable
@@ -71,7 +71,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a boolean argument asserter
+		 * 布尔变量断言
 		 * 
 		 * @param value
 		 *            a boolean variable
@@ -82,7 +82,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * an integer argument asserter
+		 * integer变量断言
 		 * 
 		 * @param value
 		 *            a integer variable
@@ -93,7 +93,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a short argument asserter
+		 * short变量断言
 		 * 
 		 * @param value
 		 *            a short variable
@@ -104,7 +104,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a long argument asserter
+		 * long变量断言
 		 * 
 		 * @param value
 		 *            a long variable
@@ -115,7 +115,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a double argument asserter
+		 * double变量断言
 		 * 
 		 * @param value
 		 *            a double variable
@@ -126,7 +126,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a float argument asserter
+		 * float变量断言
 		 * 
 		 * @param value
 		 *            a float variable
@@ -137,7 +137,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a character argument asserter
+		 * char变量断言
 		 * 
 		 * @param value
 		 *            a character variable
@@ -148,7 +148,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a character argument asserter
+		 * char变量断言
 		 * 
 		 * @param value
 		 *            a character variable
@@ -159,7 +159,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a byte argument asserter
+		 * byte变量断言
 		 * 
 		 * @param value
 		 *            a byte variable
@@ -170,7 +170,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a byte argument asserter
+		 * byte变量断言
 		 * 
 		 * @param value
 		 *            a byte variable
@@ -181,7 +181,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * an array argument asserter
+		 * 数组变量断言
 		 * 
 		 * @param value
 		 *            a array variable
@@ -192,7 +192,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a boolean array argument asserter
+		 * 布尔值数组变量断言
 		 * 
 		 * @param value
 		 *            a boolean array
@@ -203,7 +203,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a byte array argument asserter
+		 * byte数组变量断言
 		 * 
 		 * @param value
 		 *            a byte array
@@ -214,7 +214,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a character array argument asserter
+		 * character数组变量断言
 		 * 
 		 * @param value
 		 *            a character array
@@ -225,7 +225,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a short array argument asserter
+		 * short数值类型数组变量断言
 		 * 
 		 * @param value
 		 *            a short array
@@ -236,7 +236,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * an integer array argument asserter
+		 * integer数值类型数组变量断言
 		 * 
 		 * @param value
 		 *            a integer array
@@ -247,7 +247,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a long array argument asserter
+		 * long数值类型数组变量断言
 		 * 
 		 * @param value
 		 *            a long array
@@ -258,7 +258,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a float array argument asserter
+		 * float数值类型数组变量断言
 		 * 
 		 * @param value
 		 *            a float array
@@ -269,7 +269,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a double array argument asserter
+		 * double数值类型数组变量断言
 		 * 
 		 * @param value
 		 *            a double array
@@ -280,7 +280,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a map argument asserter
+		 * map变量断言
 		 * 
 		 * @param value
 		 *            a map argument
@@ -291,7 +291,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a collection argument asserter
+		 * collection变量断言
 		 * 
 		 * @param value
 		 *            a collection argument
@@ -302,7 +302,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * an object argument asserter
+		 * 通用object对象断言
 		 * 
 		 * @param value
 		 *            a object argument
@@ -313,14 +313,17 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * an assert statement always throw an AssertError exception
+		 * 一个永远失败的断言
 		 */
 		public void fail() {
 			assert true == false;
 		}
 
 		/**
-		 * an assert statement always throw an AssertError exception
+		 * 一个永远失败的断言
+		 * 
+		 * @param message
+		 *            失败后的提示信息
 		 */
 		public void fail(String message) {
 			assert true == false : message;
@@ -338,7 +341,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a file argument asserter
+		 * 文件变量断言
 		 * 
 		 * @param file
 		 * @return
@@ -348,7 +351,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a calendar argument asserter
+		 * calendar变量断言
 		 * 
 		 * @param cal
 		 * @return
@@ -358,7 +361,7 @@ public interface JTesterAssert {
 		}
 
 		/**
-		 * a date argument asserter
+		 * 日期变量断言
 		 * 
 		 * @param date
 		 * @return
