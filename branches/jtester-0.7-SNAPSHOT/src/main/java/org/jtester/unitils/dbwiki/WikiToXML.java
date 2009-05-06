@@ -46,10 +46,8 @@ public class WikiToXML {
 		}
 	}
 
-	private static final String schema_regex = "\\|\\s*table\\s*\\|.*\\|";
-
 	private void parseTable(String line) {
-		if (line.matches(schema_regex)) {
+		if (WikiTableUtil.isTableSchema(line)) {
 			tableStatus = TableStatus.SCHEMA;
 			this.currMeta = new WikiTableMeta();
 			this.metas.add(this.currMeta);

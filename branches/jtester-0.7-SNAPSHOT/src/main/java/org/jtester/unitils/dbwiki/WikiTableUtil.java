@@ -18,6 +18,9 @@ public class WikiTableUtil {
 	 * @param line
 	 */
 	public static void parseSchema(final WikiTableMeta meta, final String line) {
+		if (!WikiTableUtil.isTableSchema(line)) {
+			throw new RuntimeException("this line isn't a schema definder,line:" + line);
+		}
 		String schema = split(line)[1];
 		if (StringUtils.isBlank(schema)) {
 			throw new RuntimeException("can't parse schema name from line:" + line);
@@ -80,5 +83,17 @@ public class WikiTableUtil {
 			_line = _line.substring(0, length);
 		}
 		return _line.split("\\|");
+	}
+
+	private static final String schema_regex = "\\|\\s*table\\s*\\|.+";
+
+	/**
+	 * 判断是否是定义table schema的wiki,格式|table|schema_name|
+	 * 
+	 * @param line
+	 * @return
+	 */
+	public static boolean isTableSchema(String line) {
+		return line.matches(schema_regex);
 	}
 }
