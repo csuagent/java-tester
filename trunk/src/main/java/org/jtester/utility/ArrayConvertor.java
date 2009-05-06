@@ -3,6 +3,12 @@ package org.jtester.utility;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 将原生类型的数组转换成对象数组
+ * 
+ * @author darui.wudr
+ * 
+ */
 public class ArrayConvertor {
 	// boolean
 	// byte

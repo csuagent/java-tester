@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.jmock.Mockery;
+import org.jmock.api.MockObjectNamingScheme;
+import org.jmock.lib.CamelCaseNamingScheme;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.jtester.unitils.inject.InjectedMock;
 import org.unitils.core.Module;
@@ -17,6 +19,8 @@ import org.unitils.core.TestListener;
 
 public class JmockModule implements Module {
 	private Mockery context;
+
+	private MockObjectNamingScheme namingScheme = CamelCaseNamingScheme.INSTANCE;
 
 	public void afterInit() {
 		;
@@ -41,12 +45,12 @@ public class JmockModule implements Module {
 			Class<?> mockType = mockField.getType();
 			Mock mock = mockField.getAnnotation(Mock.class);
 
-			Object mockObject = null;
-			if (StringUtils.isEmpty(mock.value())) {
-				mockObject = context.mock(mockType);
-			} else {
-				mockObject = context.mock(mockType, mock.value());
+			String name = mock.value();
+			if (StringUtils.isEmpty(name)) {
+				name = namingScheme.defaultNameFor(mockType);
 			}
+			name = name + "_" + Thread.currentThread().getId();
+			Object mockObject = context.mock(mockType, name);
 
 			setFieldValue(testObject, mockField, mockObject);
 		}

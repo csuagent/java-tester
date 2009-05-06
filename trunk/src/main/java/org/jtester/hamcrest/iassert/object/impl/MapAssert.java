@@ -7,9 +7,9 @@ import java.util.Map;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
-import org.jtester.hamcrest.iassert.object.IMapAssert;
-import org.jtester.hamcrest.matcher.MapMatcher;
-import org.jtester.hamcrest.matcher.MapMatcher.MapMatcherType;
+import org.jtester.hamcrest.iassert.object.intf.IMapAssert;
+import org.jtester.hamcrest.matcher.array.MapMatcher;
+import org.jtester.hamcrest.matcher.array.MapMatcher.MapMatcherType;
 
 public class MapAssert extends BaseAssert<Map<?, ?>, IMapAssert> implements IMapAssert {
 	public MapAssert() {

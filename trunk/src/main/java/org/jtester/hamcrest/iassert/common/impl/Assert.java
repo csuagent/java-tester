@@ -5,7 +5,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
-import org.jtester.hamcrest.iassert.common.IAssert;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
 import org.jtester.hamcrest.matcher.LinkMatcher;
 import org.jtester.jmock.ExpectationsUtil;
 import org.jtester.utility.PrimitiveConvertor;
@@ -14,7 +14,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 
 	protected Class<?> valueClaz = null;
 
-	protected Object value;
+	protected T value;
 
 	protected AssertType type;
 
@@ -22,6 +22,9 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	protected Class<? extends IAssert> assertClaz;
 
 	protected LinkMatcher<T> link;
+
+	public Assert() {
+	}
 
 	public Assert(Class<? extends IAssert<?, ?>> clazE) {
 		this.value = null;
@@ -80,16 +83,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	public boolean equals(Object obj) {
 		throw new RuntimeException("the method can't be used,please use isEqualTo() instead");
 	}
-
-	// @SuppressWarnings("unchecked")
-	// public T match(Expectations expectations) {
-	// if (this.type == AssertType.AssertThat) {
-	// throw new RuntimeException("is not an Expectations");
-	// } else {
-	// expectations.with(this.link);
-	// return (T) PrimitiveConvertor.value(valueClaz);
-	// }
-	// }
 
 	@SuppressWarnings("unchecked")
 	public T wanted() {

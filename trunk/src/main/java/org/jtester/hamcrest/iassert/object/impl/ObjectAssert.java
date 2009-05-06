@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
 import org.jtester.hamcrest.iassert.common.impl.ReflectionAssert;
-import org.jtester.hamcrest.iassert.object.IObjectAssert;
+import org.jtester.hamcrest.iassert.object.intf.IObjectAssert;
 
 public class ObjectAssert extends ReflectionAssert<Object, IObjectAssert>
 		implements IObjectAssert {

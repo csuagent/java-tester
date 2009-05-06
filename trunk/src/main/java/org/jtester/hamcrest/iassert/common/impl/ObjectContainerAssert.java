@@ -8,12 +8,12 @@ import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsArrayContaining;
 import org.hamcrest.collection.IsCollectionContaining;
 import org.hamcrest.core.AllOf;
-import org.jtester.hamcrest.iassert.common.IAssert;
-import org.jtester.hamcrest.iassert.common.IObjectContainerAssert;
-import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher;
-import org.jtester.hamcrest.matcher.SizeOrLengthMatcher;
-import org.jtester.hamcrest.matcher.ArrayItemRegularMatcher.ArrayItemRegularMatcherType;
-import org.jtester.hamcrest.matcher.SizeOrLengthMatcher.SizeOrLengthMatcherType;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
+import org.jtester.hamcrest.iassert.common.intf.IObjectContainerAssert;
+import org.jtester.hamcrest.matcher.array.ArrayItemRegularMatcher;
+import org.jtester.hamcrest.matcher.array.SizeOrLengthMatcher;
+import org.jtester.hamcrest.matcher.array.ArrayItemRegularMatcher.ArrayItemRegularMatcherType;
+import org.jtester.hamcrest.matcher.array.SizeOrLengthMatcher.SizeOrLengthMatcherType;
 import org.jtester.utility.ArrayConvertor;
 
 public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends ComparableAssert<T, E> implements

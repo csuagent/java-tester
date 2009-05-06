@@ -2,8 +2,8 @@ package org.jtester.hamcrest.iassert.common.impl;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
-import org.jtester.hamcrest.iassert.common.IAssert;
-import org.jtester.hamcrest.iassert.common.IComparableAssert;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
+import org.jtester.hamcrest.iassert.common.intf.IComparableAssert;
 import org.mockito.internal.matchers.GreaterOrEqual;
 import org.mockito.internal.matchers.GreaterThan;
 import org.mockito.internal.matchers.LessOrEqual;

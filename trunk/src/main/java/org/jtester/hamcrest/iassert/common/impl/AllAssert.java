@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.iassert.common.impl;
 
-import org.jtester.hamcrest.iassert.common.IAssert;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
 
 /**
  * all assert statements have been implemented by this class <br/>

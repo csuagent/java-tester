@@ -3,6 +3,12 @@ package org.jtester.utility;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * java原生类型的默认值
+ * 
+ * @author darui.wudr
+ * 
+ */
 public class PrimitiveConvertor {
 	private static Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
 	static {

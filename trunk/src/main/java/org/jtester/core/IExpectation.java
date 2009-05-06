@@ -1,26 +1,16 @@
 package org.jtester.core;
 
-import org.hamcrest.Matcher;
-import org.jtester.hamcrest.iassert.object.IArrayAssert;
-import org.jtester.hamcrest.iassert.object.IBooleanAssert;
-import org.jtester.hamcrest.iassert.object.IByteAssert;
-import org.jtester.hamcrest.iassert.object.ICharacterAssert;
-import org.jtester.hamcrest.iassert.object.ICollectionAssert;
-import org.jtester.hamcrest.iassert.object.IDoubleAssert;
-import org.jtester.hamcrest.iassert.object.IFloatAssert;
-import org.jtester.hamcrest.iassert.object.IIntegerAssert;
-import org.jtester.hamcrest.iassert.object.ILongAssert;
-import org.jtester.hamcrest.iassert.object.IMapAssert;
-import org.jtester.hamcrest.iassert.object.INumberAssert;
-import org.jtester.hamcrest.iassert.object.IObjectAssert;
-import org.jtester.hamcrest.iassert.object.IShortAssert;
-import org.jtester.hamcrest.iassert.object.IStringAssert;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.jtester.hamcrest.iassert.object.impl.ArrayAssert;
 import org.jtester.hamcrest.iassert.object.impl.BooleanAssert;
 import org.jtester.hamcrest.iassert.object.impl.ByteAssert;
+import org.jtester.hamcrest.iassert.object.impl.CalendarAssert;
 import org.jtester.hamcrest.iassert.object.impl.CharacterAssert;
 import org.jtester.hamcrest.iassert.object.impl.CollectionAssert;
 import org.jtester.hamcrest.iassert.object.impl.DoubleAssert;
+import org.jtester.hamcrest.iassert.object.impl.FileAssert;
 import org.jtester.hamcrest.iassert.object.impl.FloatAssert;
 import org.jtester.hamcrest.iassert.object.impl.IntegerAssert;
 import org.jtester.hamcrest.iassert.object.impl.LongAssert;
@@ -29,76 +19,186 @@ import org.jtester.hamcrest.iassert.object.impl.NumberAssert;
 import org.jtester.hamcrest.iassert.object.impl.ObjectAssert;
 import org.jtester.hamcrest.iassert.object.impl.ShortAssert;
 import org.jtester.hamcrest.iassert.object.impl.StringAssert;
-import org.mockito.internal.matchers.Any;
+import org.jtester.hamcrest.iassert.object.intf.IArrayAssert;
+import org.jtester.hamcrest.iassert.object.intf.IBooleanAssert;
+import org.jtester.hamcrest.iassert.object.intf.IByteAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICalendarAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICharacterAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICollectionAssert;
+import org.jtester.hamcrest.iassert.object.intf.IDoubleAssert;
+import org.jtester.hamcrest.iassert.object.intf.IFileAssert;
+import org.jtester.hamcrest.iassert.object.intf.IFloatAssert;
+import org.jtester.hamcrest.iassert.object.intf.IIntegerAssert;
+import org.jtester.hamcrest.iassert.object.intf.ILongAssert;
+import org.jtester.hamcrest.iassert.object.intf.IMapAssert;
+import org.jtester.hamcrest.iassert.object.intf.INumberAssert;
+import org.jtester.hamcrest.iassert.object.intf.IObjectAssert;
+import org.jtester.hamcrest.iassert.object.intf.IShortAssert;
+import org.jtester.hamcrest.iassert.object.intf.IStringAssert;
 
+/**
+ * the jmock parameter expectation factory
+ * 
+ * @author darui.wudr
+ * 
+ */
 public interface IExpectation {
-	public static class the {
-		public static IStringAssert string() {
+	public static final TheExpectation the = new TheExpectation();
+
+	public static class TheExpectation {
+		/**
+		 * a parameter string will be asserted
+		 * 
+		 * @return
+		 */
+		public IStringAssert string() {
 			return new StringAssert();
 		}
 
-		public static IBooleanAssert bool() {
+		/**
+		 * a parameter boolean will be expected
+		 * 
+		 * @return
+		 */
+		public IBooleanAssert bool() {
 			return new BooleanAssert();
 		}
 
+		/**
+		 * a parameter number(integer, long, double,short,float) will be
+		 * expected
+		 * 
+		 * @return
+		 */
 		@SuppressWarnings("unchecked")
-		public static INumberAssert number() {
+		public INumberAssert number() {
 			return new NumberAssert(NumberAssert.class);
 		}
 
-		public static IIntegerAssert integer() {
+		/**
+		 * a parameter integer number will be asserted
+		 * 
+		 * @return
+		 */
+		public IIntegerAssert integer() {
 			return new IntegerAssert();
 		}
 
-		public static ILongAssert longnum() {
+		/**
+		 * a parameter long number will be asserted
+		 * 
+		 * @return
+		 */
+		public ILongAssert longnum() {
 			return new LongAssert();
 		}
 
-		public static IDoubleAssert doublenum() {
+		/**
+		 * a parameter double number will be asserted
+		 * 
+		 * @return
+		 */
+		public IDoubleAssert doublenum() {
 			return new DoubleAssert();
 		}
 
-		public static IFloatAssert floatnum() {
+		/**
+		 * a parameter float number will be asserted
+		 * 
+		 * @return
+		 */
+		public IFloatAssert floatnum() {
 			return new FloatAssert();
 		}
 
-		public static IShortAssert shortnum() {
+		/**
+		 * a parameter short number will be asserted
+		 * 
+		 * @return
+		 */
+		public IShortAssert shortnum() {
 			return new ShortAssert();
 		}
 
-		public static ICharacterAssert character() {
+		/**
+		 * a parameter character will be asserted
+		 * 
+		 * @return
+		 */
+		public ICharacterAssert character() {
 			return new CharacterAssert();
 		}
 
 		/**
-		 * bite is byte
+		 * a parameter bite will be asserted
 		 * 
 		 * @return
 		 */
-		public static IByteAssert bite() {
+		public IByteAssert bite() {
 			return new ByteAssert();
 		}
 
-		public static IArrayAssert array() {
+		/**
+		 * a parameter array will be asserted
+		 * 
+		 * @return
+		 */
+		public IArrayAssert array() {
 			return new ArrayAssert();
 		}
 
-		public static IMapAssert map() {
+		/**
+		 * a parameter map will be asserted
+		 * 
+		 * @return
+		 */
+		public IMapAssert map() {
 			return new MapAssert();
 		}
 
-		public static ICollectionAssert collection() {
+		/**
+		 * a parameter collection will be asserted
+		 * 
+		 * @return
+		 */
+		public ICollectionAssert collection() {
 			return new CollectionAssert();
 		}
 
-		public static IObjectAssert object() {
+		/**
+		 * a parameter general object will be asserted
+		 * 
+		 * @return
+		 */
+		public IObjectAssert object() {
 			return new ObjectAssert();
 		}
 
-		@SuppressWarnings("unchecked")
-		public static <T extends Object> Matcher<T> any(Class<T> claz) {
-			Matcher<T> _matcher = Any.ANY;
-			return _matcher;
+		/**
+		 * a parameter file will be asserted
+		 * 
+		 * @return
+		 */
+		public IFileAssert file() {
+			return new FileAssert();
+		}
+
+		/**
+		 * a parameter calendar will be asserted
+		 * 
+		 * @return
+		 */
+		public ICalendarAssert<Calendar> calendar() {
+			return new CalendarAssert<Calendar>();
+		}
+
+		/**
+		 * a parameter date will be asserted
+		 * 
+		 * @return
+		 */
+		public ICalendarAssert<Date> date() {
+			return new CalendarAssert<Date>();
 		}
 	}
 }

@@ -1,8 +1,8 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
-import org.jtester.hamcrest.iassert.common.IAssert;
 import org.jtester.hamcrest.iassert.common.impl.AllAssert;
-import org.jtester.hamcrest.iassert.object.INumberAssert;
+import org.jtester.hamcrest.iassert.common.intf.IAssert;
+import org.jtester.hamcrest.iassert.object.intf.INumberAssert;
 
 public class NumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, ?>> extends AllAssert<T, E>
 		implements INumberAssert<T, E> {
