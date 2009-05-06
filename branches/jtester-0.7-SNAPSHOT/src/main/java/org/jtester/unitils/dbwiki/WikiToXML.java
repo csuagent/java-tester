@@ -9,11 +9,24 @@ import java.util.List;
 
 import org.jtester.utility.FindClazUtil;
 
-public class DataWikiUnitils {
+/**
+ * wiki转换成dbunit dataset工具类
+ * 
+ * @author darui.wudr
+ * 
+ */
+public class WikiToXML {
 	private List<WikiTableMeta> metas = new ArrayList<WikiTableMeta>();
 	private WikiTableMeta currMeta = null;
 
-	public String wiki(Class<?> claz, String wikiFile) {
+	/**
+	 * 将claz package下面名称为wikiFile的wiki文件转成dbunit可以识别的xml dataset
+	 * 
+	 * @param claz
+	 * @param wikiFile
+	 * @return
+	 */
+	public String wiki2xml(Class<?> claz, String wikiFile) {
 		try {
 			String file = FindClazUtil.finePackageDir(claz) + "/" + wikiFile;
 			InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream(file);
@@ -35,7 +48,7 @@ public class DataWikiUnitils {
 
 	private static final String schema_regex = "\\|\\s*table\\s*\\|.*\\|";
 
-	public void parseTable(String line) {
+	private void parseTable(String line) {
 		if (line.matches(schema_regex)) {
 			tableStatus = TableStatus.SCHEMA;
 			this.currMeta = new WikiTableMeta();
@@ -54,7 +67,7 @@ public class DataWikiUnitils {
 
 	private static final String table_regex = "(\\|[^\\|]*)+\\|?";
 
-	public boolean isTable(String line) {
+	private boolean isTable(String line) {
 		return line.matches(table_regex);
 	}
 
