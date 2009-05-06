@@ -1,0 +1,26 @@
+<java.util.Arrays_-ArrayList>
+  <a class="org.jtester.utility.beans.Manager-array">
+    <org.jtester.utility.beans.Manager>
+      <Secretary>
+        <name>Harry Hacker</name>
+      </Secretary>
+      <phoneNumber class="org.jtester.utility.beans.PhoneNumber">
+        <code>571</code>
+        <number>0571-88886666</number>
+      </phoneNumber>
+      <name>Tony Tester</name>
+      <date>2009-04-30 18:01:10.954 CST</date>
+    </org.jtester.utility.beans.Manager>
+    <org.jtester.utility.beans.Manager>
+      <Secretary>
+        <name>Harry Hacker</name>
+      </Secretary>
+      <phoneNumber class="org.jtester.utility.beans.PhoneNumber">
+        <code>571</code>
+        <number>0571-88886666</number>
+      </phoneNumber>
+      <name>Tony Tester</name>
+      <date>2009-04-30 18:01:10.954 CST</date>
+    </org.jtester.utility.beans.Manager>
+  </a>
+</java.util.Arrays_-ArrayList>

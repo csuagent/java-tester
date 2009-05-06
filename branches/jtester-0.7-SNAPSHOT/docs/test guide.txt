@@ -1,0 +1,144 @@
+${package}
+
+Test${class}_Spec
+
+${method}_spec
+
+命名规范
+src->main->java->package
+     test->java->package
+测试类命名 ClassTest,以要测的类名称开头，后面跟Test，如果一个类存在多个对应的测试类，则加_Spec，来表明不同用途的测试类。
+测试方法命名 method,与要测试的接口命名相同，如果一个接口存在多个测试方法，则加_spec来表明不同用途的测试方法。
+如果这个测试方法不是针对某个接口，某个方法则命名自由，上述的命名只是为了帮助你快速的找到你写的对应的测试方法，并不是强制性的约束。
+测试类里面的非测试方法不要声明成public
+
+如果可能，可以写一个eclipse插件来管理测试类
+需要实现的功能，类似与eclipse中快捷键 ctrl + T，在一个class或method上一按这个快捷键，可以自动列出有哪些测试类和测试方法。
+被测试接口（类）重命名时也要把关联测试类重命名，被测试方法重命名时要把关联的测试方法重命名。
+
+程序员测试和QA测试的不同点1.QA功能测试，不关心代码是如何写的。2.程序员测试，要保证代码的可维护性，和测性（简洁）。
+   共同点：保证程序的正确性
+
+为什么要写测试
+  1.bug延后发现的代价递增
+  2.后续开发的不可维护性,噩梦一般
+  3.可测试的代码一般比较容易读懂。
+  4.减少debug
+  5.使你对代码的质量有信心
+
+何时写测试
+  Develop Unit Tests in Parallel( even Before the Implementation)
+  Fixing bug: write an test that would failure, then fix bug and pass the test.
+  design api -> (test/code) -> refactor -> pass test
+
+what is tdd:first we write a test,then we write code to make the test pass.
+  it's difficult for us,so we can write code and test parallel.
+
+快速反馈（CI机制？svn checkin 通知）
+	continuous integration
+	svn checkin compile/test -> Email/IM notifications
+
+不要在测试代码里写太复杂的代码，不要有太多的业务逻辑？
+
+如何使代码可测？如何测试代码?
+   分而治之(战争和政治上经常采用分而治之策略，算法上如此，写测试代码也是如是，其实世上的很多东西的哲学上是共通的）。
+   
+测试策略的选择?
+■ Diving first into details versus starting with the big picture
+■ Exploring uncertain territory versus sticking with the familiar and comfortable
+■ Going for the highest value versus picking the low-hanging fruit first
+■ Treading the happy path1 first versus starting with handling error situations
+   
+   Choose composition over inheritance
+   Avoid static and the Singleton
+   避免使用new，如果希望mock static的方法，那么工具类尽量写成singleton bean
+   尽量避免使用static field
+   测试的目标和非目标
+   重构代码使得代码变的可测试
+   
+   Fixture：setup teardown test ->Object Helper
+   parameter test
+   
+   acceptance TDD（1.车的速度快并不一定快到达目的地，方向要正确,2.只见树木，不见森林;一叶障目，不见泰山）  
+   ->  fit/fitness(customer test-driven development)?
+   BDD?
+   
+什么是一个好的测试
+	测试的原子性
+	测试的独立性(test 和test最好不要相互干扰)？
+
+测试Exception，@Test(expectedExceptions = Exception.class)
+
+依赖测试，@Test(dependsOnMethods = "depend")
+
+Data-Driven testing
+
+WEB测试，spring MockHttpServletRequest，MockHttpServletResponse
+view test? looks like can't be tested.
+           do(show) what can be test
+	->JspTest,httpUnit
+	->wicketTester
+
+mock测试
+   隔离各个接口的交互影响，集中力量测试好当前的接口
+   mock 和 stub的区别
+   easymock和jmock
+
+数据库测试(数据无所不在，凡是有应用的地方就有数据)
+开发数据库和测试数据分开，测试数据库需要随时清理数据，保证测试数据的干净。如果条件允许，最好每个开发人员一个测试数据库。
+准备测试数据，unitils dbunit 
+                  dataset
+    dbunit maintain data strategy:update,insert,refresh,delete,delete_all,trancate_table,clean_insert
+    Spring’s JdbcTemplate(simpleJdbcTemplate)
+    
+Test-driving the unpredictable
+■ Time-dependent functionality
+■ Multithreaded programming
+■ 如何进行异步测试?
+
+
+事务测试？
+
+断言(断言的好坏决定了一个测试的优劣)
+   1.后置断言
+   2.前置断言
+
+Spring相关测试
+   spring框架的TestContext?
+   unitils spring module?
+     caching beans,transaction,depedency injection
+   spring bean的污染问题，比如mock注入的干扰。
+
+TestNG,dataProvider
+
+extend testng:ITest,ITestResult,ITestListener,ITestNGMethod
+
+TDD pitfalls
+  1.microdesign over macrodesign,所有的接口单独跑起来都是ok的，但是集成起来却出现了问题。-> 引出集成测试?
+  2.it's hard to apply,所有的理论只讲述了为什么要做，以及怎样做。现实的代码存在很多不可测的地方？
+     a.经验不足
+     b.例子过于简单
+     c.项目压力
+     d.语言问题(VB,js?)
+     e.遗留代码
+
+测试代码的维护？
+
+test vs debugger？
+
+
+tools for TDD
+	junit/testng/jdave
+	jmock/easymock
+	dbunit/htmlunit/xmlunit/spring test/web tester
+	unitils
+	jtester?
+	
+	fit/fitness/selenium/Exactor
+		Fit (Framework for Integrated Tests)
+			Fit essentially provides syntax for constructing test fixtures from HTML tables and a way to hook those fixtures into their implementations in various programming languages
+	CI?(Martin Fowler’s article “Continuous Integration”)
+	
+code coverage,测试覆盖率,eclemma,cobertura,clover?  行覆盖率，分支覆盖率？ （类覆盖，方法覆盖）
+覆盖率的欺骗性。
+有比没有好，多比少好
