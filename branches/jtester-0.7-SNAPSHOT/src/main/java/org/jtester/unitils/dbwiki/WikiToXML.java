@@ -40,24 +40,24 @@ public class WikiToXML {
 				parseTable(line);
 				line = reader.readLine();
 			}
-			return WikiTableUtil.parseMetas(this.metas);
+			return WikiToXMLHelper.parseMetas(this.metas);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	private void parseTable(String line) {
-		if (WikiTableUtil.isTableSchema(line)) {
+		if (WikiToXMLHelper.isTableSchema(line)) {
 			tableStatus = TableStatus.SCHEMA;
 			this.currMeta = new WikiTableMeta();
 			this.metas.add(this.currMeta);
-			WikiTableUtil.parseSchema(this.currMeta, line);
+			WikiToXMLHelper.parseSchema(this.currMeta, line);
 		} else if (tableStatus == TableStatus.SCHEMA) {
 			tableStatus = TableStatus.HEADER;
-			WikiTableUtil.parseHeader(this.currMeta, line);
+			WikiToXMLHelper.parseHeader(this.currMeta, line);
 		} else if (tableStatus == TableStatus.HEADER || tableStatus == TableStatus.FIELD) {
 			tableStatus = TableStatus.FIELD;
-			WikiTableUtil.parseFields(this.currMeta, line);
+			WikiToXMLHelper.parseFields(this.currMeta, line);
 		} else {
 			tableStatus = TableStatus.NONE;
 		}
