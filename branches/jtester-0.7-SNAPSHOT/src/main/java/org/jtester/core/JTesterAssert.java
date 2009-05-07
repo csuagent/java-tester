@@ -59,17 +59,6 @@ public interface JTesterAssert {
 			return new StringAssert(value);
 		}
 
-//		/**
-//		 * 布尔变量断言
-//		 * 
-//		 * @param value
-//		 *            a boolean variable
-//		 * @return
-//		 */
-//		public IBooleanAssert bool(boolean value) {
-//			return new BooleanAssert(value);
-//		}
-
 		/**
 		 * 布尔变量断言
 		 * 
@@ -147,17 +136,6 @@ public interface JTesterAssert {
 			return new CharacterAssert(value);
 		}
 
-//		/**
-//		 * char变量断言
-//		 * 
-//		 * @param value
-//		 *            a character variable
-//		 * @return
-//		 */
-//		public ICharacterAssert character(char value) {
-//			return new CharacterAssert(value);
-//		}
-
 		/**
 		 * byte变量断言
 		 * 
@@ -168,17 +146,6 @@ public interface JTesterAssert {
 		public IByteAssert bite(Byte value) {
 			return new ByteAssert(value);
 		}
-
-//		/**
-//		 * byte变量断言
-//		 * 
-//		 * @param value
-//		 *            a byte variable
-//		 * @return
-//		 */
-//		public IByteAssert bite(byte value) {
-//			return new ByteAssert(value);
-//		}
 
 		/**
 		 * 数组变量断言
@@ -368,6 +335,40 @@ public interface JTesterAssert {
 		 */
 		public ICalendarAssert<Date> date(Date date) {
 			return new CalendarAssert<Date>(date);
+		}
+
+		static {
+			// Depreciate
+			// /**
+			// * 布尔变量断言
+			// *
+			// * @param value
+			// * a boolean variable
+			// * @return
+			// */
+			// public IBooleanAssert bool(boolean value) {
+			// return new BooleanAssert(value);
+			// }
+			// /**
+			// * char变量断言
+			// *
+			// * @param value
+			// * a character variable
+			// * @return
+			// */
+			// public ICharacterAssert character(char value) {
+			// return new CharacterAssert(value);
+			// }
+			// /**
+			// * byte变量断言
+			// *
+			// * @param value
+			// * a byte variable
+			// * @return
+			// */
+			// public IByteAssert bite(byte value) {
+			// return new ByteAssert(value);
+			// }
 		}
 	}
 }
