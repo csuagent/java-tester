@@ -3,6 +3,7 @@ package org.jtester.unitils.dbwiki;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.jtester.exception.JTesterException;
 
 /**
  * 解析wiki中table的工具类
@@ -19,11 +20,11 @@ public class WikiToXMLHelper {
 	 */
 	public static void parseSchema(final WikiTableMeta meta, final String line) {
 		if (!WikiToXMLHelper.isTableSchema(line)) {
-			throw new RuntimeException("this line isn't a schema definder,line:" + line);
+			throw new JTesterException("this line isn't a schema definder,line:" + line);
 		}
 		String schema = split(line)[1];
 		if (StringUtils.isBlank(schema)) {
-			throw new RuntimeException("can't parse schema name from line:" + line);
+			throw new JTesterException("can't parse schema name from line:" + line);
 		}
 		meta.setSchemaName(schema.trim());
 	}
@@ -38,7 +39,7 @@ public class WikiToXMLHelper {
 		String[] fields = split(line);
 		for (String field : fields) {
 			if (StringUtils.isBlank(field)) {
-				throw new RuntimeException("there are a blank field name parsed from line:" + line);
+				throw new JTesterException("there are a blank field name parsed from line:" + line);
 			}
 			meta.addFieldName(field.trim());
 		}
@@ -94,7 +95,7 @@ public class WikiToXMLHelper {
 	 * @return
 	 */
 	public static boolean isTableSchema(String line) {
-		return line.matches(schema_regex);
+		return line != null && line.matches(schema_regex);
 	}
 
 	private static final String table_regex = "(\\|[^\\|]*)+\\|?";
@@ -106,6 +107,6 @@ public class WikiToXMLHelper {
 	 * @return
 	 */
 	public static boolean isWikiTable(String line) {
-		return line.matches(table_regex);
+		return line != null && line.matches(table_regex);
 	}
 }

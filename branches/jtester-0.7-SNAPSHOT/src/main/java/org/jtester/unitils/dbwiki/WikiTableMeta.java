@@ -73,4 +73,12 @@ public class WikiTableMeta {
 			this.metaNames.add(meta);
 		}
 	}
+
+	public List<String> getFieldNames() {
+		return fieldNames;
+	}
+
+	public List<FieldMeta> getFieldValues() {
+		return fieldValues;
+	}
 }
