@@ -21,4 +21,4 @@ public void register_SinglThread() {
 	callingService.call("i am a test message!");
 }
 }}}
-更详细的用法请参考 断言的使用 以及 jmock官方文档，unitils mock的使用
+更详细的用法请参考 [[JTester断言语法][http://code.google.com/p/java-tester/wiki/AssertSyntax]] 以及 jmock官方文档，unitils mock的使用
