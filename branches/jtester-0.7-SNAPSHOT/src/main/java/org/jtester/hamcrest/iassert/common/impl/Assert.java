@@ -48,7 +48,11 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	}
 
 	public void describeTo(Description description) {
-		link.describeTo(description);
+		if (link != null && this.type == AssertType.Expectations) {
+			link.describeTo(description);
+		} else if (this.value != null) {
+			description.appendText(this.value.toString());
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -69,6 +73,17 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 			this.link.add(matcher);
 		}
 		return (E) this;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName();
+//		StringBuffer buffer = new StringBuffer();
+//		buffer.append("class:" + this.getClass().getName());
+//		buffer.append(",value clazz:" + (this.valueClaz == null ? "null" : this.valueClaz.getName()));
+//		buffer.append(",AssertType=" + type);
+//		buffer.append(",value=" + value);
+//		return buffer.toString();
 	}
 
 	public boolean matches(Object item) {
