@@ -1,24 +1,21 @@
 package org.jtester.unitils.dbwiki;
 
-import java.util.Collection;
-
-import org.jtester.dbtest.bean.Address;
 import org.jtester.dbtest.bean.User;
 import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
-import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
 @Test(groups = { "JTester" })
 @SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
-public class WikiDataSetModuleTest extends JTester {
+public class WikiDbUnitModuleTest extends JTester {
 	@SpringBeanByType
 	private UserService userService;
 
 	@Test
-	@DataSet( { "UserServiceTest.getUser.xml" })
+	// @DataSet( { "UserServiceTest.getUser.xml" })
+	@WikiDataSet("getUser.wiki")
 	public void getUser() {
 		User user1 = userService.getUser(1);
 		want.object(user1).notNull();
@@ -31,17 +28,17 @@ public class WikiDataSetModuleTest extends JTester {
 		want.object(user4).isNull();
 	}
 
-	@Test
-	@DataSet( { "UserServiceTest.getUser_LazyAddress.xml" })
-	public void getUser_LazyAddress() {
-		User user = userService.getUser(1);
-		want.object(user).notNull();
-
-		want.object(user.getAddresses()).notNull();
-		Collection<Address> addresses = user.getAddresses();
-		want.object(addresses.size()).isEqualTo(1);
-		for (Address address : addresses) {
-			want.string(address.getCity()).contains("city");
-		}
-	}
+	// @Test
+	// @DataSet( { "UserServiceTest.getUser_LazyAddress.xml" })
+	// public void getUser_LazyAddress() {
+	// User user = userService.getUser(1);
+	// want.object(user).notNull();
+	//
+	// want.object(user.getAddresses()).notNull();
+	// Collection<Address> addresses = user.getAddresses();
+	// want.object(addresses.size()).isEqualTo(1);
+	// for (Address address : addresses) {
+	// want.string(address.getCity()).contains("city");
+	// }
+	// }
 }
