@@ -29,4 +29,17 @@ public class ExpectationsUtilTest extends JTester {
 		});
 		callingService.call("i am a test message!");
 	}
+
+	@Test
+	public void register_SinglThread() {
+		checking(new Je() {
+			{
+				will.call.one(calledService).called(the.string().contains("test").wanted());
+				will.returns.value("dddd");
+				will.call.ignoring(calledService).called(the.string().any().wanted());
+				will.returns.value("dddd");
+			}
+		});
+		callingService.call("i am a test message!");
+	}
 }
