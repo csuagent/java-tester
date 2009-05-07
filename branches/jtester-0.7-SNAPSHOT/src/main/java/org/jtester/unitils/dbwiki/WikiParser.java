@@ -88,4 +88,9 @@ public class WikiParser {
 	private static enum TableStatus {
 		SCHEMA, HEADER, FIELD, NONE;
 	}
+
+	public static String parser(File wikiFile) {
+		WikiParser parser = new WikiParser();
+		return parser.wiki2xml(wikiFile);
+	}
 }
