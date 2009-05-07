@@ -6,7 +6,7 @@
 @Mock
 private CalledService calledService;
 }}}
-在测试方法中定义一个Je的匿名类，模拟被调用的方法，以及返回值等
+在测试方法中定义一个Je （org.jtester.jmock.JTesterExpectations）的匿名类，模拟被调用的方法，以及返回值等
 {{{
 @Test
 public void register_SinglThread() {
