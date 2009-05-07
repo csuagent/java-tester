@@ -21,4 +21,6 @@ public void register_SinglThread() {
 	callingService.call("i am a test message!");
 }
 }}}
-更详细的用法请参考[AssertSyntax] 以及 jmock官方文档，unitils mock的使用
+更详细的用法请参考[AssertSyntax] 以及 <br/>
+jmock官方文档 http://www.jmock.org/cookbook.html
+unitils mock文档
