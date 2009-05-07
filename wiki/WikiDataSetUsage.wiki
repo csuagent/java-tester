@@ -55,3 +55,5 @@ public void getUser_LazyAddress() {
 	}
 }
 }}}
+
+wiki插件安装 http://eclipsewiki.sourceforge.net/ ，也可以使用mylyn带的wikitext插件
