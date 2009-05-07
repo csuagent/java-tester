@@ -12,7 +12,7 @@ import org.jtester.exception.JTesterException;
  * @author darui.wudr
  * 
  */
-public class WikiToXMLHelper {
+public class WikiPaserUtil {
 	/**
 	 * 解析wiki table中表名称
 	 * 
@@ -20,7 +20,7 @@ public class WikiToXMLHelper {
 	 * @param line
 	 */
 	public static void parseSchema(final WikiTableMeta meta, final String line) {
-		if (!WikiToXMLHelper.isTableSchema(line)) {
+		if (!WikiPaserUtil.isTableSchema(line)) {
 			throw new JTesterException("this line isn't a schema definder,line:" + line);
 		}
 		String schema = split(line)[1];

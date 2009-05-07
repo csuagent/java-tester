@@ -35,14 +35,14 @@ public class WikiParser {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 			String line = reader.readLine();
 			while (line != null) {
-				if (!WikiToXMLHelper.isWikiTable(line)) {
+				if (!WikiPaserUtil.isWikiTable(line)) {
 					line = reader.readLine();
 					continue;
 				}
 				parseTable(line);
 				line = reader.readLine();
 			}
-			return WikiToXMLHelper.parseMetas(this.metas);
+			return WikiPaserUtil.parseMetas(this.metas);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -53,31 +53,31 @@ public class WikiParser {
 			BufferedReader reader = new BufferedReader(new FileReader(wikiFile));
 			String line = reader.readLine();
 			while (line != null) {
-				if (!WikiToXMLHelper.isWikiTable(line)) {
+				if (!WikiPaserUtil.isWikiTable(line)) {
 					line = reader.readLine();
 					continue;
 				}
 				parseTable(line);
 				line = reader.readLine();
 			}
-			return WikiToXMLHelper.parseMetas(this.metas);
+			return WikiPaserUtil.parseMetas(this.metas);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	private void parseTable(String line) {
-		if (WikiToXMLHelper.isTableSchema(line)) {
+		if (WikiPaserUtil.isTableSchema(line)) {
 			tableStatus = TableStatus.SCHEMA;
 			this.currMeta = new WikiTableMeta();
 			this.metas.add(this.currMeta);
-			WikiToXMLHelper.parseSchema(this.currMeta, line);
+			WikiPaserUtil.parseSchema(this.currMeta, line);
 		} else if (tableStatus == TableStatus.SCHEMA) {
 			tableStatus = TableStatus.HEADER;
-			WikiToXMLHelper.parseHeader(this.currMeta, line);
+			WikiPaserUtil.parseHeader(this.currMeta, line);
 		} else if (tableStatus == TableStatus.HEADER || tableStatus == TableStatus.FIELD) {
 			tableStatus = TableStatus.FIELD;
-			WikiToXMLHelper.parseFields(this.currMeta, line);
+			WikiPaserUtil.parseFields(this.currMeta, line);
 		} else {
 			tableStatus = TableStatus.NONE;
 		}
