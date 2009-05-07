@@ -5,7 +5,15 @@
 
 dbUnit提供了xml方式来准备数据，Unitils对dbunit进行了包装，使用Annotation的方式来加载准备数据。但是xml文件看起来不直观，编辑起来不方便，JTester对此进行改造，使用wiki文件来准备数据。
 
+简单示例<br/>
+wiki元文件
+{{{
+|table|jtester user|
+|id|is deleted|
+|1|false|
 
+|table|jtester address|
+|id|user_id|city|is deleted|
+|1|1|city|false|
+}}}
 = Details =
-
-TODO
