@@ -18,5 +18,5 @@ wiki源文件
 |1|1|city|false|
 }}}
 视图预览
-[https://java-tester.googlecode.com/svn/wiki/image/wiki-dataset.JPG]
+[http://java-tester.googlecode.com/svn/wiki/image/wiki-dataset.JPG]
 = Details =
