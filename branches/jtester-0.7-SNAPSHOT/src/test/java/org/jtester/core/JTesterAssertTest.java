@@ -1,8 +1,13 @@
 package org.jtester.core;
 
+import java.io.File;
+
 import org.jtester.hamcrest.iassert.object.intf.IArrayAssert;
 import org.jtester.hamcrest.iassert.object.intf.IBooleanAssert;
+import org.jtester.hamcrest.iassert.object.intf.IByteAssert;
+import org.jtester.hamcrest.iassert.object.intf.ICharacterAssert;
 import org.jtester.hamcrest.iassert.object.intf.IDoubleAssert;
+import org.jtester.hamcrest.iassert.object.intf.IFileAssert;
 import org.jtester.hamcrest.iassert.object.intf.IFloatAssert;
 import org.jtester.hamcrest.iassert.object.intf.IIntegerAssert;
 import org.jtester.hamcrest.iassert.object.intf.ILongAssert;
@@ -24,7 +29,15 @@ public class JTesterAssertTest extends JTester {
 		want.object(want.number(1L)).type(ILongAssert.class);
 		want.object(want.number(1f)).type(IFloatAssert.class);
 		want.object(want.number(1d)).type(IDoubleAssert.class);
+		want.object(want.character('c')).type(ICharacterAssert.class);
+		want.object(want.bite(Byte.MAX_VALUE)).type(IByteAssert.class);
 
 		want.object(want.array(new boolean[] {})).type(IArrayAssert.class);
+		want.object(want.file(new File(""))).type(IFileAssert.class);
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void wantAssert_Failure() {
+		want.fail("error message");
 	}
 }
