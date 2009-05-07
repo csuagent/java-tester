@@ -1,2 +1,4 @@
 #labels 如何使用JMock
 如何使用JMock
+
+只需用简单的在需要mock的对象前面加@Mock，JTester会自动帮助你创建一个mock对象。
