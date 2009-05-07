@@ -96,4 +96,16 @@ public class WikiToXMLHelper {
 	public static boolean isTableSchema(String line) {
 		return line.matches(schema_regex);
 	}
+
+	private static final String table_regex = "(\\|[^\\|]*)+\\|?";
+
+	/**
+	 * 判断文本是否符合wiki表格定义，|text|text|...
+	 * 
+	 * @param line
+	 * @return
+	 */
+	public static boolean isWikiTable(String line) {
+		return line.matches(table_regex);
+	}
 }

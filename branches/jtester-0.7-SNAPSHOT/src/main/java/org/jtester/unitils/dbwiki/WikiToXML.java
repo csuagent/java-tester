@@ -33,7 +33,7 @@ public class WikiToXML {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 			String line = reader.readLine();
 			while (line != null) {
-				if (!isTable(line)) {
+				if (!WikiToXMLHelper.isWikiTable(line)) {
 					line = reader.readLine();
 					continue;
 				}
@@ -61,12 +61,6 @@ public class WikiToXML {
 		} else {
 			tableStatus = TableStatus.NONE;
 		}
-	}
-
-	private static final String table_regex = "(\\|[^\\|]*)+\\|?";
-
-	private boolean isTable(String line) {
-		return line.matches(table_regex);
 	}
 
 	private TableStatus tableStatus = TableStatus.NONE;
