@@ -1,6 +1,8 @@
 package org.jtester.unitils.dbwiki;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,7 +17,7 @@ import org.jtester.utility.FindClazUtil;
  * @author darui.wudr
  * 
  */
-public class WikiToXML {
+public class WikiParser {
 	private List<WikiTableMeta> metas = new ArrayList<WikiTableMeta>();
 	private WikiTableMeta currMeta = null;
 
@@ -31,6 +33,24 @@ public class WikiToXML {
 			String file = FindClazUtil.finePackageDir(claz) + "/" + wikiFile;
 			InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream(file);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+			String line = reader.readLine();
+			while (line != null) {
+				if (!WikiToXMLHelper.isWikiTable(line)) {
+					line = reader.readLine();
+					continue;
+				}
+				parseTable(line);
+				line = reader.readLine();
+			}
+			return WikiToXMLHelper.parseMetas(this.metas);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public String wiki2xml(File wikiFile) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(wikiFile));
 			String line = reader.readLine();
 			while (line != null) {
 				if (!WikiToXMLHelper.isWikiTable(line)) {

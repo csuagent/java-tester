@@ -1,5 +1,6 @@
 package org.jtester.unitils.dbwiki;
 
+import java.io.File;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -108,5 +109,10 @@ public class WikiToXMLHelper {
 	 */
 	public static boolean isWikiTable(String line) {
 		return line != null && line.matches(table_regex);
+	}
+
+	public static String wiki2xml(File wikiFile) {
+		WikiParser parser = new WikiParser();
+		return parser.wiki2xml(wikiFile);
 	}
 }
