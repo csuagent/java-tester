@@ -1,10 +1,7 @@
 package org.jtester.unitils.dbwiki;
 
-import static org.unitils.thirdparty.org.apache.commons.io.IOUtils.closeQuietly;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.StringReader;
 
 import org.unitils.core.UnitilsException;
 import org.unitils.dbunit.util.MultiSchemaDataSet;
@@ -31,25 +28,16 @@ public class MultiSchemaWikilDataSetReader extends MultiSchemaXmlDataSetReader {
 	public MultiSchemaDataSet readDataSetWiki(File... dataSetFiles) {
 		try {
 			DataSetContentHandler dataSetContentHandler = new DataSetContentHandler(defaultSchemaName);
-			for (File wikiFile : dataSetFiles) {
-
-			}
-
 			XMLReader xmlReader = createXMLReader();
 			xmlReader.setContentHandler(dataSetContentHandler);
 			xmlReader.setErrorHandler(dataSetContentHandler);
-
-			for (File dataSetFile : dataSetFiles) {
-				InputStream dataSetInputStream = null;
-				try {
-					dataSetInputStream = new FileInputStream(dataSetFile);
-					xmlReader.parse(new InputSource(dataSetInputStream));
-				} finally {
-					closeQuietly(dataSetInputStream);
-				}
+			for (File wikiFile : dataSetFiles) {
+				String xml = WikiParser.parser(wikiFile);
+				StringReader reader = new StringReader(xml);
+				xmlReader.parse(new InputSource(reader));
+				reader.close();
 			}
 			return dataSetContentHandler.getMultiSchemaDataSet();
-
 		} catch (Exception e) {
 			throw new UnitilsException("Unable to parse data set xml.", e);
 		}
