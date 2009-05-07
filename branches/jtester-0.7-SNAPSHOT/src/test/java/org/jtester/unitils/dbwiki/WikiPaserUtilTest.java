@@ -5,6 +5,7 @@ import org.jtester.testng.JTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class WikiPaserUtilTest extends JTester {
 	private WikiTableMeta meta = null;
 
