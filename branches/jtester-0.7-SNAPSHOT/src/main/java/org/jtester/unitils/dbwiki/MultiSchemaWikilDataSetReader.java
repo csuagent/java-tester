@@ -3,6 +3,8 @@ package org.jtester.unitils.dbwiki;
 import java.io.File;
 import java.io.StringReader;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.unitils.core.UnitilsException;
 import org.unitils.dbunit.util.MultiSchemaDataSet;
 import org.unitils.dbunit.util.MultiSchemaXmlDataSetReader;
@@ -10,6 +12,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 public class MultiSchemaWikilDataSetReader extends MultiSchemaXmlDataSetReader {
+	private static Log logger = LogFactory.getLog(MultiSchemaWikilDataSetReader.class);
+
 	private String defaultSchemaName;
 
 	public MultiSchemaWikilDataSetReader(String defaultSchemaName) {
@@ -33,6 +37,9 @@ public class MultiSchemaWikilDataSetReader extends MultiSchemaXmlDataSetReader {
 			xmlReader.setErrorHandler(dataSetContentHandler);
 			for (File wikiFile : dataSetFiles) {
 				String xml = WikiParser.parser(wikiFile);
+				if (logger.isInfoEnabled()) {
+					logger.info("xml parsed form wiki:" + xml);
+				}
 				StringReader reader = new StringReader(xml);
 				xmlReader.parse(new InputSource(reader));
 				reader.close();
@@ -41,6 +48,5 @@ public class MultiSchemaWikilDataSetReader extends MultiSchemaXmlDataSetReader {
 		} catch (Exception e) {
 			throw new UnitilsException("Unable to parse data set xml.", e);
 		}
-
 	}
 }
