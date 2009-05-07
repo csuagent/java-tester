@@ -110,7 +110,7 @@ public class WikiPaserUtil {
 	/**
 	 * 将输入的字符串转换成以下划线连起来的变量,<br>
 	 * 例如输入：my name,输出my_name <br>
-	 * 例如输入：my NaMe,输出my_name
+	 * 例如输入：my NaMe,输出my_NaMe
 	 * 
 	 * @param input
 	 * @return
@@ -120,6 +120,6 @@ public class WikiPaserUtil {
 			throw new JTesterException("can't convert a null string to underline name");
 		}
 		String output = input.trim().replaceAll("\\s", "_");
-		return output.toLowerCase();
+		return output;// .toLowerCase();
 	}
 }

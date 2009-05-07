@@ -50,7 +50,15 @@ public class WikiPaserUtilTest extends JTester {
 	public void underlineName() {
 		String out1 = WikiPaserUtil.underlineName(" my name ");
 		want.string(out1).isEqualTo("my_name");
+		String out2 = WikiPaserUtil.underlineName(" mY Name ");
+		want.string(out2).isEqualTo("mY_Name");
 
+		String out3 = WikiPaserUtil.underlineName(" my_Name ");
+		want.string(out3).isEqualTo("my_Name");
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void underlineName_asserterror() {
 		String out2 = WikiPaserUtil.underlineName(" mY Name ");
 		want.string(out2).isEqualTo("my_name");
 	}
