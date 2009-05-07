@@ -6,7 +6,11 @@ import org.jtester.dbtest.bean.Address;
 import org.jtester.dbtest.bean.User;
 import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.unitils.core.Unitils;
+import org.unitils.dbunit.datasetfactory.DataSetFactory;
+import org.unitils.dbunit.util.MultiSchemaDataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
@@ -42,5 +46,25 @@ public class WikiDbUnitModuleTest extends JTester {
 		for (Address address : addresses) {
 			want.string(address.getCity()).contains("city");
 		}
+	}
+
+	private WikiDbUnitModule module = null;
+
+	@BeforeClass
+	public void setup() {
+		module = new WikiDbUnitModule();
+		module.init(Unitils.getInstance().getConfiguration());
+	}
+
+	@Test
+	public void getDataSet() throws SecurityException, NoSuchMethodException {
+		MultiSchemaDataSet dataSet = module.getDataSet(this.getClass().getMethod("getUser"), this);
+		want.object(dataSet).notNull();
+	}
+
+	@Test
+	public void getDefaultDataSetFactory() {
+		DataSetFactory factory = module.getDefaultDataSetFactory();
+		want.object(factory).type(MultiSchemaWikiDataSetFactory.class);
 	}
 }
