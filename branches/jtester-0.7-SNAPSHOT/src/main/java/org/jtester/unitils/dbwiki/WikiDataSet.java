@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target( { TYPE, METHOD })
 @Retention(RUNTIME)
 @Inherited
-public @interface DataWiki {
+public @interface WikiDataSet {
 	String[] value() default {};
 
 	String provider() default "";
