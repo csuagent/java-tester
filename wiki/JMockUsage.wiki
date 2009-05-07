@@ -19,5 +19,5 @@ public void register_SinglThread() {
 		}
 	});
 	callingService.call("i am a test message!");
-	}
+}
 }}}
