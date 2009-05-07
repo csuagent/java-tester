@@ -29,4 +29,20 @@ wiki源文件
     <jtester_address id="1" user_id="1" city="city" is_deleted="false"/>
 </dataset>
 }}}
-= Details =
+
+java语法
+{{{
+@Test
+@WikiDataSet( { "lazy address.wiki" })
+public void getUser_LazyAddress() {
+	User user = userService.getUser(1);
+	want.object(user).notNull();
+
+	want.object(user.getAddresses()).notNull();
+	Collection<Address> addresses = user.getAddresses();
+	want.object(addresses.size()).isEqualTo(1);
+	for (Address address : addresses) {
+		want.string(address.getCity()).contains("city");
+	}
+}
+}}}
