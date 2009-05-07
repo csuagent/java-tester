@@ -18,14 +18,24 @@ public class JTesterExpectationsTest extends JTester {
 	private CallingService callingService = new CallingService();
 
 	@Test
-	public void test1() {
+	public void returnValue() {
 		checking(new Je() {
 			{
 				will.call.one(calledService).called(the.string().contains("test").wanted());
 				will.returns.value("dddd");
 				will.call.ignoring(calledService).called(the.string().any().wanted());
-				// will(returnValue("dddd"));
 				will.returns.value("dddd");
+			}
+		});
+		callingService.call("i am a test message!");
+	}
+
+	@Test(expectedExceptions = { RuntimeException.class })
+	public void throwException() {
+		checking(new Je() {
+			{
+				will.call.one(calledService).called(the.string().contains("test").wanted());
+				will.throwException(new RuntimeException("test exception"));
 			}
 		});
 		callingService.call("i am a test message!");
