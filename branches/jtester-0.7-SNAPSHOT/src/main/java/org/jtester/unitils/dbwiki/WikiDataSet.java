@@ -17,7 +17,7 @@ import org.unitils.dbunit.datasetloadstrategy.DataSetLoadStrategy;
 public @interface WikiDataSet {
 	String[] value() default {};
 
-	String provider() default "";
+	// String wikiProp() default "";
 
 	Class<? extends DataSetFactory> factory() default DataSetFactory.class;
 
