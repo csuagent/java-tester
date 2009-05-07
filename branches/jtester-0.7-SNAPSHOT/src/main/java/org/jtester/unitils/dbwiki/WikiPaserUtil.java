@@ -23,10 +23,7 @@ public class WikiPaserUtil {
 			throw new JTesterException("this line isn't a schema definder,line:" + line);
 		}
 		String schema = split(line)[1];
-		if (StringUtils.isBlank(schema)) {
-			throw new JTesterException("can't parse schema name from line:" + line);
-		}
-		meta.setSchemaName(schema.trim());
+		meta.setSchemaName(underlineName(schema));
 	}
 
 	/**
@@ -41,7 +38,7 @@ public class WikiPaserUtil {
 			if (StringUtils.isBlank(field)) {
 				throw new JTesterException("there are a blank field name parsed from line:" + line);
 			}
-			meta.addFieldName(field.trim());
+			meta.addFieldName(underlineName(field));
 		}
 	}
 
@@ -55,7 +52,7 @@ public class WikiPaserUtil {
 		String[] fields = split(line);
 		meta.newFieldLine();
 		for (String field : fields) {
-			meta.addFieldValue(field.trim());
+			meta.addFieldValue(underlineName(field));
 		}
 		meta.endFieldLine();
 	}
@@ -108,5 +105,21 @@ public class WikiPaserUtil {
 	 */
 	public static boolean isWikiTable(String line) {
 		return line != null && line.matches(table_regex);
+	}
+
+	/**
+	 * 将输入的字符串转换成以下划线连起来的变量,<br>
+	 * 例如输入：my name,输出my_name <br>
+	 * 例如输入：my NaMe,输出my_name
+	 * 
+	 * @param input
+	 * @return
+	 */
+	public static String underlineName(String input) {
+		if (input == null) {
+			throw new JTesterException("can't convert a null string to underline name");
+		}
+		String output = input.trim().replaceAll("\\s", "_");
+		return output.toLowerCase();
 	}
 }

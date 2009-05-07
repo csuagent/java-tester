@@ -45,4 +45,18 @@ public class WikiPaserUtilTest extends JTester {
 		WikiPaserUtil.parseHeader(meta, "| field1 | field2|field3 |");
 		want.collection(meta.getFieldNames()).sizeIs(3).hasItems("field1", "field2", "field3");
 	}
+
+	@Test
+	public void underlineName() {
+		String out1 = WikiPaserUtil.underlineName(" my name ");
+		want.string(out1).isEqualTo("my_name");
+
+		String out2 = WikiPaserUtil.underlineName(" mY Name ");
+		want.string(out2).isEqualTo("my_name");
+	}
+
+	@Test(expectedExceptions = { JTesterException.class })
+	public void underlineName_fail() {
+		WikiPaserUtil.underlineName(null);
+	}
 }
