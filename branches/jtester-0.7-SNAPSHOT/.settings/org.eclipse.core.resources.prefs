@@ -1,4 +1,4 @@
-#Thu May 07 10:29:30 CST 2009
+#Fri May 08 14:07:39 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
 encoding//src/main/java/org/jtester/core/IExpectation.java=UTF-8
@@ -9,6 +9,7 @@ encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IBaseAssert.jav
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IComparableAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IObjectContainerAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/IReflectionAssert.java=UTF-8
+encoding//src/main/java/org/jtester/hamcrest/iassert/common/intf/ITypeAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IArrayAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IBooleanAssert.java=UTF-8
 encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IByteAssert.java=UTF-8
