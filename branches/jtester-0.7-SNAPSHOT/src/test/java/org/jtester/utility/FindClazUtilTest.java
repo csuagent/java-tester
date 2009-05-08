@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.jtester.dbtest.service.UserService;
 import org.jtester.testng.JTester;
+import org.testng.annotations.Test;
 
 /**
  * this test will break for EclEmma Test
@@ -11,7 +12,7 @@ import org.jtester.testng.JTester;
  * @author darui.wudr
  * 
  */
-//@Test(groups = { "JTester" })
+@Test(groups = { "JTester" })
 public class FindClazUtilTest extends JTester {
 	public void findClazz_1() {
 		String packagename = FindClazUtil.class.getPackage().getName();
@@ -20,35 +21,17 @@ public class FindClazUtilTest extends JTester {
 		want.collection(clazz).sizeGe(9);
 	}
 
-	public void test1() {
-		System.out.println("================================");
+	public void findClazz() {
 		Class<?> claz = UserService.class;
 		List<String> clazz = FindClazUtil.findClazz(claz);
-
-		for (String classname : clazz) {
-			System.out.println(classname);
-		}
-		System.out.println("================================");
+		want.collection(clazz).sizeGe(4);
+		want.collection(clazz).allItemMatch("org\\.jtester\\.dbtest\\.service\\..*");
 	}
 
-	public void test2() {
-		System.out.println("================================");
+	public void findTestClaz() {
 		Class<?> claz = UserService.class;
 		List<String> clazz = FindMethodUtil.findTestClaz(claz);
-
-		for (String classname : clazz) {
-			System.out.println(classname);
-		}
-		System.out.println("================================");
-	}
-
-	public void test3() {
-		System.out.println("================================");
-		List<String> clazz = FindClazUtil.findClazz(junit.extensions.ActiveTestSuite.class);
-
-		for (String classname : clazz) {
-			System.out.println(classname);
-		}
-		System.out.println("================================");
+		want.collection(clazz).sizeGe(4);
+		want.collection(clazz).allItemMatch("org\\.jtester\\.dbtest\\.service\\..*");
 	}
 }
