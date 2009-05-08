@@ -23,5 +23,7 @@ public class ReflectionAssertTest extends JTester {
 	public void propertyEq() {
 		Employee employee = new Employee();
 		want.object(employee).propertyEq("name", null);
+		employee.setName("my name");
+		want.object(employee).propertyEq("name", "my name");
 	}
 }
