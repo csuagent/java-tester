@@ -22,19 +22,17 @@ public class ReflectUtil {
 	 * @throws SecurityException
 	 * @throws NoSuchFieldException
 	 */
-	public static void setFieldValue(Object obj, String fieldName, Object value) throws SecurityException,
-			NoSuchFieldException {
+	public static void setFieldValue(Object obj, String fieldName, Object value) {
 		assert obj != null : "the obj can't be null";
-
-		Field field = obj.getClass().getDeclaredField(fieldName);
-		boolean accessible = field.isAccessible();
 		try {
+			Field field = obj.getClass().getDeclaredField(fieldName);
+			boolean accessible = field.isAccessible();
 			field.setAccessible(true);
 			field.set(obj, value);
-		} catch (Exception e) {
-			throw new JTesterException("Unable to update the value in field[" + field.getName() + "]", e);
-		} finally {
 			field.setAccessible(accessible);
+		} catch (Exception e) {
+			String error = "Unable to update the value in field[" + fieldName + "]";
+			throw new JTesterException(error, e);
 		}
 	}
 
@@ -47,7 +45,7 @@ public class ReflectUtil {
 	 * @throws SecurityException
 	 * @throws NoSuchFieldException
 	 */
-	public static Object getFieldValue(Object obj, String fieldName) throws SecurityException, NoSuchFieldException {
+	public static Object getFieldValue(Object obj, String fieldName) {
 		assert obj != null : "the obj can't be null";
 		return getFieldValue(obj.getClass(), obj, fieldName);
 	}
@@ -62,18 +60,17 @@ public class ReflectUtil {
 	 * @throws SecurityException
 	 * @throws NoSuchFieldException
 	 */
-	public static Object getFieldValue(Class<?> claz, Object obj, String fieldName) throws SecurityException,
-			NoSuchFieldException {
+	public static Object getFieldValue(Class<?> claz, Object obj, String fieldName) {
 		assert obj != null : "the obj can't be null";
-		Field field = claz.getDeclaredField(fieldName);
-		boolean accessible = field.isAccessible();
 		try {
+			Field field = claz.getDeclaredField(fieldName);
+			boolean accessible = field.isAccessible();
 			field.setAccessible(true);
-			return field.get(obj);
-		} catch (Exception e) {
-			throw new JTesterException("Unable to get the value in field[" + field.getName() + "]", e);
-		} finally {
+			Object o = field.get(obj);
 			field.setAccessible(accessible);
+			return o;
+		} catch (Exception e) {
+			throw new JTesterException("Unable to get the value in field[" + fieldName + "]", e);
 		}
 	}
 }
