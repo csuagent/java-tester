@@ -17,12 +17,12 @@ public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAs
 	}
 
 	public IFileAssert isExists() {
-		FileExistsMatcher matcher = new FileExistsMatcher(this.value, FileExistsMatcherType.ISEXISTS);
+		FileExistsMatcher matcher = new FileExistsMatcher((File) this.value, FileExistsMatcherType.ISEXISTS);
 		return this.assertThat(matcher);
 	}
 
 	public IFileAssert unExists() {
-		FileExistsMatcher matcher = new FileExistsMatcher(this.value, FileExistsMatcherType.UNEXISTS);
+		FileExistsMatcher matcher = new FileExistsMatcher((File) this.value, FileExistsMatcherType.UNEXISTS);
 		return this.assertThat(matcher);
 	}
 }

@@ -15,7 +15,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 
 	protected Class<?> valueClaz = null;
 
-	protected T value;
+	protected Object value;
 
 	protected AssertType type;
 
@@ -25,6 +25,17 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	protected LinkMatcher<T> link;
 
 	public Assert() {
+	}
+
+	public <F extends Assert<?, ?>> F convert(Class<F> claz) throws InstantiationException, IllegalAccessException {
+		F instance = claz.newInstance();
+		instance.valueClaz = this.valueClaz;
+		instance.value = this.value;
+		instance.type = this.type;
+		instance.link = this.link;
+
+		instance.assertClaz = claz;
+		return instance;
 	}
 
 	public Assert(Class<? extends IAssert<?, ?>> clazE) {
@@ -79,13 +90,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	@Override
 	public String toString() {
 		return this.getClass().getName();
-		// StringBuffer buffer = new StringBuffer();
-		// buffer.append("class:" + this.getClass().getName());
-		// buffer.append(",value clazz:" + (this.valueClaz == null ? "null" :
-		// this.valueClaz.getName()));
-		// buffer.append(",AssertType=" + type);
-		// buffer.append(",value=" + value);
-		// return buffer.toString();
 	}
 
 	public boolean matches(Object item) {
