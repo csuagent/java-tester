@@ -23,22 +23,22 @@ import org.testng.annotations.Test;
 public class IExpectationTest extends JTester {
 
 	public void theAssert() {
-		want.object(the.string()).type(IStringAssert.class);
-		want.object(the.bool()).type(IBooleanAssert.class);
-		want.object(the.number()).type(INumberAssert.class);
-		want.object(the.integer()).type(IIntegerAssert.class);
-		want.object(the.longnum()).type(ILongAssert.class);
-		want.object(the.doublenum()).type(IDoubleAssert.class);
-		want.object(the.floatnum()).type(IFloatAssert.class);
-		want.object(the.shortnum()).type(IShortAssert.class);
-		want.object(the.character()).type(ICharacterAssert.class);
-		want.object(the.bite()).type(IByteAssert.class);
-		want.object(the.array()).type(IArrayAssert.class);
-		want.object(the.map()).type(IMapAssert.class);
-		want.object(the.collection()).type(ICollectionAssert.class);
-		want.object(the.object()).type(IObjectAssert.class);
-		want.object(the.file()).type(IFileAssert.class);
-		want.object(the.calendar()).type(ICalendarAssert.class);
-		want.object(the.date()).type(ICalendarAssert.class);
+		want.object(the.string()).clazIs(IStringAssert.class);
+		want.object(the.bool()).clazIs(IBooleanAssert.class);
+		want.object(the.number()).clazIs(INumberAssert.class);
+		want.object(the.integer()).clazIs(IIntegerAssert.class);
+		want.object(the.longnum()).clazIs(ILongAssert.class);
+		want.object(the.doublenum()).clazIs(IDoubleAssert.class);
+		want.object(the.floatnum()).clazIs(IFloatAssert.class);
+		want.object(the.shortnum()).clazIs(IShortAssert.class);
+		want.object(the.character()).clazIs(ICharacterAssert.class);
+		want.object(the.bite()).clazIs(IByteAssert.class);
+		want.object(the.array()).clazIs(IArrayAssert.class);
+		want.object(the.map()).clazIs(IMapAssert.class);
+		want.object(the.collection()).clazIs(ICollectionAssert.class);
+		want.object(the.object()).clazIs(IObjectAssert.class);
+		want.object(the.file()).clazIs(IFileAssert.class);
+		want.object(the.calendar()).clazIs(ICalendarAssert.class);
+		want.object(the.date()).clazIs(ICalendarAssert.class);
 	}
 }

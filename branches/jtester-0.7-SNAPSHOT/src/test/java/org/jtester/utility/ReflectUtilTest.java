@@ -31,7 +31,7 @@ public class ReflectUtilTest extends JTester {
 		Employee employee = new Employee();
 		employee.setName("test name");
 		Object name = ReflectUtil.getFieldValue(employee, "name");
-		want.object(name).type(String.class);
+		want.object(name).clazIs(String.class);
 		want.string(name.toString()).isEqualTo("test name");
 	}
 

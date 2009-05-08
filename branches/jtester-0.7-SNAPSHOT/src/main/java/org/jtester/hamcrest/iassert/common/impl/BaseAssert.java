@@ -39,7 +39,7 @@ public class BaseAssert<T, E extends IAssert<T, ?>> extends Assert<T, E> impleme
 		return this.assertThat(matcher);
 	}
 
-	public E type(Class<?> expected) {
+	public E clazIs(Class<?> expected) {
 		Matcher<?> matcher = Is.is(expected);
 		return this.assertThat(matcher);
 	}

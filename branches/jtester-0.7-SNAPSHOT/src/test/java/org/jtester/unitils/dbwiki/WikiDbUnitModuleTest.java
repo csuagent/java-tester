@@ -65,6 +65,6 @@ public class WikiDbUnitModuleTest extends JTester {
 	@Test
 	public void getDefaultDataSetFactory() {
 		DataSetFactory factory = module.getDefaultDataSetFactory();
-		want.object(factory).type(MultiSchemaWikiDataSetFactory.class);
+		want.object(factory).clazIs(MultiSchemaWikiDataSetFactory.class);
 	}
 }

@@ -54,7 +54,7 @@ public interface IBaseAssert<T, E extends IAssert<T, ?>> extends IAssert<T, E> {
 	 *            期望类型
 	 * @return
 	 */
-	public E type(Class<?> claz);
+	public E clazIs(Class<?> claz);
 
 	/**
 	 * 断言对象符合matcher所定义的行为

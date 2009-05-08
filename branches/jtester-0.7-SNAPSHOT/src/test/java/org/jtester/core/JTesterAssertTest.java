@@ -20,20 +20,20 @@ import org.testng.annotations.Test;
 public class JTesterAssertTest extends JTester {
 
 	public void wantAssert() {
-		want.object(want.string(new String())).type(IStringAssert.class);
-		want.object(want.bool(true)).type(IBooleanAssert.class);
-		want.object(want.bool(Boolean.TRUE)).type(IBooleanAssert.class);
+		want.object(want.string(new String())).clazIs(IStringAssert.class);
+		want.object(want.bool(true)).clazIs(IBooleanAssert.class);
+		want.object(want.bool(Boolean.TRUE)).clazIs(IBooleanAssert.class);
 		// // number
-		want.object(want.number(Short.valueOf("1"))).type(IShortAssert.class);
-		want.object(want.number(1)).type(IIntegerAssert.class);
-		want.object(want.number(1L)).type(ILongAssert.class);
-		want.object(want.number(1f)).type(IFloatAssert.class);
-		want.object(want.number(1d)).type(IDoubleAssert.class);
-		want.object(want.character('c')).type(ICharacterAssert.class);
-		want.object(want.bite(Byte.MAX_VALUE)).type(IByteAssert.class);
+		want.object(want.number(Short.valueOf("1"))).clazIs(IShortAssert.class);
+		want.object(want.number(1)).clazIs(IIntegerAssert.class);
+		want.object(want.number(1L)).clazIs(ILongAssert.class);
+		want.object(want.number(1f)).clazIs(IFloatAssert.class);
+		want.object(want.number(1d)).clazIs(IDoubleAssert.class);
+		want.object(want.character('c')).clazIs(ICharacterAssert.class);
+		want.object(want.bite(Byte.MAX_VALUE)).clazIs(IByteAssert.class);
 
-		want.object(want.array(new boolean[] {})).type(IArrayAssert.class);
-		want.object(want.file(new File(""))).type(IFileAssert.class);
+		want.object(want.array(new boolean[] {})).clazIs(IArrayAssert.class);
+		want.object(want.file(new File(""))).clazIs(IFileAssert.class);
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })
