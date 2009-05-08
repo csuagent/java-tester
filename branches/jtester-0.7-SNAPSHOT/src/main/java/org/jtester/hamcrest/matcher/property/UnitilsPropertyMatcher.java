@@ -26,22 +26,19 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 
 	private ReflectionComparatorMode[] modes;
 
-	public UnitilsPropertyMatcher(String property, Object expected,
-			ReflectionComparatorMode[] modes) {
+	public UnitilsPropertyMatcher(String property, Object expected, ReflectionComparatorMode[] modes) {
 		this.property = property;
 		this.expected = expected;
 		this.modes = modes;
 	}
 
-	public UnitilsPropertyMatcher(String property, Collection<?> expected,
-			ReflectionComparatorMode[] modes) {
+	public UnitilsPropertyMatcher(String property, Collection<?> expected, ReflectionComparatorMode[] modes) {
 		this.property = property;
 		this.expected = expected;
 		this.modes = modes;
 	}
 
-	public <T extends Object> UnitilsPropertyMatcher(String property,
-			T[] expected, ReflectionComparatorMode[] modes) {
+	public <T extends Object> UnitilsPropertyMatcher(String property, T[] expected, ReflectionComparatorMode[] modes) {
 		this.property = property;
 		this.expected = expected;
 		this.modes = modes;
@@ -56,8 +53,7 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 		Collection<?> _expectedProps = this.getProperty(expected);
 
 		ReflectionComparator reflectionComparator = createRefectionComparator(modes);
-		this.difference = reflectionComparator.getDifference(_expectedProps,
-				_actualProps);
+		this.difference = reflectionComparator.getDifference(_expectedProps, _actualProps);
 
 		return difference == null;
 	}
@@ -66,15 +62,14 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 		if (difference != null) {
 			String message = "Incorrect value for property: " + this.property;
 			DifferenceReport differenceReport = new DefaultDifferenceReport();
-			description.appendText(differenceReport.createReport(message,
-					difference));
+			description.appendText(differenceReport.createReport(message, difference));
 		}
 	}
 
 	private Collection<?> getProperty(Object o) {
 		Collection<Object> coll = new ArrayList<Object>();
 		if (o == null) {
-			return coll;
+			coll.add(null);
 		} else if (o instanceof Collection) {
 			Collection<?> oc = (Collection<?>) o;
 			for (Object o1 : oc) {

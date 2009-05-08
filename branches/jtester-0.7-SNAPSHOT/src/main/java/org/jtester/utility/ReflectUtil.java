@@ -67,15 +67,21 @@ public class ReflectUtil {
 	 */
 	public static Object getFieldValue(Class<?> claz, Object obj, String fieldName) {
 		assert obj != null : "the obj can't be null";
+		Field field = null;
 		try {
-			Field field = claz.getField(fieldName);
-			boolean accessible = field.isAccessible();
+			field = claz.getDeclaredField(fieldName);
+		} catch (Exception e) {
+			throw new JTesterException(e);
+		}
+		boolean accessible = field.isAccessible();
+		try {
 			field.setAccessible(true);
 			Object o = field.get(obj);
-			field.setAccessible(accessible);
 			return o;
 		} catch (Exception e) {
 			throw new JTesterException("Unable to get the value in field[" + fieldName + "]", e);
+		} finally {
+			field.setAccessible(accessible);
 		}
 	}
 

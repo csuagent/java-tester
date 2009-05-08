@@ -1,5 +1,6 @@
 package org.jtester.hamcrest.iassert.common.impl;
 
+import org.jtester.beans.Employee;
 import org.jtester.beans.Manager;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
@@ -17,5 +18,10 @@ public class ReflectionAssertTest extends JTester {
 		Manager manager = new Manager();
 		manager.setName("I am darui.wu");
 		want.object(manager).propertyMatch("name", the.string().contains("darui1"));
+	}
+
+	public void propertyEq() {
+		Employee employee = new Employee();
+		want.object(employee).propertyEq("name", null);
 	}
 }
