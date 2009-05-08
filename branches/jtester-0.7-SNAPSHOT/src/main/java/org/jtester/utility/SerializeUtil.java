@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.jtester.exception.JTesterException;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -36,9 +38,9 @@ public class SerializeUtil {
 			out.writeObject(o);
 			out.close();
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 
@@ -59,9 +61,9 @@ public class SerializeUtil {
 			xs.toXML(o, fos);
 			fos.close();
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 
@@ -84,11 +86,11 @@ public class SerializeUtil {
 			in.close();
 			return (T) obj;
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 
@@ -107,14 +109,14 @@ public class SerializeUtil {
 		try {
 			InputStream fis = SerializeUtil.isFileExisted(filename);
 			if (fis == null) {
-				throw new RuntimeException(String.format("file '%s' doesn't exist", filename));
+				throw new JTesterException(String.format("file '%s' doesn't exist", filename));
 			}
 			XStream xs = new XStream(new DomDriver());
 			// XStream xs = new XStream();
 			Object o = xs.fromXML(fis);
 			return (T) o;
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 
@@ -125,7 +127,7 @@ public class SerializeUtil {
 		} else {
 			File file = new File(filename);
 			if (!file.exists()) {
-				throw new RuntimeException("object serializable file doesn't exist");
+				throw new JTesterException("object serializable file doesn't exist");
 			}
 			return new FileInputStream(file);
 		}

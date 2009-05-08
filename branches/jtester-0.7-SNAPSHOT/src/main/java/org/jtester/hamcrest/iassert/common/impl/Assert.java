@@ -5,6 +5,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.jmock.Expectations;
+import org.jtester.exception.JTesterException;
 import org.jtester.hamcrest.iassert.common.intf.IAssert;
 import org.jtester.hamcrest.matcher.LinkMatcher;
 import org.jtester.jmock.ExpectationsUtil;
@@ -78,12 +79,13 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	@Override
 	public String toString() {
 		return this.getClass().getName();
-//		StringBuffer buffer = new StringBuffer();
-//		buffer.append("class:" + this.getClass().getName());
-//		buffer.append(",value clazz:" + (this.valueClaz == null ? "null" : this.valueClaz.getName()));
-//		buffer.append(",AssertType=" + type);
-//		buffer.append(",value=" + value);
-//		return buffer.toString();
+		// StringBuffer buffer = new StringBuffer();
+		// buffer.append("class:" + this.getClass().getName());
+		// buffer.append(",value clazz:" + (this.valueClaz == null ? "null" :
+		// this.valueClaz.getName()));
+		// buffer.append(",AssertType=" + type);
+		// buffer.append(",value=" + value);
+		// return buffer.toString();
 	}
 
 	public boolean matches(Object item) {
@@ -96,13 +98,13 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 
 	@Override
 	public boolean equals(Object obj) {
-		throw new RuntimeException("the method can't be used,please use isEqualTo() instead");
+		throw new JTesterException("the method can't be used,please use isEqualTo() instead");
 	}
 
 	@SuppressWarnings("unchecked")
 	public T wanted() {
 		if (this.type == AssertType.AssertThat) {
-			throw new RuntimeException("is not an Expectations");
+			throw new JTesterException("is not an Expectations");
 		} else {
 			Expectations ex = ExpectationsUtil.getExpectations(Thread.currentThread().getId());
 			ex.with(this.link);

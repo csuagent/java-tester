@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jmock.Expectations;
+import org.jtester.exception.JTesterException;
 
 /**
  * 用于注册或获取当前线程下当前使用的org.jmock.Expectations实例<br>
@@ -34,7 +35,7 @@ public class ExpectationsUtil {
 	public static Expectations getExpectations(long id) {
 		Expectations ex = jes.get(id);
 		if (ex == null) {
-			throw new RuntimeException("no expectation has been defined by Thread");
+			throw new JTesterException("no expectation has been defined by Thread");
 		}
 		return ex;
 	}

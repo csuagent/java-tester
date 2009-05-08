@@ -11,6 +11,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+import org.jtester.exception.JTesterException;
+
 /**
  * 
  * @author darui.wudr
@@ -202,7 +204,7 @@ public class FindClazUtil {
 			return clazzes;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 

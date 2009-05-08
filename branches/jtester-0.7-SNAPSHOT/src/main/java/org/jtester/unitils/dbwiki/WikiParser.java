@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jtester.exception.JTesterException;
 import org.jtester.utility.FindClazUtil;
 
 /**
@@ -44,7 +45,7 @@ public class WikiParser {
 			}
 			return WikiPaserUtil.parseMetas(this.metas);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 
@@ -62,7 +63,7 @@ public class WikiParser {
 			}
 			return WikiPaserUtil.parseMetas(this.metas);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
+import org.jtester.exception.JTesterException;
 
 public class CalendarEqualsMatcher extends BaseMatcher<Calendar> {
 	private int expected;
@@ -18,7 +19,7 @@ public class CalendarEqualsMatcher extends BaseMatcher<Calendar> {
 
 	public boolean matches(Object actual) {
 		if (actual == null) {
-			throw new RuntimeException("the actual value can't be null");
+			throw new JTesterException("the actual value can't be null");
 		}
 		Calendar cal = null;
 
@@ -28,7 +29,7 @@ public class CalendarEqualsMatcher extends BaseMatcher<Calendar> {
 			cal = Calendar.getInstance();
 			cal.setTime((Date) actual);
 		} else {
-			throw new RuntimeException(
+			throw new JTesterException(
 					"the actual value must be a java.util.Date instance or a java.util.Calendar instance");
 		}
 		int value = cal.get(type.calendarField());

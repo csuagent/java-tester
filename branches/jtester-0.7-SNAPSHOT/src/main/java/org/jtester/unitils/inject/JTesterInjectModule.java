@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.jtester.exception.JTesterException;
 import org.jtester.utility.ReflectUtil;
 import org.springframework.aop.framework.Advised;
 import org.unitils.core.UnitilsException;
@@ -146,7 +147,7 @@ public class JTesterInjectModule extends InjectModule {
 			return (Map<Class<? extends Annotation>, Map<String, String>>) ReflectUtil.getFieldValue(
 					InjectModule.class, this, "defaultAnnotationPropertyValues");
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 
@@ -158,7 +159,7 @@ public class JTesterInjectModule extends InjectModule {
 				return target;
 			}
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 }

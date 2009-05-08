@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.jtester.exception.JTesterException;
 import org.jtester.unitils.config.ConfigUtil;
 import org.jtester.utility.ReflectUtil;
 import org.unitils.core.Unitils;
@@ -44,7 +45,7 @@ public class DbSchemaExport {
 		try {
 			ReflectUtil.setFieldValue(module, "updateDatabaseSchemaEnabled", false);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 
 		log.info("call hibernate tool:org.hibernate.tool.hbm2ddl.SchemaExport.create");

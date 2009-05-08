@@ -2,6 +2,8 @@ package org.jtester.utility;
 
 import java.lang.reflect.Field;
 
+import org.jtester.exception.JTesterException;
+
 /**
  * POJO反射处理工具类
  * 
@@ -30,7 +32,7 @@ public class ReflectUtil {
 			field.setAccessible(true);
 			field.set(obj, value);
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to update the value in field[" + field.getName() + "]", e);
+			throw new JTesterException("Unable to update the value in field[" + field.getName() + "]", e);
 		} finally {
 			field.setAccessible(accessible);
 		}
@@ -69,7 +71,7 @@ public class ReflectUtil {
 			field.setAccessible(true);
 			return field.get(obj);
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to get the value in field[" + field.getName() + "]", e);
+			throw new JTesterException("Unable to get the value in field[" + field.getName() + "]", e);
 		} finally {
 			field.setAccessible(accessible);
 		}

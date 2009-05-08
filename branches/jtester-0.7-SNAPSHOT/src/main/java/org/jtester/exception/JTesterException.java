@@ -10,4 +10,8 @@ public class JTesterException extends RuntimeException {
 	public JTesterException(Throwable throwable) {
 		super(throwable);
 	}
+
+	public JTesterException(String error, Throwable throwable) {
+		super(error, throwable);
+	}
 }

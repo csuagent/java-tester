@@ -4,6 +4,8 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.jtester.exception.JTesterException;
+
 /**
  * 获得一个类（方法）的测试类（方法）的工具
  * 
@@ -81,7 +83,7 @@ public class FindMethodUtil {
 			try {
 				clazz = Class.forName(classname);
 			} catch (ClassNotFoundException e) {
-				throw new RuntimeException(e);
+				throw new JTesterException(e);
 			}
 			Method[] methods = clazz.getMethods();
 			for (Method method : methods) {
@@ -107,7 +109,7 @@ public class FindMethodUtil {
 			Class<?> claz = Class.forName(classname);
 			return FindMethodUtil.findTestMethod(claz, methodname);
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException(e);
+			throw new JTesterException(e);
 		}
 	}
 }
