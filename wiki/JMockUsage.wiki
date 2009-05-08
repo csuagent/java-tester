@@ -23,4 +23,5 @@ public void register_SinglThread() {
 }}}
 更详细的用法请参考[AssertSyntax] 以及 <br/>
 jmock官方文档 http://www.jmock.org/cookbook.html <br/>
+jmock中文翻译 http://thinking.5ming.org.cn/2008/11/23/jmock-cookbook/<br/>
 unitils mock文档 http://www.unitils.org/cookbook.html
