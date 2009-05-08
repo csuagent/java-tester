@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
  * @author darui.wudr
  * 
  */
-@Test(groups = { "JTester" })
+@Test(groups = { "JTester", "broken-install" })
 public class FindMethodUtilTest extends JTester {
 	public void findTestMethod_1() {
 		List<String> methods = FindMethodUtil.findTestMethod(UserService.class, "findAddress");

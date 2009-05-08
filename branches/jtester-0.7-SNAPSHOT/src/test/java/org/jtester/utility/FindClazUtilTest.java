@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
  * @author darui.wudr
  * 
  */
-@Test(groups = { "JTester" })
+@Test(groups = { "JTester", "broken-install" })
 public class FindClazUtilTest extends JTester {
 	public void findClazz_1() {
 		String packagename = FindClazUtil.class.getPackage().getName();

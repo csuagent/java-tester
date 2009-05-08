@@ -1,4 +1,4 @@
-#Fri May 08 14:07:39 CST 2009
+#Fri May 08 16:26:21 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
 encoding//src/main/java/org/jtester/core/IExpectation.java=UTF-8
@@ -29,6 +29,7 @@ encoding//src/main/java/org/jtester/hamcrest/iassert/object/intf/IStringAssert.j
 encoding//src/main/java/org/jtester/jmock/ExpectationsUtil.java=UTF-8
 encoding//src/main/java/org/jtester/jmock/ICallMethod.java=UTF-8
 encoding//src/main/java/org/jtester/jmock/JTesterExpectations.java=UTF-8
+encoding//src/main/java/org/jtester/unitils/dbwiki/MultiSchemaWikilDataSetReader.java=UTF-8
 encoding//src/main/java/org/jtester/unitils/dbwiki/WikiDataSet.java=UTF-8
 encoding//src/main/java/org/jtester/unitils/dbwiki/WikiParser.java=UTF-8
 encoding//src/main/java/org/jtester/unitils/dbwiki/WikiPaserUtil.java=UTF-8
