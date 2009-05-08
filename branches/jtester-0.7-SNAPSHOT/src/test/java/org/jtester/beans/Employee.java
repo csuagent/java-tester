@@ -1,4 +1,4 @@
-package org.jtester.utility.beans;
+package org.jtester.beans;
 
 import java.util.Date;
 

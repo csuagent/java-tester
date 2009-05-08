@@ -85,11 +85,7 @@ public class SerializeUtil {
 			Object obj = in.readObject();
 			in.close();
 			return (T) obj;
-		} catch (FileNotFoundException e) {
-			throw new JTesterException(e);
-		} catch (IOException e) {
-			throw new JTesterException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			throw new JTesterException(e);
 		}
 	}

@@ -1,4 +1,4 @@
-package org.jtester.utility.beans;
+package org.jtester.beans;
 
 public class PhoneNumber implements java.io.Serializable {
 	private static final long serialVersionUID = 5646650408028947175L;

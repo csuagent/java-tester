@@ -5,10 +5,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.jtester.beans.Employee;
+import org.jtester.beans.Manager;
+import org.jtester.beans.PhoneNumber;
+import org.jtester.exception.JTesterException;
 import org.jtester.testng.JTester;
-import org.jtester.utility.beans.Employee;
-import org.jtester.utility.beans.Manager;
-import org.jtester.utility.beans.PhoneNumber;
 import org.testng.annotations.Test;
 
 @Test(groups = { "JTester" })
@@ -36,7 +37,7 @@ public class SerializeUtilTest extends JTester {
 		String filename = "classpath:org/jtester/utility/manager.dat";
 		Manager manager = SerializeUtil.fromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
+		want.date(manager.getDate()).yearIs(2009).monthIs("05").hourIs(15);
 	}
 
 	@Test
@@ -47,9 +48,10 @@ public class SerializeUtilTest extends JTester {
 		want.file(filename).isExists();
 	}
 
-	@Test
+	@Test(expectedExceptions = { JTesterException.class })
 	public void fromDat_List() {
-		String filename = "classpath:org/jtester/utility/managers.dat";
+		// employ has been move to other package, class not found exception
+		String filename = "classpath:org/jtester/utility/manager_classnotfound.dat";
 		List<?> managers = SerializeUtil.fromDat(List.class, filename);
 		want.collection(managers).sizeEq(2).propertyEq("name", new String[] { "Tony Tester", "Tony Tester" });
 	}
