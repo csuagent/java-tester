@@ -82,7 +82,7 @@
 				<version>2.4.2</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>target/test-classes/maven-install-test.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/maven-install-test.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 				<executions>
