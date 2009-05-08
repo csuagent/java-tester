@@ -2,6 +2,11 @@ package org.jtester.utility;
 
 import java.lang.reflect.Field;
 
+import ognl.DefaultMemberAccess;
+import ognl.Ognl;
+import ognl.OgnlContext;
+import ognl.OgnlException;
+
 import org.jtester.exception.JTesterException;
 
 /**
@@ -63,7 +68,7 @@ public class ReflectUtil {
 	public static Object getFieldValue(Class<?> claz, Object obj, String fieldName) {
 		assert obj != null : "the obj can't be null";
 		try {
-			Field field = claz.getDeclaredField(fieldName);
+			Field field = claz.getField(fieldName);
 			boolean accessible = field.isAccessible();
 			field.setAccessible(true);
 			Object o = field.get(obj);
@@ -71,6 +76,17 @@ public class ReflectUtil {
 			return o;
 		} catch (Exception e) {
 			throw new JTesterException("Unable to get the value in field[" + fieldName + "]", e);
+		}
+	}
+
+	public static Object getPropertyValue(Object object, String ognlExpression) {
+		try {
+			OgnlContext ognlContext = new OgnlContext();
+			ognlContext.setMemberAccess(new DefaultMemberAccess(true));
+			Object ognlExprObj = Ognl.parseExpression(ognlExpression);
+			return Ognl.getValue(ognlExprObj, ognlContext, object);
+		} catch (OgnlException e) {
+			throw new JTesterException("Failed to get property value using OGNL expression " + ognlExpression, e);
 		}
 	}
 }
