@@ -1,4 +1,4 @@
-package org.jtester.hamcrest.bean;
+package org.jtester.beans;
 
 @SuppressWarnings("unused")
 public class Address {

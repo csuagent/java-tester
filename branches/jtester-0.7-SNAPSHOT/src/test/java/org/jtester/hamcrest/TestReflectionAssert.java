@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.jtester.hamcrest.bean.Address;
-import org.jtester.hamcrest.bean.User;
+import org.jtester.beans.Address;
+import org.jtester.beans.User;
 import org.jtester.testng.JTester;
 import org.testng.Assert;
 import org.testng.annotations.Test;
