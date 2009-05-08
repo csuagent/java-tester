@@ -1,5 +1,6 @@
 package org.jtester.hamcrest.iassert.common.intf;
 
+import org.hamcrest.Matcher;
 import org.unitils.reflectionassert.ReflectionComparatorMode;
 
 /**
@@ -42,4 +43,13 @@ public interface IReflectionAssert<E extends IAssert<?, ?>> {
 	 * @return
 	 */
 	public E propertyEq(String property, Object expected);
+
+	/**
+	 * 断言对象指定的属性符合matcher定义的行为
+	 * 
+	 * @param property
+	 * @param matcher
+	 * @return
+	 */
+	public E propertyMatch(String property, Matcher<?> matcher);
 }
