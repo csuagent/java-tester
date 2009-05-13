@@ -1,0 +1,20 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.fitnesse</groupId>
+  <artifactId>fitnesse</artifactId>
+  <version>20090321</version>
+  <packaging>jar</packaging>
+  <name>FitNesse</name>
+  <url>http://fitnesse.org</url>
+  <description>The fully integrated standalone wiki, and acceptance testing framework.</description>
+  <licenses>
+    <license>
+      <name>GNU General Public License (GPL)</name>
+      <url>http://www.gnu.org/copyleft/gpl.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>http://fitnesse.svn.sourceforge.net/svnroot/fitnesse/</url>
+  </scm>
+</project> 
