@@ -30,7 +30,6 @@ public class WikiDbUnitModule extends DbUnitModule {
 		Class<?> testClass = testObject.getClass();
 		WikiDataSet wikiDataSetAnnotation = getMethodOrClassLevelAnnotation(WikiDataSet.class, testMethod, testClass);
 		if (wikiDataSetAnnotation == null) {
-			// No @DataSet annotation found
 			return null;
 		}
 
@@ -45,6 +44,28 @@ public class WikiDbUnitModule extends DbUnitModule {
 		}
 
 		return getDataSet(testClass, dataSetFileNames, dataSetFactory);
+	}
+
+	@Override
+	public MultiSchemaDataSet getExpectedDataSet(Method testMethod, Object testObject) {
+		Class<?> testClass = testObject.getClass();
+		WikiExpectedDataSet expectedDataSetAnnotation = getMethodOrClassLevelAnnotation(WikiExpectedDataSet.class,
+				testMethod, testClass);
+		if (expectedDataSetAnnotation == null) {
+			return null;
+		}
+
+		// Create configured factory for data sets
+		DataSetFactory dataSetFactory = getDataSetFactory(WikiExpectedDataSet.class, testMethod, testClass);
+
+		// Get the dataset file name
+		String[] dataSetFileNames = expectedDataSetAnnotation.value();
+		if (dataSetFileNames.length == 0) {
+			dataSetFileNames = new String[] { getDefaultExpectedDataSetFileName(testMethod, testClass, dataSetFactory
+					.getDataSetFileExtension()) };
+		}
+
+		return getDataSet(testMethod.getDeclaringClass(), dataSetFileNames, dataSetFactory);
 	}
 
 	@Override
