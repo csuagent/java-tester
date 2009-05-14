@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 
 import org.unitils.dbunit.DbUnitModule;
-import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.dbunit.datasetfactory.DataSetFactory;
 import org.unitils.dbunit.datasetloadstrategy.DataSetLoadStrategy;
 import org.unitils.dbunit.util.MultiSchemaDataSet;
@@ -22,7 +21,7 @@ public class WikiDbUnitModule extends DbUnitModule {
 	public void init(Properties configuration) {
 		super.init(configuration);
 		defaultAnnotationPropertyValues = getAnnotationPropertyDefaults(WikiDbUnitModule.class, configuration,
-				WikiDataSet.class, ExpectedDataSet.class);
+				WikiDataSet.class, WikiExpectedDataSet.class);
 	}
 
 	@Override
