@@ -52,7 +52,7 @@ public class WikiPaserUtil {
 		String[] fields = split(line);
 		meta.newFieldLine();
 		for (String field : fields) {
-			meta.addFieldValue(underlineName(field));
+			meta.addFieldValue(field == null ? "" : field.trim());
 		}
 		meta.endFieldLine();
 	}
