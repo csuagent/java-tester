@@ -1,9 +1,9 @@
 #labels jar包下载
 #jar包下载
 
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6.jar 0.6.jar]<br/>
-0.6-sources.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6-sources.jar<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6.jar jtester-0.6.jar]<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6-sources.jar jtester-0.6-sources.jar]<br/>
 
 
-0.7-SNAPSHOT.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7-SNAPSHOT/jtester-0.7-SNAPSHOT.jar<br/>
-0.7-SNAPSHOT-sources.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7-SNAPSHOT/jtester-0.7-SNAPSHOT-sources.jar<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7-SNAPSHOT/jtester-0.7-SNAPSHOT.jar jtester-0.7-SNAPSHOT.jar]<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7-SNAPSHOT/jtester-0.7-SNAPSHOT-sources.jar jtester-0.7-SNAPSHOT-sources.jar]<br/>
