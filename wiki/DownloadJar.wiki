@@ -1,14 +1,9 @@
 #labels jar包下载
 #jar包下载
 
-= Introduction =
+0.6.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6.jar
+0.6-sources.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6-sources.jar
 
-Add your content here.
 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+0.7-SNAPSHOT.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7-SNAPSHOT/jtester-0.7-SNAPSHOT.jar
+0.7-SNAPSHOT-sources.jar http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7-SNAPSHOT/jtester-0.7-SNAPSHOT-sources.jar
