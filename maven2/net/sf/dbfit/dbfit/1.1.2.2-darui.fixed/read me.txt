@@ -1,0 +1,12 @@
+1.修改了DatabaseTest的继承类，不是继承自Fixture，而是SequenceFixture
+public class DatabaseTest extends SequenceFixture
+去掉了ugly method：interpretWholeTable，把他分散到
+public void setUp(Table firstTable, TestResults testResults)
+public void tearDown(Table firstTable, TestResults testResults)中
+
+目的：可以在fitlibrary server的模式下运行dbfit
+
+2.增加了2个class
+  dbfit.testng.MySqlTest
+  dbfit.testng.OracleTest
+  目的：可以在fitnesse中直接调用testng的测试方法，然后验证数据 。
