@@ -20,7 +20,6 @@ public class WikiDbUnitModuleTest extends JTester {
 	@SpringBeanByType
 	private UserService userService;
 
-	@Test
 	@WikiDataSet("get user.wiki")
 	public void getUser() {
 		User user1 = userService.getUser(1);
@@ -34,7 +33,19 @@ public class WikiDbUnitModuleTest extends JTester {
 		want.object(user4).isNull();
 	}
 
-	@Test
+	@WikiDataSet("empty.wiki")
+	@Test(dependsOnMethods = { "getUser" })
+	public void cleanData() {
+
+	}
+
+	@Test(dependsOnMethods = { "cleanData" })
+	@WikiExpectedDataSet("empty.wiki")
+	public void expectedDataSet() {
+		User user1 = userService.getUser(1);
+		want.object(user1).isNull();
+	}
+
 	@WikiDataSet( { "lazy address.wiki" })
 	public void getUser_LazyAddress() {
 		User user = userService.getUser(1);

@@ -44,6 +44,22 @@ public class WikiTableMeta {
 	}
 
 	public String toXmlSnippet() {
+		if (this.fieldValues == null || this.fieldValues.size() == 0) {
+			return this.emptyDataSet();
+		} else {
+			return this.notEmptyDataSet();
+		}
+	}
+
+	private String emptyDataSet() {
+		StringBuffer xml = new StringBuffer();
+		xml.append("<");
+		xml.append(this.schemaName);
+		xml.append("/>");
+		return xml.toString();
+	}
+
+	private String notEmptyDataSet() {
 		StringBuffer xml = new StringBuffer();
 		for (FieldMeta values : fieldValues) {
 			xml.append("<");
