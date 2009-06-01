@@ -124,7 +124,7 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 		} else {
 			Expectations ex = ExpectationsUtil.getExpectations(Thread.currentThread().getId());
 			ex.with(this.link);
-			return (F) PrimitiveConvertor.value(valueClaz);
+			return (F) PrimitiveConvertor.value(claz);
 		}
 	}
 }
