@@ -112,17 +112,17 @@
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
-			<version>${hamcrest.version}</version>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>${mockito.version}</version>
+			<version>1.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock</artifactId>
-			<version>${jmock.version}</version>
+			<version>2.5.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.hamcrest</groupId>
@@ -137,12 +137,12 @@
 		<dependency>
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock-legacy</artifactId>
-			<version>${jmock.version}</version>
+			<version>2.5.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils</artifactId>
-			<version>${unitils.version}</version>
+			<version>2.2</version>
 			<exclusions>
 				<exclusion>
 					<groupId>ant</groupId>
@@ -153,7 +153,7 @@
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
-			<version>${dbunit.version}</version>
+			<version>2.4.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -173,20 +173,20 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
-			<version>${spring.version}</version>
+			<version>2.5.4</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
+			<version>2.5.4</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
-			<version>${hibernate.version}</version>
+			<version>3.2.5.ga</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.transaction</groupId>
@@ -198,19 +198,19 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
-			<version>${hibernate-annotations.version}</version>
+			<version>3.2.1.ga</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.connection.version}</version>
+			<version>3.1.12</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>${h2db.version}</version>
+			<version>1.1.107</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
