@@ -16,7 +16,7 @@ import org.jtester.hamcrest.matcher.array.ArrayItemRegularMatcher.ArrayItemRegul
 import org.jtester.hamcrest.matcher.array.SizeOrLengthMatcher.SizeOrLengthMatcherType;
 import org.jtester.utility.ArrayConvertor;
 
-public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends ComparableAssert<T, E> implements
+public class ObjectContainerAssert<T, E extends IAssert<T, ?>> extends BaseAssert<T, E> implements
 		IObjectContainerAssert<E> {
 
 	public ObjectContainerAssert(Class<? extends IAssert<?, ?>> clazE) {

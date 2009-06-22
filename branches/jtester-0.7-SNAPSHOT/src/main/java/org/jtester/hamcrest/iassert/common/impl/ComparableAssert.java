@@ -10,7 +10,8 @@ import org.mockito.internal.matchers.LessOrEqual;
 import org.mockito.internal.matchers.LessThan;
 
 @SuppressWarnings("unchecked")
-public class ComparableAssert<T, E extends IAssert<T, ?>> extends BaseAssert<T, E> implements IComparableAssert<E> {
+public class ComparableAssert<T extends Comparable<T>, E extends IAssert<T, ?>> extends AllAssert<T, E> implements
+		IComparableAssert<T, E> {
 
 	public ComparableAssert(Class<? extends IAssert<?, ?>> clazE) {
 		super(clazE);
@@ -20,27 +21,27 @@ public class ComparableAssert<T, E extends IAssert<T, ?>> extends BaseAssert<T, 
 		super(value, clazE);
 	}
 
-	public E greaterEqual(Comparable min) {
+	public E greaterEqual(T min) {
 		GreaterOrEqual matcher = new GreaterOrEqual(min);
 		return this.assertThat(matcher);
 	}
 
-	public E greaterThan(Comparable min) {
+	public E greaterThan(T min) {
 		GreaterThan matcher = new GreaterThan(min);
 		return this.assertThat(matcher);
 	}
 
-	public E lessEqual(Comparable max) {
+	public E lessEqual(T max) {
 		LessOrEqual matcher = new LessOrEqual(max);
 		return this.assertThat(matcher);
 	}
 
-	public E lessThan(Comparable max) {
+	public E lessThan(T max) {
 		LessThan matcher = new LessThan(max);
 		return this.assertThat(matcher);
 	}
 
-	public E between(Comparable min, Comparable max) {
+	public E between(T min, T max) {
 		if (min.compareTo(max) > 0) {
 			throw new AssertionError(String.format("arg1[%s] must less than arg2[%s]", min, max));
 		}

@@ -19,4 +19,8 @@ public class TestNumberAssert extends JTester {
 	public void test2() {
 		want.number(3).between(5, 2);
 	}
+
+	public void test3() {
+		want.number(5d).greaterEqual(4d);
+	}
 }

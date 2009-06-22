@@ -7,8 +7,7 @@ package org.jtester.hamcrest.iassert.common.intf;
  * 
  * @param <E>
  */
-@SuppressWarnings("unchecked")
-public interface IComparableAssert<E extends IAssert<?, ?>> {
+public interface IComparableAssert<T extends Comparable<T>, E extends IAssert<T, ?>> {
 
 	/**
 	 * 断言对象小于期望值max
@@ -17,7 +16,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	 *            期望最大值
 	 * @return
 	 */
-	public E lessThan(Comparable max);
+	public E lessThan(T max);
 
 	/**
 	 * 断言对象小于等于期望值max
@@ -26,7 +25,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	 *            期望最大值
 	 * @return
 	 */
-	public E lessEqual(Comparable max);
+	public E lessEqual(T max);
 
 	/**
 	 * 断言对象大于期望值min
@@ -35,7 +34,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	 *            期望最小值
 	 * @return
 	 */
-	public E greaterThan(Comparable min);
+	public E greaterThan(T min);
 
 	/**
 	 * 断言对象大于等于期望值min
@@ -44,7 +43,7 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	 *            期望最小值
 	 * @return
 	 */
-	public E greaterEqual(Comparable min);
+	public E greaterEqual(T min);
 
 	/**
 	 * 断言对象在最小值和最大值之间(包括最大值和最小值)
@@ -55,5 +54,5 @@ public interface IComparableAssert<E extends IAssert<?, ?>> {
 	 *            期望最大值
 	 * @return
 	 */
-	public E between(Comparable min, Comparable max);
+	public E between(T min, T max);
 }

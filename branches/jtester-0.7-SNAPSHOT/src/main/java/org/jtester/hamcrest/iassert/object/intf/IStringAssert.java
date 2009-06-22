@@ -10,7 +10,7 @@ import org.jtester.hamcrest.iassert.common.intf.IComparableAssert;
  * @author darui.wudr
  * 
  */
-public interface IStringAssert extends IBaseAssert<String, IStringAssert>, IComparableAssert<IStringAssert> {
+public interface IStringAssert extends IBaseAssert<String, IStringAssert>, IComparableAssert<String, IStringAssert> {
 	/**
 	 * 断言字符串包含期望的字串${expected}
 	 * 

@@ -12,6 +12,6 @@ import org.jtester.hamcrest.iassert.common.intf.IComparableAssert;
  * @param <E>
  */
 public interface INumberAssert<T extends Number & Comparable<T>, E extends INumberAssert<T, ?>> extends
-		IBaseAssert<T, E>, IComparableAssert<E> {
+		IBaseAssert<T, E>, IComparableAssert<T, E> {
 
 }
