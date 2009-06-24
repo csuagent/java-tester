@@ -1,7 +1,7 @@
 package org.jtester.jmock;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.jmock.Expectations;
 import org.jtester.exception.JTesterException;
@@ -15,7 +15,7 @@ import org.jtester.exception.JTesterException;
  * 
  */
 public class ExpectationsUtil {
-	private static Map<Long, Expectations> jes = new HashMap<Long, Expectations>();
+	private static Map<Long, Expectations> jes = new ConcurrentHashMap<Long, Expectations>();
 
 	/**
 	 * 注册当前线程下当前使用的org.jmock.Expectations实例
