@@ -26,4 +26,11 @@ public class ReflectionAssertTest extends JTester {
 		employee.setName("my name");
 		want.object(employee).propertyEq("name", "my name");
 	}
+
+	public void propertyMatch2() {
+		Employee employee = new Employee();
+		want.object(employee).propertyMatch("name", the.string().isNull());
+		employee.setName("my name");
+		want.object(employee).propertyMatch("name", the.string().isEqualTo("my name"));
+	}
 }
