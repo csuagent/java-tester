@@ -4,6 +4,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.unitils.config.ConfigUtil;
+import org.jtester.utility.ClazzUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 public class JTesterDataSource extends BasicDataSource implements InitializingBean {
@@ -19,15 +20,22 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 		init();
 	}
 
-	public void init() {
+	private void init() {
 		this.type = DataSourceType.type();
-		ConfigUtil.setDbUnitConfig(type);
-		this.createDataBase();
+		if (type != null) {
+			ConfigUtil.setDbUnitConfig(type);
+			this.createDataBase();
 
-		this.setUsername(type.getUserName());
-		this.setDriverClassName(type.getDriveClass());
-		this.setUrl(type.getConnUrl());
-		this.setPassword(type.getUserPass());
+			this.setUsername(type.getUserName());
+			this.setDriverClassName(type.getDriveClass());
+			this.setUrl(type.getConnUrl());
+			this.setPassword(type.getUserPass());
+		} else {
+			this.setDriverClassName(ConfigUtil.driverClazzName());
+			this.setUsername(ConfigUtil.databaseUserName());
+			this.setPassword(ConfigUtil.databasePassword());
+			this.setUrl(ConfigUtil.databaseUrl());
+		}
 	}
 
 	private synchronized void createDataBase() {
@@ -37,7 +45,7 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 		log.info("JTesterDataSource:begin create db?");
 		DbCreator.createDb(type);
 		log.info("JTesterDataSource:end create db.");
-		if (type.autoExport()) {
+		if (ClazzUtil.doesImportSchemaExport() && type.autoExport()) {
 			this.export = new DbSchemaExport(type);
 			export.export();
 		}

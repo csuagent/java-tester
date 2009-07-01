@@ -10,10 +10,34 @@ public class ConfigUtil {
 
 	public static final String datasource_type = "datasource.type";
 
+	public static final String PROPKEY_DATASOURCE_DRIVERCLASSNAME = "database.driverClassName";
+
+	public static final String PROPKEY_DATASOURCE_URL = "database.url";
+
+	public static final String PROPKEY_DATASOURCE_USERNAME = "database.userName";
+
+	public static final String PROPKEY_DATASOURCE_PASSWORD = "database.password";
+
 	public static final Properties unitilscfg = Unitils.getInstance().getConfiguration();
 
 	public static String property(String key) {
 		return unitilscfg.getProperty(key);
+	}
+
+	public static String driverClazzName() {
+		return unitilscfg.getProperty(PROPKEY_DATASOURCE_DRIVERCLASSNAME);
+	}
+
+	public static String databaseUrl() {
+		return unitilscfg.getProperty(PROPKEY_DATASOURCE_URL);
+	}
+
+	public static String databaseUserName() {
+		return unitilscfg.getProperty(PROPKEY_DATASOURCE_USERNAME);
+	}
+
+	public static String databasePassword() {
+		return unitilscfg.getProperty(PROPKEY_DATASOURCE_PASSWORD);
 	}
 
 	public static String property(String value, String key) {
@@ -42,7 +66,7 @@ public class ConfigUtil {
 		}
 	}
 
-	public static String dataSource() {
+	public static String dataSourceType() {
 		// form vm
 		String type = System.getProperty(datasource_type);
 		// from property
@@ -50,7 +74,7 @@ public class ConfigUtil {
 			type = unitilscfg.getProperty(datasource_type);
 		}
 		if (type == null) {
-			type = "H2DB";
+			type = "nonmem";
 		}
 		return type;
 	}
