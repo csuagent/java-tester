@@ -114,7 +114,30 @@ public class SerializeUtil {
 	private static InputStream isFileExisted(String filename) throws FileNotFoundException {
 		if (filename.startsWith("classpath:")) {
 			String file = filename.replaceFirst("classpath:", "");
-			return ClassLoader.getSystemResourceAsStream(file);
+
+			InputStream stream = null;
+			try {
+				stream = ClassLoader.getSystemResourceAsStream(file);
+			} catch (Throwable e) {
+				stream = null;
+			}
+			if (stream == null) {
+				StackTraceElement[] traces = Thread.currentThread().getStackTrace();
+				boolean calledFromXML = false;
+				for (StackTraceElement trace : traces) {
+					if (trace.getMethodName().equalsIgnoreCase("fromXML")
+							&& trace.getClassName().equalsIgnoreCase("org.jtester.utility.SerializeUtil")) {
+						calledFromXML = true;
+					}
+					if (calledFromXML) {
+						file = ClazzUtil.getPathFromPath(trace.getClassName()) + File.separatorChar + file;
+						stream = ClassLoader.getSystemResourceAsStream(file);
+						break;
+					}
+				}
+			}
+			return stream;
+
 		} else {
 			File file = new File(filename);
 			if (!file.exists()) {

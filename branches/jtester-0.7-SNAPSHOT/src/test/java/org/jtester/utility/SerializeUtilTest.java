@@ -82,6 +82,14 @@ public class SerializeUtilTest extends JTester {
 	}
 
 	@Test
+	public void fromXML_Classpath2() {
+		String filename = "classpath:manager.xml";
+		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
+		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
+		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
+	}
+
+	@Test
 	public void toXML_List() {
 		String filename = "d:/managers.xml";
 		List<Manager> list = new ArrayList<Manager>();
