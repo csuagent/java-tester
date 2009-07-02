@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
-	<version>0.7</version>
+	<version>0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
@@ -11,13 +11,15 @@
 		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
 		<!-- <spring.version>2.0.8</spring.version>-->
 		<spring.version>2.5.4</spring.version>
-		<!-- <unitils.version>2.0</unitils.version>-->
-		<unitils.version>2.2</unitils.version>
+		<!-- <unitils.version>2.2</unitils.version>-->
+		<unitils.version>2.3</unitils.version>
 		<!-- dbunit 2.4.2,2.4.4 has problem with unitils -->
 		<!-- <dbunit.version>2.2</dbunit.version> -->
-		<dbunit.version>2.4.3</dbunit.version>
+		<!-- <dbunit.version>2.4.3</dbunit.version>-->
+		<dbunit.version>2.4.5</dbunit.version>
 		<jmock.version>2.5.1</jmock.version>
 		<hamcrest.version>1.1</hamcrest.version>
+		<!-- <hamcrest.version>1.2</hamcrest.version>-->
 		<!-- <mockito.version>1.6</mockito.version>-->
 		<mockito.version>1.7</mockito.version>
 		<!--  <h2db.version>1.1.104</h2db.version>-->
@@ -97,6 +99,15 @@
 		</plugins>
 	</build>
 	<repositories>
+		<repository>
+			<id>jtester-maven</id>
+			<name>JTester</name>
+			<url>http://java-tester.googlecode.com/svn/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+		</repository>
 		<repository>
 			<id>mockito-repository</id>
 			<url>http://wamblee.org/mockito</url>
