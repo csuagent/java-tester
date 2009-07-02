@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.hamcrest</groupId>
   <artifactId>hamcrest-all</artifactId>
+  <version>1.2</version>
   <packaging>jar</packaging>
   <name>Hamcrest All</name>
 </project>
