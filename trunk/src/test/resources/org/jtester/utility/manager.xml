@@ -1,0 +1,11 @@
+<org.jtester.beans.Manager>
+  <Secretary>
+    <name>Harry Hacker</name>
+  </Secretary>
+  <phoneNumber class="org.jtester.beans.PhoneNumber">
+    <code>571</code>
+    <number>0571-88886666</number>
+  </phoneNumber>
+  <name>Tony Tester</name>
+  <date>2009-04-30 16:54:53.441 CST</date>
+</org.jtester.beans.Manager>

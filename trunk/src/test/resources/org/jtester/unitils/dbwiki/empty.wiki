@@ -1,0 +1,4 @@
+
+|table|jtester_user|
+|id|is_deleted|
+
