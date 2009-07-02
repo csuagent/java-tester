@@ -1,4 +1,4 @@
-package org.jtester.unitils.database;
+package org.jtester.unitils.spring;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class JTesterApplicationContextFactory implements ApplicationContextFacto
 		for (String str : locations) {
 			t.add(str);
 		}
-		t.add("classpath:/org/jtester/unitils/database/jtester-datasource.xml");
+		t.add("classpath:/org/jtester/unitils/spring/jtester-datasource.xml");
 		ConfigurableApplicationContext c = new ClassPathXmlApplicationContext(t.toArray(new String[locations.size()]),
 				false);
 
