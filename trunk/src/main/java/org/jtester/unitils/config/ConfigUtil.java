@@ -18,6 +18,8 @@ public class ConfigUtil {
 
 	public static final String PROPKEY_DATASOURCE_PASSWORD = "database.password";
 
+	public static final String DBMAINTAINER_DISABLECONSTRAINTS = "dbMaintainer.disableConstraints.enabled";
+
 	public static final Properties unitilscfg = Unitils.getInstance().getConfiguration();
 
 	public static String property(String key) {
@@ -38,6 +40,11 @@ public class ConfigUtil {
 
 	public static String databasePassword() {
 		return unitilscfg.getProperty(PROPKEY_DATASOURCE_PASSWORD);
+	}
+
+	public static boolean doesDisableConstraints() {
+		String disableConstraints = unitilscfg.getProperty(DBMAINTAINER_DISABLECONSTRAINTS);
+		return disableConstraints.equalsIgnoreCase("TRUE");
 	}
 
 	public static String property(String value, String key) {
@@ -87,7 +94,6 @@ public class ConfigUtil {
 		// disable dbmaintainer properties
 		unitilscfg.setProperty("updateDataBaseSchema.enabled", "false");
 		unitilscfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
-		unitilscfg.setProperty("dbMaintainer.disableConstraints.enabled", "false");
 	}
 
 	public static void setDbUnitConfig(DataSourceType type) {

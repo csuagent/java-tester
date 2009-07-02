@@ -11,7 +11,7 @@ public enum DataSourceType {
 	/**
 	 * H2Db
 	 */
-	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "hsqldb", "public", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
+	H2DB("org.h2.Driver", "org.hibernate.dialect.H2Dialect", "h2db", "public", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
 			"sa", "", "public") {
 		@Override
 		public DbSupport getDbSupport() {

@@ -50,10 +50,6 @@ public class DbSchemaExport {
 
 		log.info("call hibernate tool:org.hibernate.tool.hbm2ddl.SchemaExport.create");
 		this.export.execute(ConfigUtil.isScript(), true, false, true);
-		log.info("remove foreign key constraints");
-		this.dbSupport.disableReferentialConstraints();
-		log.info("remove not null constraints");
-		this.dbSupport.disableValueConstraints();
 	}
 
 	public Configuration config() {
