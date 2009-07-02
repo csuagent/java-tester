@@ -8,7 +8,7 @@ import org.jtester.utility.ClazzUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 public class JTesterDataSource extends BasicDataSource implements InitializingBean {
-	private static Log log = LogFactory.getLog(JTesterDataSource.class);
+	protected static Log log = LogFactory.getLog(JTesterDataSource.class);
 
 	private static boolean db_has_been_created = false;
 
@@ -42,9 +42,6 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 		if (db_has_been_created) {
 			return;
 		}
-		log.info("JTesterDataSource:begin create db?");
-		DbCreator.createDb(type);
-		log.info("JTesterDataSource:end create db.");
 		if (ClazzUtil.doesImportSchemaExport() && type.autoExport()) {
 			this.export = new DbSchemaExport(type);
 			export.export();
