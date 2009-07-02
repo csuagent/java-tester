@@ -18,26 +18,22 @@ public class UnitilsReflectionMatcher extends BaseMatcher<Object> {
 
 	private ReflectionComparatorMode[] modes;
 
-	public UnitilsReflectionMatcher(Object expected,
-			ReflectionComparatorMode[] modes) {
+	public UnitilsReflectionMatcher(Object expected, ReflectionComparatorMode[] modes) {
 		this.expected = expected;
 		this.modes = modes;
 	}
 
-	public UnitilsReflectionMatcher(Collection<?> expected,
-			ReflectionComparatorMode[] modes) {
+	public UnitilsReflectionMatcher(Collection<?> expected, ReflectionComparatorMode[] modes) {
 		this.expected = expected;
 		this.modes = modes;
 	}
 
-	public <T extends Object> UnitilsReflectionMatcher(T[] expected,
-			ReflectionComparatorMode[] modes) {
+	public <T extends Object> UnitilsReflectionMatcher(T[] expected, ReflectionComparatorMode[] modes) {
 		this.expected = expected;
 		this.modes = modes;
 	}
 
-	public UnitilsReflectionMatcher(List<?> expected,
-			ReflectionComparatorMode[] modes) {
+	public UnitilsReflectionMatcher(List<?> expected, ReflectionComparatorMode[] modes) {
 		this.expected = expected;
 		this.modes = modes;
 	}
@@ -53,8 +49,7 @@ public class UnitilsReflectionMatcher extends BaseMatcher<Object> {
 	public void describeTo(Description description) {
 		if (difference != null) {
 			DifferenceReport differenceReport = new DefaultDifferenceReport();
-			description.appendText(differenceReport.createReport(null,
-					difference));
+			description.appendText(differenceReport.createReport(difference));
 		}
 	}
 }

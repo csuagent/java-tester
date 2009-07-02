@@ -61,8 +61,9 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 	public void describeTo(Description description) {
 		if (difference != null) {
 			String message = "Incorrect value for property: " + this.property;
+			description.appendText(message);
 			DifferenceReport differenceReport = new DefaultDifferenceReport();
-			description.appendText(differenceReport.createReport(message, difference));
+			description.appendText(differenceReport.createReport(difference));
 		}
 	}
 
