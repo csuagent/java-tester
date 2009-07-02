@@ -1,0 +1,8 @@
+
+|table|jtester user|
+|id|is deleted|
+|1|false|
+
+|table|jtester address|
+|id|user_id|city|is deleted|
+|1|1|city|false|
