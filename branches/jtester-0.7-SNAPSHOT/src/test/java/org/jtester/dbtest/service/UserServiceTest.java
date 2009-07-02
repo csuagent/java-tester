@@ -7,6 +7,7 @@ import org.jtester.dbtest.bean.User;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 import org.unitils.dbunit.annotation.DataSet;
+import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
@@ -18,6 +19,7 @@ public class UserServiceTest extends JTester {
 
 	@Test
 	@DataSet( { "UserServiceTest.getUser.xml" })
+	@ExpectedDataSet( { "UserServiceTest.getUser.xml" })
 	public void getUser() {
 		User user1 = userService.getUser(1);
 		want.object(user1).notNull();
@@ -32,6 +34,7 @@ public class UserServiceTest extends JTester {
 
 	@Test
 	@DataSet( { "UserServiceTest.getUser_LazyAddress.xml" })
+	@ExpectedDataSet( { "UserServiceTest.getUser_LazyAddress.expected.xml" })
 	public void getUser_LazyAddress() {
 		User user = userService.getUser(1);
 		want.object(user).notNull();

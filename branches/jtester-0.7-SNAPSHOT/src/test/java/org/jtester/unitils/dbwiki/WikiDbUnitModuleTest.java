@@ -21,6 +21,7 @@ public class WikiDbUnitModuleTest extends JTester {
 	private UserService userService;
 
 	@WikiDataSet("get user.wiki")
+	@WikiExpectedDataSet("get user.expected.wiki")
 	public void getUser() {
 		User user1 = userService.getUser(1);
 		want.object(user1).notNull();
