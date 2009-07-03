@@ -43,4 +43,9 @@ public class TestStringAssert extends JTester {
 	public void test32() {
 		want.string("abcd").allOf(the.string().contains("ad"), the.string().contains("cd"));
 	}
+	
+	public void eqIgnorBlank() {
+		want.string(" ab ").eqIgnorBlank("ab");
+		want.string("abC").eqIgnoreCase("aBc");
+	}
 }

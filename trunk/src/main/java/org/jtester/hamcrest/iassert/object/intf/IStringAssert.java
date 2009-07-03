@@ -57,7 +57,7 @@ public interface IStringAssert extends IBaseAssert<String, IStringAssert>, IComp
 	public IStringAssert eqIgnoreCase(String string);
 
 	/**
-	 * 断言字符串在忽略空格的情况下等于期望值
+	 * 断言字符串在忽略前后空格的情况下等于期望值
 	 * 
 	 * @param string
 	 *            期望值
