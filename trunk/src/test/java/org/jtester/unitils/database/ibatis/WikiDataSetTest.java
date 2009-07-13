@@ -27,4 +27,10 @@ public class WikiDataSetTest extends JTester {
 		double total = this.userService.paySalary("310000");
 		want.number(total).isEqualTo(4000d);
 	}
+
+	@WikiDataSet(value = { "DbTester.paySalary.wiki" }, loadStrategy = RefreshLoadStrategy.class)
+	public void paySalary_insert() {
+		double total = this.userService.paySalary("310000");
+		want.number(total).isEqualTo(4000d);
+	}
 }

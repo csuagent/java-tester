@@ -17,4 +17,12 @@ public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public void insertUser(User user) {
+		try {
+			this.getSqlMapClient().insert("", user);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
