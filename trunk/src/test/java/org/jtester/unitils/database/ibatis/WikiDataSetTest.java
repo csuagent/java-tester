@@ -4,6 +4,7 @@ import org.jtester.testng.JTester;
 import org.jtester.unitils.database.ibatis.beans.User;
 import org.jtester.unitils.database.ibatis.service.UserService;
 import org.jtester.unitils.dbwiki.WikiDataSet;
+import org.jtester.unitils.dbwiki.WikiExpectedDataSet;
 import org.testng.annotations.Test;
 import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.dbunit.datasetloadstrategy.impl.RefreshLoadStrategy;
@@ -29,14 +30,13 @@ public class WikiDataSetTest extends JTester {
 		want.number(total).isEqualTo(4000d);
 	}
 
-	@WikiDataSet(value = { "DbTester.paySalary.wiki" }, loadStrategy = RefreshLoadStrategy.class)
+	@WikiDataSet(value = { "DbTester.paySalary.wiki" })
+	@WikiExpectedDataSet("DbTester.insert.expected.wiki")
 	public void paySalary_insert() {
 		User user = new User();
-//		user.setId(5);
 		user.setFirst("first name");
 		user.setPostcode("320001");
 		user.setSarary(23.02d);
 		this.userService.insertUser(user);
-		// want.number(total).isEqualTo(4000d);
 	}
 }

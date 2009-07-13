@@ -11,6 +11,7 @@ import static org.unitils.util.ReflectionUtils.getClassWithName;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
+import org.unitils.core.TestListener;
 import org.unitils.dbunit.DbUnitModule;
 import org.unitils.dbunit.datasetfactory.DataSetFactory;
 import org.unitils.dbunit.datasetloadstrategy.DataSetLoadStrategy;
@@ -89,5 +90,23 @@ public class WikiDbUnitModule extends DbUnitModule {
 		Class<? extends DataSetLoadStrategy> dataSetLoadStrategyClassName = getClassWithName(getAnnotationPropertyDefault(
 				WikiDbUnitModule.class, WikiDataSet.class, "loadStrategy", configuration));
 		return createInstanceOfType(dataSetLoadStrategyClassName, false);
+	}
+
+	@Override
+	public TestListener getTestListener() {
+		return new WikiDbUnitListener();
+	}
+
+	protected class WikiDbUnitListener extends TestListener {
+
+		@Override
+		public void beforeTestSetUp(Object testObject, Method testMethod) {
+			insertDataSet(testMethod, testObject);
+		}
+
+		@Override
+		public void afterTestTearDown(Object testObject, Method testMethod) {
+			assertDbContentAsExpected(testMethod, testObject);
+		}
 	}
 }
