@@ -1,6 +1,7 @@
 package org.jtester.unitils.database.ibatis;
 
 import org.jtester.testng.JTester;
+import org.jtester.unitils.database.ibatis.beans.User;
 import org.jtester.unitils.database.ibatis.service.UserService;
 import org.jtester.unitils.dbwiki.WikiDataSet;
 import org.testng.annotations.Test;
@@ -10,7 +11,7 @@ import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;
 
 @Test(groups = { "JTester" })
-@SpringApplicationContext( { "classpath:org/jtester/unitils/database/ibatis//spring/beans.xml",
+@SpringApplicationContext( { "classpath:org/jtester/unitils/database/ibatis/spring/beans.xml",
 		"classpath:org/jtester/unitils/database/ibatis/spring/data-source.xml" })
 public class WikiDataSetTest extends JTester {
 	@SpringBeanByName
@@ -30,7 +31,12 @@ public class WikiDataSetTest extends JTester {
 
 	@WikiDataSet(value = { "DbTester.paySalary.wiki" }, loadStrategy = RefreshLoadStrategy.class)
 	public void paySalary_insert() {
-		double total = this.userService.paySalary("310000");
-		want.number(total).isEqualTo(4000d);
+		User user = new User();
+//		user.setId(5);
+		user.setFirst("first name");
+		user.setPostcode("320001");
+		user.setSarary(23.02d);
+		this.userService.insertUser(user);
+		// want.number(total).isEqualTo(4000d);
 	}
 }

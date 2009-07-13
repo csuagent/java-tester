@@ -20,7 +20,7 @@ public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao {
 
 	public void insertUser(User user) {
 		try {
-			this.getSqlMapClient().insert("", user);
+			this.getSqlMapClient().insert("TDD_COMMON.insert_user", user);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
