@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
-	<version>0.7</version>
+	<version>0.7.1</version>
 	<packaging>jar</packaging>
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
@@ -22,7 +22,7 @@
 		<mockito.version>1.7</mockito.version>
 		<!--  <h2db.version>1.1.104</h2db.version>-->
 		<h2db.version>1.1.107</h2db.version>
-		<mysql.connection.version>3.1.12</mysql.connection.version>
+		<mysql.connection.version>5.1.6</mysql.connection.version>
 	</properties>
 	<build>
 		<finalName>${artifactId}-${version}</finalName>
@@ -238,6 +238,11 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ibatis</groupId>
+			<artifactId>ibatis-sqlmap</artifactId>
+			<version>2.3.4.726</version>
 		</dependency>
 	</dependencies>
 	<reporting>
