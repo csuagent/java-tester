@@ -189,7 +189,7 @@ public interface IExpectation {
 		 * @return
 		 */
 		public ICalendarAssert<Calendar> calendar() {
-			return new CalendarAssert<Calendar>();
+			return new CalendarAssert<Calendar>(Calendar.class);
 		}
 
 		/**
@@ -198,7 +198,7 @@ public interface IExpectation {
 		 * @return
 		 */
 		public ICalendarAssert<Date> date() {
-			return new CalendarAssert<Date>();
+			return new CalendarAssert<Date>(Date.class);
 		}
 	}
 }

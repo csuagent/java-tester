@@ -324,7 +324,7 @@ public interface JTesterAssert {
 		 * @return
 		 */
 		public ICalendarAssert<Calendar> calendar(Calendar cal) {
-			return new CalendarAssert<Calendar>(cal);
+			return new CalendarAssert<Calendar>(cal, Calendar.class);
 		}
 
 		/**
@@ -334,7 +334,7 @@ public interface JTesterAssert {
 		 * @return
 		 */
 		public ICalendarAssert<Date> date(Date date) {
-			return new CalendarAssert<Date>(date);
+			return new CalendarAssert<Date>(date, Date.class);
 		}
 
 		static {

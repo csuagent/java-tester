@@ -96,9 +96,9 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 			Object ognlExprObj = Ognl.parseExpression(ognlExpression);
 			return Ognl.getValue(ognlExprObj, ognlContext, object);
 		} catch (OgnlException e) {
-			// throw new UnitilsException(
-			// "Failed to get property value using OGNL expression "
-			// + ognlExpression, e);
+			return object;
+		} catch (Throwable e) {
+			// e.printStackTrace();
 			return object;
 		}
 	}

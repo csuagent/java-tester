@@ -21,6 +21,15 @@ public class PrimitiveConvertor {
 		map.put(Double.class, 0.0d);
 		map.put(Character.class, '\0');
 		map.put(Boolean.class, false);
+
+		map.put(int.class, 0);
+		map.put(short.class, 0);
+		map.put(long.class, 0);
+		map.put(byte.class, 0);
+		map.put(float.class, 0.0f);
+		map.put(double.class, 0.0d);
+		map.put(char.class, '\0');
+		map.put(boolean.class, false);
 	}
 
 	public static Object value(Class<?> claz) {
