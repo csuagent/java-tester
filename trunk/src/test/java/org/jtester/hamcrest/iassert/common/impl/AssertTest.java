@@ -12,7 +12,7 @@ import org.jtester.testng.JTester;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-@Test
+@Test(groups = { "JTester" })
 public class AssertTest extends JTester {
 	@Test(dataProvider = "assertClass")
 	public void wanted(IAssert<?, ?> as, Class<?> claz) {

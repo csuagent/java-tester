@@ -33,4 +33,22 @@ public interface IMapAssert extends IBaseAssert<Map<?, ?>, IMapAssert> {
 	 */
 	public IMapAssert hasValues(Object value, Object... values);
 
+	/**
+	 * 断言map中包含kay:value值对
+	 * 
+	 * @param key
+	 * @param value
+	 * @param objects
+	 * @return
+	 */
+	public IMapAssert hasEntry(Object key, Object value, Object... objects);
+
+	/**
+	 * 断言map中包含kay:value值对
+	 * 
+	 * @param entry
+	 * @param entries
+	 * @return
+	 */
+	public IMapAssert hasEntry(Map.Entry<?, ?> entry, Map.Entry<?, ?>... entries);
 }

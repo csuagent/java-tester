@@ -2,6 +2,7 @@ package org.jtester.hamcrest.iassert.object.impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.jtester.testng.JTester;
 import org.testng.annotations.BeforeMethod;
@@ -47,5 +48,19 @@ public class MapAssertTest extends JTester {
 	@Test(expectedExceptions = { AssertionError.class })
 	public void hasValues_fail2() {
 		want.map(maps).hasValues("unkown");
+	}
+
+	public void hasEntry() {
+		want.map(maps).hasEntry("two", "my second value", "three");
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void hasEntry_fail() {
+		want.map(maps).hasEntry("two", "my second value", "three", "ddd");
+	}
+
+	public void hasEntry2() {
+		Entry<?, ?> entry = maps.entrySet().iterator().next();
+		want.map(maps).hasEntry(entry);
 	}
 }
