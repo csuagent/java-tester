@@ -27,18 +27,6 @@ public abstract class Assert<T, E extends IAssert<T, ?>> extends BaseMatcher<T> 
 	public Assert() {
 	}
 
-	// public <F extends Assert<?, ?>> F convert(Class<F> claz) throws
-	// InstantiationException, IllegalAccessException {
-	// F instance = claz.newInstance();
-	// instance.valueClaz = this.valueClaz;
-	// instance.value = this.value;
-	// instance.type = this.type;
-	// instance.link = this.link;
-	//
-	// instance.assertClaz = claz;
-	// return instance;
-	// }
-
 	public Assert(Class<? extends IAssert<?, ?>> clazE) {
 		this.value = null;
 		this.type = AssertType.Expectations;

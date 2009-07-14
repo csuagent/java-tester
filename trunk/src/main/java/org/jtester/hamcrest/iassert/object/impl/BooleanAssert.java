@@ -9,10 +9,12 @@ public class BooleanAssert extends AllAssert<Boolean, IBooleanAssert> implements
 
 	public BooleanAssert() {
 		super(IBooleanAssert.class);
+		this.valueClaz = Boolean.class;
 	}
 
 	public BooleanAssert(Boolean value) {
 		super(value, IBooleanAssert.class);
+		this.valueClaz = Boolean.class;
 	}
 
 	public IBooleanAssert is(boolean bl) {

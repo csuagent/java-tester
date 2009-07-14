@@ -10,10 +10,12 @@ import org.jtester.hamcrest.matcher.file.FileExistsMatcher.FileExistsMatcherType
 public class FileAssert extends BaseAssert<File, IFileAssert> implements IFileAssert {
 	public FileAssert() {
 		super(IFileAssert.class);
+		this.valueClaz = File.class;
 	}
 
 	public FileAssert(File file) {
 		super(file, IFileAssert.class);
+		this.valueClaz = File.class;
 	}
 
 	public IFileAssert isExists() {

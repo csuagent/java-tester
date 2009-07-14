@@ -7,10 +7,12 @@ public class CharacterAssert extends AllAssert<Character, ICharacterAssert> impl
 
 	public CharacterAssert() {
 		super(ICharacterAssert.class);
+		this.valueClaz = Character.class;
 	}
 
 	public CharacterAssert(Character value) {
 		super(value, ICharacterAssert.class);
+		this.valueClaz = Character.class;
 	}
 
 	public ICharacterAssert is(char ch) {

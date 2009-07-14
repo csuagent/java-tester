@@ -7,9 +7,11 @@ public class ByteAssert extends AllAssert<Byte, IByteAssert> implements IByteAss
 
 	public ByteAssert(Byte value) {
 		super(value, IByteAssert.class);
+		this.valueClaz = Byte.class;
 	}
 
 	public ByteAssert() {
 		super(IByteAssert.class);
+		this.valueClaz = Byte.class;
 	}
 }

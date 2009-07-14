@@ -42,4 +42,14 @@ public class ExpectationsUtilTest extends JTester {
 		});
 		callingService.call("i am a test message!");
 	}
+
+	@Test
+	public void expectedBoolean() {
+		checking(new Je() {
+			{
+				will.call.one(calledService).expectedBoolean(the.bool().isEqualTo(true).wanted());
+			}
+		});
+		callingService.expectedBoolean(true);
+	}
 }

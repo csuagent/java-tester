@@ -10,14 +10,15 @@ import org.jtester.hamcrest.iassert.common.impl.ComparableAssert;
 import org.jtester.hamcrest.iassert.object.intf.IStringAssert;
 import org.mockito.internal.matchers.Matches;
 
-public class StringAssert extends ComparableAssert<String, IStringAssert>
-		implements IStringAssert {
+public class StringAssert extends ComparableAssert<String, IStringAssert> implements IStringAssert {
 	public StringAssert() {
 		super(IStringAssert.class);
+		this.valueClaz = String.class;
 	}
 
 	public StringAssert(String str) {
 		super(str, IStringAssert.class);
+		this.valueClaz = String.class;
 	}
 
 	public IStringAssert contains(String expected) {
@@ -31,8 +32,7 @@ public class StringAssert extends ComparableAssert<String, IStringAssert>
 	}
 
 	public IStringAssert eqIgnoreCase(String string) {
-		Matcher<String> matcher = IsEqualIgnoringCase
-				.equalToIgnoringCase(string);
+		Matcher<String> matcher = IsEqualIgnoringCase.equalToIgnoringCase(string);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 
@@ -47,8 +47,7 @@ public class StringAssert extends ComparableAssert<String, IStringAssert>
 	}
 
 	public Matcher<String> eqIgnorBlank(String string) {
-		Matcher<String> matcher = IsEqualIgnoringWhiteSpace
-				.equalToIgnoringWhiteSpace(string);
+		Matcher<String> matcher = IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(string);
 		return (IStringAssert) this.assertThat(matcher);
 	}
 }

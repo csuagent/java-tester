@@ -1,5 +1,7 @@
 package org.jtester.hamcrest.iassert.object.impl;
 
+import java.util.Calendar;
+
 import org.jtester.hamcrest.iassert.common.impl.BaseAssert;
 import org.jtester.hamcrest.iassert.object.intf.ICalendarAssert;
 import org.jtester.hamcrest.matcher.LinkMatcher;
@@ -14,6 +16,7 @@ public class CalendarAssert<T> extends BaseAssert<T, ICalendarAssert<T>> impleme
 		this.type = AssertType.Expectations;
 		this.link = new LinkMatcher<T>();
 		this.assertClaz = ICalendarAssert.class;
+		this.valueClaz = Calendar.class;
 	}
 
 	public CalendarAssert(T value) {
@@ -21,6 +24,7 @@ public class CalendarAssert<T> extends BaseAssert<T, ICalendarAssert<T>> impleme
 		this.type = AssertType.AssertThat;
 		this.value = value;
 		this.assertClaz = ICalendarAssert.class;
+		this.valueClaz = Calendar.class;
 	}
 
 	public ICalendarAssert<T> yearIs(int year) {

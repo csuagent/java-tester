@@ -7,6 +7,10 @@ public class CallingService {
 		this.calledService.called(message);
 	}
 
+	public void expectedBoolean(boolean bl) {
+		this.calledService.expectedBoolean(bl);
+	}
+
 	public CalledService getCalledService() {
 		return calledService;
 	}

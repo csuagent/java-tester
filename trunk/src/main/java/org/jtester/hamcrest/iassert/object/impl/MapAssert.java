@@ -14,10 +14,12 @@ import org.jtester.hamcrest.matcher.array.MapMatcher.MapMatcherType;
 public class MapAssert extends BaseAssert<Map<?, ?>, IMapAssert> implements IMapAssert {
 	public MapAssert() {
 		super(IMapAssert.class);
+		this.valueClaz = Map.class;
 	}
 
 	public MapAssert(Map<?, ?> map) {
 		super(map, IMapAssert.class);
+		this.valueClaz = Map.class;
 	}
 
 	public IMapAssert hasKeys(Object key, Object... keys) {
