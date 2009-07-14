@@ -21,12 +21,22 @@ public class AssertTest extends JTester {
 
 	@DataProvider
 	public Object[][] assertClass() {
-		return new Object[][] { { the.bool(), Boolean.class }, { the.array(), Object[].class },
-				{ the.bite(), Byte.class }, { the.calendar(), Calendar.class }, { the.character(), Character.class },
-				{ the.collection(), Collection.class }, { the.date(), Date.class }, { the.doublenum(), Double.class },
-				{ the.file(), File.class }, { the.floatnum(), Float.class }, { the.integer(), Integer.class },
-				{ the.longnum(), Long.class }, { the.map(), Map.class }, { the.object(), Object.class },
-				{ the.shortnum(), Short.class }, { the.string(), String.class } };
+		return new Object[][] { { the.bool(), Boolean.class }, /** <br> */
+		{ the.array(), Object[].class }, /** <br> */
+		{ the.bite(), Byte.class }, /** <br> */
+		{ the.calendar(), Calendar.class }, /** <br> */
+		{ the.character(), Character.class }, /** <br> */
+		{ the.collection(), Collection.class }, /** <br> */
+		{ the.date(), Date.class }, /** <br> */
+		{ the.doublenum(), Double.class }, /** <br> */
+		{ the.file(), File.class }, /** <br> */
+		{ the.floatnum(), Float.class }, /** <br> */
+		{ the.integer(), Integer.class }, /** <br> */
+		{ the.longnum(), Long.class }, /** <br> */
+		{ the.map(), Map.class }, /** <br> */
+		{ the.object(), Object.class }, /** <br> */
+		{ the.shortnum(), Short.class }, /** <br> */
+		{ the.string(), String.class } };
 	}
 
 	@Test
