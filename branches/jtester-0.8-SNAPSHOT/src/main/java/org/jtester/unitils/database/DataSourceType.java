@@ -107,6 +107,12 @@ public enum DataSourceType {
 		return ConfigUtil.property(this.schema, "database.schemaNames");
 	}
 
+	/**
+	 * 根据jtester.properties中的配置项datasource.type获得DataSourceType<br>
+	 * 此配置只对内存数据库有效
+	 * 
+	 * @return
+	 */
 	public static DataSourceType type() {
 		try {
 			String type = ConfigUtil.dataSourceType();

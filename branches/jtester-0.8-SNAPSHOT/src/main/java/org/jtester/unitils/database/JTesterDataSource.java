@@ -22,7 +22,12 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 
 	private void init() {
 		this.type = DataSourceType.type();
-		if (type != null) {
+		if (type == null) {
+			this.setDriverClassName(ConfigUtil.driverClazzName());
+			this.setUsername(ConfigUtil.databaseUserName());
+			this.setPassword(ConfigUtil.databasePassword());
+			this.setUrl(ConfigUtil.databaseUrl());
+		} else {
 			ConfigUtil.setDbUnitConfig(type);
 			this.createDataBase();
 
@@ -30,11 +35,6 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 			this.setDriverClassName(type.getDriveClass());
 			this.setUrl(type.getConnUrl());
 			this.setPassword(type.getUserPass());
-		} else {
-			this.setDriverClassName(ConfigUtil.driverClazzName());
-			this.setUsername(ConfigUtil.databaseUserName());
-			this.setPassword(ConfigUtil.databasePassword());
-			this.setUrl(ConfigUtil.databaseUrl());
 		}
 	}
 
