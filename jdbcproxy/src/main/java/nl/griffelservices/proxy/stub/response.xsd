@@ -1,0 +1,135 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<!--
+The contents of this file are subject to the Mozilla Public License Version 1.1
+(the "License"); you may not use this file except in compliance with the
+License. You may obtain a copy of the License at http://www.mozilla.org/MPL/
+
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+the specific language governing rights and limitations under the License.
+
+The Original Code is JdbcProxy.
+
+The Initial Developer of the Original Code is Frans van Gool.
+Portions created by the Initial Developer are Copyright (C) 2006
+Frans van Gool. All Rights Reserved.
+
+Contributor(s): Frans van Gool.
+
+Alternatively, the contents of this file may be used under the terms of the
+GNU Lesser General Public License (the “LGPL License”), in which case the
+provisions of LGPL License are applicable instead of those above. If you wish
+to allow use of your version of this file only under the terms of the LGPL
+License and not to allow others to use your version of this file under the MPL,
+indicate your decision by deleting the provisions above and replace them with
+the notice and other provisions required by the LGPL License. If you do not
+delete the provisions above, a recipient may use your version of this file
+under either the MPL or the LGPL License.
+-->
+<schema xmlns = "http://www.w3.org/2001/XMLSchema"
+	 targetNamespace = "http://www.griffelservices.nl/proxy/stub/soap/type_Response.xsd"
+	 xmlns:ns = "http://www.griffelservices.nl/proxy/stub/soap/type_Response.xsd"
+	 elementFormDefault = "unqualified">
+	<element xmlns="http://www.w3.org/2001/XMLSchema" name="response" type="ns:type_Response"/>
+	<complexType name = "type_Response">
+		<sequence>
+			<element name = "newstatus" type = "string"/>
+			<element name = "returnvalue" type = "ns:type_Object"/>
+		</sequence>
+	</complexType>
+	<complexType name = "type_Object">
+		<!-- TODO for jdbc
+			java.io.InputStream
+			java.io.OutputStream;
+			java.io.Reader
+			java.io.Writer
+			java.sql.DriverPropertyInfo
+			java.sql.SQLWarning
+			java.util.Map
+		-->
+		<choice minOccurs = "0">
+			<element name = "array">
+				<complexType>
+					<sequence>
+						<element name = "componenttype" type = "string"/>
+						<element name = "component" type = "ns:type_Object" minOccurs = "0" maxOccurs = "unbounded"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name = "boolean" type = "boolean"/>
+			<element name = "byte" type = "byte"/>
+			<element name = "char">
+				<simpleType>
+					<restriction base = "string">
+						<length value = "1"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name = "double" type = "decimal"/>
+			<element name = "float" type = "decimal"/>
+			<element name = "int" type = "int"/>
+			<element name = "long" type = "long"/>
+			<element name = "short" type = "short"/>
+			<element name = "java.lang.String" type = "string"/>
+			<element name = "java.util.Date" type = "long"/>
+			<element name = "java.sql.Date" type = "long"/>
+			<element name = "java.sql.Time" type = "long"/>
+			<element name = "java.sql.Timestamp" type = "long"/>
+			<element name = "java.math.BigInteger" type = "integer"/>
+			<element name = "java.math.BigDecimal">
+				<complexType>
+					<sequence>
+						<element name = "unscaledvalue" type="integer"/>
+						<element name = "scale" type = "int"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name = "java.net.URL" type = "string"/>
+			<element name = "nl.griffelservices.proxy.stub.ProxyObject">
+				<complexType>
+					<sequence>
+						<element name = "class" type = "string"/>
+						<element name = "id" type="string"/>
+						<element name = "status" type = "string"/>
+						<element name = "requestresponse" minOccurs="0" maxOccurs = "unbounded">
+							<complexType>
+								<sequence>
+									<element name = "request" type = "ns:type_Request"/>
+									<element name = "response" type = "ns:type_Response"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name = "type_Request">
+		<sequence>
+			<element name = "status" type = "ns:type_Parameter"/>
+			<element name = "method" type="string"/>
+			<element name = "parameter" minOccurs = "0" maxOccurs = "unbounded">
+				<complexType>
+					<sequence>
+						<element name="class" type="string"/>
+						<element name="value" type="ns:type_Parameter" minOccurs = "0"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name = "type_Parameter">
+		<simpleContent>
+			<extension base = "string">
+				<attribute name = "type" default = "equality">
+					<simpleType>
+						<restriction base = "string">
+							<enumeration value = "equality"/>
+							<enumeration value = "regex"/>
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+</schema>
