@@ -3,6 +3,7 @@ package org.jtester.unitils.config;
 import java.util.Properties;
 
 import org.jtester.unitils.database.DataSourceType;
+import org.jtester.utility.StringUtil;
 import org.unitils.core.Unitils;
 
 public class ConfigUtil {
@@ -48,7 +49,7 @@ public class ConfigUtil {
 	}
 
 	public static String property(String value, String key) {
-		if (value == null || "".equalsIgnoreCase(value.trim())) {
+		if (StringUtil.isBlankOrNull(value)) {
 			return unitilscfg.getProperty(key);
 		} else {
 			return value;
