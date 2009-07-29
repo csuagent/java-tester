@@ -5,7 +5,6 @@ import org.apache.commons.logging.LogFactory;
 import org.jtester.unitils.config.ConfigUtil;
 import org.unitils.core.dbsupport.DbSupport;
 import org.unitils.core.dbsupport.HsqldbDbSupport;
-import org.unitils.core.dbsupport.MySqlDbSupport;
 
 public enum DataSourceType {
 	/**
@@ -37,16 +36,8 @@ public enum DataSourceType {
 		public boolean autoExport() {
 			return true;
 		}
-	},
-	/**
-	 * mysql
-	 */
-	MYSQL("com.mysql.jdbc.Driver", "org.hibernate.dialect.MySQLInnoDBDialect", "mysql", "information_schema") {
-		@Override
-		public DbSupport getDbSupport() {
-			return new MySqlDbSupport();
-		}
 	};
+
 	private static Log log = LogFactory.getLog(DataSourceType.class);
 
 	private String clazz = null;
