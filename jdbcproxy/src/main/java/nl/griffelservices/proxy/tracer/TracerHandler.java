@@ -16,7 +16,7 @@
  * Contributor(s): Frans van Gool.
  * 
  * Alternatively, the contents of this file may be used under the terms of the
- * GNU Lesser General Public License (the “LGPL License”), in which case the
+ * GNU Lesser General Public License (the ï¿½LGPL Licenseï¿½), in which case the
  * provisions of LGPL License are applicable instead of those above. If you wish
  * to allow use of your version of this file only under the terms of the LGPL
  * License and not to allow others to use your version of this file under the MPL,
@@ -33,73 +33,59 @@ import nl.griffelservices.proxy.Handler;
 import nl.griffelservices.proxy.Proxy;
 
 /**
- * This handler is meant to trace the calls to the proxied interfaces.
- * It passes all proxy calls to another implementation of the interfaces while
- * logging all calls (including parameters, return values and exceptions) in a human readable form.
- * The actual logging is done by a {@link Tracer} class.
- * This driver uses the other implementation of the interface as the proxy data.
+ * This handler is meant to trace the calls to the proxied interfaces. It passes
+ * all proxy calls to another implementation of the interfaces while logging all
+ * calls (including parameters, return values and exceptions) in a human
+ * readable form. The actual logging is done by a {@link Tracer} class. This
+ * driver uses the other implementation of the interface as the proxy data.
  * 
  * @author Frans van Gool
  */
-public class TracerHandler implements Handler
-{
-  /** The object that does the actual logging of the trace messages */
-  private Tracer tracer;
-  
-  /**
-   * Constructs a TracerHandler object.
-   * 
-   * @param tracer the object that does the actual logging of the trace messages
-   */
-  public TracerHandler(Tracer tracer)
-  {
-    this.tracer = tracer;
-  }
-  
-  public void init(Class proxyClass, Object proxyObject)
-  {
-    try
-    {
-      tracer.trace(proxyClass.getName() + ".<init>(" + proxyObject + ")");
-    }
-    catch (RuntimeException e)
-    {
-      throw e;
-    }
-    catch (Exception e)
-    {
-      throw new RuntimeException(e);
-    }
-  }
+public class TracerHandler implements Handler {
+	/** The object that does the actual logging of the trace messages */
+	private Tracer tracer;
 
-  public Object invoke(Proxy proxy, Method method, Object[] parameters) throws Exception
-  {
-    String msg = method.getDeclaringClass().getName() + "." + method.getName() + "(";
-    for (int i = 0; i < parameters.length; i++)
-    {
-      if (i > 0) msg += ", ";
-      msg += parameters[i];
-    }
-    msg += ")";
-    
-    Object value;
-    try
-    {
-      value = method.invoke(proxy.getProxyObject(), parameters);
-    }
-    catch (Exception e)
-    {
-      tracer.trace(msg + " throws " + e);
-      throw e;      
-    }
-    if (method.getReturnType().equals(void.class))
-    {
-      tracer.trace(msg);
-    }
-    else
-    {
-      tracer.trace(msg + " returns " + value);
-    }
-    return proxy.getReturnValueProxy(proxy.narrowReturnType(method.getReturnType(), value), this, value);
-  }
+	/**
+	 * Constructs a TracerHandler object.
+	 * 
+	 * @param tracer
+	 *            the object that does the actual logging of the trace messages
+	 */
+	public TracerHandler(Tracer tracer) {
+		this.tracer = tracer;
+	}
+
+	public void init(Class<?> proxyClass, Object proxyObject) {
+		try {
+			tracer.trace(proxyClass.getName() + ".<init>(" + proxyObject + ")");
+		} catch (RuntimeException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public Object invoke(Proxy proxy, Method method, Object[] parameters) throws Exception {
+		String msg = method.getDeclaringClass().getName() + "." + method.getName() + "(";
+		for (int i = 0; i < parameters.length; i++) {
+			if (i > 0)
+				msg += ", ";
+			msg += parameters[i];
+		}
+		msg += ")";
+
+		Object value;
+		try {
+			value = method.invoke(proxy.getProxyObject(), parameters);
+		} catch (Exception e) {
+			tracer.trace(msg + " throws " + e);
+			throw e;
+		}
+		if (method.getReturnType().equals(void.class)) {
+			tracer.trace(msg);
+		} else {
+			tracer.trace(msg + " returns " + value);
+		}
+		return proxy.getReturnValueProxy(proxy.narrowReturnType(method.getReturnType(), value), this, value);
+	}
 }

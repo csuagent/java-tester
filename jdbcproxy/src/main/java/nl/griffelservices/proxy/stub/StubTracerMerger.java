@@ -60,7 +60,7 @@ public class StubTracerMerger {
 	private static final ResponseEncoder responseEncoder = new ResponseEncoder();
 
 	/** maps {@link ProxyIdentity} objects to {@link RequestResponse} objects */
-	private final TreeMap map;
+	private final TreeMap<ProxyIdentity, RequestResponse> map;
 
 	/**
 	 * Entry point. The first argument is the folder in which the request and
@@ -97,7 +97,7 @@ public class StubTracerMerger {
 	 *             if an error occurs
 	 */
 	public StubTracerMerger(File folder) throws Exception {
-		map = new TreeMap();
+		map = new TreeMap<ProxyIdentity, RequestResponse>();
 		File files[] = folder.listFiles();
 		for (int i = 0; i < files.length; i++) {
 			Matcher m;
@@ -200,8 +200,8 @@ public class StubTracerMerger {
 	private Object expandReturnValue(Object returnValue) {
 		if (returnValue instanceof ProxyObject) {
 			ProxyObject po = (ProxyObject) returnValue;
-			ArrayList requestResponseList = new ArrayList();
-			Iterator it = map.values().iterator();
+			ArrayList<RequestResponse> requestResponseList = new ArrayList<RequestResponse>();
+			Iterator<RequestResponse> it = map.values().iterator();
 			while (it.hasNext()) {
 				RequestResponse rr = (RequestResponse) it.next();
 				if (po.getProxyId().equals(rr.getRequest().getDesiredId())) {

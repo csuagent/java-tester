@@ -12,6 +12,8 @@ import java.util.TreeMap;
 
 import org.jtester.jdbcproxy.stub.FileStubTracerMerger;
 
+import nl.griffelservices.proxy.stub.ProxyIdentity;
+import nl.griffelservices.proxy.stub.RequestResponse;
 import nl.griffelservices.proxy.stub.Response;
 import nl.griffelservices.proxy.stub.ResponseEncoder;
 import nl.griffelservices.proxy.stub.StubTracerHandler;
@@ -34,7 +36,7 @@ public class GenerateMergerFile {
 		try {
 			// generate xml when doing record
 			ResponseEncoder responseEncoder = new ResponseEncoder();
-			TreeMap map = StubTracerHandler.map;
+			TreeMap<ProxyIdentity, RequestResponse> map = StubTracerHandler.map;
 			Response response = FileStubTracerMerger.getResponse(map, "0", "0");
 			String responseContent = responseEncoder.encode(response);
 
