@@ -6,82 +6,99 @@
 package nl.griffelservices.proxy.jdbc;
 
 import java.lang.reflect.Method;
+import java.sql.Blob;
+
 import nl.griffelservices.proxy.Handler;
 
-/** This class is a proxy implementation of java.sql.Blob */
-public class BlobProxy extends JdbcProxy implements java.sql.Blob
-{
-  /**
-   * Constructs a new BlobProxy object.
-   * 
-   * @param handler the proxy handler
-   * @param proxyObject the proxy data
-   */
-  public BlobProxy(Handler handler, Object proxyObject)
-  {
-    super(handler, java.sql.Blob.class, proxyObject);
-  }
+/** This class is a proxy implementation of Blob */
+public class BlobProxy extends JdbcProxy implements Blob {
+	/**
+	 * public abstract byte[] Blob.getBytes(long,int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m0_getBytes = getMethod(Blob.class, "getBytes", new Class[] { long.class, int.class });
+	/** public abstract long Blob.length() throws java.sql.SQLException */
+	private static final Method m1_length = getMethod(Blob.class, "length", new Class[] {});
+	/**
+	 * public abstract long Blob.position(Blob,long) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m2_position = getMethod(Blob.class, "position", new Class[] { Blob.class, long.class });
+	/**
+	 * public abstract long Blob.position(byte[],long) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m3_position = getMethod(Blob.class, "position", new Class[] { byte[].class, long.class });
+	/**
+	 * public abstract java.io.InputStream Blob.getBinaryStream() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m4_getBinaryStream = getMethod(Blob.class, "getBinaryStream", new Class[] {});
+	/**
+	 * public abstract java.io.OutputStream Blob.setBinaryStream(long) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m5_setBinaryStream = getMethod(Blob.class, "setBinaryStream", new Class[] { long.class });
+	/**
+	 * public abstract int Blob.setBytes(long,byte[]) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m6_setBytes = getMethod(Blob.class, "setBytes", new Class[] { long.class, byte[].class });
+	/**
+	 * public abstract int Blob.setBytes(long,byte[],int,int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m7_setBytes = getMethod(Blob.class, "setBytes", new Class[] { long.class, byte[].class,
+			int.class, int.class });
 
-  /** public abstract byte[] java.sql.Blob.getBytes(long,int) throws java.sql.SQLException */
-  private static final Method m0 = getMethod(java.sql.Blob.class, "getBytes", new Class[] {long.class, int.class});
-  public byte[] getBytes(long p0, int p1) throws java.sql.SQLException
-  {
-    return (byte[])invoke(m0, new Object[] {new Long(p0), new Integer(p1)});
-  }
+	/** public abstract void Blob.truncate(long) throws java.sql.SQLException */
+	private static final Method m8_truncate = getMethod(Blob.class, "truncate", new Class[] { long.class });
 
-  /** public abstract long java.sql.Blob.length() throws java.sql.SQLException */
-  private static final Method m1 = getMethod(java.sql.Blob.class, "length", new Class[] {});
-  public long length() throws java.sql.SQLException
-  {
-    return ((Long)invoke(m1, new Object[] {})).longValue();
-  }
+	/**
+	 * Constructs a new BlobProxy object.
+	 * 
+	 * @param handler
+	 *            the proxy handler
+	 * @param proxyObject
+	 *            the proxy data
+	 */
+	public BlobProxy(Handler handler, Object proxyObject) {
+		super(handler, Blob.class, proxyObject);
+	}
 
-  /** public abstract long java.sql.Blob.position(java.sql.Blob,long) throws java.sql.SQLException */
-  private static final Method m2 = getMethod(java.sql.Blob.class, "position", new Class[] {java.sql.Blob.class, long.class});
-  public long position(java.sql.Blob p0, long p1) throws java.sql.SQLException
-  {
-    return ((Long)invoke(m2, new Object[] {p0, new Long(p1)})).longValue();
-  }
+	public byte[] getBytes(long p0, int p1) throws java.sql.SQLException {
+		return (byte[]) invoke(m0_getBytes, new Object[] { new Long(p0), new Integer(p1) });
+	}
 
-  /** public abstract long java.sql.Blob.position(byte[],long) throws java.sql.SQLException */
-  private static final Method m3 = getMethod(java.sql.Blob.class, "position", new Class[] {byte[].class, long.class});
-  public long position(byte[] p0, long p1) throws java.sql.SQLException
-  {
-    return ((Long)invoke(m3, new Object[] {p0, new Long(p1)})).longValue();
-  }
+	public long length() throws java.sql.SQLException {
+		return ((Long) invoke(m1_length, new Object[] {})).longValue();
+	}
 
-  /** public abstract java.io.InputStream java.sql.Blob.getBinaryStream() throws java.sql.SQLException */
-  private static final Method m4 = getMethod(java.sql.Blob.class, "getBinaryStream", new Class[] {});
-  public java.io.InputStream getBinaryStream() throws java.sql.SQLException
-  {
-    return (java.io.InputStream)invoke(m4, new Object[] {});
-  }
+	public long position(Blob p0, long p1) throws java.sql.SQLException {
+		return ((Long) invoke(m2_position, new Object[] { p0, new Long(p1) })).longValue();
+	}
 
-  /** public abstract java.io.OutputStream java.sql.Blob.setBinaryStream(long) throws java.sql.SQLException */
-  private static final Method m5 = getMethod(java.sql.Blob.class, "setBinaryStream", new Class[] {long.class});
-  public java.io.OutputStream setBinaryStream(long p0) throws java.sql.SQLException
-  {
-    return (java.io.OutputStream)invoke(m5, new Object[] {new Long(p0)});
-  }
+	public long position(byte[] p0, long p1) throws java.sql.SQLException {
+		return ((Long) invoke(m3_position, new Object[] { p0, new Long(p1) })).longValue();
+	}
 
-  /** public abstract int java.sql.Blob.setBytes(long,byte[]) throws java.sql.SQLException */
-  private static final Method m6 = getMethod(java.sql.Blob.class, "setBytes", new Class[] {long.class, byte[].class});
-  public int setBytes(long p0, byte[] p1) throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m6, new Object[] {new Long(p0), p1})).intValue();
-  }
+	public java.io.InputStream getBinaryStream() throws java.sql.SQLException {
+		return (java.io.InputStream) invoke(m4_getBinaryStream, new Object[] {});
+	}
 
-  /** public abstract int java.sql.Blob.setBytes(long,byte[],int,int) throws java.sql.SQLException */
-  private static final Method m7 = getMethod(java.sql.Blob.class, "setBytes", new Class[] {long.class, byte[].class, int.class, int.class});
-  public int setBytes(long p0, byte[] p1, int p2, int p3) throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m7, new Object[] {new Long(p0), p1, new Integer(p2), new Integer(p3)})).intValue();
-  }
+	public java.io.OutputStream setBinaryStream(long p0) throws java.sql.SQLException {
+		return (java.io.OutputStream) invoke(m5_setBinaryStream, new Object[] { new Long(p0) });
+	}
 
-  /** public abstract void java.sql.Blob.truncate(long) throws java.sql.SQLException */
-  private static final Method m8 = getMethod(java.sql.Blob.class, "truncate", new Class[] {long.class});
-  public void truncate(long p0) throws java.sql.SQLException
-  {
-    invoke(m8, new Object[] {new Long(p0)});
-  }
+	public int setBytes(long p0, byte[] p1) throws java.sql.SQLException {
+		return ((Integer) invoke(m6_setBytes, new Object[] { new Long(p0), p1 })).intValue();
+	}
+
+	public int setBytes(long p0, byte[] p1, int p2, int p3) throws java.sql.SQLException {
+		return ((Integer) invoke(m7_setBytes, new Object[] { new Long(p0), p1, new Integer(p2), new Integer(p3) })).intValue();
+	}
+
+	public void truncate(long p0) throws java.sql.SQLException {
+		invoke(m8_truncate, new Object[] { new Long(p0) });
+	}
 }

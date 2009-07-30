@@ -6,278 +6,378 @@
 package nl.griffelservices.proxy.jdbc;
 
 import java.lang.reflect.Method;
+import java.sql.Statement;
+
 import nl.griffelservices.proxy.Handler;
 
-/** This class is a proxy implementation of java.sql.Statement */
-public class StatementProxy extends JdbcProxy implements java.sql.Statement
-{
-  /**
-   * Constructs a new StatementProxy object.
-   * 
-   * @param handler the proxy handler
-   * @param proxyObject the proxy data
-   */
-  public StatementProxy(Handler handler, Object proxyObject)
-  {
-    super(handler, java.sql.Statement.class, proxyObject);
-  }
+/** This class is a proxy implementation of Statement */
+public class StatementProxy extends JdbcProxy implements Statement {
+	/** public abstract void Statement.close() throws java.sql.SQLException */
+	private static final Method m0_close = getMethod(Statement.class, "close", new Class[] {});
+	/**
+	 * public abstract boolean
+	 * Statement.execute(java.lang.String,java.lang.String[]) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m1_execute = getMethod(Statement.class, "execute", new Class[] {
+			java.lang.String.class, java.lang.String[].class });
+	/**
+	 * public abstract boolean Statement.execute(java.lang.String,int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m2_execute = getMethod(Statement.class, "execute", new Class[] {
+			java.lang.String.class, int.class });
+	/**
+	 * public abstract boolean Statement.execute(java.lang.String) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m3_execute = getMethod(Statement.class, "execute",
+			new Class[] { java.lang.String.class });
+	/**
+	 * public abstract boolean Statement.execute(java.lang.String,int[]) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m4_execute = getMethod(Statement.class, "execute", new Class[] {
+			java.lang.String.class, int[].class });
+	/**
+	 * public abstract java.sql.ResultSet Statement.getResultSet() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m5_getResultSet = getMethod(Statement.class, "getResultSet", new Class[] {});
+	/**
+	 * public abstract void Statement.addBatch(java.lang.String) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m6_addBatch = getMethod(Statement.class, "addBatch",
+			new Class[] { java.lang.String.class });
+	/**
+	 * public abstract java.sql.ResultSet
+	 * Statement.executeQuery(java.lang.String) throws java.sql.SQLException
+	 */
+	private static final Method m7_executeQuery = getMethod(Statement.class, "executeQuery",
+			new Class[] { java.lang.String.class });
+	/**
+	 * public abstract int
+	 * Statement.executeUpdate(java.lang.String,java.lang.String[]) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m8_executeUpdate = getMethod(Statement.class, "executeUpdate", new Class[] {
+			java.lang.String.class, java.lang.String[].class });
+	/**
+	 * public abstract int Statement.executeUpdate(java.lang.String) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m9_executeUpdate = getMethod(Statement.class, "executeUpdate",
+			new Class[] { java.lang.String.class });
+	/**
+	 * public abstract int Statement.executeUpdate(java.lang.String,int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m10_executeUpdate = getMethod(Statement.class, "executeUpdate", new Class[] {
+			java.lang.String.class, int.class });
+	/**
+	 * public abstract int Statement.executeUpdate(java.lang.String,int[])
+	 * throws java.sql.SQLException
+	 */
+	private static final Method m11_executeUpdate = getMethod(Statement.class, "executeUpdate", new Class[] {
+			java.lang.String.class, int[].class });
 
-  /** public abstract void java.sql.Statement.close() throws java.sql.SQLException */
-  private static final Method m0 = getMethod(java.sql.Statement.class, "close", new Class[] {});
-  public void close() throws java.sql.SQLException
-  {
-    invoke(m0, new Object[] {});
-  }
+	/** public abstract void Statement.cancel() throws java.sql.SQLException */
+	private static final Method m12_cancel = getMethod(Statement.class, "cancel", new Class[] {});
 
-  /** public abstract boolean java.sql.Statement.execute(java.lang.String,java.lang.String[]) throws java.sql.SQLException */
-  private static final Method m1 = getMethod(java.sql.Statement.class, "execute", new Class[] {java.lang.String.class, java.lang.String[].class});
-  public boolean execute(java.lang.String p0, java.lang.String[] p1) throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m1, new Object[] {p0, p1})).booleanValue();
-  }
+	/** public abstract void Statement.clearBatch() throws java.sql.SQLException */
+	private static final Method m13_clearBatch = getMethod(Statement.class, "clearBatch", new Class[] {});
+	/**
+	 * public abstract void Statement.clearWarnings() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m14_clearWarnings = getMethod(Statement.class, "clearWarnings", new Class[] {});
+	/**
+	 * public abstract int[] Statement.executeBatch() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m15_executeBatch = getMethod(Statement.class, "executeBatch", new Class[] {});
+	/**
+	 * public abstract java.sql.Connection Statement.getConnection() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m16_getConnection = getMethod(Statement.class, "getConnection", new Class[] {});
+	/**
+	 * public abstract int Statement.getFetchDirection() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m17_getFetchDirection = getMethod(Statement.class, "getFetchDirection", new Class[] {});
 
-  /** public abstract boolean java.sql.Statement.execute(java.lang.String,int) throws java.sql.SQLException */
-  private static final Method m2 = getMethod(java.sql.Statement.class, "execute", new Class[] {java.lang.String.class, int.class});
-  public boolean execute(java.lang.String p0, int p1) throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m2, new Object[] {p0, new Integer(p1)})).booleanValue();
-  }
+	/**
+	 * public abstract int Statement.getFetchSize() throws java.sql.SQLException
+	 */
+	private static final Method m18_getFetchSize = getMethod(Statement.class, "getFetchSize", new Class[] {});
 
-  /** public abstract boolean java.sql.Statement.execute(java.lang.String) throws java.sql.SQLException */
-  private static final Method m3 = getMethod(java.sql.Statement.class, "execute", new Class[] {java.lang.String.class});
-  public boolean execute(java.lang.String p0) throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m3, new Object[] {p0})).booleanValue();
-  }
+	/**
+	 * public abstract java.sql.ResultSet Statement.getGeneratedKeys() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m19_getGeneratedKeys = getMethod(Statement.class, "getGeneratedKeys", new Class[] {});
+	/**
+	 * public abstract int Statement.getMaxFieldSize() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m20_getMaxFieldSize = getMethod(Statement.class, "getMaxFieldSize", new Class[] {});
 
-  /** public abstract boolean java.sql.Statement.execute(java.lang.String,int[]) throws java.sql.SQLException */
-  private static final Method m4 = getMethod(java.sql.Statement.class, "execute", new Class[] {java.lang.String.class, int[].class});
-  public boolean execute(java.lang.String p0, int[] p1) throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m4, new Object[] {p0, p1})).booleanValue();
-  }
+	/** public abstract int Statement.getMaxRows() throws java.sql.SQLException */
+	private static final Method m21_getMaxRows = getMethod(Statement.class, "getMaxRows", new Class[] {});
 
-  /** public abstract java.sql.ResultSet java.sql.Statement.getResultSet() throws java.sql.SQLException */
-  private static final Method m5 = getMethod(java.sql.Statement.class, "getResultSet", new Class[] {});
-  public java.sql.ResultSet getResultSet() throws java.sql.SQLException
-  {
-    return (java.sql.ResultSet)invoke(m5, new Object[] {});
-  }
+	/**
+	 * public abstract boolean Statement.getMoreResults(int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m22_getMoreResults = getMethod(Statement.class, "getMoreResults",
+			new Class[] { int.class });
 
-  /** public abstract void java.sql.Statement.addBatch(java.lang.String) throws java.sql.SQLException */
-  private static final Method m6 = getMethod(java.sql.Statement.class, "addBatch", new Class[] {java.lang.String.class});
-  public void addBatch(java.lang.String p0) throws java.sql.SQLException
-  {
-    invoke(m6, new Object[] {p0});
-  }
+	/**
+	 * public abstract boolean Statement.getMoreResults() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m23_getMoreResults = getMethod(Statement.class, "getMoreResults", new Class[] {});
+	/**
+	 * public abstract int Statement.getQueryTimeout() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m24_getQueryTimeout = getMethod(Statement.class, "getQueryTimeout", new Class[] {});
 
-  /** public abstract java.sql.ResultSet java.sql.Statement.executeQuery(java.lang.String) throws java.sql.SQLException */
-  private static final Method m7 = getMethod(java.sql.Statement.class, "executeQuery", new Class[] {java.lang.String.class});
-  public java.sql.ResultSet executeQuery(java.lang.String p0) throws java.sql.SQLException
-  {
-    return (java.sql.ResultSet)invoke(m7, new Object[] {p0});
-  }
+	/**
+	 * public abstract int Statement.getResultSetConcurrency() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m25_getResultSetConcurrency = getMethod(Statement.class, "getResultSetConcurrency",
+			new Class[] {});
 
-  /** public abstract int java.sql.Statement.executeUpdate(java.lang.String,java.lang.String[]) throws java.sql.SQLException */
-  private static final Method m8 = getMethod(java.sql.Statement.class, "executeUpdate", new Class[] {java.lang.String.class, java.lang.String[].class});
-  public int executeUpdate(java.lang.String p0, java.lang.String[] p1) throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m8, new Object[] {p0, p1})).intValue();
-  }
+	/**
+	 * public abstract int Statement.getResultSetHoldability() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m26_getResultSetHoldability = getMethod(Statement.class, "getResultSetHoldability",
+			new Class[] {});
 
-  /** public abstract int java.sql.Statement.executeUpdate(java.lang.String) throws java.sql.SQLException */
-  private static final Method m9 = getMethod(java.sql.Statement.class, "executeUpdate", new Class[] {java.lang.String.class});
-  public int executeUpdate(java.lang.String p0) throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m9, new Object[] {p0})).intValue();
-  }
+	/**
+	 * public abstract int Statement.getResultSetType() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m27_getResultSetType = getMethod(Statement.class, "getResultSetType", new Class[] {});
+	/**
+	 * public abstract int Statement.getUpdateCount() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m28_getUpdateCount = getMethod(Statement.class, "getUpdateCount", new Class[] {});
 
-  /** public abstract int java.sql.Statement.executeUpdate(java.lang.String,int) throws java.sql.SQLException */
-  private static final Method m10 = getMethod(java.sql.Statement.class, "executeUpdate", new Class[] {java.lang.String.class, int.class});
-  public int executeUpdate(java.lang.String p0, int p1) throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m10, new Object[] {p0, new Integer(p1)})).intValue();
-  }
+	/**
+	 * public abstract java.sql.SQLWarning Statement.getWarnings() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m29_getWarnings = getMethod(Statement.class, "getWarnings", new Class[] {});
 
-  /** public abstract int java.sql.Statement.executeUpdate(java.lang.String,int[]) throws java.sql.SQLException */
-  private static final Method m11 = getMethod(java.sql.Statement.class, "executeUpdate", new Class[] {java.lang.String.class, int[].class});
-  public int executeUpdate(java.lang.String p0, int[] p1) throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m11, new Object[] {p0, p1})).intValue();
-  }
+	/**
+	 * public abstract void Statement.setCursorName(java.lang.String) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m30_setCursorName = getMethod(Statement.class, "setCursorName",
+			new Class[] { java.lang.String.class });
+	/**
+	 * public abstract void Statement.setEscapeProcessing(boolean) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m31_setEscapeProcessing = getMethod(Statement.class, "setEscapeProcessing",
+			new Class[] { boolean.class });
 
-  /** public abstract void java.sql.Statement.cancel() throws java.sql.SQLException */
-  private static final Method m12 = getMethod(java.sql.Statement.class, "cancel", new Class[] {});
-  public void cancel() throws java.sql.SQLException
-  {
-    invoke(m12, new Object[] {});
-  }
+	/**
+	 * public abstract void Statement.setFetchDirection(int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m32_setFetchDirection = getMethod(Statement.class, "setFetchDirection",
+			new Class[] { int.class });
 
-  /** public abstract void java.sql.Statement.clearBatch() throws java.sql.SQLException */
-  private static final Method m13 = getMethod(java.sql.Statement.class, "clearBatch", new Class[] {});
-  public void clearBatch() throws java.sql.SQLException
-  {
-    invoke(m13, new Object[] {});
-  }
+	/**
+	 * public abstract void Statement.setFetchSize(int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m33_setFetchSize = getMethod(Statement.class, "setFetchSize", new Class[] { int.class });
+	/**
+	 * public abstract void Statement.setMaxFieldSize(int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m34_setMaxFieldSize = getMethod(Statement.class, "setMaxFieldSize",
+			new Class[] { int.class });
 
-  /** public abstract void java.sql.Statement.clearWarnings() throws java.sql.SQLException */
-  private static final Method m14 = getMethod(java.sql.Statement.class, "clearWarnings", new Class[] {});
-  public void clearWarnings() throws java.sql.SQLException
-  {
-    invoke(m14, new Object[] {});
-  }
+	/**
+	 * public abstract void Statement.setMaxRows(int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m35_setMaxRows = getMethod(Statement.class, "setMaxRows", new Class[] { int.class });
 
-  /** public abstract int[] java.sql.Statement.executeBatch() throws java.sql.SQLException */
-  private static final Method m15 = getMethod(java.sql.Statement.class, "executeBatch", new Class[] {});
-  public int[] executeBatch() throws java.sql.SQLException
-  {
-    return (int[])invoke(m15, new Object[] {});
-  }
+	/**
+	 * public abstract void Statement.setQueryTimeout(int) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m36_setQueryTimeout = getMethod(Statement.class, "setQueryTimeout",
+			new Class[] { int.class });
 
-  /** public abstract java.sql.Connection java.sql.Statement.getConnection() throws java.sql.SQLException */
-  private static final Method m16 = getMethod(java.sql.Statement.class, "getConnection", new Class[] {});
-  public java.sql.Connection getConnection() throws java.sql.SQLException
-  {
-    return (java.sql.Connection)invoke(m16, new Object[] {});
-  }
+	/**
+	 * Constructs a new StatementProxy object.
+	 * 
+	 * @param handler
+	 *            the proxy handler
+	 * @param proxyObject
+	 *            the proxy data
+	 */
+	public StatementProxy(Handler handler, Object proxyObject) {
+		super(handler, Statement.class, proxyObject);
+	}
 
-  /** public abstract int java.sql.Statement.getFetchDirection() throws java.sql.SQLException */
-  private static final Method m17 = getMethod(java.sql.Statement.class, "getFetchDirection", new Class[] {});
-  public int getFetchDirection() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m17, new Object[] {})).intValue();
-  }
+	public void close() throws java.sql.SQLException {
+		invoke(m0_close, new Object[] {});
+	}
 
-  /** public abstract int java.sql.Statement.getFetchSize() throws java.sql.SQLException */
-  private static final Method m18 = getMethod(java.sql.Statement.class, "getFetchSize", new Class[] {});
-  public int getFetchSize() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m18, new Object[] {})).intValue();
-  }
+	public boolean execute(java.lang.String p0, java.lang.String[] p1) throws java.sql.SQLException {
+		return ((Boolean) invoke(m1_execute, new Object[] { p0, p1 })).booleanValue();
+	}
 
-  /** public abstract java.sql.ResultSet java.sql.Statement.getGeneratedKeys() throws java.sql.SQLException */
-  private static final Method m19 = getMethod(java.sql.Statement.class, "getGeneratedKeys", new Class[] {});
-  public java.sql.ResultSet getGeneratedKeys() throws java.sql.SQLException
-  {
-    return (java.sql.ResultSet)invoke(m19, new Object[] {});
-  }
+	public boolean execute(java.lang.String p0, int p1) throws java.sql.SQLException {
+		return ((Boolean) invoke(m2_execute, new Object[] { p0, new Integer(p1) })).booleanValue();
+	}
 
-  /** public abstract int java.sql.Statement.getMaxFieldSize() throws java.sql.SQLException */
-  private static final Method m20 = getMethod(java.sql.Statement.class, "getMaxFieldSize", new Class[] {});
-  public int getMaxFieldSize() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m20, new Object[] {})).intValue();
-  }
+	public boolean execute(java.lang.String p0) throws java.sql.SQLException {
+		return ((Boolean) invoke(m3_execute, new Object[] { p0 })).booleanValue();
+	}
 
-  /** public abstract int java.sql.Statement.getMaxRows() throws java.sql.SQLException */
-  private static final Method m21 = getMethod(java.sql.Statement.class, "getMaxRows", new Class[] {});
-  public int getMaxRows() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m21, new Object[] {})).intValue();
-  }
+	public boolean execute(java.lang.String p0, int[] p1) throws java.sql.SQLException {
+		return ((Boolean) invoke(m4_execute, new Object[] { p0, p1 })).booleanValue();
+	}
 
-  /** public abstract boolean java.sql.Statement.getMoreResults(int) throws java.sql.SQLException */
-  private static final Method m22 = getMethod(java.sql.Statement.class, "getMoreResults", new Class[] {int.class});
-  public boolean getMoreResults(int p0) throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m22, new Object[] {new Integer(p0)})).booleanValue();
-  }
+	public java.sql.ResultSet getResultSet() throws java.sql.SQLException {
+		return (java.sql.ResultSet) invoke(m5_getResultSet, new Object[] {});
+	}
 
-  /** public abstract boolean java.sql.Statement.getMoreResults() throws java.sql.SQLException */
-  private static final Method m23 = getMethod(java.sql.Statement.class, "getMoreResults", new Class[] {});
-  public boolean getMoreResults() throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m23, new Object[] {})).booleanValue();
-  }
+	public void addBatch(java.lang.String p0) throws java.sql.SQLException {
+		invoke(m6_addBatch, new Object[] { p0 });
+	}
 
-  /** public abstract int java.sql.Statement.getQueryTimeout() throws java.sql.SQLException */
-  private static final Method m24 = getMethod(java.sql.Statement.class, "getQueryTimeout", new Class[] {});
-  public int getQueryTimeout() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m24, new Object[] {})).intValue();
-  }
+	public java.sql.ResultSet executeQuery(java.lang.String p0) throws java.sql.SQLException {
+		return (java.sql.ResultSet) invoke(m7_executeQuery, new Object[] { p0 });
+	}
 
-  /** public abstract int java.sql.Statement.getResultSetConcurrency() throws java.sql.SQLException */
-  private static final Method m25 = getMethod(java.sql.Statement.class, "getResultSetConcurrency", new Class[] {});
-  public int getResultSetConcurrency() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m25, new Object[] {})).intValue();
-  }
+	public int executeUpdate(java.lang.String p0, java.lang.String[] p1) throws java.sql.SQLException {
+		return ((Integer) invoke(m8_executeUpdate, new Object[] { p0, p1 })).intValue();
+	}
 
-  /** public abstract int java.sql.Statement.getResultSetHoldability() throws java.sql.SQLException */
-  private static final Method m26 = getMethod(java.sql.Statement.class, "getResultSetHoldability", new Class[] {});
-  public int getResultSetHoldability() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m26, new Object[] {})).intValue();
-  }
+	public int executeUpdate(java.lang.String p0) throws java.sql.SQLException {
+		return ((Integer) invoke(m9_executeUpdate, new Object[] { p0 })).intValue();
+	}
 
-  /** public abstract int java.sql.Statement.getResultSetType() throws java.sql.SQLException */
-  private static final Method m27 = getMethod(java.sql.Statement.class, "getResultSetType", new Class[] {});
-  public int getResultSetType() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m27, new Object[] {})).intValue();
-  }
+	public int executeUpdate(java.lang.String p0, int p1) throws java.sql.SQLException {
+		return ((Integer) invoke(m10_executeUpdate, new Object[] { p0, new Integer(p1) })).intValue();
+	}
 
-  /** public abstract int java.sql.Statement.getUpdateCount() throws java.sql.SQLException */
-  private static final Method m28 = getMethod(java.sql.Statement.class, "getUpdateCount", new Class[] {});
-  public int getUpdateCount() throws java.sql.SQLException
-  {
-    return ((Integer)invoke(m28, new Object[] {})).intValue();
-  }
+	public int executeUpdate(java.lang.String p0, int[] p1) throws java.sql.SQLException {
+		return ((Integer) invoke(m11_executeUpdate, new Object[] { p0, p1 })).intValue();
+	}
 
-  /** public abstract java.sql.SQLWarning java.sql.Statement.getWarnings() throws java.sql.SQLException */
-  private static final Method m29 = getMethod(java.sql.Statement.class, "getWarnings", new Class[] {});
-  public java.sql.SQLWarning getWarnings() throws java.sql.SQLException
-  {
-    return (java.sql.SQLWarning)invoke(m29, new Object[] {});
-  }
+	public void cancel() throws java.sql.SQLException {
+		invoke(m12_cancel, new Object[] {});
+	}
 
-  /** public abstract void java.sql.Statement.setCursorName(java.lang.String) throws java.sql.SQLException */
-  private static final Method m30 = getMethod(java.sql.Statement.class, "setCursorName", new Class[] {java.lang.String.class});
-  public void setCursorName(java.lang.String p0) throws java.sql.SQLException
-  {
-    invoke(m30, new Object[] {p0});
-  }
+	public void clearBatch() throws java.sql.SQLException {
+		invoke(m13_clearBatch, new Object[] {});
+	}
 
-  /** public abstract void java.sql.Statement.setEscapeProcessing(boolean) throws java.sql.SQLException */
-  private static final Method m31 = getMethod(java.sql.Statement.class, "setEscapeProcessing", new Class[] {boolean.class});
-  public void setEscapeProcessing(boolean p0) throws java.sql.SQLException
-  {
-    invoke(m31, new Object[] {new Boolean(p0)});
-  }
+	public void clearWarnings() throws java.sql.SQLException {
+		invoke(m14_clearWarnings, new Object[] {});
+	}
 
-  /** public abstract void java.sql.Statement.setFetchDirection(int) throws java.sql.SQLException */
-  private static final Method m32 = getMethod(java.sql.Statement.class, "setFetchDirection", new Class[] {int.class});
-  public void setFetchDirection(int p0) throws java.sql.SQLException
-  {
-    invoke(m32, new Object[] {new Integer(p0)});
-  }
+	public int[] executeBatch() throws java.sql.SQLException {
+		return (int[]) invoke(m15_executeBatch, new Object[] {});
+	}
 
-  /** public abstract void java.sql.Statement.setFetchSize(int) throws java.sql.SQLException */
-  private static final Method m33 = getMethod(java.sql.Statement.class, "setFetchSize", new Class[] {int.class});
-  public void setFetchSize(int p0) throws java.sql.SQLException
-  {
-    invoke(m33, new Object[] {new Integer(p0)});
-  }
+	public java.sql.Connection getConnection() throws java.sql.SQLException {
+		return (java.sql.Connection) invoke(m16_getConnection, new Object[] {});
+	}
 
-  /** public abstract void java.sql.Statement.setMaxFieldSize(int) throws java.sql.SQLException */
-  private static final Method m34 = getMethod(java.sql.Statement.class, "setMaxFieldSize", new Class[] {int.class});
-  public void setMaxFieldSize(int p0) throws java.sql.SQLException
-  {
-    invoke(m34, new Object[] {new Integer(p0)});
-  }
+	public int getFetchDirection() throws java.sql.SQLException {
+		return ((Integer) invoke(m17_getFetchDirection, new Object[] {})).intValue();
+	}
 
-  /** public abstract void java.sql.Statement.setMaxRows(int) throws java.sql.SQLException */
-  private static final Method m35 = getMethod(java.sql.Statement.class, "setMaxRows", new Class[] {int.class});
-  public void setMaxRows(int p0) throws java.sql.SQLException
-  {
-    invoke(m35, new Object[] {new Integer(p0)});
-  }
+	public int getFetchSize() throws java.sql.SQLException {
+		return ((Integer) invoke(m18_getFetchSize, new Object[] {})).intValue();
+	}
 
-  /** public abstract void java.sql.Statement.setQueryTimeout(int) throws java.sql.SQLException */
-  private static final Method m36 = getMethod(java.sql.Statement.class, "setQueryTimeout", new Class[] {int.class});
-  public void setQueryTimeout(int p0) throws java.sql.SQLException
-  {
-    invoke(m36, new Object[] {new Integer(p0)});
-  }
+	public java.sql.ResultSet getGeneratedKeys() throws java.sql.SQLException {
+		return (java.sql.ResultSet) invoke(m19_getGeneratedKeys, new Object[] {});
+	}
+
+	public int getMaxFieldSize() throws java.sql.SQLException {
+		return ((Integer) invoke(m20_getMaxFieldSize, new Object[] {})).intValue();
+	}
+
+	public int getMaxRows() throws java.sql.SQLException {
+		return ((Integer) invoke(m21_getMaxRows, new Object[] {})).intValue();
+	}
+
+	public boolean getMoreResults(int p0) throws java.sql.SQLException {
+		return ((Boolean) invoke(m22_getMoreResults, new Object[] { new Integer(p0) })).booleanValue();
+	}
+
+	public boolean getMoreResults() throws java.sql.SQLException {
+		return ((Boolean) invoke(m23_getMoreResults, new Object[] {})).booleanValue();
+	}
+
+	public int getQueryTimeout() throws java.sql.SQLException {
+		return ((Integer) invoke(m24_getQueryTimeout, new Object[] {})).intValue();
+	}
+
+	public int getResultSetConcurrency() throws java.sql.SQLException {
+		return ((Integer) invoke(m25_getResultSetConcurrency, new Object[] {})).intValue();
+	}
+
+	public int getResultSetHoldability() throws java.sql.SQLException {
+		return ((Integer) invoke(m26_getResultSetHoldability, new Object[] {})).intValue();
+	}
+
+	public int getResultSetType() throws java.sql.SQLException {
+		return ((Integer) invoke(m27_getResultSetType, new Object[] {})).intValue();
+	}
+
+	public int getUpdateCount() throws java.sql.SQLException {
+		return ((Integer) invoke(m28_getUpdateCount, new Object[] {})).intValue();
+	}
+
+	public java.sql.SQLWarning getWarnings() throws java.sql.SQLException {
+		return (java.sql.SQLWarning) invoke(m29_getWarnings, new Object[] {});
+	}
+
+	public void setCursorName(java.lang.String p0) throws java.sql.SQLException {
+		invoke(m30_setCursorName, new Object[] { p0 });
+	}
+
+	public void setEscapeProcessing(boolean p0) throws java.sql.SQLException {
+		invoke(m31_setEscapeProcessing, new Object[] { new Boolean(p0) });
+	}
+
+	public void setFetchDirection(int p0) throws java.sql.SQLException {
+		invoke(m32_setFetchDirection, new Object[] { new Integer(p0) });
+	}
+
+	public void setFetchSize(int p0) throws java.sql.SQLException {
+		invoke(m33_setFetchSize, new Object[] { new Integer(p0) });
+	}
+
+	public void setMaxFieldSize(int p0) throws java.sql.SQLException {
+		invoke(m34_setMaxFieldSize, new Object[] { new Integer(p0) });
+	}
+
+	public void setMaxRows(int p0) throws java.sql.SQLException {
+		invoke(m35_setMaxRows, new Object[] { new Integer(p0) });
+	}
+
+	public void setQueryTimeout(int p0) throws java.sql.SQLException {
+		invoke(m36_setQueryTimeout, new Object[] { new Integer(p0) });
+	}
 }
