@@ -6,61 +6,75 @@
 package nl.griffelservices.proxy.jdbc;
 
 import java.lang.reflect.Method;
+import java.sql.Driver;
+import java.sql.DriverPropertyInfo;
+import java.sql.SQLException;
+
 import nl.griffelservices.proxy.Handler;
 
-/** This class is a proxy implementation of java.sql.Driver */
-public class DriverProxy extends JdbcProxy implements java.sql.Driver
-{
-  /**
-   * Constructs a new DriverProxy object.
-   * 
-   * @param handler the proxy handler
-   * @param proxyObject the proxy data
-   */
-  public DriverProxy(Handler handler, Object proxyObject)
-  {
-    super(handler, java.sql.Driver.class, proxyObject);
-  }
+/** This class is a proxy implementation of Driver */
+public class DriverProxy extends JdbcProxy implements Driver {
 
-  /** public abstract java.sql.Connection java.sql.Driver.connect(java.lang.String,java.util.Properties) throws java.sql.SQLException */
-  private static final Method m0 = getMethod(java.sql.Driver.class, "connect", new Class[] {java.lang.String.class, java.util.Properties.class});
-  public java.sql.Connection connect(java.lang.String p0, java.util.Properties p1) throws java.sql.SQLException
-  {
-    return (java.sql.Connection)invoke(m0, new Object[] {p0, p1});
-  }
+	/**
+	 * public abstract java.sql.Connection
+	 * Driver.connect(java.lang.String,java.util.Properties) throws SQLException
+	 */
+	private static final Method m0_connect = getMethod(Driver.class, "connect", new Class[] { java.lang.String.class,
+			java.util.Properties.class });
+	/**
+	 * public abstract boolean Driver.acceptsURL(java.lang.String) throws
+	 * SQLException
+	 */
+	private static final Method m1_acceptsURL = getMethod(Driver.class, "acceptsURL",
+			new Class[] { java.lang.String.class });
+	/** public abstract int Driver.getMajorVersion() */
+	private static final Method m2_getMajorVersion = getMethod(Driver.class, "getMajorVersion", new Class[] {});
 
-  /** public abstract boolean java.sql.Driver.acceptsURL(java.lang.String) throws java.sql.SQLException */
-  private static final Method m1 = getMethod(java.sql.Driver.class, "acceptsURL", new Class[] {java.lang.String.class});
-  public boolean acceptsURL(java.lang.String p0) throws java.sql.SQLException
-  {
-    return ((Boolean)invoke(m1, new Object[] {p0})).booleanValue();
-  }
+	/** public abstract int Driver.getMinorVersion() */
+	private static final Method m3_getMinorVersion = getMethod(Driver.class, "getMinorVersion", new Class[] {});
+	/**
+	 * public abstract DriverPropertyInfo[]
+	 * Driver.getPropertyInfo(java.lang.String,java.util.Properties) throws
+	 * SQLException
+	 */
+	private static final Method m4_getPropertyInfo = getMethod(Driver.class, "getPropertyInfo", new Class[] {
+			java.lang.String.class, java.util.Properties.class });
+	/** public abstract boolean Driver.jdbcCompliant() */
+	private static final Method m5_jdbcCompliant = getMethod(Driver.class, "jdbcCompliant", new Class[] {});
 
-  /** public abstract int java.sql.Driver.getMajorVersion() */
-  private static final Method m2 = getMethod(java.sql.Driver.class, "getMajorVersion", new Class[] {});
-  public int getMajorVersion()
-  {
-    return ((Integer)invoke(m2, new Object[] {})).intValue();
-  }
+	/**
+	 * Constructs a new DriverProxy object.
+	 * 
+	 * @param handler
+	 *            the proxy handler
+	 * @param proxyObject
+	 *            the proxy data
+	 */
+	public DriverProxy(Handler handler, Object proxyObject) {
+		super(handler, Driver.class, proxyObject);
+	}
 
-  /** public abstract int java.sql.Driver.getMinorVersion() */
-  private static final Method m3 = getMethod(java.sql.Driver.class, "getMinorVersion", new Class[] {});
-  public int getMinorVersion()
-  {
-    return ((Integer)invoke(m3, new Object[] {})).intValue();
-  }
+	public java.sql.Connection connect(java.lang.String p0, java.util.Properties p1) throws SQLException {
+		return (java.sql.Connection) invoke(m0_connect, new Object[] { p0, p1 });
+	}
 
-  /** public abstract java.sql.DriverPropertyInfo[] java.sql.Driver.getPropertyInfo(java.lang.String,java.util.Properties) throws java.sql.SQLException */
-  private static final Method m4 = getMethod(java.sql.Driver.class, "getPropertyInfo", new Class[] {java.lang.String.class, java.util.Properties.class});
-  public java.sql.DriverPropertyInfo[] getPropertyInfo(java.lang.String p0, java.util.Properties p1) throws java.sql.SQLException
-  {
-    return (java.sql.DriverPropertyInfo[])invoke(m4, new Object[] {p0, p1});
-  }
+	public boolean acceptsURL(java.lang.String p0) throws SQLException {
+		return ((Boolean) invoke(m1_acceptsURL, new Object[] { p0 })).booleanValue();
+	}
 
-  /** public abstract boolean java.sql.Driver.jdbcCompliant() */
-  private static final Method m5 = getMethod(java.sql.Driver.class, "jdbcCompliant", new Class[] {});
-  public boolean jdbcCompliant()
-  {
-    return ((Boolean)invoke(m5, new Object[] {})).booleanValue();
-  }
+	public int getMajorVersion() {
+		return ((Integer) invoke(m2_getMajorVersion, new Object[] {})).intValue();
+	}
+
+	public int getMinorVersion() {
+		return ((Integer) invoke(m3_getMinorVersion, new Object[] {})).intValue();
+	}
+
+	public DriverPropertyInfo[] getPropertyInfo(java.lang.String p0, java.util.Properties p1) throws SQLException {
+		return (DriverPropertyInfo[]) invoke(m4_getPropertyInfo, new Object[] { p0, p1 });
+	}
+
+	public boolean jdbcCompliant() {
+		return ((Boolean) invoke(m5_jdbcCompliant, new Object[] {})).booleanValue();
+	}
 }

@@ -5,6 +5,25 @@
  */
 package nl.griffelservices.proxy.jdbc;
 
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.CallableStatement;
+import java.sql.Clob;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.Driver;
+import java.sql.ParameterMetaData;
+import java.sql.PreparedStatement;
+import java.sql.Ref;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLData;
+import java.sql.SQLInput;
+import java.sql.SQLOutput;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.sql.Struct;
+
 import nl.griffelservices.proxy.Handler;
 import nl.griffelservices.proxy.Proxy;
 
@@ -29,65 +48,65 @@ public abstract class JdbcProxy extends Proxy {
 	}
 
 	public Class<?> narrowReturnType(Class<?> returnType, Object returnValue) {
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Array.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Blob.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.CallableStatement.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Clob.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Connection.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.DatabaseMetaData.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Driver.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.ParameterMetaData.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.PreparedStatement.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Ref.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.ResultSetMetaData.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.ResultSet.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Savepoint.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.SQLData.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.SQLInput.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.SQLOutput.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Statement.class);
-		returnType = narrowReturnType(returnType, returnValue, java.sql.Struct.class);
+		returnType = narrowReturnType(returnType, returnValue, Array.class);
+		returnType = narrowReturnType(returnType, returnValue, Blob.class);
+		returnType = narrowReturnType(returnType, returnValue, CallableStatement.class);
+		returnType = narrowReturnType(returnType, returnValue, Clob.class);
+		returnType = narrowReturnType(returnType, returnValue, Connection.class);
+		returnType = narrowReturnType(returnType, returnValue, DatabaseMetaData.class);
+		returnType = narrowReturnType(returnType, returnValue, Driver.class);
+		returnType = narrowReturnType(returnType, returnValue, ParameterMetaData.class);
+		returnType = narrowReturnType(returnType, returnValue, PreparedStatement.class);
+		returnType = narrowReturnType(returnType, returnValue, Ref.class);
+		returnType = narrowReturnType(returnType, returnValue, ResultSetMetaData.class);
+		returnType = narrowReturnType(returnType, returnValue, ResultSet.class);
+		returnType = narrowReturnType(returnType, returnValue, Savepoint.class);
+		returnType = narrowReturnType(returnType, returnValue, SQLData.class);
+		returnType = narrowReturnType(returnType, returnValue, SQLInput.class);
+		returnType = narrowReturnType(returnType, returnValue, SQLOutput.class);
+		returnType = narrowReturnType(returnType, returnValue, Statement.class);
+		returnType = narrowReturnType(returnType, returnValue, Struct.class);
 		return returnType;
 	}
 
 	public Object getReturnValueProxy(Class<?> returnType, Handler handler, Object proxyObject) {
 		if (proxyObject == null)
 			return null;
-		if (returnType.equals(java.sql.Array.class))
+		if (returnType.equals(Array.class))
 			return new ArrayProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Blob.class))
+		if (returnType.equals(Blob.class))
 			return new BlobProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.CallableStatement.class))
+		if (returnType.equals(CallableStatement.class))
 			return new CallableStatementProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Clob.class))
+		if (returnType.equals(Clob.class))
 			return new ClobProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Connection.class))
+		if (returnType.equals(Connection.class))
 			return new ConnectionProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.DatabaseMetaData.class))
+		if (returnType.equals(DatabaseMetaData.class))
 			return new DatabaseMetaDataProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Driver.class))
+		if (returnType.equals(Driver.class))
 			return new DriverProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.ParameterMetaData.class))
+		if (returnType.equals(ParameterMetaData.class))
 			return new ParameterMetaDataProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.PreparedStatement.class))
+		if (returnType.equals(PreparedStatement.class))
 			return new PreparedStatementProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Ref.class))
+		if (returnType.equals(Ref.class))
 			return new RefProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.ResultSetMetaData.class))
+		if (returnType.equals(ResultSetMetaData.class))
 			return new ResultSetMetaDataProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.ResultSet.class))
+		if (returnType.equals(ResultSet.class))
 			return new ResultSetProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Savepoint.class))
+		if (returnType.equals(Savepoint.class))
 			return new SavepointProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.SQLData.class))
+		if (returnType.equals(SQLData.class))
 			return new SQLDataProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.SQLInput.class))
+		if (returnType.equals(SQLInput.class))
 			return new SQLInputProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.SQLOutput.class))
+		if (returnType.equals(SQLOutput.class))
 			return new SQLOutputProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Statement.class))
+		if (returnType.equals(Statement.class))
 			return new StatementProxy(handler, proxyObject);
-		if (returnType.equals(java.sql.Struct.class))
+		if (returnType.equals(Struct.class))
 			return new StructProxy(handler, proxyObject);
 		return proxyObject;
 	}

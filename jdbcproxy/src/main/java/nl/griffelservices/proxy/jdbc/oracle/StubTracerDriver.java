@@ -16,7 +16,7 @@
  * Contributor(s): Frans van Gool.
  * 
  * Alternatively, the contents of this file may be used under the terms of the
- * GNU Lesser General Public License (the “LGPL License”), in which case the
+ * GNU Lesser General Public License (the ï¿½LGPL Licenseï¿½), in which case the
  * provisions of LGPL License are applicable instead of those above. If you wish
  * to allow use of your version of this file only under the terms of the LGPL
  * License and not to allow others to use your version of this file under the MPL,
@@ -33,47 +33,42 @@ import nl.griffelservices.proxy.Handler;
 import nl.griffelservices.proxy.jdbc.util.CombinedHandler;
 
 /**
- * This class implements a JDBC 2.0 driver proxy using the {@link CombinedHandler}.
- * Note that this class is not located in the <code>nl.griffelservices.proxy.jdbc.util</code> package.
- * The main reason for this is that TIBCO BusinessWorks (for which this driver was originally planned)
- * handles drivers with <code>oracle</code> in their package different from other drivers.
+ * This class implements a JDBC 2.0 driver proxy using the
+ * {@link CombinedHandler}. Note that this class is not located in the
+ * <code>nl.griffelservices.proxy.jdbc.util</code> package. The main reason for
+ * this is that TIBCO BusinessWorks (for which this driver was originally
+ * planned) handles drivers with <code>oracle</code> in their package different
+ * from other drivers.
  * 
  * @author Frans van Gool
  */
-public class StubTracerDriver extends nl.griffelservices.proxy.jdbc.DriverProxy
-{
-  static
-  {
-    try
-    {
-      DriverManager.registerDriver(new StubTracerDriver());
-    }
-    catch (RuntimeException e)
-    {
-      throw e;
-    }
-    catch (Exception e)
-    {
-      throw new RuntimeException(e);
-    }
-  }
+public class StubTracerDriver extends nl.griffelservices.proxy.jdbc.DriverProxy {
+	static {
+		try {
+			DriverManager.registerDriver(new StubTracerDriver());
+		} catch (RuntimeException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-  /**
-   * Constructs a new StubTracerDriver object.
-   */
-  public StubTracerDriver()
-  {
-    this(new CombinedHandler(1, 0, true), null);
-  }
+	/**
+	 * Constructs a new StubTracerDriver object.
+	 */
+	public StubTracerDriver() {
+		this(new CombinedHandler(1, 0, true), null);
+	}
 
-  /**
-   * Constructs a new StubTracerDriver object.
-   * 
-   * @param handler the proxy handler
-   * @param proxyObject the proxy data
-   */
-  public StubTracerDriver(Handler handler, Object proxyObject)
-  {
-    super(handler, proxyObject);
-  }
+	/**
+	 * Constructs a new StubTracerDriver object.
+	 * 
+	 * @param handler
+	 *            the proxy handler
+	 * @param proxyObject
+	 *            the proxy data
+	 */
+	public StubTracerDriver(Handler handler, Object proxyObject) {
+		super(handler, proxyObject);
+	}
 }
