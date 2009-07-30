@@ -6,13 +6,65 @@
 package nl.griffelservices.proxy.jdbc;
 
 import java.lang.reflect.Method;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 
 import nl.griffelservices.proxy.Handler;
 
-/** This class is a proxy implementation of java.sql.Array */
-@SuppressWarnings("unchecked")
-public class ArrayProxy extends JdbcProxy implements java.sql.Array {
+/** This class is a proxy implementation of Array */
+public class ArrayProxy extends JdbcProxy implements Array {
+	/**
+	 * public abstract java.lang.Object Array.getArray() throws SQLException
+	 */
+	private static final Method m0_getArray = getMethod(Array.class, "getArray", new Class[] {});
+	/**
+	 * public abstract java.lang.Object Array.getArray(long,int) throws
+	 * SQLException
+	 */
+	private static final Method m1_getArray = getMethod(Array.class, "getArray", new Class[] { long.class, int.class });
+	/**
+	 * public abstract java.lang.Object Array.getArray(long,int,java.util.Map)
+	 * throws SQLException
+	 */
+	private static final Method m2_getArray = getMethod(Array.class, "getArray",
+			new Class[] { long.class, int.class, Map.class });
+	/**
+	 * public abstract java.lang.Object Array.getArray(java.util.Map) throws
+	 * SQLException
+	 */
+	private static final Method m3_getArray = getMethod(Array.class, "getArray", new Class[] { java.util.Map.class });
+	/**
+	 * public abstract int Array.getBaseType() throws SQLException
+	 */
+	private static final Method m4_getBaseType = getMethod(Array.class, "getBaseType", new Class[] {});
+	/**
+	 * public abstract java.lang.String Array.getBaseTypeName() throws
+	 * SQLException
+	 */
+	private static final Method m5_getBaseTypeName = getMethod(Array.class, "getBaseTypeName", new Class[] {});
+	/**
+	 * public abstract ResultSet Array.getResultSet() throws SQLException
+	 */
+	private static final Method m6_getResultSet = getMethod(Array.class, "getResultSet", new Class[] {});
+	/**
+	 * public abstract ResultSet Array.getResultSet(long,int) throws
+	 * SQLException
+	 */
+	private static final Method m7_getResultSet = getMethod(Array.class, "getResultSet", new Class[] { long.class, int.class });
+	/**
+	 * public abstract ResultSet Array.getResultSet(long,int,java.util.Map)
+	 * throws SQLException
+	 */
+	private static final Method m8_getResultSet = getMethod(Array.class, "getResultSet", new Class[] { long.class, int.class,
+			java.util.Map.class });
+	/**
+	 * public abstract ResultSet Array.getResultSet(java.util.Map) throws
+	 * SQLException
+	 */
+	private static final Method m9_getResultSet = getMethod(Array.class, "getResultSet", new Class[] { java.util.Map.class });
+
 	/**
 	 * Constructs a new ArrayProxy object.
 	 * 
@@ -22,113 +74,46 @@ public class ArrayProxy extends JdbcProxy implements java.sql.Array {
 	 *            the proxy data
 	 */
 	public ArrayProxy(Handler handler, Object proxyObject) {
-		super(handler, java.sql.Array.class, proxyObject);
+		super(handler, Array.class, proxyObject);
 	}
 
-	/**
-	 * public abstract java.lang.Object java.sql.Array.getArray() throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m0 = getMethod(java.sql.Array.class, "getArray", new Class[] {});
-
-	public java.lang.Object getArray() throws java.sql.SQLException {
-		return (java.lang.Object) invoke(m0, new Object[] {});
+	public java.lang.Object getArray() throws SQLException {
+		return (java.lang.Object) invoke(m0_getArray, new Object[] {});
 	}
 
-	/**
-	 * public abstract java.lang.Object java.sql.Array.getArray(long,int) throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m1 = getMethod(java.sql.Array.class, "getArray", new Class[] { long.class, int.class });
-
-	public java.lang.Object getArray(long p0, int p1) throws java.sql.SQLException {
-		return (java.lang.Object) invoke(m1, new Object[] { new Long(p0), new Integer(p1) });
+	public java.lang.Object getArray(long p0, int p1) throws SQLException {
+		return (java.lang.Object) invoke(m1_getArray, new Object[] { new Long(p0), new Integer(p1) });
 	}
 
-	/**
-	 * public abstract java.lang.Object
-	 * java.sql.Array.getArray(long,int,java.util.Map) throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m2 = getMethod(java.sql.Array.class, "getArray", new Class[] { long.class, int.class,
-			Map.class });
-
-	
-	public Object getArray(long p0, int p1, Map p2) throws java.sql.SQLException {
-		return (Object) invoke(m2, new Object[] { new Long(p0), new Integer(p1), p2 });
+	public Object getArray(long p0, int p1, Map<String, Class<?>> map) throws SQLException {
+		return (Object) invoke(m2_getArray, new Object[] { new Long(p0), new Integer(p1), map });
 	}
 
-	/**
-	 * public abstract java.lang.Object java.sql.Array.getArray(java.util.Map)
-	 * throws java.sql.SQLException
-	 */
-	private static final Method m3 = getMethod(java.sql.Array.class, "getArray", new Class[] { java.util.Map.class });
-
-	public Object getArray(Map p0) throws java.sql.SQLException {
-		return (Object) invoke(m3, new Object[] { p0 });
+	public Object getArray(Map<String, Class<?>> map) throws SQLException {
+		return (Object) invoke(m3_getArray, new Object[] { map });
 	}
 
-	/**
-	 * public abstract int java.sql.Array.getBaseType() throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m4 = getMethod(java.sql.Array.class, "getBaseType", new Class[] {});
-
-	public int getBaseType() throws java.sql.SQLException {
-		return ((Integer) invoke(m4, new Object[] {})).intValue();
+	public int getBaseType() throws SQLException {
+		return ((Integer) invoke(m4_getBaseType, new Object[] {})).intValue();
 	}
 
-	/**
-	 * public abstract java.lang.String java.sql.Array.getBaseTypeName() throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m5 = getMethod(java.sql.Array.class, "getBaseTypeName", new Class[] {});
-
-	public java.lang.String getBaseTypeName() throws java.sql.SQLException {
-		return (java.lang.String) invoke(m5, new Object[] {});
+	public java.lang.String getBaseTypeName() throws SQLException {
+		return (java.lang.String) invoke(m5_getBaseTypeName, new Object[] {});
 	}
 
-	/**
-	 * public abstract java.sql.ResultSet java.sql.Array.getResultSet() throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m6 = getMethod(java.sql.Array.class, "getResultSet", new Class[] {});
-
-	public java.sql.ResultSet getResultSet() throws java.sql.SQLException {
-		return (java.sql.ResultSet) invoke(m6, new Object[] {});
+	public ResultSet getResultSet() throws SQLException {
+		return (ResultSet) invoke(m6_getResultSet, new Object[] {});
 	}
 
-	/**
-	 * public abstract java.sql.ResultSet java.sql.Array.getResultSet(long,int)
-	 * throws java.sql.SQLException
-	 */
-	private static final Method m7 = getMethod(java.sql.Array.class, "getResultSet", new Class[] { long.class,
-			int.class });
-
-	public java.sql.ResultSet getResultSet(long p0, int p1) throws java.sql.SQLException {
-		return (java.sql.ResultSet) invoke(m7, new Object[] { new Long(p0), new Integer(p1) });
+	public ResultSet getResultSet(long p0, int p1) throws SQLException {
+		return (ResultSet) invoke(m7_getResultSet, new Object[] { new Long(p0), new Integer(p1) });
 	}
 
-	/**
-	 * public abstract java.sql.ResultSet
-	 * java.sql.Array.getResultSet(long,int,java.util.Map) throws
-	 * java.sql.SQLException
-	 */
-	private static final Method m8 = getMethod(java.sql.Array.class, "getResultSet", new Class[] { long.class,
-			int.class, java.util.Map.class });
-
-	public java.sql.ResultSet getResultSet(long p0, int p1, java.util.Map p2) throws java.sql.SQLException {
-		return (java.sql.ResultSet) invoke(m8, new Object[] { new Long(p0), new Integer(p1), p2 });
+	public ResultSet getResultSet(long p0, int p1, Map<String, Class<?>> map) throws SQLException {
+		return (ResultSet) invoke(m8_getResultSet, new Object[] { new Long(p0), new Integer(p1), map });
 	}
 
-	/**
-	 * public abstract java.sql.ResultSet
-	 * java.sql.Array.getResultSet(java.util.Map) throws java.sql.SQLException
-	 */
-	private static final Method m9 = getMethod(java.sql.Array.class, "getResultSet",
-			new Class[] { java.util.Map.class });
-
-	public java.sql.ResultSet getResultSet(Map p0) throws java.sql.SQLException {
-		return (java.sql.ResultSet) invoke(m9, new Object[] { p0 });
+	public ResultSet getResultSet(Map<String, Class<?>> map) throws SQLException {
+		return (ResultSet) invoke(m9_getResultSet, new Object[] { map });
 	}
 }
