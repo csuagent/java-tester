@@ -41,7 +41,7 @@ public abstract class Parameter {
 
 	@Override
 	public String toString() {
-		return this.desiredValue;
+		return this.getClass().getSimpleName() + "\t" + this.desiredValue;
 	}
 
 	/**

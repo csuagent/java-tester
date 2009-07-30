@@ -62,6 +62,18 @@ public class ProxyObject implements Cloneable {
 		this.requestResponse = requestResponse;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("proxy object{");
+		buffer.append("class=" + proxyClass.getName() + ",");
+		buffer.append("proxy id=" + proxyId + ",");
+		buffer.append("proxy status=" + this.proxyStatus + ",");
+
+		buffer.append("request response=" + this.requestResponse + "}");
+		return buffer.toString();
+	}
+
 	/**
 	 * Returns the interface for which this is the proxy data
 	 * 

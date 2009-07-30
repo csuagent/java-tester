@@ -74,13 +74,12 @@ public class Request {
 
 	@Override
 	public String toString() {
-		StringBuffer paras = new StringBuffer();
-		boolean first = true;
+		StringBuffer paras = new StringBuffer("{");
 		for (Parameter p : desiredParameter) {
-			paras.append(first ? "" : ",");
-			first = false;
+			paras.append("\n\t\t");
 			paras.append(p == null ? null : p.toString());
 		}
+		paras.append("\n\t}");
 		return String.format(" desiredId:%s\n desiredStatus:%s\n desiredMethod:%s \n desiredParameter:%s",
 				this.desiredId, this.desiredStatus.toString(), this.desiredMethod.toString(), paras.toString());
 	}
