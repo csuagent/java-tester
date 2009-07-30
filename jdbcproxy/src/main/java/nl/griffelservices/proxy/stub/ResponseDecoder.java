@@ -249,12 +249,12 @@ public class ResponseDecoder extends Decoder {
 	 */
 	private Request decodeRequest(Element requestElement, Class<?> proxyClass, String proxyId) throws Exception {
 		List<Element> elements = getElements(requestElement);
-		Request.Parameter status = getParameter(getElement(elements, 0, "status"));
+		Parameter status = getParameter(getElement(elements, 0, "status"));
 		String methodName = getText(getElement(elements, 1, "method"));
 		Class<?> parameterTypes[] = new Class[elements.size() - 2];
-		Request.Parameter parameterValues[] = new Request.Parameter[elements.size() - 2];
+		Parameter parameterValues[] = new Parameter[elements.size() - 2];
 		for (int i = 2; i < elements.size(); i++) {
-			Parameter parameter = decodeParameter(getElement(elements, i, "parameter"));
+			MyParameter parameter = decodeParameter(getElement(elements, i, "parameter"));
 			parameterTypes[i - 2] = classForName(parameter.className);
 			parameterValues[i - 2] = parameter.value;
 		}

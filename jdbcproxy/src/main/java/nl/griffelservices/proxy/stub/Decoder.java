@@ -155,14 +155,14 @@ public class Decoder {
 	 *             if the single child of the element is not a <code>Text</code>
 	 *             node.
 	 */
-	protected Request.Parameter getParameter(Element element) {
+	protected Parameter getParameter(Element element) {
 		String value = getText(element);
 		Attr typeNode = element.getAttributeNode("type");
 		String type = typeNode == null ? null : typeNode.getNodeValue();
 		if (type == null || type.equals("equality")) {
-			return new Request.EqualityParameter(value);
+			return new Parameter.EqualityParameter(value);
 		} else if (type.equals("regex")) {
-			return new Request.RegexParameter(value);
+			return new Parameter.RegexParameter(value);
 		} else {
 			throw new IllegalArgumentException("element " + element.getNodeName() + " has unsupported type: " + type);
 		}
@@ -207,9 +207,9 @@ public class Decoder {
 	 * @return a string array with two components: the first is the type and the
 	 *         second is the value of the parameter
 	 */
-	protected Parameter decodeParameter(Element parameter) {
+	protected MyParameter decodeParameter(Element parameter) {
 		List<Element> elements = getElements(parameter);
-		Parameter decodedParameter = new Parameter();
+		MyParameter decodedParameter = new MyParameter();
 		decodedParameter.className = getText(getElement(elements, 0, "class"));
 		if (elements.size() == 1) {
 			decodedParameter.value = null;
@@ -227,10 +227,10 @@ public class Decoder {
 	 * 
 	 * @author Frans van Gool
 	 */
-	protected static class Parameter {
+	protected static class MyParameter {
 		/** the parameter class */
 		String className;
 		/** the parameter value */
-		Request.Parameter value;
+		Parameter value;
 	}
 }

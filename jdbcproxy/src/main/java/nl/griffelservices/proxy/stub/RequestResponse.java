@@ -16,7 +16,7 @@
  * Contributor(s): Frans van Gool.
  * 
  * Alternatively, the contents of this file may be used under the terms of the
- * GNU Lesser General Public License (the “LGPL License”), in which case the
+ * GNU Lesser General Public License (the ï¿½LGPL Licenseï¿½), in which case the
  * provisions of LGPL License are applicable instead of those above. If you wish
  * to allow use of your version of this file only under the terms of the LGPL
  * License and not to allow others to use your version of this file under the MPL,
@@ -32,42 +32,46 @@ package nl.griffelservices.proxy.stub;
  * 
  * @author Frans van Gool
  */
-public class RequestResponse
-{
-  /** the request */
-  private Request request;
-  /** the response */
-  private Response response;
-  
-  /**
-   * Constructs a RequestResponse object.
-   * 
-   * @param request the request
-   * @param response the response
-   */
-  public RequestResponse(Request request, Response response)
-  {
-    this.request = request;
-    this.response = response;
-  }
-  
-  /**
-   * Returns the request
-   * 
-   * @return the request
-   */
-  public Request getRequest()
-  {
-    return request;
-  }
-  
-  /**
-   * Returns the response
-   * 
-   * @return the response
-   */
-  public Response getResponse()
-  {
-    return response;
-  }
+public class RequestResponse {
+	/** the request */
+	private Request request;
+	/** the response */
+	private Response response;
+
+	/**
+	 * Constructs a RequestResponse object.
+	 * 
+	 * @param request
+	 *            the request
+	 * @param response
+	 *            the response
+	 */
+	public RequestResponse(Request request, Response response) {
+		this.request = request;
+		this.response = response;
+	}
+
+	/**
+	 * Returns the request
+	 * 
+	 * @return the request
+	 */
+	public Request getRequest() {
+		return request;
+	}
+
+	/**
+	 * Returns the response
+	 * 
+	 * @return the response
+	 */
+	public Response getResponse() {
+		return response;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("request{\n%s\n}\nresponse{\n%s\n}", this.request.toString(), this.response.toString());
+	}
+
 }

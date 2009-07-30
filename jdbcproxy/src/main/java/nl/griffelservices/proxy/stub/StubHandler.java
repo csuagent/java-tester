@@ -77,11 +77,11 @@ public class StubHandler implements Handler {
 		}
 
 		// No response was found in the proxy object, so ask the stub
-		Request.EqualityParameter equalityParameters[] = new Request.EqualityParameter[parameters.length];
+		Parameter.EqualityParameter equalityParameters[] = new Parameter.EqualityParameter[parameters.length];
 		for (int i = 0; i < parameters.length; i++) {
-			equalityParameters[i] = new Request.EqualityParameter(parameters[i].toString());
+			equalityParameters[i] = new Parameter.EqualityParameter(parameters[i].toString());
 		}
-		Request request = new Request(proxyObject.getProxyId(), new Request.EqualityParameter(proxyObject
+		Request request = new Request(proxyObject.getProxyId(), new Parameter.EqualityParameter(proxyObject
 				.getProxyStatus()), method, equalityParameters);
 		return invoke(proxy, method, stub.invoke(request));
 	}

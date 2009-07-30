@@ -70,12 +70,12 @@ public class RequestDecoder extends Decoder {
 		List<Element> elements = getElements(requestElement);
 		String className = getText(getElement(elements, 0, "class"));
 		String id = getText(getElement(elements, 1, "id"));
-		Request.Parameter status = getParameter(getElement(elements, 2, "status"));
+		Parameter status = getParameter(getElement(elements, 2, "status"));
 		String methodName = getText(getElement(elements, 3, "method"));
 		Class<?> parameterTypes[] = new Class[elements.size() - 4];
-		Request.Parameter parameterValues[] = new Request.Parameter[elements.size() - 4];
+		Parameter parameterValues[] = new Parameter[elements.size() - 4];
 		for (int i = 4; i < elements.size(); i++) {
-			Parameter parameter = decodeParameter(getElement(elements, i, "parameter"));
+			MyParameter parameter = decodeParameter(getElement(elements, i, "parameter"));
 			parameterTypes[i - 4] = classForName(parameter.className);
 			parameterValues[i - 4] = parameter.value;
 		}

@@ -173,7 +173,7 @@ public class ResponseEncoder extends Encoder {
 	 */
 	private Element encodeRequest(Document document, Request request) {
 		Method method = request.getDesiredMethod();
-		Request.Parameter parameters[] = request.getDesiredParameter();
+		Parameter parameters[] = request.getDesiredParameter();
 
 		Element requestElement = document.createElement("request");
 		document.appendChild(requestElement);

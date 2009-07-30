@@ -16,7 +16,7 @@
  * Contributor(s): Frans van Gool.
  * 
  * Alternatively, the contents of this file may be used under the terms of the
- * GNU Lesser General Public License (the “LGPL License”), in which case the
+ * GNU Lesser General Public License (the ï¿½LGPL Licenseï¿½), in which case the
  * provisions of LGPL License are applicable instead of those above. If you wish
  * to allow use of your version of this file only under the terms of the LGPL
  * License and not to allow others to use your version of this file under the MPL,
@@ -47,92 +47,97 @@ import org.w3c.dom.Element;
  * 
  * @author Frans van Gool
  */
-public class Encoder
-{
-  /** factory that creates the <code>DocumentBuilder</code> objects used for encoding */
-  private DocumentBuilderFactory documentBuilderFactory;
-  /** factory that creates the <code>Transformer</code> objects used for transforming DOM objects to a string */
-  private TransformerFactory transformerFactory;
+public class Encoder {
+	/**
+	 * factory that creates the <code>DocumentBuilder</code> objects used for
+	 * encoding
+	 */
+	private DocumentBuilderFactory documentBuilderFactory;
+	/**
+	 * factory that creates the <code>Transformer</code> objects used for
+	 * transforming DOM objects to a string
+	 */
+	private TransformerFactory transformerFactory;
 
-  /**
-   * Constructs a new Encoder object.
-   */
-  public Encoder()
-  {
-    documentBuilderFactory = DocumentBuilderFactory.newInstance();
-    documentBuilderFactory.setNamespaceAware(true);  
-    transformerFactory = TransformerFactory.newInstance();
-  }
-  
-  /**
-   * Constructs a new empty Document object.
-   * 
-   * @return a new empty Document object
-   * @throws ParserConfigurationException if an error occurs
-   */
-  protected Document newDocument() throws ParserConfigurationException
-  {
-    DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
-    return builder.newDocument();
-  }
-  
-  /**
-   * Transforms a Document object into a string containing an XML document.
-   * 
-   * @param document the Document object to transform
-   * @return a string containing an XML representation of the given Document object
-   * @throws TransformerException if an error occurs
-   */
-  protected String transformDocument(Document document) throws TransformerException
-  {
-    Transformer transformer = transformerFactory.newTransformer();
-    transformer.setOutputProperty(OutputKeys.INDENT,"yes");
-    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
-    StringWriter writer = new StringWriter();
-    transformer.transform(new DOMSource(document), new StreamResult(writer));
-    return writer.toString();
-  }
-  
-  /**
-   * Constructs an Element object with a given name and a given text content.
-   * 
-   * @param document the document for which the element is meant
-   * @param name the desired name of the element
-   * @param text the desired text content of the element
-   * @return an Element object with a given name and a given text content
-   */
-  protected Element createElement(Document document, String name, String text)
-  {
-    Element element = document.createElement(name);
-    element.appendChild(document.createTextNode(text));
-    return element;
-  }
+	/**
+	 * Constructs a new Encoder object.
+	 */
+	public Encoder() {
+		documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		documentBuilderFactory.setNamespaceAware(true);
+		transformerFactory = TransformerFactory.newInstance();
+	}
 
-  
-  /**
-   * Constructs an Element object with a given name and a given parameter content.
-   * 
-   * @param document the document for which the element is meant
-   * @param name the desired name of the element
-   * @param parameter the desired parameter content of the element
-   * @return an Element object with a given name and a given text content
-   */
-  protected Element createParameterElement(Document document, String name, Request.Parameter parameter)
-  {
-    Element element = document.createElement(name);
-    if (parameter instanceof Request.EqualityParameter)
-    {
-      // do nothing
-    }
-    else if (parameter instanceof Request.RegexParameter)
-    {
-      element.setAttribute("type", "regex");
-    }
-    else
-    {
-      throw new IllegalArgumentException("Illegal parameter type: " + parameter.getClass().getName());
-    }
-    element.appendChild(document.createTextNode(parameter.getDesiredValue()));
-    return element;
-  }
+	/**
+	 * Constructs a new empty Document object.
+	 * 
+	 * @return a new empty Document object
+	 * @throws ParserConfigurationException
+	 *             if an error occurs
+	 */
+	protected Document newDocument() throws ParserConfigurationException {
+		DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
+		return builder.newDocument();
+	}
+
+	/**
+	 * Transforms a Document object into a string containing an XML document.
+	 * 
+	 * @param document
+	 *            the Document object to transform
+	 * @return a string containing an XML representation of the given Document
+	 *         object
+	 * @throws TransformerException
+	 *             if an error occurs
+	 */
+	protected String transformDocument(Document document) throws TransformerException {
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
+		StringWriter writer = new StringWriter();
+		transformer.transform(new DOMSource(document), new StreamResult(writer));
+		return writer.toString();
+	}
+
+	/**
+	 * Constructs an Element object with a given name and a given text content.
+	 * 
+	 * @param document
+	 *            the document for which the element is meant
+	 * @param name
+	 *            the desired name of the element
+	 * @param text
+	 *            the desired text content of the element
+	 * @return an Element object with a given name and a given text content
+	 */
+	protected Element createElement(Document document, String name, String text) {
+		Element element = document.createElement(name);
+		element.appendChild(document.createTextNode(text));
+		return element;
+	}
+
+	/**
+	 * Constructs an Element object with a given name and a given parameter
+	 * content.
+	 * 
+	 * @param document
+	 *            the document for which the element is meant
+	 * @param name
+	 *            the desired name of the element
+	 * @param parameter
+	 *            the desired parameter content of the element
+	 * @return an Element object with a given name and a given text content
+	 */
+	protected Element createParameterElement(Document document, String name, Parameter parameter) {
+		Element element = document.createElement(name);
+		if (parameter instanceof Parameter.EqualityParameter) {
+			// do nothing
+		} else if (parameter instanceof Parameter.RegexParameter) {
+			element.setAttribute("type", "regex");
+		} else {
+			throw new IllegalArgumentException("Illegal parameter type: " + parameter.getClass().getName());
+		}
+		element.appendChild(document.createTextNode(parameter.getDesiredValue()));
+		return element;
+	}
 }

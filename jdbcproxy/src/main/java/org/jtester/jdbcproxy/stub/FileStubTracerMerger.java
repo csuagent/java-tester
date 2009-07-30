@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -119,7 +120,8 @@ public class FileStubTracerMerger {
 		Response response = ((RequestResponse) map.get(newproxyidentity)).getResponse();
 		String newstatus = response.getNewStatus();
 		Object returnvalue = response.getReturnValue();
-		Object expandereturnvalue = expandReturnValue(map.values(), returnvalue);
+		List<RequestResponse> values = new ArrayList<RequestResponse>(map.values());
+		Object expandereturnvalue = expandReturnValue(1, values, returnvalue);
 		Response newresponse = new Response(newstatus, expandereturnvalue);
 		return newresponse;
 
@@ -192,14 +194,16 @@ public class FileStubTracerMerger {
 	 *            the return value
 	 * @return the expanded return value
 	 */
-	private static Object expandReturnValue(Collection<RequestResponse> values, Object returnValue) {
+	private static Object expandReturnValue(int index, Collection<RequestResponse> values, Object returnValue) {
+		System.out.println(index);
 		if (returnValue instanceof ProxyObject) {
 			ProxyObject po = (ProxyObject) returnValue;
 			ArrayList<RequestResponse> requestResponseList = new ArrayList<RequestResponse>();
-
+			index++;
 			for (RequestResponse rr : values) {
 				if (po.getProxyId().equals(rr.getRequest().getDesiredId())) {
-					Object oo = expandReturnValue(values, rr.getResponse().getReturnValue());
+					// values.remove(rr);
+					Object oo = expandReturnValue(index, values, rr.getResponse().getReturnValue());
 					Response response = new Response(rr.getResponse().getNewStatus(), oo);
 					requestResponseList.add(new RequestResponse(rr.getRequest(), response));
 				}

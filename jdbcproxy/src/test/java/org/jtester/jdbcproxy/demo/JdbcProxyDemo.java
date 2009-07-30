@@ -26,6 +26,15 @@ public class JdbcProxyDemo {
 		}
 		rs.close();
 		stmt.close();
+		
+		Statement stmt2 = connection.createStatement();
+		ResultSet rs2 = stmt2.executeQuery("select * from greetings");
+		while (rs2.next()) {
+			System.out.println(rs2.getString(1));
+		}
+		rs2.close();
+		stmt2.close();
+		
 		connection.close();
 
 		GenerateMergerFile mergerfile = new GenerateMergerFile("output/mergerfile.xml");
@@ -43,6 +52,23 @@ public class JdbcProxyDemo {
 		}
 		rs.close();
 		stmt.close();
+		
+		Statement stmt2 = connection.createStatement();
+		ResultSet rs2 = stmt2.executeQuery("select * from greetings");
+		while (rs2.next()) {
+			System.out.println(rs2.getString(1));
+		}
+		rs2.close();
+		stmt2.close();
+		
+//		Statement stmt3 = connection.createStatement();
+//		ResultSet rs3 = stmt3.executeQuery("select * from greetings");
+//		while (rs3.next()) {
+//			System.out.println(rs3.getString(1));
+//		}
+//		rs3.close();
+//		stmt3.close();
+		
 		connection.close();
 	}
 
@@ -81,7 +107,7 @@ public class JdbcProxyDemo {
 			return new ProxyUrl() {
 				{
 					this.driver = "nl.griffelservices.proxy.jdbc.oracle.StubTracerDriver";
-					this.url = "jdbc:stub:localhost:1962:1000";
+					this.url = "jdbc:stub:localhost:80:1000";
 				}
 			};
 		}

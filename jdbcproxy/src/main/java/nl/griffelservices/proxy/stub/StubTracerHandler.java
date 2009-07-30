@@ -81,12 +81,13 @@ public class StubTracerHandler implements Handler {
 		Object proxyObject = proxy.getProxyObject();
 		ProxyObject stub = getStub(proxyObject, proxy.narrowReturnType(Object.class, proxyObject));
 		String newStatus = String.valueOf(Integer.parseInt(stub.getProxyStatus()) + 1);
-		Request.EqualityParameter equalityParameters[] = new Request.EqualityParameter[parameters.length];
+		Parameter.EqualityParameter equalityParameters[] = new Parameter.EqualityParameter[parameters.length];
 		for (int i = 0; i < parameters.length; i++) {
-			equalityParameters[i] = new Request.EqualityParameter(parameters[i] == null ? "" : parameters[i].toString());
+			equalityParameters[i] = new Parameter.EqualityParameter(parameters[i] == null ? "" : parameters[i]
+					.toString());
 		}
-		Request request = new Request(stub.getProxyId(), new Request.EqualityParameter(stub.getProxyStatus()), method,
-				equalityParameters);
+		Request request = new Request(stub.getProxyId(), new Parameter.EqualityParameter(stub.getProxyStatus()),
+				method, equalityParameters);
 		Response response = new Response(newStatus, value != valueProxy ? getStub(value, returnType) : value);
 
 		if (merge) {// for generate merger file by xufangbj@cn.ibm.com
