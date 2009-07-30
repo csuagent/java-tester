@@ -47,7 +47,7 @@ import nl.griffelservices.proxy.Proxy;
  * @author Frans van Gool
  */
 public class StubTracerHandler implements Handler {
-	private final static boolean merge = true;
+	private final static boolean merge = false;
 	/**
 	 * maps the proxy data (i.e. other implementation of the interface) to the
 	 * {@link ProxyObject} that contains the stub data
@@ -69,7 +69,7 @@ public class StubTracerHandler implements Handler {
 		proxyOriginalToStubMap = new HashMap();
 	}
 
-	public void init(Class proxyClass, Object proxyObject) {
+	public void init(Class<?> proxyClass, Object proxyObject) {
 		// Do nothing
 	}
 
@@ -83,7 +83,7 @@ public class StubTracerHandler implements Handler {
 		String newStatus = String.valueOf(Integer.parseInt(stub.getProxyStatus()) + 1);
 		Request.EqualityParameter equalityParameters[] = new Request.EqualityParameter[parameters.length];
 		for (int i = 0; i < parameters.length; i++) {
-			equalityParameters[i] = new Request.EqualityParameter(parameters[i].toString());
+			equalityParameters[i] = new Request.EqualityParameter(parameters[i] == null ? "" : parameters[i].toString());
 		}
 		Request request = new Request(stub.getProxyId(), new Request.EqualityParameter(stub.getProxyStatus()), method,
 				equalityParameters);

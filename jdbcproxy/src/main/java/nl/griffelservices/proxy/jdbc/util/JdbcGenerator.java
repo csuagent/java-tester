@@ -16,7 +16,7 @@
  * Contributor(s): Frans van Gool.
  * 
  * Alternatively, the contents of this file may be used under the terms of the
- * GNU Lesser General Public License (the “LGPL License”), in which case the
+ * GNU Lesser General Public License (the ï¿½LGPL Licenseï¿½), in which case the
  * provisions of LGPL License are applicable instead of those above. If you wish
  * to allow use of your version of this file only under the terms of the LGPL
  * License and not to allow others to use your version of this file under the MPL,
@@ -32,41 +32,40 @@ import java.sql.*;
 import nl.griffelservices.proxy.Generator;
 
 /**
- * This class uses the {@link Generator} class to generate the proxy classes for the interfaces in <code>java.sql</code>.
+ * This class uses the {@link Generator} class to generate the proxy classes for
+ * the interfaces in <code>java.sql</code>.
  * 
  * @author Frans van Gool
  */
-public class JdbcGenerator
-{
-  /**
-   * Entry point.
-   * 
-   * @param args command line arguments (unused)
-   * @throws Exception if an error occurs
-   */
-  public static void main(String args[]) throws Exception
-  {
-    Class originals[] = new Class[]
-    {
-      Array.class,
-      Blob.class,
-      CallableStatement.class,
-      Clob.class,
-      Connection.class,
-      DatabaseMetaData.class,
-      Driver.class,
-      ParameterMetaData.class,
-      PreparedStatement.class,
-      Ref.class,
-      ResultSetMetaData.class,
-      ResultSet.class,
-      Savepoint.class,
-      SQLData.class,
-      SQLInput.class,
-      SQLOutput.class,
-      Statement.class,
-      Struct.class,
-    };
-    new Generator(originals, "nl.griffelservices.proxy.jdbc", "JdbcProxy").generate("java");
-  }
+public class JdbcGenerator {
+	/**
+	 * Entry point.
+	 * 
+	 * @param args
+	 *            command line arguments (unused)
+	 * @throws Exception
+	 *             if an error occurs
+	 */
+	public static void main(String args[]) throws Exception {
+		Class<?> originals[] = new Class[] { Array.class, /** <br> */
+		Blob.class, /** <br> */
+		CallableStatement.class, /** <br> */
+		Clob.class, /** <br> */
+		Connection.class, /** <br> */
+		DatabaseMetaData.class, /** <br> */
+		Driver.class, /** <br> */
+		ParameterMetaData.class, /** <br> */
+		PreparedStatement.class, /** <br> */
+		Ref.class, /** <br> */
+		ResultSetMetaData.class, /** <br> */
+		ResultSet.class, /** <br> */
+		Savepoint.class, /** <br> */
+		SQLData.class, /** <br> */
+		SQLInput.class, /** <br> */
+		SQLOutput.class, /** <br> */
+		Statement.class, /** <br> */
+		Struct.class, /** <br> */
+		};
+		new Generator(originals, "nl.griffelservices.proxy.jdbc", "JdbcProxy").generate("java");
+	}
 }

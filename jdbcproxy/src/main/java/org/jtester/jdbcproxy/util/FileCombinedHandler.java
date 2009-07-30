@@ -72,7 +72,7 @@ public class FileCombinedHandler implements Handler {
 		this.isJdbcCompliant = new Boolean(isJdbcCompliant);
 	}
 
-	public void init(Class proxyClass, Object proxyObject) {
+	public void init(Class<?> proxyClass, Object proxyObject) {
 		// Do nothing
 	}
 

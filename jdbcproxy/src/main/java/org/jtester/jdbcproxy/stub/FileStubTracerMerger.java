@@ -30,7 +30,7 @@ package org.jtester.jdbcproxy.stub;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -87,7 +87,8 @@ public class FileStubTracerMerger {
 	 *             if an error occurs
 	 */
 
-	public FileStubTracerMerger(TreeMap map, Request request, Response response) throws Exception {
+	public FileStubTracerMerger(TreeMap<ProxyIdentity, RequestResponse> map, Request request, Response response)
+			throws Exception {
 		String id = request.getDesiredId();
 		String status = request.getDesiredStatus().getDesiredValue();
 		setRequest(map, new ProxyIdentity(id, status), requestDecoder.decode(requestEncoder.encode(request)));
@@ -111,13 +112,13 @@ public class FileStubTracerMerger {
 	 *            needed
 	 * @return the expanded response
 	 */
-	public static Response getResponse(TreeMap map, String proxyId, String proxyStatus) {
+	public static Response getResponse(TreeMap<ProxyIdentity, RequestResponse> map, String proxyId, String proxyStatus) {
 		ProxyIdentity newproxyidentity = new ProxyIdentity(proxyId, proxyStatus);
 		map.get(newproxyidentity);
 		Response response = ((RequestResponse) map.get(newproxyidentity)).getResponse();
 		String newstatus = response.getNewStatus();
 		Object returnvalue = response.getReturnValue();
-		Object expandereturnvalue = expandReturnValue(map, returnvalue);
+		Object expandereturnvalue = expandReturnValue(map.values(), returnvalue);
 		Response newresponse = new Response(newstatus, expandereturnvalue);
 		return newresponse;
 
@@ -134,7 +135,7 @@ public class FileStubTracerMerger {
 	 * @param request
 	 *            the request
 	 */
-	private void setRequest(TreeMap map, ProxyIdentity pi, Request request) {
+	private void setRequest(TreeMap<ProxyIdentity, RequestResponse> map, ProxyIdentity pi, Request request) {
 		RequestResponse rr = (RequestResponse) map.get(pi);
 		if (rr == null) {
 			map.put(pi, new RequestResponse(request, null));
@@ -154,7 +155,7 @@ public class FileStubTracerMerger {
 	 * @param response
 	 *            the response
 	 */
-	private void setResponse(TreeMap map, ProxyIdentity pi, Response response) {
+	private void setResponse(TreeMap<ProxyIdentity, RequestResponse> map, ProxyIdentity pi, Response response) {
 		RequestResponse rr = (RequestResponse) map.get(pi);
 		if (rr == null) {
 			map.put(pi, new RequestResponse(null, response));
@@ -190,23 +191,20 @@ public class FileStubTracerMerger {
 	 *            the return value
 	 * @return the expanded return value
 	 */
-	private static Object expandReturnValue(TreeMap map, Object returnValue) {
+	private static Object expandReturnValue(Collection<RequestResponse> values, Object returnValue) {
 		if (returnValue instanceof ProxyObject) {
 			ProxyObject po = (ProxyObject) returnValue;
-			ArrayList requestResponseList = new ArrayList();
-			Iterator it = map.values().iterator();
-			while (it.hasNext()) {
-				RequestResponse rr = (RequestResponse) it.next();
+			ArrayList<RequestResponse> requestResponseList = new ArrayList<RequestResponse>();
+
+			for (RequestResponse rr : values) {
 				if (po.getProxyId().equals(rr.getRequest().getDesiredId())) {
-					Response response = new Response(rr.getResponse().getNewStatus(), expandReturnValue(map, rr
-							.getResponse().getReturnValue()));
+					Object oo = expandReturnValue(values, rr.getResponse().getReturnValue());
+					Response response = new Response(rr.getResponse().getNewStatus(), oo);
 					requestResponseList.add(new RequestResponse(rr.getRequest(), response));
 				}
 			}
-			RequestResponse requestResponseArray[] = new RequestResponse[requestResponseList.size()];
-			for (int i = 0; i < requestResponseArray.length; i++) {
-				requestResponseArray[i] = (RequestResponse) requestResponseList.get(i);
-			}
+			RequestResponse requestResponseArray[] = (RequestResponse[]) requestResponseList
+					.toArray(new RequestResponse[0]);
 			return new ProxyObject(po.getProxyClass(), po.getProxyId(), po.getProxyStatus(), requestResponseArray);
 		} else {
 			return returnValue;
@@ -218,7 +216,7 @@ public class FileStubTracerMerger {
 	 * 
 	 * @author Frans van Gool
 	 */
-	private static class ProxyIdentity implements Comparable {
+	private static class ProxyIdentity implements Comparable<ProxyIdentity> {
 		/**
 		 * the id of the proxy object for which the {@link RequestResponse} is
 		 * meant
@@ -280,8 +278,8 @@ public class FileStubTracerMerger {
 			return proxyId.hashCode() + proxyStatus.hashCode();
 		}
 
-		public int compareTo(Object o) {
-			ProxyIdentity pi = (ProxyIdentity) o;
+		public int compareTo(ProxyIdentity pi) {
+			// ProxyIdentity pi = (ProxyIdentity) o;
 			int result = proxyId.length() - pi.proxyId.length();
 			if (result == 0) {
 				result = proxyId.compareTo(pi.proxyId);

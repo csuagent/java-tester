@@ -28,8 +28,8 @@ public class JdbcProxyDemo {
 		stmt.close();
 		connection.close();
 
-		GenerateMergerFile mergerfile = new GenerateMergerFile("output/mergerfile.xml");
-		mergerfile.generateFile();
+//		GenerateMergerFile mergerfile = new GenerateMergerFile("output/mergerfile.xml");
+//		mergerfile.generateFile();
 	}
 
 	public static void callstub() throws Exception {
@@ -72,7 +72,7 @@ public class JdbcProxyDemo {
 			return new ProxyUrl() {
 				{
 					this.driver = "nl.griffelservices.proxy.jdbc.oracle.StubTracerDriver";
-					this.url = "jdbc:stubtracer::com.mysql.jdbc.Driver:jdbc:mysql://localhost/greetings?characterEncoding=UTF8";
+					this.url = "jdbc:stubtracer:output:com.mysql.jdbc.Driver:jdbc:mysql://localhost/greetings?characterEncoding=UTF8";
 				}
 			};
 		}

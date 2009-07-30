@@ -33,7 +33,7 @@ public class FileStubHandler implements Handler {
 		this.stub = stub;
 	}
 
-	public void init(Class proxyClass, Object proxyObject) {
+	public void init(Class<?> proxyClass, Object proxyObject) {
 		// Do nothing;
 	}
 
