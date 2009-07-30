@@ -9,37 +9,48 @@ import java.lang.reflect.Method;
 import nl.griffelservices.proxy.Handler;
 
 /** This class is a proxy implementation of java.sql.Struct */
-public class StructProxy extends JdbcProxy implements java.sql.Struct
-{
-  /**
-   * Constructs a new StructProxy object.
-   * 
-   * @param handler the proxy handler
-   * @param proxyObject the proxy data
-   */
-  public StructProxy(Handler handler, Object proxyObject)
-  {
-    super(handler, java.sql.Struct.class, proxyObject);
-  }
+@SuppressWarnings("unchecked")
+public class StructProxy extends JdbcProxy implements java.sql.Struct {
+	/**
+	 * Constructs a new StructProxy object.
+	 * 
+	 * @param handler
+	 *            the proxy handler
+	 * @param proxyObject
+	 *            the proxy data
+	 */
+	public StructProxy(Handler handler, Object proxyObject) {
+		super(handler, java.sql.Struct.class, proxyObject);
+	}
 
-  /** public abstract java.lang.Object[] java.sql.Struct.getAttributes(java.util.Map) throws java.sql.SQLException */
-  private static final Method m0 = getMethod(java.sql.Struct.class, "getAttributes", new Class[] {java.util.Map.class});
-  public java.lang.Object[] getAttributes(java.util.Map p0) throws java.sql.SQLException
-  {
-    return (java.lang.Object[])invoke(m0, new Object[] {p0});
-  }
+	/**
+	 * public abstract java.lang.Object[]
+	 * java.sql.Struct.getAttributes(java.util.Map) throws java.sql.SQLException
+	 */
+	private static final Method m0 = getMethod(java.sql.Struct.class, "getAttributes",
+			new Class[] { java.util.Map.class });
 
-  /** public abstract java.lang.Object[] java.sql.Struct.getAttributes() throws java.sql.SQLException */
-  private static final Method m1 = getMethod(java.sql.Struct.class, "getAttributes", new Class[] {});
-  public java.lang.Object[] getAttributes() throws java.sql.SQLException
-  {
-    return (java.lang.Object[])invoke(m1, new Object[] {});
-  }
+	public java.lang.Object[] getAttributes(java.util.Map p0) throws java.sql.SQLException {
+		return (java.lang.Object[]) invoke(m0, new Object[] { p0 });
+	}
 
-  /** public abstract java.lang.String java.sql.Struct.getSQLTypeName() throws java.sql.SQLException */
-  private static final Method m2 = getMethod(java.sql.Struct.class, "getSQLTypeName", new Class[] {});
-  public java.lang.String getSQLTypeName() throws java.sql.SQLException
-  {
-    return (java.lang.String)invoke(m2, new Object[] {});
-  }
+	/**
+	 * public abstract java.lang.Object[] java.sql.Struct.getAttributes() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m1 = getMethod(java.sql.Struct.class, "getAttributes", new Class[] {});
+
+	public java.lang.Object[] getAttributes() throws java.sql.SQLException {
+		return (java.lang.Object[]) invoke(m1, new Object[] {});
+	}
+
+	/**
+	 * public abstract java.lang.String java.sql.Struct.getSQLTypeName() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m2 = getMethod(java.sql.Struct.class, "getSQLTypeName", new Class[] {});
+
+	public java.lang.String getSQLTypeName() throws java.sql.SQLException {
+		return (java.lang.String) invoke(m2, new Object[] {});
+	}
 }

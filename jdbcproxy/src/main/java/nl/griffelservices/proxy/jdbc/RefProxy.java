@@ -9,44 +9,57 @@ import java.lang.reflect.Method;
 import nl.griffelservices.proxy.Handler;
 
 /** This class is a proxy implementation of java.sql.Ref */
-public class RefProxy extends JdbcProxy implements java.sql.Ref
-{
-  /**
-   * Constructs a new RefProxy object.
-   * 
-   * @param handler the proxy handler
-   * @param proxyObject the proxy data
-   */
-  public RefProxy(Handler handler, Object proxyObject)
-  {
-    super(handler, java.sql.Ref.class, proxyObject);
-  }
+@SuppressWarnings("unchecked")
+public class RefProxy extends JdbcProxy implements java.sql.Ref {
+	/**
+	 * Constructs a new RefProxy object.
+	 * 
+	 * @param handler
+	 *            the proxy handler
+	 * @param proxyObject
+	 *            the proxy data
+	 */
+	public RefProxy(Handler handler, Object proxyObject) {
+		super(handler, java.sql.Ref.class, proxyObject);
+	}
 
-  /** public abstract java.lang.Object java.sql.Ref.getObject(java.util.Map) throws java.sql.SQLException */
-  private static final Method m0 = getMethod(java.sql.Ref.class, "getObject", new Class[] {java.util.Map.class});
-  public java.lang.Object getObject(java.util.Map p0) throws java.sql.SQLException
-  {
-    return (java.lang.Object)invoke(m0, new Object[] {p0});
-  }
+	/**
+	 * public abstract java.lang.Object java.sql.Ref.getObject(java.util.Map)
+	 * throws java.sql.SQLException
+	 */
+	private static final Method m0 = getMethod(java.sql.Ref.class, "getObject", new Class[] { java.util.Map.class });
 
-  /** public abstract java.lang.Object java.sql.Ref.getObject() throws java.sql.SQLException */
-  private static final Method m1 = getMethod(java.sql.Ref.class, "getObject", new Class[] {});
-  public java.lang.Object getObject() throws java.sql.SQLException
-  {
-    return (java.lang.Object)invoke(m1, new Object[] {});
-  }
+	public java.lang.Object getObject(java.util.Map p0) throws java.sql.SQLException {
+		return (java.lang.Object) invoke(m0, new Object[] { p0 });
+	}
 
-  /** public abstract java.lang.String java.sql.Ref.getBaseTypeName() throws java.sql.SQLException */
-  private static final Method m2 = getMethod(java.sql.Ref.class, "getBaseTypeName", new Class[] {});
-  public java.lang.String getBaseTypeName() throws java.sql.SQLException
-  {
-    return (java.lang.String)invoke(m2, new Object[] {});
-  }
+	/**
+	 * public abstract java.lang.Object java.sql.Ref.getObject() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m1 = getMethod(java.sql.Ref.class, "getObject", new Class[] {});
 
-  /** public abstract void java.sql.Ref.setObject(java.lang.Object) throws java.sql.SQLException */
-  private static final Method m3 = getMethod(java.sql.Ref.class, "setObject", new Class[] {java.lang.Object.class});
-  public void setObject(java.lang.Object p0) throws java.sql.SQLException
-  {
-    invoke(m3, new Object[] {p0});
-  }
+	public java.lang.Object getObject() throws java.sql.SQLException {
+		return (java.lang.Object) invoke(m1, new Object[] {});
+	}
+
+	/**
+	 * public abstract java.lang.String java.sql.Ref.getBaseTypeName() throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m2 = getMethod(java.sql.Ref.class, "getBaseTypeName", new Class[] {});
+
+	public java.lang.String getBaseTypeName() throws java.sql.SQLException {
+		return (java.lang.String) invoke(m2, new Object[] {});
+	}
+
+	/**
+	 * public abstract void java.sql.Ref.setObject(java.lang.Object) throws
+	 * java.sql.SQLException
+	 */
+	private static final Method m3 = getMethod(java.sql.Ref.class, "setObject", new Class[] { java.lang.Object.class });
+
+	public void setObject(java.lang.Object p0) throws java.sql.SQLException {
+		invoke(m3, new Object[] { p0 });
+	}
 }

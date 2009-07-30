@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import nl.griffelservices.proxy.Handler;
 
 /** This class is a proxy implementation of java.sql.CallableStatement */
+@SuppressWarnings("unchecked")
 public class CallableStatementProxy extends JdbcProxy implements java.sql.CallableStatement
 {
   /**

@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import nl.griffelservices.proxy.Handler;
 
 /** This class is a proxy implementation of java.sql.Connection */
+@SuppressWarnings("unchecked")
 public class ConnectionProxy extends JdbcProxy implements java.sql.Connection
 {
   /**
