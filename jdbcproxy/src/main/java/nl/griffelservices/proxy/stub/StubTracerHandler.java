@@ -47,7 +47,7 @@ import org.jtester.jdbcproxy.stub.FileStubTracerMerger;
  * @author Frans van Gool
  */
 public class StubTracerHandler implements Handler {
-	private final static boolean merge = false;
+	private final static boolean merge = true;
 	/**
 	 * maps the proxy data (i.e. other implementation of the interface) to the
 	 * {@link ProxyObject} that contains the stub data
