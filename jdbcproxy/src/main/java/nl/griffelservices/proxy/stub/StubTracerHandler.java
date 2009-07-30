@@ -31,10 +31,10 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import org.jtester.jdbcproxy.stub.FileStubTracerMerger;
-
 import nl.griffelservices.proxy.Handler;
 import nl.griffelservices.proxy.Proxy;
+
+import org.jtester.jdbcproxy.stub.FileStubTracerMerger;
 
 /**
  * This handler is meant to save stub information for the calls to the proxied
@@ -56,7 +56,7 @@ public class StubTracerHandler implements Handler {
 	/** The object that does the actual logging of the stub data */
 	private StubTracer tracer;
 
-	public static TreeMap map = new TreeMap();
+	public static TreeMap<ProxyIdentity, RequestResponse> map = new TreeMap<ProxyIdentity, RequestResponse>();
 
 	/**
 	 * Constructs a StubTracerHandler object.

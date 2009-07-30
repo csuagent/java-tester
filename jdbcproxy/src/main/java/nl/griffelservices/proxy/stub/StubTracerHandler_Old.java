@@ -48,7 +48,7 @@ public class StubTracerHandler_Old implements Handler {
 	 * maps the proxy data (i.e. other implementation of the interface) to the
 	 * {@link ProxyObject} that contains the stub data
 	 */
-	private HashMap proxyOriginalToStubMap;
+	private HashMap<Object, ProxyObject> proxyOriginalToStubMap;
 	/** The object that does the actual logging of the stub data */
 	private StubTracer tracer;
 
@@ -60,16 +60,16 @@ public class StubTracerHandler_Old implements Handler {
 	 */
 	public StubTracerHandler_Old(StubTracer tracer) {
 		this.tracer = tracer;
-		proxyOriginalToStubMap = new HashMap();
+		proxyOriginalToStubMap = new HashMap<Object, ProxyObject>();
 	}
 
-	public void init(Class proxyClass, Object proxyObject) {
+	public void init(Class<?> proxyClass, Object proxyObject) {
 		// Do nothing
 	}
 
 	public Object invoke(Proxy proxy, Method method, Object[] parameters) throws Exception {
 		Object value = method.invoke(proxy.getProxyObject(), parameters);
-		Class returnType = proxy.narrowReturnType(method.getReturnType(), value);
+		Class<?> returnType = proxy.narrowReturnType(method.getReturnType(), value);
 		Object valueProxy = proxy.getReturnValueProxy(returnType, this, value);
 
 		Object proxyObject = proxy.getProxyObject();
@@ -101,7 +101,7 @@ public class StubTracerHandler_Old implements Handler {
 	 * @return the desired stub from {@link #proxyOriginalToStubMap}
 	 * @see Proxy#narrowReturnType(Class, Object)
 	 */
-	private ProxyObject getStub(Object proxyObject, Class proxyClass) {
+	private ProxyObject getStub(Object proxyObject, Class<?> proxyClass) {
 		ProxyObject stub = (ProxyObject) proxyOriginalToStubMap.get(proxyObject);
 		if (stub == null) {
 			stub = new ProxyObject(proxyClass, String.valueOf(proxyOriginalToStubMap.size()), "0", null);

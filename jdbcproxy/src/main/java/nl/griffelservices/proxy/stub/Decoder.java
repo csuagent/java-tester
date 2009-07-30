@@ -85,8 +85,8 @@ public class Decoder {
 	 *            the nodes whose child elements are needed
 	 * @return all the child element nodes from the given node
 	 */
-	protected List getElements(Node node) {
-		List elements = new ArrayList();
+	protected List<Element> getElements(Node node) {
+		List<Element> elements = new ArrayList<Element>();
 		NodeList nodes = node.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -111,7 +111,7 @@ public class Decoder {
 	 *             if there is no element at the desired index of if such an
 	 *             element has a different name
 	 */
-	protected Element getElement(List elements, int index, String name) {
+	protected Element getElement(List<Element> elements, int index, String name) {
 		if (elements.size() <= index || !((Element) elements.get(index)).getNodeName().equals(name)) {
 			throw new IllegalArgumentException(name + " element expected");
 		}
@@ -178,7 +178,7 @@ public class Decoder {
 	 * @throws ClassNotFoundException
 	 *             if the class cannot be located
 	 */
-	protected Class classForName(String name) throws ClassNotFoundException {
+	protected Class<?> classForName(String name) throws ClassNotFoundException {
 		if (name.equals("boolean"))
 			return boolean.class;
 		if (name.equals("byte"))
@@ -208,7 +208,7 @@ public class Decoder {
 	 *         second is the value of the parameter
 	 */
 	protected Parameter decodeParameter(Element parameter) {
-		List elements = getElements(parameter);
+		List<Element> elements = getElements(parameter);
 		Parameter decodedParameter = new Parameter();
 		decodedParameter.className = getText(getElement(elements, 0, "class"));
 		if (elements.size() == 1) {
