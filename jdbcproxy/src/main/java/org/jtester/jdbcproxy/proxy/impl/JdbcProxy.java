@@ -3,7 +3,7 @@
  * Please do not modify this file manually.
  * All your changes will be deleted when this file is regenerated.
  */
-package nl.griffelservices.proxy.jdbc.impl;
+package org.jtester.jdbcproxy.proxy.impl;
 
 import java.sql.Array;
 import java.sql.Blob;
