@@ -62,7 +62,8 @@ public class FileStubHandler implements Handler {
 		}
 		Request request = new Request(proxyObject.getProxyId(), new Parameter.EqualityParameter(proxyObject
 				.getProxyStatus()), method, equalityParameters);
-		return invoke(proxy, method, stub.invoke(request));
+		Object oo = invoke(proxy, method, stub.invoke(request));
+		return oo;
 	}
 
 	/**

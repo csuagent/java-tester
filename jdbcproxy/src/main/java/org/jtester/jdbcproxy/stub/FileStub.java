@@ -41,6 +41,9 @@ public class FileStub extends FileClient implements Stub {
 	}
 
 	public Response invoke(Request request) throws Exception {
-		return decoder.decode(invoke(encoder.encode(request)));
+		String requestStr = encoder.encode(request);
+		String responseStr = invoke(requestStr);
+		Response response = decoder.decode(responseStr);
+		return response;
 	}
 }
