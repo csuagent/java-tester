@@ -151,4 +151,13 @@ public class Request {
 	public Parameter[] getDesiredParameter() {
 		return desiredParameter;
 	}
+
+	/**
+	 * add by darui.wu
+	 * 
+	 * @return
+	 */
+	public ProxyIdentity getProxyIdentity() {
+		return new ProxyIdentity(this.desiredId, this.desiredStatus.getDesiredValue());
+	}
 }

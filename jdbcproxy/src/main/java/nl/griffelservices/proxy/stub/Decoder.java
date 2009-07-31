@@ -210,13 +210,13 @@ public class Decoder {
 	protected MyParameter decodeParameter(Element parameter) {
 		List<Element> elements = getElements(parameter);
 		MyParameter decodedParameter = new MyParameter();
-		decodedParameter.className = getText(getElement(elements, 0, "class"));
-		if (elements.size() == 1) {
+		decodedParameter.className = parameter.getAttribute("class");
+		if (elements.size() == 0) {
 			decodedParameter.value = null;
 		} else {
-			decodedParameter.value = getParameter(getElement(elements, 1, "value"));
+			decodedParameter.value = getParameter(getElement(elements, 0, "value"));
 		}
-		if (elements.size() > 2) {
+		if (elements.size() > 1) {
 			throw new IllegalArgumentException("parameter element has too many children");
 		}
 		return decodedParameter;

@@ -30,55 +30,74 @@ package org.jtester.jdbcproxy.stub;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.TreeMap;
 
 import nl.griffelservices.proxy.stub.Decoder;
 import nl.griffelservices.proxy.stub.Parameter;
+import nl.griffelservices.proxy.stub.ProxyIdentity;
 import nl.griffelservices.proxy.stub.ProxyObject;
 import nl.griffelservices.proxy.stub.Request;
-import nl.griffelservices.proxy.stub.RequestDecoder;
 import nl.griffelservices.proxy.stub.RequestResponse;
 import nl.griffelservices.proxy.stub.Response;
 
 import org.w3c.dom.Element;
 
-/**
- * Encodes {@link Response} objects from their XML representation.
- * 
- * @author Frans van Gool
- */
 public class ResponseTreeDecoder extends Decoder {
-	/**
-	 * Decodes a response object from the given string containing an XML
-	 * representation of the response.
-	 * 
-	 * @param response
-	 *            the XML representation of the response
-	 * @return the decoded response object
-	 * @throws Exception
-	 *             if an error occurs
-	 */
-	public Response decode(String response) throws Exception {
+	private TreeMap<ProxyIdentity, RequestResponse> map = new TreeMap<ProxyIdentity, RequestResponse>();
+
+	public TreeMap<ProxyIdentity, RequestResponse> decode(String response) throws Exception {
 		Element root = parse(response).getDocumentElement();
-		if (!root.getNodeName().equals("response")) {
-			throw new IllegalArgumentException("response element expected");
+
+		List<Element> elements = getElements(root);
+		for (Element element : elements) {
+			ProxyIdentity proxyIdentity = decodedProxyIdentity(element);
+			RequestResponse rr = decodeRequestResponse(proxyIdentity, element);
+			map.put(proxyIdentity, rr);
 		}
-		return decodeResponse(root);
+		return map;
 	}
 
-	/**
-	 * Decodes a response object from the given DOM representation of the
-	 * response.
-	 * 
-	 * @param responseElement
-	 *            the DOM representation of the response
-	 * @return the decoded response object
-	 * @throws Exception
-	 *             if an error occurs
-	 */
+	private ProxyIdentity decodedProxyIdentity(Element element) throws Exception {
+		String id = element.getAttribute("id");
+		String status = element.getAttribute("status");
+		return new ProxyIdentity(id, status);
+	}
+
+	private RequestResponse decodeRequestResponse(ProxyIdentity proxyIdentity, Element element) throws Exception {
+		Element requestElement = (Element) element.getElementsByTagName("request").item(0);
+		Element responseElement = (Element) element.getElementsByTagName("response").item(0);
+
+		Request request = docodeRequest(proxyIdentity, requestElement);
+		Response response = decodeResponse(responseElement);
+
+		return new RequestResponse(request, response);
+	}
+
+	private Request docodeRequest(ProxyIdentity proxyIdentity, Element requestElement) throws Exception {
+		List<Element> elements = getElements(requestElement);
+		String clazzName = getText(getElement(elements, 0, "class"));
+		Class<?> proxyClass = classForName(clazzName);
+		String methodName = getText(getElement(elements, 1, "method"));
+		Class<?> parameterTypes[] = new Class[elements.size() - 2];
+		Parameter parameterValues[] = new Parameter[elements.size() - 2];
+		for (int i = 2; i < elements.size(); i++) {
+			Element parameterElement = getElement(elements, i, "parameter");
+			MyParameter parameter = decodeParameter(parameterElement);
+			parameterTypes[i - 2] = classForName(parameter.className);
+			parameterValues[i - 2] = parameter.value;
+		}
+		Method method = proxyClass.getMethod(methodName, parameterTypes);
+
+		Request request = new Request(proxyIdentity.getProxyId(), new Parameter.EqualityParameter(proxyIdentity
+				.getProxyStatus()), method, parameterValues);
+		return request;
+	}
+
 	private Response decodeResponse(Element responseElement) throws Exception {
+		String newStatus = responseElement.getAttribute("newstatus");
+
 		List<Element> elements = getElements(responseElement);
-		String newStatus = getText(getElement(elements, 0, "newstatus"));
-		Object returnValue = decodeObject(getElement(elements, 1, "returnvalue"));
+		Object returnValue = decodeObject(getElement(elements, 0, "returnvalue"));
 		if (elements.size() > 2) {
 			throw new IllegalArgumentException("response element has too many children");
 		}
@@ -137,7 +156,7 @@ public class ResponseTreeDecoder extends Decoder {
 				return decodeBigDecimal(element);
 			if (element.getNodeName().equals("java.net.URL"))
 				return new java.net.URL(getText(element));
-			if (element.getNodeName().equals("nl.griffelservices.proxy.stub.ProxyObject"))
+			if (element.getNodeName().equals("ProxyObject"))
 				return decodeProxyObject(element);
 			throw new IllegalArgumentException(objectElement.getNodeName() + " element has unsupported type "
 					+ element.getNodeName());
@@ -196,77 +215,51 @@ public class ResponseTreeDecoder extends Decoder {
 	 *             if an error occurs
 	 */
 	private ProxyObject decodeProxyObject(Element proxyObjectElement) throws Exception {
-		List<Element> elements = getElements(proxyObjectElement);
-		Class<?> proxyClass = classForName(getText(getElement(elements, 0, "class")));
-		String id = getText(getElement(elements, 1, "id"));
-		String status = getText(getElement(elements, 2, "status"));
-		RequestResponse requestResponseArray[] = new RequestResponse[elements.size() - 3];
-		for (int i = 3; i < elements.size(); i++) {
-			requestResponseArray[i - 3] = decodeRequestResponse(getElement(elements, i, "requestresponse"), proxyClass,
-					id);
-		}
-		return new ProxyObject(proxyClass, id, status, requestResponseArray);
+		String clazzName = proxyObjectElement.getAttribute("class");
+		Class<?> proxyClass = classForName(clazzName);
+		String id = proxyObjectElement.getAttribute("id");
+		String status = proxyObjectElement.getAttribute("status");
+
+		// List<Element> elements = getElements(proxyObjectElement);
+		// RequestResponse requestResponseArray[] = new
+		// RequestResponse[elements.size()];
+		// for (int i = 0; i < elements.size(); i++) {
+		// requestResponseArray[i - 3] =
+		// decodeRequestResponse(getElement(elements, i, "requestresponse"),
+		// proxyClass,
+		// id);
+		// }
+		return new ProxyObject(proxyClass, id, status, null);
 	}
 
-	/**
-	 * Decodes a request/response object from the given DOM representation of
-	 * the request/response.
-	 * 
-	 * @param requestResponseElement
-	 *            the DOM representation of the request/response
-	 * @param proxyClass
-	 *            the proxy class of the proxy object for which the
-	 *            request/response is meant
-	 * @param proxyId
-	 *            the proxy id of the proxy object for which the
-	 *            request/response is meant
-	 * @return the decoded request/response object
-	 * @throws Exception
-	 *             if an error occurs
-	 */
-	private RequestResponse decodeRequestResponse(Element requestResponseElement, Class<?> proxyClass, String proxyId)
-			throws Exception {
-		List<Element> elements = getElements(requestResponseElement);
-		Request request = decodeRequest(getElement(elements, 0, "request"), proxyClass, proxyId);
-		Response response = decodeResponse(getElement(elements, 1, "response"));
-		if (elements.size() > 2) {
-			throw new IllegalArgumentException("requestresponse element has too many children");
-		}
-		return new RequestResponse(request, response);
-	}
+	// /**
+	// * Decodes a request/response object from the given DOM representation of
+	// * the request/response.
+	// *
+	// * @param requestResponseElement
+	// * the DOM representation of the request/response
+	// * @param proxyClass
+	// * the proxy class of the proxy object for which the
+	// * request/response is meant
+	// * @param proxyId
+	// * the proxy id of the proxy object for which the
+	// * request/response is meant
+	// * @return the decoded request/response object
+	// * @throws Exception
+	// * if an error occurs
+	// */
+	// private RequestResponse decodeRequestResponse(Element
+	// requestResponseElement, Class<?> proxyClass, String proxyId)
+	// throws Exception {
+	// List<Element> elements = getElements(requestResponseElement);
+	// Request request = decodeRequest(getElement(elements, 0, "request"),
+	// proxyClass, proxyId);
+	// Response response = decodeResponse(getElement(elements, 1, "response"));
+	// if (elements.size() > 2) {
+	// throw new
+	// IllegalArgumentException("requestresponse element has too many children");
+	// }
+	// return new RequestResponse(request, response);
+	// }
 
-	/**
-	 * Decodes a request object from the given DOM representation of the
-	 * request. Note that the decoding done here is not the same as in
-	 * {@link RequestDecoder#decodeRequest(Element)}. Since the decoding done
-	 * here is enclosed in the decoding of a {@link ProxyObject}, the class and
-	 * id of the request are passed to this method instead of decoded from the
-	 * DOM representation.
-	 * 
-	 * @param requestElement
-	 *            the DOM representation of the request
-	 * @param proxyClass
-	 *            the proxy class of the proxy object for which the request is
-	 *            meant
-	 * @param proxyId
-	 *            the proxy id of the proxy object for which the request is
-	 *            meant
-	 * @return the decoded request object
-	 * @throws Exception
-	 *             if an error occurs
-	 */
-	private Request decodeRequest(Element requestElement, Class<?> proxyClass, String proxyId) throws Exception {
-		List<Element> elements = getElements(requestElement);
-		Parameter status = getParameter(getElement(elements, 0, "status"));
-		String methodName = getText(getElement(elements, 1, "method"));
-		Class<?> parameterTypes[] = new Class[elements.size() - 2];
-		Parameter parameterValues[] = new Parameter[elements.size() - 2];
-		for (int i = 2; i < elements.size(); i++) {
-			MyParameter parameter = decodeParameter(getElement(elements, i, "parameter"));
-			parameterTypes[i - 2] = classForName(parameter.className);
-			parameterValues[i - 2] = parameter.value;
-		}
-		Method method = proxyClass.getMethod(methodName, parameterTypes);
-		return new Request(proxyId, status, method, parameterValues);
-	}
 }

@@ -6,10 +6,13 @@
  */
 package org.jtester.jdbcproxy.stub;
 
+import java.util.TreeMap;
+
+import nl.griffelservices.proxy.stub.ProxyIdentity;
 import nl.griffelservices.proxy.stub.Request;
 import nl.griffelservices.proxy.stub.RequestEncoder;
+import nl.griffelservices.proxy.stub.RequestResponse;
 import nl.griffelservices.proxy.stub.Response;
-import nl.griffelservices.proxy.stub.ResponseDecoder;
 import nl.griffelservices.proxy.stub.Stub;
 
 /**
@@ -22,7 +25,7 @@ public class FileStub extends FileClient implements Stub {
 	/** the request encoder */
 	private static final RequestEncoder encoder = new RequestEncoder();
 	/** the response decoder */
-	private static final ResponseDecoder decoder = new ResponseDecoder();
+	private static final ResponseTreeDecoder decoder = new ResponseTreeDecoder();
 
 	/**
 	 * Constructs a HttpStub object.
@@ -40,10 +43,17 @@ public class FileStub extends FileClient implements Stub {
 		super(filename);
 	}
 
+	private TreeMap<ProxyIdentity, RequestResponse> map = null;
+
 	public Response invoke(Request request) throws Exception {
 		String requestStr = encoder.encode(request);
 		String responseStr = invoke(requestStr);
-		Response response = decoder.decode(responseStr);
-		return response;
+		if (map == null) {
+			map = decoder.decode(responseStr);
+		}
+		ProxyIdentity proxyIdentity = request.getProxyIdentity();
+		RequestResponse rr = map.get(proxyIdentity);
+
+		return rr.getResponse();
 	}
 }
