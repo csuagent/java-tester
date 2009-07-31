@@ -84,7 +84,8 @@ public class FileCombinedHandler implements Handler {
 					return Boolean.FALSE;
 				} else {
 					proxy.setProxyObject(driverUrl.proxyObject);
-					return driverUrl.handler.invoke(proxy, method, new Object[] { driverUrl.proxyUrl });
+					Object oo = driverUrl.handler.invoke(proxy, method, new Object[] { driverUrl.proxyUrl });
+					return oo;
 				}
 			}
 			if (method.equals(connect)) {

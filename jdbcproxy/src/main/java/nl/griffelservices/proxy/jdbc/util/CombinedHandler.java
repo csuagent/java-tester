@@ -153,10 +153,14 @@ public class CombinedHandler implements Handler {
 		// Do nothing
 	}
 
+	private DriverUrl driverUrl = null;
+
 	public Object invoke(Proxy proxy, Method method, Object[] parameters) throws Exception {
 		if (method.getDeclaringClass().equals(Driver.class)) {
 			if (method.equals(acceptsURL)) {
-				DriverUrl driverUrl = new DriverUrl((String) parameters[0]);
+				if (this.driverUrl == null) {
+					this.driverUrl = new DriverUrl((String) parameters[0]);
+				}
 				if (driverUrl.handler == null) {
 					return Boolean.FALSE;
 				} else {
@@ -165,7 +169,9 @@ public class CombinedHandler implements Handler {
 				}
 			}
 			if (method.equals(connect)) {
-				DriverUrl driverUrl = new DriverUrl((String) parameters[0]);
+				if (this.driverUrl == null) {
+					this.driverUrl = new DriverUrl((String) parameters[0]);
+				}
 				if (driverUrl.handler == null) {
 					return null;
 				} else {
@@ -180,7 +186,9 @@ public class CombinedHandler implements Handler {
 				return minorVersion;
 			}
 			if (method.equals(getPropertyInfo)) {
-				DriverUrl driverUrl = new DriverUrl((String) parameters[0]);
+				if (this.driverUrl == null) {
+					this.driverUrl = new DriverUrl((String) parameters[0]);
+				}
 				if (driverUrl.handler == null) {
 					return null;
 				} else {

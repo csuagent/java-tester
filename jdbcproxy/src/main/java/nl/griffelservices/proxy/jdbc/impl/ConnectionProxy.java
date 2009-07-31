@@ -3,7 +3,7 @@
  * Please do not modify this file manually.
  * All your changes will be deleted when this file is regenerated.
  */
-package nl.griffelservices.proxy.jdbc;
+package nl.griffelservices.proxy.jdbc.impl;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -182,7 +182,8 @@ public class ConnectionProxy extends JdbcProxy implements Connection {
 	private static final Method m15 = getMethod(Connection.class, "isClosed", new Class[] {});
 
 	public boolean isClosed() throws java.sql.SQLException {
-		return ((Boolean) invoke(m15, new Object[] {})).booleanValue();
+		Object oo = invoke(m15, new Object[] {});
+		return ((Boolean) oo).booleanValue();
 	}
 
 	/**

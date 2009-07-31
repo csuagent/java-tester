@@ -10,7 +10,7 @@ import nl.griffelservices.proxy.Handler;
  * 
  * @author xufangbj@cn.ibm.com
  */
-public class FileStubTracerDriver extends nl.griffelservices.proxy.jdbc.DriverProxy {
+public class FileStubTracerDriver extends nl.griffelservices.proxy.jdbc.impl.DriverProxy {
 	static {
 		try {
 			DriverManager.registerDriver(new FileStubTracerDriver());

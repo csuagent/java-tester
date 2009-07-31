@@ -3,9 +3,10 @@
  * Please do not modify this file manually.
  * All your changes will be deleted when this file is regenerated.
  */
-package nl.griffelservices.proxy.jdbc;
+package nl.griffelservices.proxy.jdbc.impl;
 
 import java.lang.reflect.Method;
+import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
@@ -55,11 +56,14 @@ public class DriverProxy extends JdbcProxy implements Driver {
 	}
 
 	public java.sql.Connection connect(java.lang.String p0, java.util.Properties p1) throws SQLException {
-		return (java.sql.Connection) invoke(m0_connect, new Object[] { p0, p1 });
+		Object oo = invoke(m0_connect, new Object[] { p0, p1 });
+		return (Connection)oo ;
 	}
 
 	public boolean acceptsURL(java.lang.String p0) throws SQLException {
-		return ((Boolean) invoke(m1_acceptsURL, new Object[] { p0 })).booleanValue();
+//		return true;
+		Boolean accepted = (Boolean) invoke(m1_acceptsURL, new Object[] { p0 });
+		return accepted == null ? false : accepted;
 	}
 
 	public int getMajorVersion() {

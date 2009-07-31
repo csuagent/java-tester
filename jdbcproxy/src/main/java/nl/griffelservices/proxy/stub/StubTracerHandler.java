@@ -77,7 +77,8 @@ public class StubTracerHandler implements Handler {
 		Object valueProxy = proxy.getReturnValueProxy(returnType, this, value);
 
 		Object proxyObject = proxy.getProxyObject();
-		ProxyObject stub = getStub(proxyObject, proxy.narrowReturnType(Object.class, proxyObject));
+		Class<?> stubClazz = proxy.narrowReturnType(Object.class, proxyObject);
+		ProxyObject stub = getStub(proxyObject, stubClazz);
 		String newStatus = String.valueOf(Integer.parseInt(stub.getProxyStatus()) + 1);
 		Parameter.EqualityParameter equalityParameters[] = new Parameter.EqualityParameter[parameters.length];
 		for (int i = 0; i < parameters.length; i++) {

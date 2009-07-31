@@ -42,7 +42,7 @@ import nl.griffelservices.proxy.jdbc.util.CombinedHandler;
  * 
  * @author Frans van Gool
  */
-public class StubTracerDriver extends nl.griffelservices.proxy.jdbc.DriverProxy {
+public class StubTracerDriver extends nl.griffelservices.proxy.jdbc.impl.DriverProxy {
 	static {
 		try {
 			DriverManager.registerDriver(new StubTracerDriver());
