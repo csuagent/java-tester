@@ -53,7 +53,9 @@ public class FileStub extends FileClient implements Stub {
 		}
 		ProxyIdentity proxyIdentity = request.getProxyIdentity();
 		RequestResponse rr = map.get(proxyIdentity);
-
+		if (rr == null) {
+			throw new RuntimeException("no reponse for request:" + request.toString());
+		}
 		return rr.getResponse();
 	}
 }

@@ -34,8 +34,6 @@ import java.util.TreeMap;
 import nl.griffelservices.proxy.Handler;
 import nl.griffelservices.proxy.Proxy;
 
-import org.jtester.jdbcproxy.stub.FileStubTracerMerger;
-
 /**
  * This handler is meant to save stub information for the calls to the proxied
  * interfaces. It passes all proxy calls to another implementation of the
@@ -91,7 +89,11 @@ public class StubTracerHandler implements Handler {
 		Response response = new Response(newStatus, value != valueProxy ? getStub(value, returnType) : value);
 
 		if (merge) {// for generate merger file by xufangbj@cn.ibm.com
-			new FileStubTracerMerger(map, request, response);
+			// new FileStubTracerMerger(map, request, response);
+			String id = request.getDesiredId();
+			String status = request.getDesiredStatus().getDesiredValue();
+			ProxyIdentity proxyIdentity = new ProxyIdentity(id, status);
+			map.put(proxyIdentity, new RequestResponse(request.clone(), response.clone()));
 		} else {// for generate request/response files
 			tracer.trace(request, response);
 		}

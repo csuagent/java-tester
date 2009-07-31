@@ -39,7 +39,7 @@ import java.lang.reflect.Method;
  * 
  * @author Frans van Gool
  */
-public class Request {
+public class Request implements Cloneable {
 	/** the id of the proxy class for which the method is called */
 	private final String desiredId;
 	/** the status of the proxy class when the method is called */
@@ -159,5 +159,11 @@ public class Request {
 	 */
 	public ProxyIdentity getProxyIdentity() {
 		return new ProxyIdentity(this.desiredId, this.desiredStatus.getDesiredValue());
+	}
+
+	@Override
+	public Request clone() {
+		Request request = new Request(this.desiredId, this.desiredStatus, this.desiredMethod, this.desiredParameter);
+		return request;
 	}
 }

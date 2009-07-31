@@ -80,4 +80,10 @@ public class ProxyIdentity implements Comparable<ProxyIdentity> {
 		}
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return this.proxyId + "-" + this.proxyStatus;
+	}
+
 }

@@ -38,7 +38,7 @@ package nl.griffelservices.proxy.stub;
  * 
  * @author Frans van Gool
  */
-public class Response {
+public class Response implements Cloneable {
 	/** the status of the proxy class after the method call */
 	private final String newStatus;
 	/** the return value of the method call */
@@ -78,7 +78,15 @@ public class Response {
 	public String toString() {
 		return String.format(" new status:%s \n return value:%s", this.newStatus, this.returnValue == null ? null
 				: this.returnValue.toString());
-		// return Response.class.getName() + "[" + newStatus + "," + returnValue
-		// + "]";
+	}
+
+	@Override
+	public Response clone() {
+		if (this.returnValue instanceof ProxyObject) {
+			ProxyObject proxy = (ProxyObject) this.returnValue;
+			return new Response(this.newStatus, proxy.clone());
+		} else {
+			return new Response(this.newStatus, this.returnValue);
+		}
 	}
 }
