@@ -50,8 +50,10 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 		this.checkDoesTestDB();
 		BasicDataSource dataSource = new BasicDataSource();
 		this.initFactualDataSource(dataSource);
-		
-		this.doesDisableDataSource(dataSource);		
+		// this.initRecordProxyDataSource(dataSource);// TODO
+		// this.initStubProxyDataSource(dataSource);
+
+		this.doesDisableDataSource(dataSource);
 		return dataSource;
 	}
 
@@ -80,7 +82,7 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 	 * 
 	 * @param dataSource
 	 */
-	private void doesDisableDataSource(DataSource dataSource) {
+	protected void doesDisableDataSource(DataSource dataSource) {
 		if (!ConfigUtil.doesDisableConstraints()) {
 			return;
 		}
@@ -91,7 +93,12 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 		disabler.disableConstraints();
 	}
 
-	public void initFactualDataSource(BasicDataSource dataSource) {
+	/**
+	 * 初始化实际的数据库连接
+	 * 
+	 * @param dataSource
+	 */
+	protected void initFactualDataSource(BasicDataSource dataSource) {
 		log.info("Creating data source. Driver: " + driverClassName + ", url: " + databaseUrl + ", user: " + userName
 				+ ", password: <not shown>");
 		dataSource.setDriverClassName(driverClassName);
@@ -100,13 +107,35 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 		dataSource.setUrl(databaseUrl);
 	}
 
-	public void createProxyDataSource(BasicDataSource dataSource) {
+	/**
+	 * 初始化JDBCProxy的录制脚本的数据库连接
+	 * 
+	 * @param dataSource
+	 */
+	protected void initRecordProxyDataSource(BasicDataSource dataSource) {
 		log.info("Creating data source. Driver: " + driverClassName + ", url: " + databaseUrl + ", user: " + userName
 				+ ", password: <not shown>");
 
-		dataSource.setDriverClassName(driverClassName);
+		dataSource.setDriverClassName("nl.griffelservices.proxy.jdbc.oracle.StubTracerDriver");
 		dataSource.setUsername(userName);
 		dataSource.setPassword(password);
-		dataSource.setUrl(databaseUrl);
+		String url = String.format("jdbc:stubtracer:%s:%s:%s", "output", this.driverClassName, this.databaseUrl);
+		dataSource.setUrl(url);
+	}
+
+	/**
+	 * 初始化JDBCProxy回放脚本的Stub数据库连接
+	 * 
+	 * @param dataSource
+	 */
+	protected void initStubProxyDataSource(BasicDataSource dataSource) {
+		log.info("Creating data source. Driver: " + driverClassName + ", url: " + databaseUrl + ", user: " + userName
+				+ ", password: <not shown>");
+
+		dataSource.setDriverClassName("org.jtester.jdbcproxy.driver.FileStubTracerDriver");
+		dataSource.setUsername(userName);
+		dataSource.setPassword(password);
+		String url = "jdbc:stub:output/mergerfile.xml";// TODO
+		dataSource.setUrl(url);
 	}
 }
