@@ -2,7 +2,6 @@ package org.jtester.jdbcproxy.proxy;
 
 import java.lang.reflect.Method;
 
-import nl.griffelservices.proxy.Generator;
 import nl.griffelservices.proxy.Handler;
 
 /**

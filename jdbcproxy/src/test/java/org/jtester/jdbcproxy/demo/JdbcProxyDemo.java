@@ -20,7 +20,7 @@ public class JdbcProxyDemo {
 		execute(proxy);
 
 		GenerateMergerFile mergerfile = new GenerateMergerFile("output/mergerfile.xml");
-		mergerfile.generateFile();
+		mergerfile.generateTreeFile();
 	}
 
 	public static void callstub() throws Exception {
