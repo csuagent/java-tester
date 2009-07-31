@@ -13,7 +13,7 @@ public class DatabaseFixture extends SequenceFixture {
 	protected DBEnvironment environment;
 
 	public DatabaseFixture() {
-		this.environment = DbFactory.factory();
+		this.environment = DbFactory.instance().factory();
 	}
 
 	@Override
@@ -37,17 +37,20 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public void connect() throws SQLException {
-		environment.connect(DbFactory.getDataSource(), DbFactory.getDbUserName(), DbFactory.getDbPassword(), DbFactory
-				.getDatabase());
+		DbFactory db = DbFactory.instance();
+		environment.connect(db.getDataSource(), db.getDbUserName(), db
+				.getDbPassword());
 		environment.getConnection().setAutoCommit(false);
 	}
 
-	public void connect(String dataSource, String username, String password, String database) throws SQLException {
-		environment.connect(dataSource, username, password, database);
+	public void connect(String dataSource, String username, String password,
+			String database) throws SQLException {
+		environment.connect(dataSource, username, password);
 		environment.getConnection().setAutoCommit(false);
 	}
 
-	public void connect(String dataSource, String username, String password) throws SQLException {
+	public void connect(String dataSource, String username, String password)
+			throws SQLException {
 		environment.connect(dataSource, username, password);
 		environment.getConnection().setAutoCommit(false);
 	}
@@ -134,19 +137,23 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture inspectProcedure(String procName) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_PROCEDURE, procName);
+		return new dbfit.fixture.Inspect(environment,
+				dbfit.fixture.Inspect.MODE_PROCEDURE, procName);
 	}
 
 	public Fixture inspectTable(String tableName) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_TABLE, tableName);
+		return new dbfit.fixture.Inspect(environment,
+				dbfit.fixture.Inspect.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectView(String tableName) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_TABLE, tableName);
+		return new dbfit.fixture.Inspect(environment,
+				dbfit.fixture.Inspect.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectQuery(String query) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_QUERY, query);
+		return new dbfit.fixture.Inspect(environment,
+				dbfit.fixture.Inspect.MODE_QUERY, query);
 	}
 
 	public Fixture storeQuery(String query, String symbolName) {
@@ -154,7 +161,8 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture compareStoredQueries(String symbol1, String symbol2) {
-		return new dbfit.fixture.CompareStoredQueries(environment, symbol1, symbol2);
+		return new dbfit.fixture.CompareStoredQueries(environment, symbol1,
+				symbol2);
 	}
 
 	public void setOption(String option, String value) {

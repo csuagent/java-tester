@@ -23,12 +23,9 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 
 		int idx = s.indexOf('\\');
 		if (idx > 0) {
-			throw new UnsupportedOperationException("Java SQL Server Driver does not work with instance names. " +
-					"Create an alias for your SQL Server Instance.");
-//			String server = s.substring(0, idx);
-//			String instance = s.substring(idx + 1);
-//			System.out.println(server + ";instanceName=" + instance);
-//			return "localhost;instanceName=" + instance;
+			throw new UnsupportedOperationException(
+					"Java SQL Server Driver does not work with instance names. "
+							+ "Create an alias for your SQL Server Instance.");
 		}
 		return s;
 	}
@@ -52,10 +49,6 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 	protected String parseCommandText(String commandText) {
 		commandText = commandText.replaceAll(paramNamePattern, "?");
 		return super.parseCommandText(commandText);
-	}
-
-	protected String getDriverClassName() {
-		return "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	}
 
 	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName)
@@ -106,24 +99,20 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 	// map types
 	private static List<String> stringTypes = Arrays.asList(new String[] {
 			"VARCHAR", "NVARCHAR", "CHAR", "NCHAR", "TEXT", "NTEXT",
-			"UNIQUEIDENTIFIER"});
-	private static List<String> intTypes = Arrays.asList(new String[] {
-			"INT" });
+			"UNIQUEIDENTIFIER" });
+	private static List<String> intTypes = Arrays
+			.asList(new String[] { "INT" });
 	private static List<String> booleanTypes = Arrays
 			.asList(new String[] { "BIT" });
-	private static List<String> floatTypes = Arrays.asList(new String[]{
-		"REAL"
-	});
-	private static List<String> doubleTypes = Arrays.asList(new String[]{
-			"FLOAT"
-	});
-	private static List<String> longTypes = Arrays.asList(new String[]{
-			"BIGINT"
-	});
-	private static List<String> shortTypes = Arrays.asList(new String[]{
-			"TINYINT", "SMALLINT"
-	});
-		
+	private static List<String> floatTypes = Arrays
+			.asList(new String[] { "REAL" });
+	private static List<String> doubleTypes = Arrays
+			.asList(new String[] { "FLOAT" });
+	private static List<String> longTypes = Arrays
+			.asList(new String[] { "BIGINT" });
+	private static List<String> shortTypes = Arrays.asList(new String[] {
+			"TINYINT", "SMALLINT" });
+
 	private static List<String> decimalTypes = Arrays.asList(new String[] {
 			"DECIMAL", "NUMERIC", "MONEY", "SMALLMONEY" });
 	private static List<String> timestampTypes = Arrays.asList(new String[] {
@@ -176,12 +165,12 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 			return java.sql.Types.FLOAT;
 		if (doubleTypes.contains(dataType))
 			return java.sql.Types.DOUBLE;
-		
+
 		if (longTypes.contains(dataType))
 			return java.sql.Types.BIGINT;
 		if (shortTypes.contains(dataType))
 			return java.sql.Types.SMALLINT;
-		
+
 		throw new UnsupportedOperationException("Type " + dataType
 				+ " is not supported");
 	}
@@ -206,7 +195,7 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 			return Long.class;
 		if (shortTypes.contains(dataType))
 			return Short.class;
-		
+
 		throw new UnsupportedOperationException("Type " + dataType
 				+ " is not supported");
 	}

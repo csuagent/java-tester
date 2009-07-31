@@ -1,7 +1,5 @@
 package dbfit.environment;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -75,20 +73,8 @@ public interface DBEnvironment {
 	 *            Host (optionally port), machine name or any other data source
 	 *            identifier
 	 */
-	void connect(String dataSource, String username, String password)
+	void connect(String url, String username, String password)
 			throws SQLException;
-
-	/**
-	 * Connects to the database using a specified database.
-	 * 
-	 * @param dataSource
-	 *            Host (optionally port), machine name or any other data source
-	 *            identifier
-	 * @param database
-	 *            Database to use after connecting
-	 */
-	void connect(String dataSource, String username, String password,
-			String database) throws SQLException;
 
 	/**
 	 * Connects using a database-specific connection string. This allows users
@@ -131,43 +117,4 @@ public interface DBEnvironment {
 	 *            DB data type name
 	 */
 	Class<?> getJavaClass(String dataType);
-
-	/**
-	 * Load database properties from a file and connect. The connection
-	 * properties file is a plain text file, containing key/value pairs
-	 * separarted by the equals symbol (=). Lines starting with a hash (#) are
-	 * ignored. Use the following keys (they care case-sensitive):
-	 * 
-	 * 1. service -- service name. In the previous example, it was
-	 * LAPTOP\SQLEXPRESS. 2. username -- username to connect to the database. In
-	 * the previous example, it was FitNesseUser. 3. password -- password to
-	 * connect to the database. In the previous example, it was Password. 4.
-	 * database -- optional fourth argument, allowing you to choose the active
-	 * database. In the previous example, it was TestDB. 5. connection-string --
-	 * alternative to the four previous parameters, this allows you to specify
-	 * the full connection string. This parameter should not be mixed with any
-	 * of the four other keys. Use either the full string or specify individual
-	 * properties.
-	 * 
-	 * <pre>
-	 * Here is an example:
-	 *  
-	 *  # DBFit connection properties file
-	 *  #
-	 *  #1) Either specify full connection string
-	 *  #connection-string=
-	 *  #
-	 *  #2) OR specify service, username and password as separate properties
-	 *  service=localhost
-	 *  username=root
-	 *  password=
-	 *  #optionally specify a database name
-	 *  database=dbfit
-	 * </pre>
-	 * 
-	 * @param filePath
-	 *            path to the configuration file
-	 */
-	void connectUsingFile(String filePath) throws SQLException, IOException,
-			FileNotFoundException;
 }

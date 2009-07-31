@@ -1,10 +1,14 @@
 package dbfit.fixture;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.SQLException;
 
-import dbfit.environment.*;
+import dbfit.environment.DB2Environment;
+import dbfit.environment.DBEnvironment;
+import dbfit.environment.DbEnvironmentFactory;
+import dbfit.environment.DerbyEnvironment;
+import dbfit.environment.MySqlEnvironment;
+import dbfit.environment.OracleEnvironment;
+import dbfit.environment.SqlServerEnvironment;
 import fit.Parse;
 
 public class DatabaseEnvironment extends fitlibrary.SequenceFixture{
@@ -47,15 +51,15 @@ public class DatabaseEnvironment extends fitlibrary.SequenceFixture{
     	public void close() throws SQLException{
     		DbEnvironmentFactory.getDefaultEnvironment().closeConnection();
     	}
-    	public void connect(String dataSource, String username, String password, String database) throws SQLException{
-    		DbEnvironmentFactory.getDefaultEnvironment().connect(dataSource,username,password,database);	
-    	}        	
+//    	public void connect(String dataSource, String username, String password, String database) throws SQLException{
+//    		DbEnvironmentFactory.getDefaultEnvironment().connect(dataSource,username,password,database);	
+//    	}        	
     	public void connect(String dataSource, String username, String password) throws SQLException{
     		DbEnvironmentFactory.getDefaultEnvironment().connect(dataSource,username,password);	
     	}
-    	public void connectUsingFile(String file) throws IOException,SQLException,FileNotFoundException{
-    		DbEnvironmentFactory.getDefaultEnvironment().connectUsingFile(file);	
-    	}
+//    	public void connectUsingFile(String file) throws IOException,SQLException,FileNotFoundException{
+//    		DbEnvironmentFactory.getDefaultEnvironment().connectUsingFile(file);	
+//    	}
     	public void setOption(String option, String value){
     		dbfit.util.Options.setOption(option, value);
     	}
