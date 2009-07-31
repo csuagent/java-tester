@@ -17,25 +17,7 @@ public class JdbcProxyDemo {
 
 	public static void record() throws Exception {
 		ProxyUrl proxy = ProxyUrl.generating();
-		Class.forName(proxy.driver);
-		Connection connection = DriverManager.getConnection(proxy.url, "root", "password");
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("select greeting from greetings");
-		while (rs.next()) {
-			System.out.println(rs.getString(1));
-		}
-		rs.close();
-		stmt.close();
-		
-		Statement stmt2 = connection.createStatement();
-		ResultSet rs2 = stmt2.executeQuery("select * from greetings");
-		while (rs2.next()) {
-			System.out.println(rs2.getString(1));
-		}
-		rs2.close();
-		stmt2.close();
-		
-		connection.close();
+		execute(proxy);
 
 		GenerateMergerFile mergerfile = new GenerateMergerFile("output/mergerfile.xml");
 		mergerfile.generateFile();
@@ -43,6 +25,10 @@ public class JdbcProxyDemo {
 
 	public static void callstub() throws Exception {
 		ProxyUrl proxy = ProxyUrl.filestub();
+		execute(proxy);
+	}
+
+	private static void execute(ProxyUrl proxy) throws Exception {
 		Class.forName(proxy.driver);
 		Connection connection = DriverManager.getConnection(proxy.url, "root", "password");
 		Statement stmt = connection.createStatement();
@@ -52,23 +38,21 @@ public class JdbcProxyDemo {
 		}
 		rs.close();
 		stmt.close();
-		
-		Statement stmt2 = connection.createStatement();
-		ResultSet rs2 = stmt2.executeQuery("select * from greetings");
-		while (rs2.next()) {
-			System.out.println(rs2.getString(1));
+
+		stmt = connection.createStatement();
+		stmt.execute("insert into greetings(greeting)values(\"hello\");");
+
+		stmt = connection.createStatement();
+		rs = stmt.executeQuery("select * from greetings");
+		while (rs.next()) {
+			System.out.println(rs.getString(1));
 		}
-		rs2.close();
-		stmt2.close();
-		
-//		Statement stmt3 = connection.createStatement();
-//		ResultSet rs3 = stmt3.executeQuery("select * from greetings");
-//		while (rs3.next()) {
-//			System.out.println(rs3.getString(1));
-//		}
-//		rs3.close();
-//		stmt3.close();
-		
+		rs.close();
+		stmt.close();
+
+		stmt = connection.createStatement();
+		stmt.execute("delete from greetings where greeting =\"hello\"");
+
 		connection.close();
 	}
 
