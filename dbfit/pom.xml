@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>info.fitnesse</groupId>
+	<artifactId>dbfit</artifactId>
+	<version>1.2</version>
+	<repositories>
+		<repository>
+			<id>trinidad</id>
+			<name>trinidad</name>
+			<url>http://maven.neuri.com/</url>
+		</repository>
+	</repositories>
+	<properties>
+		<trinidad.version>1.0.9</trinidad.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.neuri.tdd</groupId>
+			<artifactId>fitnesserunner</artifactId>
+			<version>${trinidad.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jtester</groupId>
+			<artifactId>jtester</artifactId>
+			<version>0.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>5.8</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+	</dependencies>
+</project>
