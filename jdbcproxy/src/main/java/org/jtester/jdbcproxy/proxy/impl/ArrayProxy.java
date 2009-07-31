@@ -10,8 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.jtester.jdbcproxy.proxy.intf.IArrayProxy;
+
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.jdbc.intf.IArrayProxy;
 
 /** This class is a proxy implementation of Array */
 public class ArrayProxy extends JdbcProxy implements Array, IArrayProxy {

@@ -1,4 +1,4 @@
-package nl.griffelservices.proxy.jdbc.intf;
+package org.jtester.jdbcproxy.proxy.intf;
 
 import java.lang.reflect.Method;
 import java.sql.Array;
