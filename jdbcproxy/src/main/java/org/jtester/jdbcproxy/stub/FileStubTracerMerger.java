@@ -196,6 +196,9 @@ public class FileStubTracerMerger {
 	 */
 	private static Object expandReturnValue(int index, Collection<RequestResponse> values, Object returnValue) {
 		System.out.println(index);
+		if (index > 100) {
+			return "recursive too deep";
+		}
 		if (returnValue instanceof ProxyObject) {
 			ProxyObject po = (ProxyObject) returnValue;
 			ArrayList<RequestResponse> requestResponseList = new ArrayList<RequestResponse>();

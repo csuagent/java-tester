@@ -131,6 +131,10 @@ public class ProxyObject implements Cloneable {
 		return requestResponse[i];
 	}
 
+	public RequestResponse[] getRequestResponses() {
+		return requestResponse == null ? new RequestResponse[0] : requestResponse;
+	}
+
 	public Object clone() {
 		return new ProxyObject(proxyClass, proxyId, proxyStatus, requestResponse);
 	}

@@ -7,6 +7,7 @@ import nl.griffelservices.proxy.Proxy;
 import nl.griffelservices.proxy.stub.Parameter;
 import nl.griffelservices.proxy.stub.ProxyObject;
 import nl.griffelservices.proxy.stub.Request;
+import nl.griffelservices.proxy.stub.RequestResponse;
 import nl.griffelservices.proxy.stub.Response;
 import nl.griffelservices.proxy.stub.Stub;
 
@@ -47,10 +48,10 @@ public class FileStubHandler implements Handler {
 
 		// first see whether a response for this call has already been loaded in
 		// the proxy object
-		for (int i = 0; i < proxyObject.getRequestResponseCount(); i++) {
-			if (proxyObject.getRequestResponse(i).getRequest().matches(proxyObject.getProxyId(),
-					proxyObject.getProxyStatus(), method, parameters)) {
-				return invoke(proxy, method, proxyObject.getRequestResponse(i).getResponse());
+		for (RequestResponse rr : proxyObject.getRequestResponses()) {
+			Request request = rr.getRequest();
+			if (request.matches(proxyObject.getProxyId(), proxyObject.getProxyStatus(), method, parameters)) {
+				return invoke(proxy, method, rr.getResponse());
 			}
 		}
 
