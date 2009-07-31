@@ -229,8 +229,8 @@ public class Decoder {
 	 */
 	protected static class MyParameter {
 		/** the parameter class */
-		String className;
+		public String className;
 		/** the parameter value */
-		Parameter value;
+		public Parameter value;
 	}
 }
