@@ -4,7 +4,8 @@ import java.lang.reflect.Method;
 import java.sql.Array;
 import java.util.Map;
 
-import nl.griffelservices.proxy.Proxy;
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 
 public interface IArrayProxy {
 

@@ -33,8 +33,9 @@ import java.lang.reflect.Method;
 import java.sql.Driver;
 import java.util.Properties;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.Proxy;
 import nl.griffelservices.proxy.stub.FolderStubTracer;
 import nl.griffelservices.proxy.stub.HttpStub;
 import nl.griffelservices.proxy.stub.ProxyObject;

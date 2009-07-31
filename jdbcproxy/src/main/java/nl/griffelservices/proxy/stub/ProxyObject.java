@@ -31,7 +31,7 @@ package nl.griffelservices.proxy.stub;
  * This is the proxy data used by the {@link StubHandler}.
  * 
  * @author Frans van Gool
- * @see nl.griffelservices.proxy.Proxy
+ * @see org.jtester.jdbcproxy.proxy.Proxy
  */
 public class ProxyObject implements Cloneable {
 	/** the interface for which this is the proxy data */

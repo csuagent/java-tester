@@ -6,11 +6,11 @@ import java.lang.reflect.Method;
 import java.sql.Driver;
 import java.util.Properties;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
 import org.jtester.jdbcproxy.stub.FileStub;
 import org.jtester.jdbcproxy.stub.FileStubHandler;
 
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.Proxy;
 import nl.griffelservices.proxy.stub.FolderStubTracer;
 import nl.griffelservices.proxy.stub.ProxyObject;
 import nl.griffelservices.proxy.stub.ResponseDecoder;

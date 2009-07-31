@@ -29,6 +29,8 @@ package nl.griffelservices.proxy;
 
 import java.lang.reflect.Method;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 /**
  * The handler is the actual implementation of the proxy classes. The proxy
  * classes themselves just pass the interface method calls to the handler. This

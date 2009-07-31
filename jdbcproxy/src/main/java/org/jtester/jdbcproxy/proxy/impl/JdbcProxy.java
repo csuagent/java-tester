@@ -24,8 +24,9 @@ import java.sql.Savepoint;
 import java.sql.Statement;
 import java.sql.Struct;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.Proxy;
 
 /**
  * This class implements the generic functionality for

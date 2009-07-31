@@ -29,8 +29,9 @@ package nl.griffelservices.proxy.stub;
 
 import java.lang.reflect.Method;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.Proxy;
 
 /**
  * This handler is meant to provide stub responses for the calls to the proxied

@@ -31,8 +31,9 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.Proxy;
 
 /**
  * This handler is meant to save stub information for the calls to the proxied

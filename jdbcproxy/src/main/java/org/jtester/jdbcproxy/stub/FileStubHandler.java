@@ -2,8 +2,9 @@ package org.jtester.jdbcproxy.stub;
 
 import java.lang.reflect.Method;
 
+import org.jtester.jdbcproxy.proxy.Proxy;
+
 import nl.griffelservices.proxy.Handler;
-import nl.griffelservices.proxy.Proxy;
 import nl.griffelservices.proxy.stub.Parameter;
 import nl.griffelservices.proxy.stub.ProxyObject;
 import nl.griffelservices.proxy.stub.Request;
