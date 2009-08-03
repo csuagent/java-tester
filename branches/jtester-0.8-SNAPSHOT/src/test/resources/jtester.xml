@@ -4,6 +4,7 @@
         <groups>
             <run>
                 <include name="JTester"/>
+				<include name="jtester"/>
                 <exclude name="broken"/>
                 <exclude name="memery-db"/>
             </run>

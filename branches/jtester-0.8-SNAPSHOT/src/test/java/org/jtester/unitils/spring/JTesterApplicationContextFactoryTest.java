@@ -1,22 +1,17 @@
 package org.jtester.unitils.spring;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.jtester.unitils.spring.SpringBeanService.SomeInterface;
 import org.jtester.unitils.spring.SpringBeanService.SomeInterfaceImpl;
 import org.jtester.unitils.spring.SpringBeanService.SomeInterfaceImpl2;
 import org.junit.Before;
 import org.testng.annotations.Test;
 
+@Test(groups = { "JTester" })
 public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTester {
 	private static final String TO_BE_OVERRIDEN_BEAN_NAME = "toBeOverriden";
 	private static final String ANOTHER_BEAN_NAME = "springBeanService";
 
-	private UseMockClassPathXmlApplicationContext context;
+	private JTesterClassPathXmlApplicationContext context;
 
 	@Before
 	public void setUp() throws Exception {
@@ -24,32 +19,42 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 	@Test
 	public void testNoOverride() throws Throwable {
-		context = new UseMockClassPathXmlApplicationContext(
-				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null, null);
-		assertEquals(SomeInterfaceImpl.class, context.getBean(TO_BE_OVERRIDEN_BEAN_NAME).getClass());
+		MockBeans.clean();
+		context = new JTesterClassPathXmlApplicationContext(
+				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
+
+		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl.class);
+
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
-		assertNotNull(anotherBean);
-		assertEquals(SomeInterfaceImpl.class, anotherBean.getDependency().getClass());
-		assertEquals(SomeInterfaceImpl.class, anotherBean.getDependency2().getClass());
+		want.object(anotherBean).notNull();
+		want.object(anotherBean.getDependency()).clazIs(SomeInterfaceImpl.class);
+		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl.class);
 	}
 
 	@Test
 	public void testOverride() throws Throwable {
+		MockBeans.clean();
 		SomeInterface overrider = new SomeInterfaceImpl2();
-		Map<String, Object> singletonsByBeanName = new HashMap<String, Object>();
-		singletonsByBeanName.put(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
-		System.out.println("begin initial spring context");
-		context = new UseMockClassPathXmlApplicationContext(
-				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null,
-				singletonsByBeanName);
-
-		System.out.println("after initial spring context");
+		MockBeans.addMockBeanByName(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
+		context = new JTesterClassPathXmlApplicationContext(
+				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
-		assertNotNull(anotherBean);
-		assertEquals(SomeInterfaceImpl2.class, anotherBean.getDependency().getClass());
-		assertEquals(SomeInterfaceImpl2.class, anotherBean.getDependency2().getClass());
+		want.object(anotherBean).notNull();
+		want.object(anotherBean.getDependency()).clazIs(SomeInterfaceImpl2.class);
+		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl2.class);
 
-		assertEquals(SomeInterfaceImpl2.class, context.getBean(TO_BE_OVERRIDEN_BEAN_NAME).getClass());
+		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl2.class);
+	}
+
+	@Test(expectedExceptions = { AssertionError.class })
+	public void testOverride_failure() throws Throwable {
+		MockBeans.clean();
+		context = new JTesterClassPathXmlApplicationContext(
+				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
+
+		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
+		want.object(anotherBean).notNull();
+		want.object(anotherBean.getDependency()).clazIs(SomeInterfaceImpl2.class);
 	}
 }
