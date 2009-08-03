@@ -9,7 +9,7 @@ import org.unitils.core.Unitils;
 public class ConfigUtil {
 	public static final String dbexport_auto = "dbexport.auto";
 
-	public static final String datasource_type = "database.type";
+	public static final String database_type = "database.type";
 
 	public static final String PROPKEY_DATASOURCE_DRIVERCLASSNAME = "database.driverClassName";
 
@@ -20,6 +20,8 @@ public class ConfigUtil {
 	public static final String PROPKEY_DATASOURCE_PASSWORD = "database.password";
 
 	public static final String DBMAINTAINER_DISABLECONSTRAINTS = "dbMaintainer.disableConstraints.enabled";
+
+	public static final String REPLACED_SPRING_DATASOURCE = "database.replaced.spring.datasource";
 
 	public static final Properties unitilscfg = Unitils.getInstance().getConfiguration();
 
@@ -45,7 +47,12 @@ public class ConfigUtil {
 
 	public static boolean doesDisableConstraints() {
 		String disableConstraints = unitilscfg.getProperty(DBMAINTAINER_DISABLECONSTRAINTS);
-		return disableConstraints.equalsIgnoreCase("TRUE");
+		return "TRUE".equalsIgnoreCase(disableConstraints);
+	}
+
+	public static boolean shouldReplacedSpringDataSource() {
+		String replaced = unitilscfg.getProperty(REPLACED_SPRING_DATASOURCE);
+		return "TRUE".equalsIgnoreCase(replaced);
 	}
 
 	public static String property(String value, String key) {
@@ -75,12 +82,11 @@ public class ConfigUtil {
 	}
 
 	public static String dataSourceType() {
-		// form vm
-		String type = System.getProperty(datasource_type);
-		// from property
-		if (type == null) {
-			type = unitilscfg.getProperty(datasource_type);
+		String type = System.getProperty(database_type);// from vm
+		if (!StringUtil.isBlankOrNull(type)) {
+			return type;
 		}
+		type = unitilscfg.getProperty(database_type);// from property
 		if (type == null) {
 			type = "nonmem";
 		}
