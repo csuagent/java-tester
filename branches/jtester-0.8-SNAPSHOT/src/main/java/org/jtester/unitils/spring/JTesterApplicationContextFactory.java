@@ -9,7 +9,7 @@ import org.unitils.spring.util.ApplicationContextFactory;
 
 public class JTesterApplicationContextFactory implements ApplicationContextFactory {
 
-	public ConfigurableApplicationContext createApplicationContext(List<String> locations) {
+	public ConfigurableApplicationContext createApplicationContext(final List<String> locations) {
 		List<String> t = new ArrayList<String>();
 
 		for (String str : locations) {

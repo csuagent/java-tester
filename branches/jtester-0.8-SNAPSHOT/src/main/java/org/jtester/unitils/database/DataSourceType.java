@@ -108,7 +108,7 @@ public enum DataSourceType {
 	}
 
 	/**
-	 * 根据jtester.properties中的配置项datasource.type获得DataSourceType<br>
+	 * 根据jtester.properties中的配置项database.type获得DataSourceType<br>
 	 * 此配置只对内存数据库有效
 	 * 
 	 * @return

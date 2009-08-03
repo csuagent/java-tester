@@ -9,7 +9,7 @@ import org.unitils.core.Unitils;
 public class ConfigUtil {
 	public static final String dbexport_auto = "dbexport.auto";
 
-	public static final String datasource_type = "datasource.type";
+	public static final String datasource_type = "database.type";
 
 	public static final String PROPKEY_DATASOURCE_DRIVERCLASSNAME = "database.driverClassName";
 
