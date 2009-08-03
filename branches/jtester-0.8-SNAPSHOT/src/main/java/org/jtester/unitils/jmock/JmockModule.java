@@ -14,6 +14,7 @@ import org.jmock.api.MockObjectNamingScheme;
 import org.jmock.lib.CamelCaseNamingScheme;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.jtester.unitils.inject.InjectedMock;
+import org.jtester.unitils.spring.MockBeans;
 import org.unitils.core.Module;
 import org.unitils.core.TestListener;
 
@@ -38,22 +39,33 @@ public class JmockModule implements Module {
 		return this.context;
 	}
 
-	private void createMocks(Object testObject) {
-		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), Mock.class);
+	private void createMocks(Object testedObject) {
+		Set<Field> mockFields = getFieldsAnnotatedWith(testedObject.getClass(), Mock.class);
 		for (Field mockField : mockFields) {
-
-			Class<?> mockType = mockField.getType();
 			Mock mock = mockField.getAnnotation(Mock.class);
-
-			String name = mock.value();
-			if (StringUtils.isBlank(name)) {
-				name = namingScheme.defaultNameFor(mockType);
-			}
-			name = name + "_" + Thread.currentThread().getId();
-			Object mockObject = context.mock(mockType, name);
-
-			setFieldValue(testObject, mockField, mockObject);
+			this.mock(testedObject, mock.value(), mockField);
 		}
+
+		Set<Field> mockBeansByName = getFieldsAnnotatedWith(testedObject.getClass(), MockBeanByName.class);
+		MockBeans.clean();
+		for (Field mockField : mockBeansByName) {
+			MockBeanByName mock = mockField.getAnnotation(MockBeanByName.class);
+			Object mockObject = this.mock(testedObject, mock.value(), mockField);
+
+			MockBeans.addMockBeanByName(mockField.getName(), mockObject);
+		}
+	}
+
+	private Object mock(Object testedObject, String mockname, Field field) {
+		Class<?> mockType = field.getType();
+		if (StringUtils.isBlank(mockname)) {
+			mockname = namingScheme.defaultNameFor(mockType);
+		}
+		mockname = mockname + "_" + Thread.currentThread().getId();
+		Object mockObject = context.mock(mockType, mockname);
+
+		setFieldValue(testedObject, field, mockObject);
+		return mockObject;
 	}
 
 	private void createInjectedMocks(Object testObject) {
