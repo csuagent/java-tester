@@ -3,6 +3,8 @@ package dbfit.fixture;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.DataSetException;
@@ -19,7 +21,6 @@ import org.dbunit.operation.DatabaseOperation;
 import dbfit.environment.DBEnvironment;
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.FileHelper;
-import dbfit.util.Log;
 import fit.ColumnFixture;
 
 /**
@@ -75,6 +76,7 @@ public class TestData extends ColumnFixture {
 		}
 	}
 
+	private static Log log = LogFactory.getLog(TestData.class);
 	private DBEnvironment dbEnvironment;
 	private String fileType = "xls";
 	public String operation;
@@ -85,7 +87,7 @@ public class TestData extends ColumnFixture {
 
 	public TestData() {
 		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
-		Log.log("Using default file type: %s", fileType);
+		log.info(String.format("Using default file type: %s", fileType));
 	}
 
 	public TestData(DBEnvironment environment, String fileType) {
@@ -117,7 +119,7 @@ public class TestData extends ColumnFixture {
 	}
 
 	protected void performOperation(String operation, IDataSet dataSet) throws Exception {
-		Log.log("Running operation %s with content from file %s", operation, file);
+		log.info(String.format("Running operation %s with content from file %s", operation, file));
 		performOperation(getDbUnitOperation(operation), dataSet);
 	}
 
@@ -151,10 +153,10 @@ public class TestData extends ColumnFixture {
 	protected IDatabaseConnection getConnection(Connection jdbcConnection) throws Exception {
 		IDatabaseConnection connection = null;
 		if (schema != null && !"".equals(schema.trim())) {
-			Log.log("Connection using schema %s", schema);
+			log.info(String.format("Connection using schema %s", schema));
 			connection = new DatabaseConnection(jdbcConnection, schema);
 		} else {
-			Log.log("Connection using no schema");
+			log.info("Connection using no schema");
 			connection = new DatabaseConnection(jdbcConnection);
 		}
 		return connection;

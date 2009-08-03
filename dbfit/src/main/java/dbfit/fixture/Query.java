@@ -4,16 +4,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dbfit.environment.DBEnvironment;
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DataColumn;
 import dbfit.util.DataTable;
-import dbfit.util.Log;
 
 public class Query extends RowSetFixture {
 	private DBEnvironment dbEnvironment;
 	private String query;
 	private boolean isOrdered;
+	private static Log log = LogFactory.getLog(Query.class);
 
 	public Query() {
 		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
@@ -35,7 +38,7 @@ public class Query extends RowSetFixture {
 			query = args[0];
 		if (query.startsWith("<<"))
 			return getFromSymbol();
-		Log.log("Query: '%s'", query);
+		log.info(String.format("Query: '%s'", query));
 		PreparedStatement st = dbEnvironment.createStatementWithBoundFixtureSymbols(query);
 		return new DataTable(st.executeQuery());
 	}

@@ -2,8 +2,10 @@ package org.jtester.dbfit;
 
 import java.sql.SQLException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dbfit.environment.DBEnvironment;
-import dbfit.util.Log;
 import fit.Fixture;
 import fitlibrary.SequenceFixture;
 import fitlibrary.table.Table;
@@ -11,6 +13,8 @@ import fitlibrary.utility.TestResults;
 
 public class DatabaseFixture extends SequenceFixture {
 	protected DBEnvironment environment;
+
+	private static Log log = LogFactory.getLog(DatabaseFixture.class);
 
 	public DatabaseFixture() {
 		this.environment = DbFactory.instance().factory();
@@ -25,32 +29,29 @@ public class DatabaseFixture extends SequenceFixture {
 	@Override
 	public void tearDown(Table firstTable, TestResults testResults) {
 		try {
-			Log.log("Rolling back");
+			log.info("Rolling back");
 			if (environment != null) {
 				environment.rollback();
 				environment.closeConnection();
 			}
 		} catch (Exception e) {
-			Log.log(e);
+			log.error(e);
 		}
 		super.tearDown(firstTable, testResults);
 	}
 
 	public void connect() throws SQLException {
 		DbFactory db = DbFactory.instance();
-		environment.connect(db.getDataSource(), db.getDbUserName(), db
-				.getDbPassword());
+		environment.connect(db.getDataSource(), db.getDbUserName(), db.getDbPassword());
 		environment.getConnection().setAutoCommit(false);
 	}
 
-	public void connect(String dataSource, String username, String password,
-			String database) throws SQLException {
+	public void connect(String dataSource, String username, String password, String database) throws SQLException {
 		environment.connect(dataSource, username, password);
 		environment.getConnection().setAutoCommit(false);
 	}
 
-	public void connect(String dataSource, String username, String password)
-			throws SQLException {
+	public void connect(String dataSource, String username, String password) throws SQLException {
 		environment.connect(dataSource, username, password);
 		environment.getConnection().setAutoCommit(false);
 	}
@@ -116,7 +117,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture testData(String type) {
-		Log.log("Calling testData method with type '%s'", type);
+		log.info(String.format("Calling testData method with type '%s'", type));
 		return new dbfit.fixture.TestData(environment, type);
 	}
 
@@ -137,23 +138,19 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture inspectProcedure(String procName) {
-		return new dbfit.fixture.Inspect(environment,
-				dbfit.fixture.Inspect.MODE_PROCEDURE, procName);
+		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_PROCEDURE, procName);
 	}
 
 	public Fixture inspectTable(String tableName) {
-		return new dbfit.fixture.Inspect(environment,
-				dbfit.fixture.Inspect.MODE_TABLE, tableName);
+		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectView(String tableName) {
-		return new dbfit.fixture.Inspect(environment,
-				dbfit.fixture.Inspect.MODE_TABLE, tableName);
+		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectQuery(String query) {
-		return new dbfit.fixture.Inspect(environment,
-				dbfit.fixture.Inspect.MODE_QUERY, query);
+		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_QUERY, query);
 	}
 
 	public Fixture storeQuery(String query, String symbolName) {
@@ -161,8 +158,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture compareStoredQueries(String symbol1, String symbol2) {
-		return new dbfit.fixture.CompareStoredQueries(environment, symbol1,
-				symbol2);
+		return new dbfit.fixture.CompareStoredQueries(environment, symbol1, symbol2);
 	}
 
 	public void setOption(String option, String value) {
