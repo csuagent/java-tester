@@ -1,8 +1,13 @@
 package org.jtester.unitils.spring;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.jtester.unitils.jmock.MockBeanByName;
+import org.unitils.util.AnnotationUtils;
 
 public class MockBeans {
 	private static Map<Long, Map<String, Object>> mockByNames = new ConcurrentHashMap<Long, Map<String, Object>>();
@@ -31,9 +36,20 @@ public class MockBeans {
 	 * 
 	 * @return
 	 */
-	public static boolean hasMockBean() {
+	public static boolean hasRegisteredMockBean() {
 		Map<String, Object> map = byNameBeanMap();
 		return map.size() > 0;
+	}
+
+	/**
+	 * 测试类中是否有@MockBean的变量
+	 * 
+	 * @param clazz
+	 * @return
+	 */
+	public static boolean hasMockBean(Class<?> clazz) {
+		Set<Field> fields = AnnotationUtils.getFieldsAnnotatedWith(clazz, MockBeanByName.class);
+		return fields.size() > 0;
 	}
 
 	/**

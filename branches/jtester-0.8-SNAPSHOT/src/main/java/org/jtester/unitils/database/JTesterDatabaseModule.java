@@ -17,7 +17,7 @@ public class JTesterDatabaseModule extends DatabaseModule {
 	 */
 	protected class JtesterDatabaseTestListener extends DatabaseTestListener {
 		public void beforeTestClass(Class<?> testClass) {
-			if (!MockBeans.hasMockBean()) {
+			if (!MockBeans.hasRegisteredMockBean() && !MockBeans.hasMockBean(testClass)) {
 				return;
 			}
 			MockBeans.clean();
