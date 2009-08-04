@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jtester.dbfit.fixture.CleanFixture;
+import org.jtester.dbfit.fixture.UpdateFixture;
 
 import dbfit.environment.DBEnvironment;
 import fit.Fixture;
@@ -109,11 +111,11 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture update(String tableName) {
-		return new dbfit.fixture.Update(environment, tableName);
+		return new UpdateFixture(environment, tableName);
 	}
 
 	public Fixture clean() {
-		return new dbfit.fixture.Clean(environment);
+		return new CleanFixture(environment);
 	}
 
 	public Fixture testData(String type) {
