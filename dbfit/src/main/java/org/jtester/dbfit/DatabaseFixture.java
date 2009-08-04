@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.dbfit.fixture.CleanFixture;
+import org.jtester.dbfit.fixture.ExecuteProcedureFixture;
 import org.jtester.dbfit.fixture.InsertFixture;
+import org.jtester.dbfit.fixture.StoreQueryFixture;
 import org.jtester.dbfit.fixture.UpdateFixture;
 
 import dbfit.environment.DBEnvironment;
@@ -90,15 +92,15 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture executeProcedure(String statement) {
-		return new dbfit.fixture.ExecuteProcedure(environment, statement);
+		return new ExecuteProcedureFixture(environment, statement);
 	}
 
 	public Fixture executeProcedureExpectException(String statement) {
-		return new dbfit.fixture.ExecuteProcedure(environment, statement, true);
+		return new ExecuteProcedureFixture(environment, statement, true);
 	}
 
 	public Fixture executeProcedureExpectException(String statement, int code) {
-		return new dbfit.fixture.ExecuteProcedure(environment, statement, code);
+		return new ExecuteProcedureFixture(environment, statement, code);
 	}
 
 	public Fixture insert(String tableName) {
@@ -151,7 +153,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture storeQuery(String query, String symbolName) {
-		return new dbfit.fixture.StoreQuery(environment, query, symbolName);
+		return new StoreQueryFixture(environment, query, symbolName);
 	}
 
 	public Fixture compareStoredQueries(String symbol1, String symbol2) {
