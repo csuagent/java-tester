@@ -86,7 +86,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture execute(String statement) {
-		return new dbfit.fixture.Execute(environment, statement);
+		return new org.jtester.dbfit.fixture.ExecuteFixture(environment, statement);
 	}
 
 	public Fixture executeProcedure(String statement) {
