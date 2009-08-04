@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.dbfit.fixture.CleanFixture;
+import org.jtester.dbfit.fixture.CompareStoredQueriesFixture;
 import org.jtester.dbfit.fixture.ExecuteFixture;
 import org.jtester.dbfit.fixture.ExecuteProcedureFixture;
 import org.jtester.dbfit.fixture.InsertFixture;
@@ -160,7 +161,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture compareStoredQueries(String symbol1, String symbol2) {
-		return new dbfit.fixture.CompareStoredQueries(environment, symbol1, symbol2);
+		return new CompareStoredQueriesFixture(environment, symbol1, symbol2);
 	}
 
 	public void setOption(String option, String value) {
