@@ -1,4 +1,4 @@
-package dbfit.fixture;
+package org.jtester.dbfit.fixture;
 
 import java.sql.SQLException;
 
@@ -14,7 +14,6 @@ import fit.Parse;
 public class DatabaseEnvironment extends fitlibrary.SequenceFixture {
 	public void doTable(Parse table) {
 		if (args.length > 0) {
-			// todo:refactor to reflection-based factory
 			DBEnvironment oe;
 			String requestedEnv = args[0].toUpperCase().trim();
 			if ("ORACLE".equals(requestedEnv)) {

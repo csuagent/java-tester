@@ -137,7 +137,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture queryStats() {
-		return new dbfit.fixture.QueryStats(environment);
+		return new org.jtester.dbfit.fixture.QueryStatsFixture(environment);
 	}
 
 	public Fixture inspectProcedure(String procName) {
