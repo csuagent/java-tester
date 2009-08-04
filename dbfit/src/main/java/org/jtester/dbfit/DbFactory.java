@@ -1,7 +1,6 @@
 package org.jtester.dbfit;
 
-import org.jtester.unitils.config.ConfigUtil;
-import org.jtester.unitils.database.DataSourceType;
+import org.jtester.unitils.database.DatabaseType;
 
 import dbfit.environment.DBEnvironment;
 import dbfit.environment.DerbyEnvironment;
@@ -23,30 +22,26 @@ public class DbFactory {
 		return mysql();
 	}
 
-	private DataSourceType databaseType = null;
+	private DatabaseType databaseType = null;
 
 	private DbFactory() {
-		this.databaseType = DataSourceType.type();
+		this.databaseType = DatabaseType.type();
 	}
 
 	public String getDataSource() {
-		return databaseType == null ? ConfigUtil.databaseUrl() : databaseType
-				.getConnUrl();
+		return databaseType.getConnUrl();
 	}
 
 	public String getDbUserName() {
-		return databaseType == null ? ConfigUtil.databaseUserName()
-				: databaseType.getUserName();
+		return databaseType.getUserName();
 	}
 
 	public String getDbPassword() {
-		return databaseType == null ? ConfigUtil.databasePassword()
-				: databaseType.getUserPass();
+		return databaseType.getUserPass();
 	}
 
 	public String getDriverName() {
-		return databaseType == null ? ConfigUtil.driverClazzName()
-				: databaseType.getDriveClass();
+		return databaseType.getDriveClass();
 	}
 
 	protected MySqlEnvironment mysql() {
