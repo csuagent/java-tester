@@ -3,7 +3,6 @@ package org.jtester.unitils.database;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jtester.unitils.config.ConfigUtil;
 import org.jtester.utility.ClazzUtil;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -12,7 +11,7 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 
 	private static boolean db_has_been_created = false;
 
-	private DataSourceType type;
+	private DatabaseType type;
 
 	private DbSchemaExport export;
 
@@ -21,21 +20,14 @@ public class JTesterDataSource extends BasicDataSource implements InitializingBe
 	}
 
 	private void init() {
-		this.type = DataSourceType.type();
-		if (type != null) {
-			ConfigUtil.setDbUnitConfig(type);
-			this.createDataBase();
+		this.type = DatabaseType.type();
 
-			this.setUsername(type.getUserName());
-			this.setDriverClassName(type.getDriveClass());
-			this.setUrl(type.getConnUrl());
-			this.setPassword(type.getUserPass());
-		} else {
-			this.setDriverClassName(ConfigUtil.driverClazzName());
-			this.setUsername(ConfigUtil.databaseUserName());
-			this.setPassword(ConfigUtil.databasePassword());
-			this.setUrl(ConfigUtil.databaseUrl());
-		}
+		this.createDataBase();
+
+		this.setUsername(type.getUserName());
+		this.setDriverClassName(type.getDriveClass());
+		this.setUrl(type.getConnUrl());
+		this.setPassword(type.getUserPass());
 	}
 
 	private synchronized void createDataBase() {

@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:aop="http://www.springframework.org/schema/aop"
- xmlns:tx="http://www.springframework.org/schema/tx"
- xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
- http://www.sprin gframework.org/schema/aop http://www.sprin gframework.org/schema/aop/sprin g-aop-2.0.xsd
- http://www.sprin gframework.org/schema/tx http://www.sprin gframework.org/schema/tx/sprin g-tx-2.0.xsd "
- default-lazy-init="true">
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+ "http://www.springframework.org/dtd/spring-beans.dtd">
 
+<beans>
     <description>datasource configure</description>
-    
-    <!-- =================================================================== -->
-    <!-- Hibernate: datasouce and hibernate config                           -->
-    <!-- =================================================================== -->
-    <bean id="dataSource" class="org.jtester.unitils.database.JTesterDataSource" destroy-method="close">
+    <bean id="dataSource" class="org.jtester.unitils.database.JTesterDataSource">
     </bean>
 </beans>

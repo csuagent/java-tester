@@ -20,23 +20,23 @@ import org.unitils.database.DatabaseModule;
 public class DbSchemaExport {
 	private static Log log = LogFactory.getLog(DbSchemaExport.class);
 
-	private DataSourceType type;
+	private DatabaseType type;
 
 	private SchemaExport export;
 
 	private DbSupport dbSupport;
 
 	public DbSchemaExport() {
-		this(DataSourceType.H2DB);
+		this(DatabaseType.H2DB);
 	}
 
-	public DbSchemaExport(DataSourceType type) {
+	public DbSchemaExport(DatabaseType type) {
 		this.type = type;
 		this.export = new SchemaExport(config());
 
 		this.dbSupport = type.getDbSupport();
 		SQLHandler sqlHandler = new DefaultSQLHandler(dataSource());
-		this.dbSupport.init(ConfigUtil.config(), sqlHandler, type.getSchema());
+		this.dbSupport.init(ConfigUtil.config(), sqlHandler, type.getSchemas());
 	}
 
 	public void export() {
