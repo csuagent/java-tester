@@ -18,11 +18,11 @@ public class TestNgUtil {
 	 *            测试类
 	 * @param method
 	 *            方法名称
-	 * @param printError
-	 *            是否打印出错误消息
+	 * @param throwException
+	 *            是否抛出测试异常消息
 	 * @return
 	 */
-	public static boolean run(String clazz, String method, boolean printError) {
+	public static boolean run(String clazz, String method, boolean throwException) {
 		TestNG tng = new TestNG();
 		XmlSuite suite = new XmlSuite();
 		XmlTest test = new XmlTest(suite);
@@ -40,9 +40,9 @@ public class TestNgUtil {
 		tng.run();
 		int success = listener.getPassedTests().size();
 		int failure = listener.getFailedTests().size();
-		if (printError) {
+		if (throwException) {
 			for (ITestResult rt : listener.getFailedTests()) {
-				rt.getThrowable().printStackTrace();
+				throw new RuntimeException(rt.getThrowable());
 			}
 		}
 		return success == 1 && failure == 0;
