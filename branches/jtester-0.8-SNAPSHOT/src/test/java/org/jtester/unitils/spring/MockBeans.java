@@ -27,6 +27,16 @@ public class MockBeans {
 	}
 
 	/**
+	 * 判断是否已经注册了MockBean
+	 * 
+	 * @return
+	 */
+	public static boolean hasMockBean() {
+		Map<String, Object> map = byNameBeanMap();
+		return map.size() > 0;
+	}
+
+	/**
 	 * 获得的mock的bean对象
 	 * 
 	 * @param beanName

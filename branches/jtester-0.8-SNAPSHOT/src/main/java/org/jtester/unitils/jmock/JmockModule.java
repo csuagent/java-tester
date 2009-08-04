@@ -47,7 +47,7 @@ public class JmockModule implements Module {
 		}
 
 		Set<Field> mockBeansByName = getFieldsAnnotatedWith(testedObject.getClass(), MockBeanByName.class);
-		MockBeans.clean();
+
 		for (Field mockField : mockBeansByName) {
 			MockBeanByName mock = mockField.getAnnotation(MockBeanByName.class);
 			Object mockObject = this.mock(testedObject, mock.value(), mockField);

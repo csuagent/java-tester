@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.jtester.unitils.config.ConfigUtil;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.unitils.spring.util.ApplicationContextFactory;
 
 public class JTesterApplicationContextFactory implements ApplicationContextFactory {
@@ -19,8 +18,13 @@ public class JTesterApplicationContextFactory implements ApplicationContextFacto
 		if (replacedSpringDataSource) {
 			t.add("classpath:/org/jtester/unitils/spring/jtester-datasource.xml");
 		}
-		ConfigurableApplicationContext c = new ClassPathXmlApplicationContext(t.toArray(new String[locations.size()]),
-				false);
+		// ConfigurableApplicationContext c = new
+		// ClassPathXmlApplicationContext(t.toArray(new
+		// String[locations.size()]),
+		// false);
+
+		ConfigurableApplicationContext c = new JTesterClassPathXmlApplicationContext(t.toArray(new String[locations
+				.size()]), false, null);
 
 		return c;
 	}
