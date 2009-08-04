@@ -5,9 +5,12 @@ import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.dbfit.fixture.CleanFixture;
+import org.jtester.dbfit.fixture.ExecuteFixture;
 import org.jtester.dbfit.fixture.ExecuteProcedureFixture;
 import org.jtester.dbfit.fixture.InsertFixture;
+import org.jtester.dbfit.fixture.QueryFixture;
 import org.jtester.dbfit.fixture.StoreQueryFixture;
+import org.jtester.dbfit.fixture.TestDataFixture;
 import org.jtester.dbfit.fixture.UpdateFixture;
 
 import dbfit.environment.DBEnvironment;
@@ -80,15 +83,15 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture query(String query) {
-		return new org.jtester.dbfit.fixture.QueryFixture(environment, query);
+		return new QueryFixture(environment, query);
 	}
 
 	public Fixture orderedQuery(String query) {
-		return new org.jtester.dbfit.fixture.QueryFixture(environment, query, true);
+		return new QueryFixture(environment, query, true);
 	}
 
 	public Fixture execute(String statement) {
-		return new org.jtester.dbfit.fixture.ExecuteFixture(environment, statement);
+		return new ExecuteFixture(environment, statement);
 	}
 
 	public Fixture executeProcedure(String statement) {
@@ -117,7 +120,7 @@ public class DatabaseFixture extends SequenceFixture {
 
 	public Fixture testData(String type) {
 		log.info(String.format("Calling testData method with type '%s'", type));
-		return new org.jtester.dbfit.fixture.TestDataFixture(environment, type);
+		return new TestDataFixture(environment, type);
 	}
 
 	public void rollback() throws SQLException {
