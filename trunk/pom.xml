@@ -107,6 +107,16 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>jtester</id>
+			<url>http://java-tester.googlecode.com/svn/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -243,6 +253,11 @@
 			<groupId>org.apache.ibatis</groupId>
 			<artifactId>ibatis-sqlmap</artifactId>
 			<version>2.3.4.726</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jtester</groupId>
+			<artifactId>jdbcproxy</artifactId>
+			<version>1.1-IBM</version>
 		</dependency>
 	</dependencies>
 	<reporting>
