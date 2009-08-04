@@ -78,11 +78,11 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture query(String query) {
-		return new dbfit.fixture.Query(environment, query);
+		return new org.jtester.dbfit.fixture.QueryFixture(environment, query);
 	}
 
 	public Fixture orderedQuery(String query) {
-		return new dbfit.fixture.Query(environment, query, true);
+		return new org.jtester.dbfit.fixture.QueryFixture(environment, query, true);
 	}
 
 	public Fixture execute(String statement) {

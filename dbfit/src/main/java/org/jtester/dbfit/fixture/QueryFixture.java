@@ -1,4 +1,4 @@
-package dbfit.fixture;
+package org.jtester.dbfit.fixture;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,22 +12,22 @@ import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DataColumn;
 import dbfit.util.DataTable;
 
-public class Query extends RowSetFixture {
+public class QueryFixture extends RowSetFixture {
 	private DBEnvironment dbEnvironment;
 	private String query;
 	private boolean isOrdered;
-	private static Log log = LogFactory.getLog(Query.class);
+	private static Log log = LogFactory.getLog(QueryFixture.class);
 
-	public Query() {
+	public QueryFixture() {
 		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
 		isOrdered = false;
 	}
 
-	public Query(DBEnvironment environment, String query) {
+	public QueryFixture(DBEnvironment environment, String query) {
 		this(environment, query, false);
 	}
 
-	public Query(DBEnvironment environment, String query, boolean isOrdered) {
+	public QueryFixture(DBEnvironment environment, String query, boolean isOrdered) {
 		this.dbEnvironment = environment;
 		this.query = query;
 		this.isOrdered = isOrdered;
@@ -57,10 +57,8 @@ public class Query extends RowSetFixture {
 		return isOrdered;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	protected Class getJavaClassForColumn(DataColumn col) throws ClassNotFoundException, SQLException {
-		// System.out.println(col.getName()+":"+col.getJavaClassName());
+	protected Class<?> getJavaClassForColumn(DataColumn col) {
 		return dbEnvironment.getJavaClass(col.getDbTypeName());
 	}
 }
