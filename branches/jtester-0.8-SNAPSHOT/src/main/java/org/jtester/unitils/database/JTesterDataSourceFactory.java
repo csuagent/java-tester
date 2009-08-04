@@ -1,7 +1,5 @@
 package org.jtester.unitils.database;
 
-import static org.unitils.util.PropertyUtils.getString;
-
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -13,7 +11,6 @@ import org.jtester.unitils.config.ConfigUtil;
 import org.unitils.core.dbsupport.DefaultSQLHandler;
 import org.unitils.core.dbsupport.SQLHandler;
 import org.unitils.database.config.DataSourceFactory;
-import org.unitils.database.config.PropertiesDataSourceFactory;
 import org.unitils.dbmaintainer.structure.ConstraintsDisabler;
 import org.unitils.dbmaintainer.util.DatabaseModuleConfigUtils;
 
@@ -22,28 +19,10 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 
 	public static final String PROPKEY_DATASOURCE_SCHEMANAMES = "database.schemaNames";
 
-	// private String url;
-
-	private String schemaNames;
-	/* The name of the <code>java.sql.Driver</code> class. */
-	private String driverClassName;
-
-	/* The url of the database. */
-	private String databaseUrl;
-
-	/* The database username. */
-	private String userName;
-
-	/* The database password. */
-	private String password;
+	private DatabaseType type = null;
 
 	public void init(Properties configuration) {
-		this.driverClassName = getString(PropertiesDataSourceFactory.PROPKEY_DATASOURCE_DRIVERCLASSNAME, configuration);
-		this.databaseUrl = getString(PropertiesDataSourceFactory.PROPKEY_DATASOURCE_URL, configuration);
-		this.userName = getString(PropertiesDataSourceFactory.PROPKEY_DATASOURCE_USERNAME, null, configuration);
-		this.password = getString(PropertiesDataSourceFactory.PROPKEY_DATASOURCE_PASSWORD, null, configuration);
-
-		this.schemaNames = getString(PROPKEY_DATASOURCE_SCHEMANAMES, configuration);
+		this.type = DatabaseType.type();
 	}
 
 	public DataSource createDataSource() {
@@ -62,17 +41,17 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 	 * 如果不是返回RuntimeException
 	 */
 	private void checkDoesTestDB() {
-		if (this.databaseUrl.startsWith("jdbc:h2:mem:test") || this.databaseUrl.contains("jdbc:hsqldb:mem")
-				|| this.databaseUrl.contains("127.0.0.1") || this.databaseUrl.contains("localhost")) {
+		if (this.type.isMemoryDB() || this.type.getConnUrl().contains("127.0.0.1")
+				|| this.type.getConnUrl().contains("localhost")) {
 			return;
 		}
-		String[] schemas = this.schemaNames.split(";");
+		String[] schemas = this.type.getSchemas().split(";");
 		for (String schma : schemas) {
 			if (schma.trim().equals("")) {
 				continue;
 			} else if (!schma.endsWith("test") && !schma.startsWith("test")) {
 				throw new RuntimeException("only local db or test db will be allowed to connect,url:"
-						+ this.databaseUrl + ", schemas:" + this.schemaNames);
+						+ this.type.getConnUrl() + ", schemas:" + this.type.getSchemas());
 			}
 		}
 	}
@@ -99,12 +78,12 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 	 * @param dataSource
 	 */
 	protected void initFactualDataSource(BasicDataSource dataSource) {
-		log.info("Creating data source. Driver: " + driverClassName + ", url: " + databaseUrl + ", user: " + userName
-				+ ", password: <not shown>");
-		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUsername(userName);
-		dataSource.setPassword(password);
-		dataSource.setUrl(databaseUrl);
+		log.info("Creating data source. Driver: " + type.getDriveClass() + ", url: " + type.getConnUrl() + ", user: "
+				+ type.getUserName() + ", password: <not shown>");
+		dataSource.setDriverClassName(type.getDriveClass());
+		dataSource.setUsername(type.getUserName());
+		dataSource.setPassword(type.getUserPass());
+		dataSource.setUrl(type.getConnUrl());
 	}
 
 	/**
@@ -113,13 +92,13 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 	 * @param dataSource
 	 */
 	protected void initRecordProxyDataSource(BasicDataSource dataSource) {
-		log.info("Creating data source. Driver: " + driverClassName + ", url: " + databaseUrl + ", user: " + userName
-				+ ", password: <not shown>");
+		log.info("Creating data source. Driver: " + type.getDriveClass() + ", url: " + type.getConnUrl() + ", user: "
+				+ type.getUserName() + ", password: <not shown>");
 
 		dataSource.setDriverClassName("nl.griffelservices.proxy.jdbc.oracle.StubTracerDriver");
-		dataSource.setUsername(userName);
-		dataSource.setPassword(password);
-		String url = String.format("jdbc:stubtracer:%s:%s:%s", "output", this.driverClassName, this.databaseUrl);
+		dataSource.setUsername(type.getUserName());
+		dataSource.setPassword(type.getUserPass());
+		String url = String.format("jdbc:stubtracer:%s:%s:%s", "output", type.getDriveClass(), type.getConnUrl());
 		dataSource.setUrl(url);
 	}
 
@@ -129,12 +108,12 @@ public class JTesterDataSourceFactory implements DataSourceFactory {
 	 * @param dataSource
 	 */
 	protected void initStubProxyDataSource(BasicDataSource dataSource) {
-		log.info("Creating data source. Driver: " + driverClassName + ", url: " + databaseUrl + ", user: " + userName
-				+ ", password: <not shown>");
+		log.info("Creating data source. Driver: " + type.getDriveClass() + ", url: " + type.getConnUrl() + ", user: "
+				+ type.getUserName() + ", password: <not shown>");
 
 		dataSource.setDriverClassName("org.jtester.jdbcproxy.driver.FileStubTracerDriver");
-		dataSource.setUsername(userName);
-		dataSource.setPassword(password);
+		dataSource.setUsername(type.getUserName());
+		dataSource.setPassword(type.getUserPass());
 		String url = "jdbc:stub:output/mergerfile.xml";// TODO
 		dataSource.setUrl(url);
 	}

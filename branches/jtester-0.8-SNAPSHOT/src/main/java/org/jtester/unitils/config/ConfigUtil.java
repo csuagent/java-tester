@@ -2,7 +2,7 @@ package org.jtester.unitils.config;
 
 import java.util.Properties;
 
-import org.jtester.unitils.database.DataSourceType;
+import org.jtester.unitils.database.DatabaseType;
 import org.jtester.utility.StringUtil;
 import org.unitils.core.Unitils;
 
@@ -81,14 +81,14 @@ public class ConfigUtil {
 		}
 	}
 
-	public static String dataSourceType() {
+	public static String databaseType() {
 		String type = System.getProperty(database_type);// from vm
 		if (!StringUtil.isBlankOrNull(type)) {
 			return type;
 		}
 		type = unitilscfg.getProperty(database_type);// from property
 		if (type == null) {
-			type = "nonmem";
+			type = "unsupport";
 		}
 		return type;
 	}
@@ -103,12 +103,15 @@ public class ConfigUtil {
 		unitilscfg.setProperty("dbMaintainer.dbVersionSource.autoCreateVersionTable", "false");
 	}
 
-	public static void setDbUnitConfig(DataSourceType type) {
+	public static void setMemoryDbConfig(DatabaseType type) {
 		unitilscfg.setProperty("database.driverClassName", type.getDriveClass());
 		unitilscfg.setProperty("database.url", type.getConnUrl());
 		unitilscfg.setProperty("database.userName", type.getUserName());
 		unitilscfg.setProperty("database.password", type.getUserPass());
-		unitilscfg.setProperty("database.schemaNames", type.getSchema());
+		unitilscfg.setProperty("database.schemaNames", type.getSchemas());
+	}
+
+	public static void setDatabaseDialect(DatabaseType type) {
 		unitilscfg.setProperty("database.dialect", type.getDbUnitDialect());
 	}
 }
