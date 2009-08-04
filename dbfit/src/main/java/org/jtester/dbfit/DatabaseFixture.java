@@ -76,7 +76,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public void setParameter(String name, String value) {
-		dbfit.fixture.SetParameter.setParameter(name, value);
+		org.jtester.dbfit.fixture.SetParameterFixture.setParameter(name, value);
 	}
 
 	public void clearParameters() {
@@ -141,19 +141,19 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture inspectProcedure(String procName) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_PROCEDURE, procName);
+		return new org.jtester.dbfit.fixture.InspectFixture(environment, org.jtester.dbfit.fixture.InspectFixture.MODE_PROCEDURE, procName);
 	}
 
 	public Fixture inspectTable(String tableName) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_TABLE, tableName);
+		return new org.jtester.dbfit.fixture.InspectFixture(environment, org.jtester.dbfit.fixture.InspectFixture.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectView(String tableName) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_TABLE, tableName);
+		return new org.jtester.dbfit.fixture.InspectFixture(environment, org.jtester.dbfit.fixture.InspectFixture.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectQuery(String query) {
-		return new dbfit.fixture.Inspect(environment, dbfit.fixture.Inspect.MODE_QUERY, query);
+		return new org.jtester.dbfit.fixture.InspectFixture(environment, org.jtester.dbfit.fixture.InspectFixture.MODE_QUERY, query);
 	}
 
 	public Fixture storeQuery(String query, String symbolName) {
