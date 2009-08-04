@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
-	<version>0.7.2</version>
+	<version>0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
