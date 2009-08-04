@@ -115,7 +115,7 @@ public class DatabaseFixture extends SequenceFixture {
 
 	public Fixture testData(String type) {
 		log.info(String.format("Calling testData method with type '%s'", type));
-		return new dbfit.fixture.TestData(environment, type);
+		return new org.jtester.dbfit.fixture.TestDataFixture(environment, type);
 	}
 
 	public void rollback() throws SQLException {

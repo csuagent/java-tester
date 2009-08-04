@@ -1,4 +1,4 @@
-package dbfit.fixture;
+package org.jtester.dbfit.fixture;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -26,11 +26,8 @@ import fit.ColumnFixture;
 /**
  * Fixture for integrating FitNesse with dbUnit.
  * 
- * @author Bj�rn Beskow, Callista Enterprise AB
- * @author P�l Brattberg, Acando AB
- * @since 1.1.2
  */
-public class TestData extends ColumnFixture {
+public class TestDataFixture extends ColumnFixture {
 	/**
 	 * Filter table names from {@link IDataSet}.
 	 */
@@ -76,7 +73,7 @@ public class TestData extends ColumnFixture {
 		}
 	}
 
-	private static Log log = LogFactory.getLog(TestData.class);
+	private static Log log = LogFactory.getLog(TestDataFixture.class);
 	private DBEnvironment dbEnvironment;
 	private String fileType = "xls";
 	public String operation;
@@ -85,12 +82,12 @@ public class TestData extends ColumnFixture {
 	public String table = "";
 	public String tables = "";
 
-	public TestData() {
+	public TestDataFixture() {
 		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
 		log.info(String.format("Using default file type: %s", fileType));
 	}
 
-	public TestData(DBEnvironment environment, String fileType) {
+	public TestDataFixture(DBEnvironment environment, String fileType) {
 		this.dbEnvironment = environment;
 		this.fileType = fileType;
 	}
