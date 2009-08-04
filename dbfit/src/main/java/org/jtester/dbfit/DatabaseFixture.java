@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.dbfit.fixture.CleanFixture;
+import org.jtester.dbfit.fixture.InsertFixture;
 import org.jtester.dbfit.fixture.UpdateFixture;
 
 import dbfit.environment.DBEnvironment;
@@ -63,12 +64,6 @@ public class DatabaseFixture extends SequenceFixture {
 		environment.getConnection().setAutoCommit(false);
 	}
 
-	// public void connectUsingFile(String filePath) throws SQLException,
-	// IOException, FileNotFoundException {
-	// environment.connectUsingFile(filePath);
-	// environment.getConnection().setAutoCommit(false);
-	// }
-
 	public void close() throws SQLException {
 		environment.rollback();
 		environment.closeConnection();
@@ -107,7 +102,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public Fixture insert(String tableName) {
-		return new dbfit.fixture.Insert(environment, tableName);
+		return new InsertFixture(environment, tableName);
 	}
 
 	public Fixture update(String tableName) {
