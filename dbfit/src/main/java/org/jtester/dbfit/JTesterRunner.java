@@ -1,10 +1,8 @@
 package org.jtester.dbfit;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import com.neuri.trinidad.FolderTestResultRepository;
 import com.neuri.trinidad.InMemoryTestImpl;
@@ -17,63 +15,63 @@ import com.neuri.trinidad.fitnesserunner.FitLibraryTestEngine;
 import fit.Counts;
 
 public class JTesterRunner {
-	private TestEngine testRunner = null;
-	private TestResultRepository resultRepository;
+	private final TestEngine testRunner;
+	private final TestResultRepository resultRepository;
+	private final String outputPath;
+	private String rootPath = null;
 
 	public JTesterRunner(String outputPath) throws IOException {
-		this(new FolderTestResultRepository(outputPath));
-	}
-
-	public JTesterRunner(TestResultRepository resultRepository) throws IOException {
 		this.testRunner = new FitLibraryTestEngine();
-		this.resultRepository = resultRepository;
-		prepareResultRepository();
+		this.resultRepository = new FolderTestResultRepository(outputPath);
+		this.outputPath = outputPath;
+		this.prepareFiles();
 	}
 
-	public Counts runTest(String name, String url) throws Exception {
+	public void runTest(final String name, final String url) throws Exception {
 		InputStream is = ClassLoader.getSystemResourceAsStream(url);
-		String wiki = convertStreamToString(is);
-		JTesterPage html = new JTesterPage(wiki);
-		Test test = new InMemoryTestImpl(name, html.getHtml());
+		String wiki = ResourceUtil.convertStreamToString(is);
+		JTesterPage page = new JTesterPage(wiki);
+		String html = this.addCssFile(page.getHtml());
+		Test test = new InMemoryTestImpl(name, html);
 		TestResult tr = testRunner.runTest(test);
 		resultRepository.recordTestResult(tr);
-		return tr.getCounts();
+		this.isSuccess(tr, name, url);
 	}
 
-	public void prepareResultRepository() throws IOException {
-		File filesFolder = new File(new File(new File("."), "FitNesseRoot"), "files");
-		File cssDir = new File(filesFolder, "css");
-		resultRepository.addFile(new File(cssDir, "fitnesse_base.css"), "fitnesse.css");
-		File javascriptDir = new File(filesFolder, "javascript");
-		resultRepository.addFile(new File(javascriptDir, "fitnesse.js"), "fitnesse.js");
-		File imagesDir = new File(filesFolder, "images");
-		resultRepository.addFile(new File(imagesDir, "collapsableOpen.gif"), "images/collapsableOpen.gif");
-		resultRepository.addFile(new File(imagesDir, "collapsableClosed.gif"), "images/collapsableClosed.gif");
-	}
+	private final static String ERR_MESSAGE = "Run Wiki Page[%s], url[%s], Result is right=%d; wrong=%d;exceptions=%d;";
 
-	/*
-	 * To convert the InputStream to String we use the BufferedReader.readLine()
-	 * method. We iterate until the BufferedReader return null which means
-	 * there's no more data to read. Each line will appended to a StringBuilder
-	 * and returned as String.
-	 */
-	public static String convertStreamToString(InputStream is) {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-		StringBuilder buffer = new StringBuilder();
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				buffer.append(line + "\n");
-			}
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
+	public void isSuccess(TestResult tr, String name, String url) {
+		Counts count = tr.getCounts();
+		int right = count.right;
+		int wrong = count.wrong;
+		int exception = count.exceptions;
+		if (wrong + exception != 0) {
+			throw new RuntimeException(String.format(ERR_MESSAGE, name, url, right, wrong, exception));
 		}
+	}
+
+	private final static String CSS_FILE = "<link rel='stylesheet' media='all' type='text/css' href='file:///%s/fitnesse.css' />";
+
+	private String addCssFile(String html) {
+		StringBuffer buffer = new StringBuffer("<html>");
+		buffer.append("\n");
+		buffer.append(String.format(CSS_FILE, this.rootPath));
+		buffer.append("\n");
+		buffer.append(html);
+		buffer.append("\n");
+		buffer.append("</html>");
 		return buffer.toString();
+	}
+
+	private void prepareFiles() throws IOException {
+		File folder = new File(outputPath + File.separatorChar + "files");
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+		this.rootPath = folder.getAbsolutePath();
+		File css = new File(outputPath + File.separatorChar + "files/fitnesse.css");
+		if (!css.exists()) {
+			ResourceUtil.copyFile("files/css/fitnesse_base.css", css);
+		}
 	}
 }
