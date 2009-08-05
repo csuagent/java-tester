@@ -1,12 +1,10 @@
 package org.jtester.dbfit;
 
 import org.jtester.dbfit.environment.DBEnvironment;
-import org.jtester.dbfit.environment.DerbyEnvironment;
 import org.jtester.dbfit.environment.MySqlEnvironment;
 import org.jtester.dbfit.environment.OracleEnvironment;
 import org.jtester.dbfit.environment.SqlServerEnvironment;
 import org.jtester.unitils.database.DatabaseType;
-
 
 public class DbFactory {
 	private static DbFactory instance = null;
@@ -19,7 +17,16 @@ public class DbFactory {
 	}
 
 	public DBEnvironment factory() {
-		return mysql();
+		switch (databaseType) {
+		case MYSQL:
+			return new MySqlEnvironment();
+		case ORACLE:
+			return new OracleEnvironment();
+		case SqlServer:
+			return new SqlServerEnvironment();
+		default:
+			throw new RuntimeException("unsupport database type," + databaseType.getDriveClass());
+		}
 	}
 
 	private DatabaseType databaseType = null;
@@ -44,25 +51,12 @@ public class DbFactory {
 		return databaseType.getDriveClass();
 	}
 
-	protected MySqlEnvironment mysql() {
-		return new MySqlEnvironment();
-	}
-
-	protected DerbyEnvironment derby() {
-		return new DerbyEnvironment();
-	}
-
-	protected OracleEnvironment oracle() {
-		return new OracleEnvironment();
-	}
-
-	protected SqlServerEnvironment sqlServer() {
-		return new SqlServerEnvironment();
-	}
 	/**
-	 * "org.apache.derby.jdbc.EmbeddedDriver"
-	 * "org.apache.derby.jdbc.ClientDriver" "com.ibm.db2.jcc.DB2Driver"
-	 * "oracle.jdbc.OracleDriver" "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	 * "org.apache.derby.jdbc.EmbeddedDriver" <br>
+	 * "org.apache.derby.jdbc.ClientDriver" <br>
+	 * "com.ibm.db2.jcc.DB2Driver"<br>
+	 * "oracle.jdbc.OracleDriver" <br>
+	 * "com.microsoft.sqlserver.jdbc.SQLServerDriver"<br>
 	 * "com.mysql.jdbc.Driver"
 	 */
 }
