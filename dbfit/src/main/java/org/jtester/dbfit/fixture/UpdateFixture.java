@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.environment.DBEnvironment;
+
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.NameNormaliser;

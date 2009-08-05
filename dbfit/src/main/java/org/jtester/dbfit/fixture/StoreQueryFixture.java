@@ -4,7 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.environment.DBEnvironment;
+
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DataTable;
 import fit.Fixture;

@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 import org.jtester.dbfit.DbFactory;
 
-import dbfit.environment.DBEnvironment;
 import dbfit.util.BigDecimalParseDelegate;
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.Options;
@@ -182,7 +181,7 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 	/**
 	 * by default, this is set to false.
 	 * 
-	 * @see dbfit.environment.DBEnvironment#supportsOuputOnInsert()
+	 * @see org.jtester.dbfit.environment.DBEnvironment#supportsOuputOnInsert()
 	 */
 	public boolean supportsOuputOnInsert() {
 		return false;

@@ -2,12 +2,12 @@ package org.jtester.dbfit.fixture;
 
 import java.sql.SQLException;
 
+import org.jtester.dbfit.environment.DBEnvironment;
 import org.jtester.dbfit.environment.MySqlEnvironment;
 import org.jtester.dbfit.environment.OracleEnvironment;
 import org.jtester.dbfit.environment.SqlServerEnvironment;
 
 import dbfit.environment.DB2Environment;
-import dbfit.environment.DBEnvironment;
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.environment.DerbyEnvironment;
 import fit.Parse;

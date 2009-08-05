@@ -17,8 +17,8 @@ import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
+import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DBEnvironment;
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.FileHelper;
 import fit.ColumnFixture;

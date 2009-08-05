@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

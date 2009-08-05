@@ -2,7 +2,8 @@ package org.jtester.dbfit.fixture;
 
 import java.sql.PreparedStatement;
 
-import dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.environment.DBEnvironment;
+
 import dbfit.environment.DbEnvironmentFactory;
 import fit.Fixture;
 import fit.Parse;

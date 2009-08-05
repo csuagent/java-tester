@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jtester.dbfit.environment.DBEnvironment;
 import org.jtester.dbfit.fixture.CleanFixture;
 import org.jtester.dbfit.fixture.CompareStoredQueriesFixture;
 import org.jtester.dbfit.fixture.ExecuteFixture;
@@ -14,7 +15,6 @@ import org.jtester.dbfit.fixture.StoreQueryFixture;
 import org.jtester.dbfit.fixture.TestDataFixture;
 import org.jtester.dbfit.fixture.UpdateFixture;
 
-import dbfit.environment.DBEnvironment;
 import fit.Fixture;
 import fitlibrary.SequenceFixture;
 import fitlibrary.table.Table;

@@ -3,7 +3,8 @@ package org.jtester.dbfit.fixture;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
-import dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.environment.DBEnvironment;
+
 import dbfit.environment.DbEnvironmentFactory;
 import fit.ColumnFixture;
 import fit.Parse;

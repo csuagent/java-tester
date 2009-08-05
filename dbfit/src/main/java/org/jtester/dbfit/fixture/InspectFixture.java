@@ -6,7 +6,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Map;
 
-import dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.environment.DBEnvironment;
+
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DbParameterAccessor;
 import fit.Fixture;
