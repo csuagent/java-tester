@@ -23,6 +23,9 @@
 		<!--  <h2db.version>1.1.104</h2db.version>-->
 		<h2db.version>1.1.107</h2db.version>
 		<mysql.connection.version>5.1.6</mysql.connection.version>
+		<trinidad.version>1.0.8</trinidad.version>
+		<fitnesse.version>20090513</fitnesse.version>
+		<fitlibrary.version>20080812</fitlibrary.version>
 	</properties>
 	<build>
 		<finalName>${artifactId}-${version}</finalName>
@@ -224,6 +227,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>jline</groupId>
 			<artifactId>jline</artifactId>
 			<version>0.9.94</version>
@@ -253,11 +262,22 @@
 			<groupId>org.apache.ibatis</groupId>
 			<artifactId>ibatis-sqlmap</artifactId>
 			<version>2.3.4.726</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jtester</groupId>
-			<artifactId>jdbcproxy</artifactId>
-			<version>1.1-IBM</version>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitnesse</artifactId>
+			<version>${fitnesse.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitlibrary</artifactId>
+			<version>${fitlibrary.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.neuri.tdd</groupId>
+			<artifactId>fitnesserunner</artifactId>
+			<version>${trinidad.version}</version>
 		</dependency>
 	</dependencies>
 	<reporting>

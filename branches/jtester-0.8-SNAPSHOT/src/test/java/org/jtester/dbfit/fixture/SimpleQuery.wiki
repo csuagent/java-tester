@@ -1,0 +1,19 @@
+|!-org.jtester.dbfit.DatabaseFixture-!|
+|connect|
+
+|Query| select 'test' as x|
+|x|
+|test|
+
+
+|Query|select * from tdd_user|
+|first_name|
+|null|
+|null|
+|null|
+|null|
+
+|Insert|tdd_user|
+|first_name|last_name|post_code|sarary|
+|darui.wu||wu|310012|1545.0|
+
