@@ -60,32 +60,12 @@ public class JTesterPage implements Serializable {
 		return properties.has(attribute);
 	}
 
-	public void setProperties(WikiPageProperties properties) {
-		this.properties = properties;
-	}
-
-	public String getContent() throws Exception {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public String getHtml() throws Exception {
-		return processHTMLWidgets(getContent(), null);
-	}
-
-	public String getHtml(WikiPage context) throws Exception {
-		return processHTMLWidgets(getContent(), context);
-	}
-
-	private String processHTMLWidgets(String content, WikiPage context) throws Exception {
-		ParentWidget root = new WidgetRoot(content, context, WidgetBuilder.htmlWidgetBuilder);
+		ParentWidget root = new WidgetRoot(content, (WikiPage) null, WidgetBuilder.htmlWidgetBuilder);
 		return root.render();
 	}
 
 	public boolean isEmpty() throws Exception {
-		return getContent() == null || getContent().length() == 0;
+		return content == null || content.length() == 0;
 	}
 }

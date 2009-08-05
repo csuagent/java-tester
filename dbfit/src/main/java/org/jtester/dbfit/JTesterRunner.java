@@ -30,10 +30,11 @@ public class JTesterRunner {
 		prepareResultRepository();
 	}
 
-	public Counts runTest(String name, String url) throws IOException {
+	public Counts runTest(String name, String url) throws Exception {
 		InputStream is = ClassLoader.getSystemResourceAsStream(url);
-		String html = convertStreamToString(is);
-		Test test = new InMemoryTestImpl(name, html);
+		String wiki = convertStreamToString(is);
+		JTesterPage html = new JTesterPage(wiki);
+		Test test = new InMemoryTestImpl(name, html.getHtml());
 		TestResult tr = testRunner.runTest(test);
 		resultRepository.recordTestResult(tr);
 		return tr.getCounts();
