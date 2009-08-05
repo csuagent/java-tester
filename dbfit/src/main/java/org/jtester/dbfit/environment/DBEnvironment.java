@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 
-import dbfit.util.DbParameterAccessor;
-import dbfit.util.NameNormaliser;
+import org.jtester.dbfit.util.DbParameterAccessor;
+import org.jtester.dbfit.util.NameNormaliser;
+
 
 public interface DBEnvironment {
 	/**

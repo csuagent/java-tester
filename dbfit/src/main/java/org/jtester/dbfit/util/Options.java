@@ -1,4 +1,4 @@
-package dbfit.util;
+package org.jtester.dbfit.util;
 
 public class Options {
 	public static void reset() {

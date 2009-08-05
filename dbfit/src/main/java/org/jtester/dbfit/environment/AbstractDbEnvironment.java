@@ -11,12 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jtester.dbfit.DbFactory;
+import org.jtester.dbfit.util.BigDecimalParseDelegate;
+import org.jtester.dbfit.util.DbParameterAccessor;
+import org.jtester.dbfit.util.Options;
+import org.jtester.dbfit.util.SqlDateParseDelegate;
+import org.jtester.dbfit.util.SqlTimestampParseDelegate;
 
-import dbfit.util.BigDecimalParseDelegate;
-import dbfit.util.DbParameterAccessor;
-import dbfit.util.Options;
-import dbfit.util.SqlDateParseDelegate;
-import dbfit.util.SqlTimestampParseDelegate;
 import fit.TypeAdapter;
 
 public abstract class AbstractDbEnvironment implements DBEnvironment {
@@ -82,7 +82,7 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 			PreparedStatement cs = currentConnection.prepareStatement(parseCommandText(commandText));
 			String paramNames[] = extractParamNames(commandText);
 			for (int i = 0; i < paramNames.length; i++) {
-				Object value = dbfit.util.SymbolUtil.getSymbol(paramNames[i]);
+				Object value = org.jtester.dbfit.util.SymbolUtil.getSymbol(paramNames[i]);
 				cs.setObject(i + 1, value);
 			}
 			return cs;

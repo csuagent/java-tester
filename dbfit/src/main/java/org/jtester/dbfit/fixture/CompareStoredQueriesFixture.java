@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.jtester.dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.util.DataRow;
+import org.jtester.dbfit.util.DataTable;
+import org.jtester.dbfit.util.NameNormaliser;
+import org.jtester.dbfit.util.NoMatchingRowFoundException;
 
-import dbfit.util.DataRow;
-import dbfit.util.DataTable;
-import dbfit.util.NameNormaliser;
-import dbfit.util.NoMatchingRowFoundException;
 import fit.Fixture;
 import fit.Parse;
 
@@ -32,7 +32,7 @@ public class CompareStoredQueriesFixture extends Fixture {
 	}
 
 	private DataTable getDataTable(String symbolName) {
-		Object o = dbfit.util.SymbolUtil.getSymbol(symbolName);
+		Object o = org.jtester.dbfit.util.SymbolUtil.getSymbol(symbolName);
 		if (o == null)
 			throw new UnsupportedOperationException("Cannot load a stored query from " + symbolName);
 		if (o instanceof DataTable)

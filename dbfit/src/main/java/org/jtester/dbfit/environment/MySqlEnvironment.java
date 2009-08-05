@@ -13,8 +13,9 @@ import java.util.regex.Pattern;
 
 import javax.sql.RowSet;
 
-import dbfit.util.DbParameterAccessor;
-import dbfit.util.NameNormaliser;
+import org.jtester.dbfit.util.DbParameterAccessor;
+import org.jtester.dbfit.util.NameNormaliser;
+
 
 public class MySqlEnvironment extends AbstractDbEnvironment {
 	public boolean supportsOuputOnInsert() {

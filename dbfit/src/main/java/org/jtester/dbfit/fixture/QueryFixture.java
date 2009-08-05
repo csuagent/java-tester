@@ -8,9 +8,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.util.DataColumn;
+import org.jtester.dbfit.util.DataTable;
 
-import dbfit.util.DataColumn;
-import dbfit.util.DataTable;
 
 public class QueryFixture extends RowSetFixture {
 	private DBEnvironment dbEnvironment;
@@ -44,7 +44,7 @@ public class QueryFixture extends RowSetFixture {
 	}
 
 	private DataTable getFromSymbol() throws SQLException {
-		Object o = dbfit.util.SymbolUtil.getSymbol(query.substring(2).trim());
+		Object o = org.jtester.dbfit.util.SymbolUtil.getSymbol(query.substring(2).trim());
 		if (o instanceof ResultSet) {
 			return new DataTable((ResultSet) o);
 		} else if (o instanceof DataTable) {

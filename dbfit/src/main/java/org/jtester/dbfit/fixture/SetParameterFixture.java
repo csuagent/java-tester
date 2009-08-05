@@ -11,14 +11,14 @@ import fit.Parse;
 public class SetParameterFixture extends Fixture {
 	public static void setParameter(String name, String value) {
 		if (value == null || "null".equals(value.toString().toLowerCase())) {
-			dbfit.util.SymbolUtil.setSymbol(name, null);
+			org.jtester.dbfit.util.SymbolUtil.setSymbol(name, null);
 		} else if (value != null && value.toString().startsWith("<<")) {
 			String varname = value.toString().substring(2);
 			if (!name.equals(varname)) {
-				dbfit.util.SymbolUtil.setSymbol(name, dbfit.util.SymbolUtil.getSymbol(varname));
+				org.jtester.dbfit.util.SymbolUtil.setSymbol(name, org.jtester.dbfit.util.SymbolUtil.getSymbol(varname));
 			}
 		} else
-			dbfit.util.SymbolUtil.setSymbol(name, value);
+			org.jtester.dbfit.util.SymbolUtil.setSymbol(name, value);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package dbfit.util;
+package org.jtester.dbfit.util;
 
 import fit.Binding;
 import fit.Fixture;
@@ -8,10 +8,10 @@ public class SymbolAccessSetBinding extends Binding.SetBinding {
 
 	@Override
 	public void doCell(Fixture fixture, Parse cell) throws Throwable {
-		String text=cell.text();
-		if (text.startsWith("<<")){
-			Object value=dbfit.util.SymbolUtil.getSymbol(text.substring(2).trim());
-			cell.addToBody(Fixture.gray(" = "+String.valueOf(value)));
+		String text = cell.text();
+		if (text.startsWith("<<")) {
+			Object value = org.jtester.dbfit.util.SymbolUtil.getSymbol(text.substring(2).trim());
+			cell.addToBody(Fixture.gray(" = " + String.valueOf(value)));
 			adapter.set(value);
 			return;
 		}

@@ -19,8 +19,8 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.util.FileHelper;
 
-import dbfit.util.FileHelper;
 import fit.ColumnFixture;
 
 /**

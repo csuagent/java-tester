@@ -31,7 +31,7 @@ public class DatabaseFixture extends SequenceFixture {
 
 	@Override
 	public void setUp(Table firstTable, TestResults testResults) {
-		dbfit.util.Options.reset();
+		org.jtester.dbfit.util.Options.reset();
 		super.setUp(firstTable, testResults);
 	}
 
@@ -81,7 +81,7 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public void clearParameters() {
-		dbfit.util.SymbolUtil.clearSymbols();
+		org.jtester.dbfit.util.SymbolUtil.clearSymbols();
 	}
 
 	public Fixture query(String query) {
@@ -170,6 +170,6 @@ public class DatabaseFixture extends SequenceFixture {
 	}
 
 	public void setOption(String option, String value) {
-		dbfit.util.Options.setOption(option, value);
+		org.jtester.dbfit.util.Options.setOption(option, value);
 	}
 }

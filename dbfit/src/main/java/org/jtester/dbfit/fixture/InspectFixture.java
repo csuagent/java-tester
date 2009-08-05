@@ -8,8 +8,8 @@ import java.util.Map;
 
 import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
+import org.jtester.dbfit.util.DbParameterAccessor;
 
-import dbfit.util.DbParameterAccessor;
 import fit.Fixture;
 import fit.Parse;
 

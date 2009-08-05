@@ -1,11 +1,13 @@
-package dbfit.util;
+package org.jtester.dbfit.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 
-/** this horrible class is a workaround for date format incompatibilities in javax.sql package
- * it will first try to parse the date in the standard JDBC timestamp format. If that fails, then 
- * it will try to parse it in the standard JDBC date format. If that also fails, it will try the current locale
+/**
+ * this horrible class is a workaround for date format incompatibilities in
+ * javax.sql package it will first try to parse the date in the standard JDBC
+ * timestamp format. If that fails, then it will try to parse it in the standard
+ * JDBC date format. If that also fails, it will try the current locale
  * date/time format, and the current locale date format.
  */
 public class SqlTimestampParseDelegate {
@@ -17,8 +19,7 @@ public class SqlTimestampParseDelegate {
 			return java.sql.Timestamp.valueOf(s);
 		} catch (IllegalArgumentException iex) {
 			try {
-				return new java.sql.Timestamp(java.sql.Date.valueOf(s)
-						.getTime());
+				return new java.sql.Timestamp(java.sql.Date.valueOf(s).getTime());
 			} catch (IllegalArgumentException iex2) {
 				try {
 					java.util.Date ud = dtf.parse(s);

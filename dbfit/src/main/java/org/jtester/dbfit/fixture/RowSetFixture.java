@@ -5,6 +5,14 @@ import fit.*;
 import java.sql.*;
 import java.util.*;
 
+import org.jtester.dbfit.util.DataColumn;
+import org.jtester.dbfit.util.DataRow;
+import org.jtester.dbfit.util.DataTable;
+import org.jtester.dbfit.util.DbTypeAdapter;
+import org.jtester.dbfit.util.NameNormaliser;
+import org.jtester.dbfit.util.NoMatchingRowFoundException;
+import org.jtester.dbfit.util.SymbolAccessQueryBinding;
+
 import dbfit.util.*;
 
 public abstract class RowSetFixture extends ColumnFixture {

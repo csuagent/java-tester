@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import dbfit.util.DbParameterAccessor;
-import dbfit.util.NameNormaliser;
+import org.jtester.dbfit.util.DbParameterAccessor;
+import org.jtester.dbfit.util.NameNormaliser;
+
 
 public class SqlServerEnvironment extends AbstractDbEnvironment {
 

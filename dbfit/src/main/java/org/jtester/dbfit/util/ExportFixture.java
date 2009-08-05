@@ -1,4 +1,4 @@
-package dbfit.util;
+package org.jtester.dbfit.util;
 
 import fit.Fixture;
 import fit.FixtureLoader;

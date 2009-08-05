@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.jtester.dbfit.util.DbParameterAccessor;
+import org.jtester.dbfit.util.NameNormaliser;
 
-import dbfit.util.DbParameterAccessor;
-import dbfit.util.NameNormaliser;
+
 
 /**
  * Encapsulates support for the Derby database (also known as JavaDB). Operates

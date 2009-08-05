@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.jtester.dbfit.util.DbParameterAccessor;
+import org.jtester.dbfit.util.NameNormaliser;
+import org.jtester.dbfit.util.SqlTimestampParseDelegate;
+import org.jtester.dbfit.util.TypeNormaliser;
+import org.jtester.dbfit.util.TypeNormaliserFactory;
+
 import oracle.jdbc.driver.OracleTypes;
 import oracle.jdbc.rowset.OracleCachedRowSet;
-import dbfit.util.DbParameterAccessor;
-import dbfit.util.NameNormaliser;
-import dbfit.util.SqlTimestampParseDelegate;
-import dbfit.util.TypeNormaliser;
-import dbfit.util.TypeNormaliserFactory;
 
 public class OracleEnvironment extends AbstractDbEnvironment {
 	public static class OracleTimestampParser {
