@@ -2,8 +2,11 @@ package org.jtester.dbfit;
 
 import java.io.IOException;
 
-import org.jtester.junit4.JTester;
-import org.junit.Before;
+import org.jtester.testng.JTester;
+import org.testng.annotations.BeforeClass;
+
+//import org.jtester.junit4.JTester;
+//import org.junit.Before;
 
 import com.neuri.trinidad.JUnitHelper;
 import com.neuri.trinidad.TestEngine;
@@ -29,7 +32,7 @@ public class DbFixtureTest extends JTester {
 		}
 	}
 
-	@Before
+	@BeforeClass
 	public void initHelper() throws Exception {
 		helper = new JUnitHelper(repository, testEngine, outputDir);
 	}

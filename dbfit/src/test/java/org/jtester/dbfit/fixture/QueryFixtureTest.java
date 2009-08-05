@@ -3,7 +3,7 @@ package org.jtester.dbfit.fixture;
 import org.jtester.dbfit.DbFixtureTest;
 import org.jtester.dbfit.JTesterPage;
 import org.jtester.utility.SerializeUtil;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import com.neuri.trinidad.TestRepository;
 import com.neuri.trinidad.TestRunner;
