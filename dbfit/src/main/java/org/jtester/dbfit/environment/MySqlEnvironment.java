@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -21,14 +21,6 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 		return false;
 	}
 
-	protected String getConnectionString(String dataSource) {
-		return "jdbc:mysql://" + dataSource;
-	}
-
-	protected String getConnectionString(String dataSource, String database) {
-		return "jdbc:mysql://" + dataSource + "/" + database;
-	}
-
 	private static String paramNamePattern = "@([A-Za-z0-9_]+)";
 	private static Pattern paramRegex = Pattern.compile(paramNamePattern);
 
@@ -43,10 +35,8 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 		return super.parseCommandText(commandText);
 	}
 
-	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName)
-			throws SQLException {
-		String[] qualifiers = NameNormaliser.normaliseName(tableOrViewName)
-				.split("\\.");
+	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName) throws SQLException {
+		String[] qualifiers = NameNormaliser.normaliseName(tableOrViewName).split("\\.");
 		String qry = " select column_name, data_type, character_maximum_length "
 				+ "	as direction from information_schema.columns where ";
 		if (qualifiers.length == 2) {
@@ -58,12 +48,10 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 		return readIntoParams(qualifiers, qry);
 	}
 
-	private Map<String, DbParameterAccessor> readIntoParams(
-			String[] queryParameters, String query) throws SQLException {
+	private Map<String, DbParameterAccessor> readIntoParams(String[] queryParameters, String query) throws SQLException {
 		PreparedStatement dc = currentConnection.prepareStatement(query);
 		for (int i = 0; i < queryParameters.length; i++) {
-			dc.setString(i + 1, NameNormaliser
-					.normaliseName(queryParameters[i]));
+			dc.setString(i + 1, NameNormaliser.normaliseName(queryParameters[i]));
 		}
 		ResultSet rs = dc.executeQuery();
 		Map<String, DbParameterAccessor> allParams = new HashMap<String, DbParameterAccessor>();
@@ -73,9 +61,8 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 			if (paramName == null)
 				paramName = "";
 			String dataType = rs.getString(2);
-			DbParameterAccessor dbp = new DbParameterAccessor(paramName,
-					DbParameterAccessor.INPUT, getSqlType(dataType),
-					getJavaClass(dataType), position++);
+			DbParameterAccessor dbp = new DbParameterAccessor(paramName, DbParameterAccessor.INPUT,
+					getSqlType(dataType), getJavaClass(dataType), position++);
 			allParams.put(NameNormaliser.normaliseName(paramName), dbp);
 		}
 		rs.close();
@@ -84,22 +71,16 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 
 	// List interface has sequential search, so using list instead of array to
 	// map types
-	private static List<String> stringTypes = Arrays.asList(new String[] {
-			"VARCHAR", "CHAR", "TEXT" });
-	private static List<String> intTypes = Arrays.asList(new String[] {
-			"TINYINT", "SMALLINT", "MEDIUMINT", "INT", "INTEGER" });
-	private static List<String> longTypes = Arrays.asList(new String[] {
-			"BIGINT", "INTEGER UNSIGNED", "INT UNSIGNED" });
-	private static List<String> floatTypes = Arrays
-			.asList(new String[] { "FLOAT" });
-	private static List<String> doubleTypes = Arrays
-			.asList(new String[] { "DOUBLE" });
-	private static List<String> decimalTypes = Arrays.asList(new String[] {
-			"DECIMAL", "DEC" });
-	private static List<String> dateTypes = Arrays
-			.asList(new String[] { "DATE" });
-	private static List<String> timestampTypes = Arrays.asList(new String[] {
-			"TIMESTAMP", "DATETIME" });
+	private static List<String> stringTypes = Arrays.asList(new String[] { "VARCHAR", "CHAR", "TEXT" });
+	private static List<String> intTypes = Arrays.asList(new String[] { "TINYINT", "SMALLINT", "MEDIUMINT", "INT",
+			"INTEGER" });
+	private static List<String> longTypes = Arrays
+			.asList(new String[] { "BIGINT", "INTEGER UNSIGNED", "INT UNSIGNED" });
+	private static List<String> floatTypes = Arrays.asList(new String[] { "FLOAT" });
+	private static List<String> doubleTypes = Arrays.asList(new String[] { "DOUBLE" });
+	private static List<String> decimalTypes = Arrays.asList(new String[] { "DECIMAL", "DEC" });
+	private static List<String> dateTypes = Arrays.asList(new String[] { "DATE" });
+	private static List<String> timestampTypes = Arrays.asList(new String[] { "TIMESTAMP", "DATETIME" });
 	private static List<String> refCursorTypes = Arrays.asList(new String[] {});
 
 	private static String normaliseTypeName(String dataType) {
@@ -129,8 +110,7 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 			return java.sql.Types.DATE;
 		if (refCursorTypes.contains(dataType))
 			return java.sql.Types.REF;
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	public Class<?> getJavaClass(String dataType) {
@@ -153,15 +133,12 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 			return Long.class;
 		if (timestampTypes.contains(dataType))
 			return java.sql.Timestamp.class;
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
-	public Map<String, DbParameterAccessor> getAllProcedureParameters(
-			String procName) throws SQLException {
+	public Map<String, DbParameterAccessor> getAllProcedureParameters(String procName) throws SQLException {
 
-		String[] qualifiers = NameNormaliser.normaliseName(procName).split(
-				"\\.");
+		String[] qualifiers = NameNormaliser.normaliseName(procName).split("\\.");
 		String qry = " select type,param_list,returns from mysql.proc where ";
 		if (qualifiers.length == 2) {
 			qry += " lower(db)=? and lower(name)=? ";
@@ -184,8 +161,7 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 		rs.close();
 		int position = 0;
 		for (String param : paramList.split(",")) {
-			StringTokenizer s = new StringTokenizer(param.trim().toLowerCase(),
-					" ()");
+			StringTokenizer s = new StringTokenizer(param.trim().toLowerCase(), " ()");
 			String token = s.nextToken();
 			int direction = DbParameterAccessor.INPUT;
 
@@ -202,17 +178,14 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 			String paramName = token;
 			String dataType = s.nextToken();
 
-			DbParameterAccessor dbp = new DbParameterAccessor(paramName,
-					direction, getSqlType(dataType), getJavaClass(dataType),
-					position++);
+			DbParameterAccessor dbp = new DbParameterAccessor(paramName, direction, getSqlType(dataType),
+					getJavaClass(dataType), position++);
 			allParams.put(NameNormaliser.normaliseName(paramName), dbp);
 		}
 		if ("FUNCTION".equals(type)) {
-			StringTokenizer s = new StringTokenizer(returns.trim()
-					.toLowerCase(), " ()");
+			StringTokenizer s = new StringTokenizer(returns.trim().toLowerCase(), " ()");
 			String dataType = s.nextToken();
-			allParams.put("", new DbParameterAccessor("",
-					DbParameterAccessor.RETURN_VALUE, getSqlType(dataType),
+			allParams.put("", new DbParameterAccessor("", DbParameterAccessor.RETURN_VALUE, getSqlType(dataType),
 					getJavaClass(dataType), -1));
 		}
 		return allParams;

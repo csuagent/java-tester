@@ -2,13 +2,14 @@ package org.jtester.dbfit.fixture;
 
 import java.sql.SQLException;
 
+import org.jtester.dbfit.environment.MySqlEnvironment;
+import org.jtester.dbfit.environment.OracleEnvironment;
+import org.jtester.dbfit.environment.SqlServerEnvironment;
+
 import dbfit.environment.DB2Environment;
 import dbfit.environment.DBEnvironment;
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.environment.DerbyEnvironment;
-import dbfit.environment.MySqlEnvironment;
-import dbfit.environment.OracleEnvironment;
-import dbfit.environment.SqlServerEnvironment;
 import fit.Parse;
 
 public class DatabaseEnvironment extends fitlibrary.SequenceFixture {

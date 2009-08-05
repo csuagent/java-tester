@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
@@ -21,8 +21,7 @@ import dbfit.util.TypeNormaliserFactory;
 public class OracleEnvironment extends AbstractDbEnvironment {
 	public static class OracleTimestampParser {
 		public static Object parse(String s) throws Exception {
-			return new oracle.sql.TIMESTAMP(
-					(java.sql.Timestamp) SqlTimestampParseDelegate.parse(s));
+			return new oracle.sql.TIMESTAMP((java.sql.Timestamp) SqlTimestampParseDelegate.parse(s));
 		}
 	}
 
@@ -31,9 +30,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			if (o == null)
 				return null;
 			if (!(o instanceof oracle.sql.TIMESTAMP)) {
-				throw new UnsupportedOperationException(
-						"OracleTimestampNormaliser cannot work with "
-								+ o.getClass());
+				throw new UnsupportedOperationException("OracleTimestampNormaliser cannot work with " + o.getClass());
 			}
 			oracle.sql.TIMESTAMP ts = (oracle.sql.TIMESTAMP) o;
 			return ts.timestampValue();
@@ -45,8 +42,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			if (o == null)
 				return null;
 			if (!(o instanceof oracle.sql.DATE)) {
-				throw new UnsupportedOperationException(
-						"OracleDateNormaliser cannot work with " + o.getClass());
+				throw new UnsupportedOperationException("OracleDateNormaliser cannot work with " + o.getClass());
 			}
 			oracle.sql.DATE ts = (oracle.sql.DATE) o;
 			return ts.timestampValue();
@@ -59,8 +55,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			if (o == null)
 				return null;
 			if (!(o instanceof java.sql.Date)) {
-				throw new UnsupportedOperationException(
-						"SqlDateNormaliser cannot work with " + o.getClass());
+				throw new UnsupportedOperationException("SqlDateNormaliser cannot work with " + o.getClass());
 			}
 			java.sql.Date ts = (java.sql.Date) o;
 			return new java.sql.Timestamp(ts.getTime());
@@ -74,13 +69,12 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			if (o == null)
 				return null;
 			if (!(o instanceof oracle.sql.CLOB)) {
-				throw new UnsupportedOperationException(
-						"OracleClobNormaliser cannot work with " + o.getClass());
+				throw new UnsupportedOperationException("OracleClobNormaliser cannot work with " + o.getClass());
 			}
 			oracle.sql.CLOB clob = (oracle.sql.CLOB) o;
 			if (clob.length() > MAX_CLOB_LENGTH)
-				throw new UnsupportedOperationException("Clobs larger than "
-						+ MAX_CLOB_LENGTH + "bytes are not supported by DBFIT");
+				throw new UnsupportedOperationException("Clobs larger than " + MAX_CLOB_LENGTH
+						+ "bytes are not supported by DBFIT");
 			char[] buffer = new char[MAX_CLOB_LENGTH];
 			int total = clob.getChars(1, MAX_CLOB_LENGTH, buffer);
 			return String.valueOf(buffer, 0, total);
@@ -92,8 +86,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			if (o == null)
 				return null;
 			if (!(o instanceof ResultSet))
-				throw new UnsupportedOperationException(
-						"OracleRefNormaliser cannot work on " + o.getClass());
+				throw new UnsupportedOperationException("OracleRefNormaliser cannot work on " + o.getClass());
 			ResultSet rs = (ResultSet) o;
 			OracleCachedRowSet ocrs = new OracleCachedRowSet();
 			ocrs.populate(rs);
@@ -104,17 +97,12 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 	public OracleEnvironment() {
 		// TypeAdapter.registerParseDelegate(oracle.sql.TIMESTAMP.class,
 		// OracleTimestampParser.class);
-		TypeNormaliserFactory.setNormaliser(oracle.sql.TIMESTAMP.class,
-				new OracleTimestampNormaliser());
-		TypeNormaliserFactory.setNormaliser(oracle.sql.DATE.class,
-				new OracleDateNormaliser());
-		TypeNormaliserFactory.setNormaliser(oracle.sql.CLOB.class,
-				new OracleClobNormaliser());
-		TypeNormaliserFactory.setNormaliser(java.sql.Date.class,
-				new SqlDateNormaliser());
+		TypeNormaliserFactory.setNormaliser(oracle.sql.TIMESTAMP.class, new OracleTimestampNormaliser());
+		TypeNormaliserFactory.setNormaliser(oracle.sql.DATE.class, new OracleDateNormaliser());
+		TypeNormaliserFactory.setNormaliser(oracle.sql.CLOB.class, new OracleClobNormaliser());
+		TypeNormaliserFactory.setNormaliser(java.sql.Date.class, new SqlDateNormaliser());
 		try {
-			TypeNormaliserFactory.setNormaliser(Class
-					.forName("oracle.jdbc.driver.OracleResultSetImpl"),
+			TypeNormaliserFactory.setNormaliser(Class.forName("oracle.jdbc.driver.OracleResultSetImpl"),
 					new OracleRefNormaliser());
 		} catch (Exception e) {
 			throw new Error("Cannot initialise oracle rowset", e);
@@ -125,32 +113,16 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		return true;
 	}
 
-	protected String getConnectionString(String dataSource) {
-		return "jdbc:oracle:thin:@" + dataSource;
-	}
-
-	// for oracle, data source has to be host:port
-	protected String getConnectionString(String dataSource, String databaseName) {
-		if (dataSource.indexOf(":") == -1)
-			throw new UnsupportedOperationException(
-					"data source should be in host:port format - " + dataSource
-							+ " specified");
-		return "jdbc:oracle:thin:@" + dataSource + ":" + databaseName;
-	}
-
 	private static Pattern paramsNames = Pattern.compile(":([A-Za-z0-9_]+)");
 
 	public Pattern getParameterPattern() {
 		return paramsNames;
 	}
 
-	public Map<String, DbParameterAccessor> getAllProcedureParameters(
-			String procName) throws SQLException {
-		String[] qualifiers = NameNormaliser.normaliseName(procName).split(
-				"\\.");
+	public Map<String, DbParameterAccessor> getAllProcedureParameters(String procName) throws SQLException {
+		String[] qualifiers = NameNormaliser.normaliseName(procName).split("\\.");
 		String cols = " argument_name, data_type, data_length,  IN_OUT, sequence ";
-		String qry = "select " + cols
-				+ "  from all_arguments where data_level=0 and ";
+		String qry = "select " + cols + "  from all_arguments where data_level=0 and ";
 		if (qualifiers.length == 3) {
 			qry += " owner=? and package_name=? and object_name=? ";
 		} else if (qualifiers.length == 2) {
@@ -162,10 +134,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 
 		// map to public synonyms also
 		if (qualifiers.length < 3) {
-			qry += " union all "
-					+ " select "
-					+ cols
-					+ " from all_arguments, all_synonyms "
+			qry += " union all " + " select " + cols + " from all_arguments, all_synonyms "
 					+ " where data_level=0 and all_synonyms.owner='PUBLIC' and all_arguments.owner=table_owner and ";
 			if (qualifiers.length == 2) { // package
 				qry += " package_name=table_name and synonym_name=? and object_name=? ";
@@ -192,10 +161,8 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		return readIntoParams(qualifiers, qry);
 	}
 
-	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName)
-			throws SQLException {
-		String[] qualifiers = NameNormaliser.normaliseName(tableOrViewName)
-				.split("\\.");
+	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName) throws SQLException {
+		String[] qualifiers = NameNormaliser.normaliseName(tableOrViewName).split("\\.");
 		String qry = " select column_name, data_type, data_length, "
 				+ " 'IN' as direction, column_id from all_tab_columns where ";
 		if (qualifiers.length == 2) {
@@ -207,8 +174,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		return readIntoParams(qualifiers, qry);
 	}
 
-	private Map<String, DbParameterAccessor> readIntoParams(
-			String[] queryParameters, String query) throws SQLException {
+	private Map<String, DbParameterAccessor> readIntoParams(String[] queryParameters, String query) throws SQLException {
 		CallableStatement dc = currentConnection.prepareCall(query);
 		for (int i = 0; i < queryParameters.length; i++) {
 			dc.setString(i + 1, queryParameters[i].toUpperCase());
@@ -235,11 +201,8 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			// String.class.equals(javaType)
 			// ))
 			// length= 4000;
-			DbParameterAccessor dbp = new DbParameterAccessor(paramName,
-					paramDirection, getSqlType(dataType),
-					getJavaClass(dataType),
-					paramDirection == DbParameterAccessor.RETURN_VALUE ? -1
-							: position++);
+			DbParameterAccessor dbp = new DbParameterAccessor(paramName, paramDirection, getSqlType(dataType),
+					getJavaClass(dataType), paramDirection == DbParameterAccessor.RETURN_VALUE ? -1 : position++);
 			allParams.put(NameNormaliser.normaliseName(paramName), dbp);
 		}
 		return allParams;
@@ -247,16 +210,12 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 
 	// List interface has sequential search, so using list instead of array to
 	// map types
-	private static List<String> stringTypes = Arrays.asList(new String[] {
-			"VARCHAR", "VARCHAR2", "NVARCHAR2", "CHAR", "NCHAR", "CLOB",
-			"ROWID" });
-	private static List<String> decimalTypes = Arrays.asList(new String[] {
-			"BINARY_INTEGER", "NUMBER", "FLOAT" });
+	private static List<String> stringTypes = Arrays.asList(new String[] { "VARCHAR", "VARCHAR2", "NVARCHAR2", "CHAR",
+			"NCHAR", "CLOB", "ROWID" });
+	private static List<String> decimalTypes = Arrays.asList(new String[] { "BINARY_INTEGER", "NUMBER", "FLOAT" });
 	private static List<String> dateTypes = Arrays.asList(new String[] {});
-	private static List<String> timestampTypes = Arrays.asList(new String[] {
-			"DATE", "TIMESTAMP" });
-	private static List<String> refCursorTypes = Arrays
-			.asList(new String[] { "REF" });
+	private static List<String> timestampTypes = Arrays.asList(new String[] { "DATE", "TIMESTAMP" });
+	private static List<String> refCursorTypes = Arrays.asList(new String[] { "REF" });
 
 	private static String normaliseTypeName(String dataType) {
 		dataType = dataType.toUpperCase().trim();
@@ -284,8 +243,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		if (timestampTypes.contains(dataType))
 			return java.sql.Types.TIMESTAMP;
 
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	public Class<?> getJavaClass(String dataType) {
@@ -300,8 +258,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 			return ResultSet.class;
 		if (timestampTypes.contains(dataType))
 			return java.sql.Timestamp.class;
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	private static int getParameterDirection(String direction) {
@@ -312,12 +269,10 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		if ("IN/OUT".equals(direction))
 			return DbParameterAccessor.INPUT_OUTPUT;
 		// todo return val
-		throw new UnsupportedOperationException("Direction " + direction
-				+ " is not supported");
+		throw new UnsupportedOperationException("Direction " + direction + " is not supported");
 	}
 
-	public String buildInsertCommand(String tableName,
-			DbParameterAccessor[] accessors) {
+	public String buildInsertCommand(String tableName, DbParameterAccessor[] accessors) {
 		/*
 		 * oracle jdbc interface with callablestatement has problems with
 		 * returning into...
@@ -355,8 +310,7 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		sb.append(values);
 		sb.append(")");
 		if (retValues.length() > 0) {
-			sb.append(" returning ").append(retNames).append(" into ").append(
-					retValues);
+			sb.append(" returning ").append(retNames).append(" into ").append(retValues);
 		}
 		sb.append("; end;");
 		return sb.toString();

@@ -1,12 +1,12 @@
 package org.jtester.dbfit;
 
+import org.jtester.dbfit.environment.MySqlEnvironment;
+import org.jtester.dbfit.environment.OracleEnvironment;
+import org.jtester.dbfit.environment.SqlServerEnvironment;
 import org.jtester.unitils.database.DatabaseType;
 
 import dbfit.environment.DBEnvironment;
 import dbfit.environment.DerbyEnvironment;
-import dbfit.environment.MySqlEnvironment;
-import dbfit.environment.OracleEnvironment;
-import dbfit.environment.SqlServerEnvironment;
 
 public class DbFactory {
 	private static DbFactory instance = null;

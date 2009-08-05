@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -19,26 +19,6 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 		return false;
 	}
 
-	private String getInstanceString(String s) {
-
-		int idx = s.indexOf('\\');
-		if (idx > 0) {
-			throw new UnsupportedOperationException(
-					"Java SQL Server Driver does not work with instance names. "
-							+ "Create an alias for your SQL Server Instance.");
-		}
-		return s;
-	}
-
-	protected String getConnectionString(String dataSource) {
-		return "jdbc:sqlserver://" + getInstanceString(dataSource);
-	}
-
-	protected String getConnectionString(String dataSource, String database) {
-		return "jdbc:sqlserver://" + getInstanceString(dataSource)
-				+ ";database=" + database;
-	}
-
 	private static String paramNamePattern = "@([A-Za-z0-9_]+)";
 	private static Pattern paramRegex = Pattern.compile(paramNamePattern);
 
@@ -51,18 +31,14 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 		return super.parseCommandText(commandText);
 	}
 
-	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName)
-			throws SQLException {
+	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName) throws SQLException {
 		String qry = " select c.[name], TYPE_NAME(c.system_type_id) as [Type], c.max_length, "
-				+ " 0 As is_output, 0 As is_cursor_ref "
-				+ " from sys.columns c "
-				+ " where c.object_id = OBJECT_ID(?) "
-				+ " order by column_id";
+				+ " 0 As is_output, 0 As is_cursor_ref " + " from sys.columns c "
+				+ " where c.object_id = OBJECT_ID(?) " + " order by column_id";
 		return readIntoParams(tableOrViewName, qry);
 	}
 
-	private Map<String, DbParameterAccessor> readIntoParams(String objname,
-			String query) throws SQLException {
+	private Map<String, DbParameterAccessor> readIntoParams(String objname, String query) throws SQLException {
 		if (objname.contains(".")) {
 			String[] schemaAndName = objname.split("[\\.]", 2);
 			objname = "[" + schemaAndName[0] + "].[" + schemaAndName[1] + "]";
@@ -86,8 +62,7 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 				paramDirection = DbParameterAccessor.RETURN_VALUE;
 			else
 				paramDirection = getParameterDirection(direction);
-			DbParameterAccessor dbp = new DbParameterAccessor(paramName,
-					paramDirection, getSqlType(dataType),
+			DbParameterAccessor dbp = new DbParameterAccessor(paramName, paramDirection, getSqlType(dataType),
 					getJavaClass(dataType), position++);
 			allParams.put(NameNormaliser.normaliseName(paramName), dbp);
 		}
@@ -95,39 +70,23 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 		return allParams;
 	}
 
-	// List interface has sequential search, so using list instead of array to
-	// map types
-	private static List<String> stringTypes = Arrays.asList(new String[] {
-			"VARCHAR", "NVARCHAR", "CHAR", "NCHAR", "TEXT", "NTEXT",
-			"UNIQUEIDENTIFIER" });
-	private static List<String> intTypes = Arrays
-			.asList(new String[] { "INT" });
-	private static List<String> booleanTypes = Arrays
-			.asList(new String[] { "BIT" });
-	private static List<String> floatTypes = Arrays
-			.asList(new String[] { "REAL" });
-	private static List<String> doubleTypes = Arrays
-			.asList(new String[] { "FLOAT" });
-	private static List<String> longTypes = Arrays
-			.asList(new String[] { "BIGINT" });
-	private static List<String> shortTypes = Arrays.asList(new String[] {
-			"TINYINT", "SMALLINT" });
+	/**
+	 * List interface has sequential search, so using list instead of array to
+	 * map types
+	 */
+	private static List<String> stringTypes = Arrays.asList(new String[] { "VARCHAR", "NVARCHAR", "CHAR", "NCHAR",
+			"TEXT", "NTEXT", "UNIQUEIDENTIFIER" });
+	private static List<String> intTypes = Arrays.asList(new String[] { "INT" });
+	private static List<String> booleanTypes = Arrays.asList(new String[] { "BIT" });
+	private static List<String> floatTypes = Arrays.asList(new String[] { "REAL" });
+	private static List<String> doubleTypes = Arrays.asList(new String[] { "FLOAT" });
+	private static List<String> longTypes = Arrays.asList(new String[] { "BIGINT" });
+	private static List<String> shortTypes = Arrays.asList(new String[] { "TINYINT", "SMALLINT" });
 
-	private static List<String> decimalTypes = Arrays.asList(new String[] {
-			"DECIMAL", "NUMERIC", "MONEY", "SMALLMONEY" });
-	private static List<String> timestampTypes = Arrays.asList(new String[] {
-			"SMALLDATETIME", "DATETIME", "TIMESTAMP" });
-
-	// private static List<String> refCursorTypes = Arrays.asList(new String[] {
-	// });
-	// private static List<String> dateTypes = Arrays.asList(new String[] {
-	// "DATE"});
-	// private static List<String> doubleTypes=Arrays.asList(new
-	// String[]{"DOUBLE"});
-
-	// private static string[] BinaryTypes=new string[] {"BINARY","VARBINARY"};
-	// private static string[] GuidTypes = new string[] { "UNIQUEIDENTIFIER" };
-	// private static string[] VariantTypes = new string[] { "SQL_VARIANT" };
+	private static List<String> decimalTypes = Arrays
+			.asList(new String[] { "DECIMAL", "NUMERIC", "MONEY", "SMALLMONEY" });
+	private static List<String> timestampTypes = Arrays
+			.asList(new String[] { "SMALLDATETIME", "DATETIME", "TIMESTAMP" });
 
 	private static int getParameterDirection(int isOutput) {
 		if (isOutput == 1)
@@ -171,8 +130,7 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 		if (shortTypes.contains(dataType))
 			return java.sql.Types.SMALLINT;
 
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	public Class<?> getJavaClass(String dataType) {
@@ -196,17 +154,13 @@ public class SqlServerEnvironment extends AbstractDbEnvironment {
 		if (shortTypes.contains(dataType))
 			return Short.class;
 
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
-	public Map<String, DbParameterAccessor> getAllProcedureParameters(
-			String procName) throws SQLException {
-		return readIntoParams(
-				procName,
-				"select p.[name], TYPE_NAME(p.system_type_id) as [Type],  "
-						+ " p.max_length, p.is_output, p.is_cursor_ref from sys.parameters p "
-						+ " where p.object_id = OBJECT_ID(?) order by parameter_id ");
+	public Map<String, DbParameterAccessor> getAllProcedureParameters(String procName) throws SQLException {
+		return readIntoParams(procName, "select p.[name], TYPE_NAME(p.system_type_id) as [Type],  "
+				+ " p.max_length, p.is_output, p.is_cursor_ref from sys.parameters p "
+				+ " where p.object_id = OBJECT_ID(?) order by parameter_id ");
 
 	}
 }

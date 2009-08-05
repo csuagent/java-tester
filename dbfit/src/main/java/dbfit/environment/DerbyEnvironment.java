@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.jtester.dbfit.environment.AbstractDbEnvironment;
+
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.NameNormaliser;
 

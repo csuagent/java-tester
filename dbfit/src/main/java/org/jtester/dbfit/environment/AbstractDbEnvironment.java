@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 import org.jtester.dbfit.DbFactory;
 
+import dbfit.environment.DBEnvironment;
 import dbfit.util.BigDecimalParseDelegate;
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.Options;
@@ -30,12 +31,9 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 	private boolean driverRegistered = false;
 
 	public AbstractDbEnvironment() {
-		TypeAdapter.registerParseDelegate(BigDecimal.class,
-				BigDecimalParseDelegate.class);
-		TypeAdapter.registerParseDelegate(java.sql.Date.class,
-				SqlDateParseDelegate.class);
-		TypeAdapter.registerParseDelegate(java.sql.Timestamp.class,
-				SqlTimestampParseDelegate.class);
+		TypeAdapter.registerParseDelegate(BigDecimal.class, BigDecimalParseDelegate.class);
+		TypeAdapter.registerParseDelegate(java.sql.Date.class, SqlDateParseDelegate.class);
+		TypeAdapter.registerParseDelegate(java.sql.Timestamp.class, SqlTimestampParseDelegate.class);
 	}
 
 	private void registerDriver() throws SQLException {
@@ -43,8 +41,7 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 		try {
 			if (driverRegistered)
 				return;
-			DriverManager.registerDriver((Driver) Class.forName(driverName)
-					.newInstance());
+			DriverManager.registerDriver((Driver) Class.forName(driverName).newInstance());
 			driverRegistered = true;
 		} catch (Exception e) {
 			throw new Error("Cannot register SQL driver " + driverName);
@@ -57,11 +54,9 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 		currentConnection.setAutoCommit(false);
 	}
 
-	public final void connect(String url, String username, String password)
-			throws SQLException {
+	public final void connect(String url, String username, String password) throws SQLException {
 		registerDriver();
-		currentConnection = DriverManager
-				.getConnection(url, username, password);
+		currentConnection = DriverManager.getConnection(url, username, password);
 		currentConnection.setAutoCommit(false);
 	}
 
@@ -82,12 +77,10 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 	 * be directly invoked using dbCommand.setObject(parameterName, x,
 	 * targetSqlType)
 	 */
-	public final PreparedStatement createStatementWithBoundFixtureSymbols(
-			String commandText) throws SQLException {
+	public final PreparedStatement createStatementWithBoundFixtureSymbols(String commandText) throws SQLException {
 		// System.out.println("paramNames length "+paramNames.length);
 		if (Options.isBindSymbols()) {
-			PreparedStatement cs = currentConnection
-					.prepareStatement(parseCommandText(commandText));
+			PreparedStatement cs = currentConnection.prepareStatement(parseCommandText(commandText));
 			String paramNames[] = extractParamNames(commandText);
 			for (int i = 0; i < paramNames.length; i++) {
 				Object value = dbfit.util.SymbolUtil.getSymbol(paramNames[i]);
@@ -97,8 +90,7 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 		} else {
 			// no parsing, return directly what is there and execute as native
 			// code
-			PreparedStatement cs = currentConnection
-					.prepareStatement(commandText);
+			PreparedStatement cs = currentConnection.prepareStatement(commandText);
 			return cs;
 		}
 	}
@@ -151,8 +143,7 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 	 * insert, like oracle, should override this and put in parameters for OUT
 	 * accessors
 	 */
-	public String buildInsertCommand(String tableName,
-			DbParameterAccessor[] accessors) {
+	public String buildInsertCommand(String tableName, DbParameterAccessor[] accessors) {
 		/*
 		 * currently only supports retrieving the primary key column
 		 * 
@@ -198,12 +189,10 @@ public abstract class AbstractDbEnvironment implements DBEnvironment {
 	}
 
 	/** Check the validity of the supplied connection. */
-	public static void checkConnectionValid(final Connection conn)
-			throws SQLException {
+	public static void checkConnectionValid(final Connection conn) throws SQLException {
 		if (conn == null || conn.isClosed()) {
-			throw new IllegalArgumentException(
-					"No open connection to a database is available. "
-							+ "Make sure your database is running and that you have connected before performing any queries.");
+			throw new IllegalArgumentException("No open connection to a database is available. "
+					+ "Make sure your database is running and that you have connected before performing any queries.");
 		}
 	}
 
