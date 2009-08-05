@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.jtester.dbfit.environment.AbstractDbEnvironment;
 
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.NameNormaliser;
@@ -34,16 +33,13 @@ public class DerbyEnvironment extends AbstractDbEnvironment {
 		return paramRegex;
 	}
 
-	public Map<String, DbParameterAccessor> getAllColumns(
-			final String tableOrViewName) throws SQLException {
-		String qry = "SELECT COLUMNNAME, COLUMNDATATYPE "
-				+ "FROM SYS.SYSCOLUMNS WHERE REFERENCEID = "
+	public Map<String, DbParameterAccessor> getAllColumns(final String tableOrViewName) throws SQLException {
+		String qry = "SELECT COLUMNNAME, COLUMNDATATYPE " + "FROM SYS.SYSCOLUMNS WHERE REFERENCEID = "
 				+ "(SELECT TABLEID FROM SYS.SYSTABLES WHERE TABLENAME = ?)";
 		return readIntoParams(tableOrViewName, qry);
 	}
 
-	private Map<String, DbParameterAccessor> readIntoParams(
-			String tableOrViewName, String query) throws SQLException {
+	private Map<String, DbParameterAccessor> readIntoParams(String tableOrViewName, String query) throws SQLException {
 		checkConnectionValid(currentConnection);
 		PreparedStatement dc = currentConnection.prepareStatement(query);
 		dc.setString(1, tableOrViewName);
@@ -54,18 +50,15 @@ public class DerbyEnvironment extends AbstractDbEnvironment {
 		while (rs.next()) {
 			String columnName = rs.getString(1);
 			String dataType = rs.getString(2);
-			DbParameterAccessor dbp = new DbParameterAccessor(columnName,
-					DbParameterAccessor.INPUT, typeMapper
-							.getJDBCSQLTypeForDBType(dataType),
-					getJavaClass(dataType), position++);
+			DbParameterAccessor dbp = new DbParameterAccessor(columnName, DbParameterAccessor.INPUT, typeMapper
+					.getJDBCSQLTypeForDBType(dataType), getJavaClass(dataType), position++);
 			allParams.put(NameNormaliser.normaliseName(columnName), dbp);
 		}
 		rs.close();
 		return allParams;
 	}
 
-	public Map<String, DbParameterAccessor> getAllProcedureParameters(
-			String procName) throws SQLException {
+	public Map<String, DbParameterAccessor> getAllProcedureParameters(String procName) throws SQLException {
 		throw new UnsupportedOperationException();
 	}
 
@@ -86,28 +79,19 @@ public class DerbyEnvironment extends AbstractDbEnvironment {
 	 * From http://db.apache.org/derby/docs/10.4/ref/ref-single.html
 	 */
 	public static class DerbyTypeMapper implements TypeMapper {
-		private static final List<String> stringTypes = Arrays
-				.asList(new String[] { "CHAR", "CHARACTER", "LONG VARCHAR",
-						"VARCHAR", "XML", "CHAR VARYING", "CHARACTER VARYING",
-						"LONG VARCHAR FOR BIT DATA", "VARCHAR FOR BIT DATA" });
-		private static final List<String> intTypes = Arrays
-				.asList(new String[] { "INTEGER", "INT" });
-		private static final List<String> longTypes = Arrays
-				.asList(new String[] { "BIGINT", });
-		private static final List<String> doubleTypes = Arrays
-				.asList(new String[] { "DOUBLE", "DOUBLE PRECISION", "FLOAT" });
-		private static final List<String> floatTypes = Arrays
-				.asList(new String[] { "REAL" });
-		private static final List<String> shortTypes = Arrays
-				.asList(new String[] { "SMALLINT" });
-		private static final List<String> decimalTypes = Arrays
-				.asList(new String[] { "DECIMAL", "DEC", "NUMERIC" });
-		private static final List<String> dateTypes = Arrays
-				.asList(new String[] { "DATE" });
-		private static final List<String> timestampTypes = Arrays
-				.asList(new String[] { "TIMESTAMP", });
-		private static final List<String> timeTypes = Arrays
-				.asList(new String[] { "TIME" });
+		private static final List<String> stringTypes = Arrays.asList(new String[] { "CHAR", "CHARACTER",
+				"LONG VARCHAR", "VARCHAR", "XML", "CHAR VARYING", "CHARACTER VARYING", "LONG VARCHAR FOR BIT DATA",
+				"VARCHAR FOR BIT DATA" });
+		private static final List<String> intTypes = Arrays.asList(new String[] { "INTEGER", "INT" });
+		private static final List<String> longTypes = Arrays.asList(new String[] { "BIGINT", });
+		private static final List<String> doubleTypes = Arrays.asList(new String[] { "DOUBLE", "DOUBLE PRECISION",
+				"FLOAT" });
+		private static final List<String> floatTypes = Arrays.asList(new String[] { "REAL" });
+		private static final List<String> shortTypes = Arrays.asList(new String[] { "SMALLINT" });
+		private static final List<String> decimalTypes = Arrays.asList(new String[] { "DECIMAL", "DEC", "NUMERIC" });
+		private static final List<String> dateTypes = Arrays.asList(new String[] { "DATE" });
+		private static final List<String> timestampTypes = Arrays.asList(new String[] { "TIMESTAMP", });
+		private static final List<String> timeTypes = Arrays.asList(new String[] { "TIME" });
 
 		public Class<?> getJavaClassForDBType(final String dbDataType) {
 			String dataType = normaliseTypeName(dbDataType);
@@ -131,8 +115,7 @@ public class DerbyEnvironment extends AbstractDbEnvironment {
 				return Long.class;
 			if (timestampTypes.contains(dataType))
 				return java.sql.Timestamp.class;
-			throw new UnsupportedOperationException("Type '" + dbDataType
-					+ "' is not supported for Derby");
+			throw new UnsupportedOperationException("Type '" + dbDataType + "' is not supported for Derby");
 		}
 
 		public int getJDBCSQLTypeForDBType(final String dbDataType) {
@@ -155,8 +138,7 @@ public class DerbyEnvironment extends AbstractDbEnvironment {
 				return java.sql.Types.TIME;
 			if (dateTypes.contains(dataType))
 				return java.sql.Types.DATE;
-			throw new UnsupportedOperationException("Type '" + dbDataType
-					+ "' is not supported for Derby");
+			throw new UnsupportedOperationException("Type '" + dbDataType + "' is not supported for Derby");
 		}
 
 		private static String normaliseTypeName(String type) {
@@ -180,8 +162,7 @@ public class DerbyEnvironment extends AbstractDbEnvironment {
 				}
 				return dataType;
 			} else {
-				throw new IllegalArgumentException(
-						"You must specify a valid type for conversions");
+				throw new IllegalArgumentException("You must specify a valid type for conversions");
 			}
 		}
 	}

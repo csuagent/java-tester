@@ -1,4 +1,4 @@
-package dbfit.environment;
+package org.jtester.dbfit.environment;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.jtester.dbfit.environment.AbstractDbEnvironment;
 
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.NameNormaliser;
@@ -29,10 +28,8 @@ public class DB2Environment extends AbstractDbEnvironment {
 		return paramRegex;
 	}
 
-	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName)
-			throws SQLException {
-		String[] qualifiers = NameNormaliser.normaliseName(tableOrViewName)
-				.split("\\.");
+	public Map<String, DbParameterAccessor> getAllColumns(String tableOrViewName) throws SQLException {
+		String[] qualifiers = NameNormaliser.normaliseName(tableOrViewName).split("\\.");
 		String qry = " select colname as column_name, typename as data_type, length, "
 				+ "	'P' as direction from syscat.columns where ";
 		if (qualifiers.length == 2) {
@@ -44,13 +41,11 @@ public class DB2Environment extends AbstractDbEnvironment {
 		return readIntoParams(qualifiers, qry);
 	}
 
-	private Map<String, DbParameterAccessor> readIntoParams(
-			String[] queryParameters, String query) throws SQLException {
+	private Map<String, DbParameterAccessor> readIntoParams(String[] queryParameters, String query) throws SQLException {
 		PreparedStatement dc = currentConnection.prepareStatement(query);
 
 		for (int i = 0; i < queryParameters.length; i++) {
-			dc.setString(i + 1, NameNormaliser
-					.normaliseName(queryParameters[i]));
+			dc.setString(i + 1, NameNormaliser.normaliseName(queryParameters[i]));
 		}
 
 		ResultSet rs = dc.executeQuery();
@@ -64,11 +59,8 @@ public class DB2Environment extends AbstractDbEnvironment {
 			// int length=rs.getInt(3);
 			String direction = rs.getString(4);
 			int paramDirection = getParameterDirection(direction);
-			DbParameterAccessor dbp = new DbParameterAccessor(paramName,
-					paramDirection, getSqlType(dataType),
-					getJavaClass(dataType),
-					paramDirection == DbParameterAccessor.RETURN_VALUE ? -1
-							: position++);
+			DbParameterAccessor dbp = new DbParameterAccessor(paramName, paramDirection, getSqlType(dataType),
+					getJavaClass(dataType), paramDirection == DbParameterAccessor.RETURN_VALUE ? -1 : position++);
 			allParams.put(NameNormaliser.normaliseName(paramName), dbp);
 		}
 		rs.close();
@@ -85,28 +77,20 @@ public class DB2Environment extends AbstractDbEnvironment {
 		if ("C".equals(direction))
 			return DbParameterAccessor.RETURN_VALUE;
 		// todo return val
-		throw new UnsupportedOperationException("Direction " + direction
-				+ " is not supported");
+		throw new UnsupportedOperationException("Direction " + direction + " is not supported");
 	}
 
 	// List interface has sequential search, so using list instead of array to
 	// map types
-	private static List<String> stringTypes = Arrays.asList(new String[] {
-			"VARCHAR", "CHAR", "CHARACTER", "GRAPHIC", "VARGRAPHIC" });
-	private static List<String> intTypes = Arrays.asList(new String[] {
-			"SMALLINT", "INT", "INTEGER" });
-	private static List<String> longTypes = Arrays
-			.asList(new String[] { "BIGINT" });
-	private static List<String> floatTypes = Arrays
-			.asList(new String[] { "FLOAT" });
-	private static List<String> doubleTypes = Arrays
-			.asList(new String[] { "DOUBLE" });
-	private static List<String> decimalTypes = Arrays.asList(new String[] {
-			"DECIMAL", "DEC" });
-	private static List<String> dateTypes = Arrays
-			.asList(new String[] { "DATE" });
-	private static List<String> timestampTypes = Arrays
-			.asList(new String[] { "TIMESTAMP" });
+	private static List<String> stringTypes = Arrays.asList(new String[] { "VARCHAR", "CHAR", "CHARACTER", "GRAPHIC",
+			"VARGRAPHIC" });
+	private static List<String> intTypes = Arrays.asList(new String[] { "SMALLINT", "INT", "INTEGER" });
+	private static List<String> longTypes = Arrays.asList(new String[] { "BIGINT" });
+	private static List<String> floatTypes = Arrays.asList(new String[] { "FLOAT" });
+	private static List<String> doubleTypes = Arrays.asList(new String[] { "DOUBLE" });
+	private static List<String> decimalTypes = Arrays.asList(new String[] { "DECIMAL", "DEC" });
+	private static List<String> dateTypes = Arrays.asList(new String[] { "DATE" });
+	private static List<String> timestampTypes = Arrays.asList(new String[] { "TIMESTAMP" });
 
 	private static String NormaliseTypeName(String dataType) {
 		dataType = dataType.toUpperCase().trim();
@@ -133,8 +117,7 @@ public class DB2Environment extends AbstractDbEnvironment {
 			return java.sql.Types.TIMESTAMP;
 		if (dateTypes.contains(dataType))
 			return java.sql.Types.DATE;
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	public Class<?> getJavaClass(String dataType) {
@@ -155,14 +138,11 @@ public class DB2Environment extends AbstractDbEnvironment {
 			return Long.class;
 		if (timestampTypes.contains(dataType))
 			return java.sql.Timestamp.class;
-		throw new UnsupportedOperationException("Type " + dataType
-				+ " is not supported");
+		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
-	public Map<String, DbParameterAccessor> getAllProcedureParameters(
-			String procName) throws SQLException {
-		String[] qualifiers = NameNormaliser.normaliseName(procName).split(
-				"\\.");
+	public Map<String, DbParameterAccessor> getAllProcedureParameters(String procName) throws SQLException {
+		String[] qualifiers = NameNormaliser.normaliseName(procName).split("\\.");
 		String qry = " select parmname as column_name, typename as data_type, length, "
 				+ "	rowtype as direction, ordinal from SYSIBM.SYSroutinePARMS  where ";
 		if (qualifiers.length == 2) {
