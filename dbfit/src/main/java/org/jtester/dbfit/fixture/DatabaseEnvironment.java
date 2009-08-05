@@ -11,8 +11,9 @@ import dbfit.environment.DB2Environment;
 import dbfit.environment.DbEnvironmentFactory;
 import dbfit.environment.DerbyEnvironment;
 import fit.Parse;
+import fitlibrary.SequenceFixture;
 
-public class DatabaseEnvironment extends fitlibrary.SequenceFixture {
+public class DatabaseEnvironment extends SequenceFixture {
 	public void doTable(Parse table) {
 		if (args.length > 0) {
 			DBEnvironment oe;

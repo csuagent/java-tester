@@ -22,7 +22,8 @@
 		</repository>
 	</repositories>
 	<properties>
-		<trinidad.version>1.0.9</trinidad.version>
+		<trinidad.version>1.0.8</trinidad.version>
+		<fitnesse.version>20090513</fitnesse.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,6 +46,22 @@
 			<artifactId>testng</artifactId>
 			<version>5.8</version>
 			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitnesse</artifactId>
+			<version>${fitnesse.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitlibrary</artifactId>
+			<version>20080812</version>
 		</dependency>
 	</dependencies>
 </project>
