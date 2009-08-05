@@ -13,7 +13,7 @@ public class ExecuteFixture extends Fixture {
 	private DBEnvironment dbEnvironment;
 
 	public ExecuteFixture() {
-		dbEnvironment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
+		dbEnvironment = DbFactory.instance().factory();
 	}
 
 	public ExecuteFixture(DBEnvironment env, String statement) {

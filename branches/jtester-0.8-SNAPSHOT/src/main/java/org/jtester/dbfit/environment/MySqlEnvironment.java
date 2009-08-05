@@ -16,7 +16,6 @@ import javax.sql.RowSet;
 import org.jtester.dbfit.util.DbParameterAccessor;
 import org.jtester.dbfit.util.NameNormaliser;
 
-
 public class MySqlEnvironment extends AbstractDbEnvironment {
 	public boolean supportsOuputOnInsert() {
 		return false;
@@ -83,6 +82,7 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 	private static List<String> dateTypes = Arrays.asList(new String[] { "DATE" });
 	private static List<String> timestampTypes = Arrays.asList(new String[] { "TIMESTAMP", "DATETIME" });
 	private static List<String> refCursorTypes = Arrays.asList(new String[] {});
+	private static List<String> boolTypes = Arrays.asList(new String[] { "BIT" });
 
 	private static String normaliseTypeName(String dataType) {
 		dataType = dataType.toUpperCase().trim();
@@ -111,6 +111,9 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 			return java.sql.Types.DATE;
 		if (refCursorTypes.contains(dataType))
 			return java.sql.Types.REF;
+		if (boolTypes.contains(dataType)) {
+			return java.sql.Types.BOOLEAN;
+		}
 		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
@@ -134,6 +137,9 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 			return Long.class;
 		if (timestampTypes.contains(dataType))
 			return java.sql.Timestamp.class;
+		if (boolTypes.contains(dataType)) {
+			return Boolean.class;
+		}
 		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 

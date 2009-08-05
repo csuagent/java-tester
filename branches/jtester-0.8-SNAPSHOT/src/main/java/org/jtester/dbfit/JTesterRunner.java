@@ -22,7 +22,7 @@ public class JTesterRunner {
 	private String rootPath = null;
 
 	public JTesterRunner() {
-		this("test-output");
+		this("dbfit-output");
 	}
 
 	public JTesterRunner(String outputPath) {

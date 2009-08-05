@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 import org.jtester.dbfit.fixture.CleanFixture;
 import org.jtester.dbfit.fixture.CompareStoredQueriesFixture;
+import org.jtester.dbfit.fixture.DbFitUtil;
 import org.jtester.dbfit.fixture.ExecuteFixture;
 import org.jtester.dbfit.fixture.ExecuteProcedureFixture;
 import org.jtester.dbfit.fixture.InsertFixture;
@@ -118,6 +119,13 @@ public class DatabaseFixture extends SequenceFixture {
 
 	public Fixture clean() {
 		return new CleanFixture(environment);
+	}
+
+	public void cleanTable(String tables) {
+		String ts[] = tables.split("[;,]");
+		for (String table : ts) {
+			DbFitUtil.cleanTable(environment, table);
+		}
 	}
 
 	public Fixture testData(String type) {
