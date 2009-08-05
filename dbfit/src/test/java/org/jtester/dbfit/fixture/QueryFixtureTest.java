@@ -5,7 +5,10 @@ import org.jtester.dbfit.JTesterPage;
 import org.jtester.utility.SerializeUtil;
 import org.testng.annotations.Test;
 
+import com.neuri.trinidad.InMemoryTestImpl;
+import com.neuri.trinidad.TestEngine;
 import com.neuri.trinidad.TestRepository;
+import com.neuri.trinidad.TestResult;
 import com.neuri.trinidad.TestRunner;
 import com.neuri.trinidad.fitnesserunner.FitLibraryTestEngine;
 import com.neuri.trinidad.fitnesserunner.FitNesseRepository;
@@ -48,7 +51,7 @@ public class QueryFixtureTest extends DbFixtureTest {
 		context.append("|!-org.jtester.dbfit.DatabaseFixture-!|\n");
 		context.append("|connect|\n");
 		context.append("\n");
-		context.append("|Query| select &apos;test&apos; as x|\n");
+		context.append("|Query|select 'test' as x|\n");
 		context.append("|x|\n");
 		context.append("|test|\n");
 		context.append("\n");
@@ -65,6 +68,10 @@ public class QueryFixtureTest extends DbFixtureTest {
 		String html = pd.getHtml();
 		want.string(html).contains("table").contains("td").contains("tr");
 		System.out.println(html);
+		com.neuri.trinidad.Test test = new InMemoryTestImpl("jtester", html);
+		TestEngine engine = new FitLibraryTestEngine();
+		TestResult result = engine.runTest(test);
+		System.out.println(result.getCounts().right);
 	}
 
 	@Test
