@@ -1,0 +1,14 @@
+|!-org.jtester.dbfit.DatabaseFixture-!|
+|connect|
+
+|Query| select 'test' as x|
+|x|
+|test|
+
+
+|Query|select * from tdd_user|
+|first_name|
+|null|
+|null|
+|null|
+|null|
