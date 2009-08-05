@@ -4,16 +4,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import fit.ColumnFixture;
 
 public class QueryStatsFixture extends ColumnFixture {
 	private DBEnvironment environment;
 
 	public QueryStatsFixture() {
-		environment = DbEnvironmentFactory.getDefaultEnvironment();
+		environment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 	}
 
 	public QueryStatsFixture(DBEnvironment environment) {

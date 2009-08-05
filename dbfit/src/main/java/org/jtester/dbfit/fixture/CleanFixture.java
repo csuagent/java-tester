@@ -3,9 +3,9 @@ package org.jtester.dbfit.fixture;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import fit.ColumnFixture;
 import fit.Parse;
 
@@ -17,7 +17,7 @@ public class CleanFixture extends ColumnFixture {
 	}
 
 	public CleanFixture() {
-		this.environment = DbEnvironmentFactory.getDefaultEnvironment();
+		this.environment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 	}
 
 	public String table;

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.NameNormaliser;
 import dbfit.util.SymbolAccessSetBinding;
@@ -25,7 +25,7 @@ public class UpdateFixture extends Fixture {
 	private DbParameterAccessor[] selectAccessors;
 
 	public UpdateFixture() {
-		this.environment = DbEnvironmentFactory.getDefaultEnvironment();
+		this.environment = DbFactory.instance().factory();//DbEnvironmentFactory.getDefaultEnvironment();
 	}
 
 	public UpdateFixture(DBEnvironment dbEnvironment) {

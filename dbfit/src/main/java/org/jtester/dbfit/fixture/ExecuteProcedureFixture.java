@@ -8,9 +8,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DbParameterAccessor;
 import dbfit.util.NameNormaliser;
 import dbfit.util.SymbolAccessQueryBinding;
@@ -30,7 +30,7 @@ public class ExecuteProcedureFixture extends Fixture {
 	private int excNumberExpected;
 
 	public ExecuteProcedureFixture() {
-		this.environment = DbEnvironmentFactory.getDefaultEnvironment();
+		this.environment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 	}
 
 	public ExecuteProcedureFixture(DBEnvironment dbEnvironment, String procName, int expectedErrorCode) {

@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DataColumn;
 import dbfit.util.DataTable;
 
@@ -19,7 +19,7 @@ public class QueryFixture extends RowSetFixture {
 	private static Log log = LogFactory.getLog(QueryFixture.class);
 
 	public QueryFixture() {
-		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
+		dbEnvironment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 		isOrdered = false;
 	}
 

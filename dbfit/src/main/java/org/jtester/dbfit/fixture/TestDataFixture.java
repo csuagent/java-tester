@@ -17,9 +17,9 @@ import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.FileHelper;
 import fit.ColumnFixture;
 
@@ -83,7 +83,7 @@ public class TestDataFixture extends ColumnFixture {
 	public String tables = "";
 
 	public TestDataFixture() {
-		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
+		dbEnvironment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 		log.info(String.format("Using default file type: %s", fileType));
 	}
 

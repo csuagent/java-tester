@@ -6,9 +6,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import dbfit.util.DbParameterAccessor;
 import fit.Fixture;
 import fit.Parse;
@@ -22,7 +22,7 @@ public class InspectFixture extends Fixture {
 	public static String MODE_QUERY = "QUERY";
 
 	public InspectFixture() {
-		this.environment = DbEnvironmentFactory.getDefaultEnvironment();
+		this.environment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 	}
 
 	public InspectFixture(DBEnvironment dbEnvironment, String mode, String objName) {

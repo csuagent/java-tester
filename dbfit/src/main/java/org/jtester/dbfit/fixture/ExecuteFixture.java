@@ -2,9 +2,9 @@ package org.jtester.dbfit.fixture;
 
 import java.sql.PreparedStatement;
 
+import org.jtester.dbfit.DbFactory;
 import org.jtester.dbfit.environment.DBEnvironment;
 
-import dbfit.environment.DbEnvironmentFactory;
 import fit.Fixture;
 import fit.Parse;
 
@@ -13,7 +13,7 @@ public class ExecuteFixture extends Fixture {
 	private DBEnvironment dbEnvironment;
 
 	public ExecuteFixture() {
-		dbEnvironment = DbEnvironmentFactory.getDefaultEnvironment();
+		dbEnvironment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
 	}
 
 	public ExecuteFixture(DBEnvironment env, String statement) {
