@@ -1,9 +1,8 @@
 package org.jtester.dbfit.fixture;
 
-import fit.*;
-
-import java.sql.*;
-import java.util.*;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jtester.dbfit.util.DataColumn;
 import org.jtester.dbfit.util.DataRow;
@@ -13,7 +12,10 @@ import org.jtester.dbfit.util.NameNormaliser;
 import org.jtester.dbfit.util.NoMatchingRowFoundException;
 import org.jtester.dbfit.util.SymbolAccessQueryBinding;
 
-import dbfit.util.*;
+import fit.Binding;
+import fit.ColumnFixture;
+import fit.Fixture;
+import fit.Parse;
 
 public abstract class RowSetFixture extends ColumnFixture {
 
