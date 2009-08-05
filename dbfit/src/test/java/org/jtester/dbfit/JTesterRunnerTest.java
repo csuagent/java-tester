@@ -13,8 +13,6 @@ public class JTesterRunnerTest extends JTester {
 
 	@Test
 	public void test2() throws Exception {
-		JTesterRunner tdd = new JTesterRunner("test-output");
-
-		tdd.runTest("org/jtester/dbfit/fixture/SimpleQuery.wiki");
+		JTesterRunner.run("org/jtester/dbfit/fixture/SimpleQuery.wiki");
 	}
 }

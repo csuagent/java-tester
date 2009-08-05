@@ -34,11 +34,15 @@ public class ResourceUtil {
 		return buffer.toString();
 	}
 
-	public static void copyFile(String classPathFile, File outputFile) throws IOException {
+	public static void copyFile(String classPathFile, File outputFile) {
 		InputStream is = ClassLoader.getSystemResourceAsStream(classPathFile);
 		String content = convertStreamToString(is);
-		FileWriter writer = new FileWriter(outputFile);
-		writer.write(content);
-		writer.close();
+		try {
+			FileWriter writer = new FileWriter(outputFile);
+			writer.write(content);
+			writer.close();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

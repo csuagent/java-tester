@@ -1,7 +1,6 @@
 package org.jtester.dbfit;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 import com.neuri.trinidad.FolderTestResultRepository;
@@ -20,7 +19,11 @@ public class JTesterRunner {
 	private final String outputPath;
 	private String rootPath = null;
 
-	public JTesterRunner(String outputPath) throws IOException {
+	public JTesterRunner() {
+		this("test-output");
+	}
+
+	public JTesterRunner(String outputPath) {
 		this.testRunner = new FitLibraryTestEngine();
 		this.resultRepository = new FolderTestResultRepository(outputPath);
 		this.outputPath = outputPath;
@@ -68,7 +71,7 @@ public class JTesterRunner {
 		return buffer.toString();
 	}
 
-	private void prepareFiles() throws IOException {
+	private void prepareFiles() {
 		File folder = new File(outputPath + File.separatorChar + "files");
 		if (!folder.exists()) {
 			folder.mkdirs();
@@ -77,6 +80,16 @@ public class JTesterRunner {
 		File css = new File(outputPath + File.separatorChar + "files/fitnesse.css");
 		if (!css.exists()) {
 			ResourceUtil.copyFile("files/css/fitnesse_base.css", css);
+		}
+	}
+
+	private static JTesterRunner defaultRunner = new JTesterRunner();
+
+	public static void run(String url) {
+		try {
+			defaultRunner.runTest(url);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
