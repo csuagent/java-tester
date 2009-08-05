@@ -1,7 +1,7 @@
 package org.jtester.dbfit;
 
-import org.jtester.junit4.JTester;
-import org.junit.Test;
+import org.jtester.testng.JTester;
+import org.testng.annotations.Test;
 
 public class JTesterRunnerTest extends JTester {
 	@Test
@@ -9,6 +9,12 @@ public class JTesterRunnerTest extends JTester {
 		JTesterRunner tdd = new JTesterRunner("test-output");
 
 		tdd.runTest("AcceptanceTests.JavaTests.SimpleQuery", "org/jtester/dbfit/fixture/SimpleQuery.wiki");
+	}
 
+	@Test
+	public void test2() throws Exception {
+		JTesterRunner tdd = new JTesterRunner("test-output");
+
+		tdd.runTest("org/jtester/dbfit/fixture/SimpleQuery.wiki");
 	}
 }

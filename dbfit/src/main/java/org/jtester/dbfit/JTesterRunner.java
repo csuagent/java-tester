@@ -27,6 +27,11 @@ public class JTesterRunner {
 		this.prepareFiles();
 	}
 
+	public void runTest(final String url) throws Exception {
+		String name = url.replace(".wiki", "").replace('\\', '.').replace('/', '.');
+		this.runTest(name, url);
+	}
+
 	public void runTest(final String name, final String url) throws Exception {
 		InputStream is = ClassLoader.getSystemResourceAsStream(url);
 		String wiki = ResourceUtil.convertStreamToString(is);
