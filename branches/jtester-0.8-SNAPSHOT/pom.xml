@@ -309,6 +309,12 @@
 			<groupId>com.neuri.tdd</groupId>
 			<artifactId>fitnesserunner</artifactId>
 			<version>${trinidad.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>info.fitnesse</groupId>
+					<artifactId>fixturegallery</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<reporting>
