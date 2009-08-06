@@ -141,6 +141,16 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>trinidad</id>
+			<name>trinidad</name>
+			<url>http://maven.neuri.com/</url>
+		</repository>
+		<repository>
+			<id>mvnsearch</id>
+			<name>mvnsearch</name>
+			<url>http://www.mvnsearch.org/maven2/</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
