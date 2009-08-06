@@ -3,6 +3,7 @@ package org.jtester.unitils.database;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jtester.unitils.config.ConfigUtil;
+import org.jtester.utility.StringUtil;
 import org.unitils.core.dbsupport.DbSupport;
 import org.unitils.core.dbsupport.HsqldbDbSupport;
 import org.unitils.core.dbsupport.MsSqlDbSupport;
@@ -183,6 +184,9 @@ public enum DatabaseType {
 		}
 		try {
 			String typeS = ConfigUtil.databaseType();
+			if (StringUtil.isBlankOrNull(typeS)) {
+				throw new RuntimeException("please config property 'database.type'");
+			}
 			type = DatabaseType.valueOf(typeS.toUpperCase());
 			ConfigUtil.setDatabaseDialect(type);
 			if (type.isMemoryDB()) {

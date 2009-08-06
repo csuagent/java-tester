@@ -7,10 +7,8 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.Set;
 
-import org.jtester.exception.JTesterException;
 import org.jtester.utility.ReflectUtil;
 import org.jtester.utility.StringUtil;
-import org.springframework.aop.framework.Advised;
 import org.unitils.core.Module;
 import org.unitils.core.TestListener;
 import org.unitils.inject.util.InjectionUtils;
@@ -51,7 +49,7 @@ public class InjectMockModule implements Module {
 		for (int index = 0; index < targets.length; index++) {
 			String target = targets[index];
 			Object targetObject = ReflectUtil.getPropertyValue(testedObject, target);
-			targetObject = target(targetObject);
+			targetObject = ReflectUtil.getProxiedObject(targetObject);
 			if (targetObject == null) {
 				throw new RuntimeException("can't inject a mock object into a null object, ongl = " + target);
 			}
@@ -61,18 +59,6 @@ public class InjectMockModule implements Module {
 			} else {
 				InjectionUtils.injectInto(injectedObject, targetObject, property);
 			}
-		}
-	}
-
-	public Object target(Object target) {
-		try {
-			if (target instanceof Advised) {
-				return ((Advised) target).getTargetSource().getTarget();
-			} else {
-				return target;
-			}
-		} catch (Exception e) {
-			throw new JTesterException(e);
 		}
 	}
 
