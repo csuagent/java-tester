@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.jtester.unitils.jmock.MockBeanByName;
+import org.jtester.unitils.jmock.MockBean;
 import org.unitils.util.AnnotationUtils;
 
 public class MockBeans {
@@ -48,7 +48,7 @@ public class MockBeans {
 	 * @return
 	 */
 	public static boolean hasMockBean(Class<?> clazz) {
-		Set<Field> fields = AnnotationUtils.getFieldsAnnotatedWith(clazz, MockBeanByName.class);
+		Set<Field> fields = AnnotationUtils.getFieldsAnnotatedWith(clazz, MockBean.class);
 		return fields.size() > 0;
 	}
 
