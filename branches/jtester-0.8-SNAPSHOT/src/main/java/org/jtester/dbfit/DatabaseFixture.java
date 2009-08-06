@@ -11,10 +11,15 @@ import org.jtester.dbfit.fixture.DbFitUtil;
 import org.jtester.dbfit.fixture.ExecuteFixture;
 import org.jtester.dbfit.fixture.ExecuteProcedureFixture;
 import org.jtester.dbfit.fixture.InsertFixture;
+import org.jtester.dbfit.fixture.InspectFixture;
 import org.jtester.dbfit.fixture.QueryFixture;
+import org.jtester.dbfit.fixture.QueryStatsFixture;
+import org.jtester.dbfit.fixture.SetParameterFixture;
 import org.jtester.dbfit.fixture.StoreQueryFixture;
 import org.jtester.dbfit.fixture.TestDataFixture;
 import org.jtester.dbfit.fixture.UpdateFixture;
+import org.jtester.dbfit.util.Options;
+import org.jtester.dbfit.util.SymbolUtil;
 
 import fit.Fixture;
 import fitlibrary.SequenceFixture;
@@ -22,9 +27,8 @@ import fitlibrary.table.Table;
 import fitlibrary.utility.TestResults;
 
 public class DatabaseFixture extends SequenceFixture {
-	protected DBEnvironment environment;
-
 	private static Log log = LogFactory.getLog(DatabaseFixture.class);
+	protected DBEnvironment environment;
 
 	public DatabaseFixture() {
 		this.environment = DbFactory.instance().factory();
@@ -32,7 +36,7 @@ public class DatabaseFixture extends SequenceFixture {
 
 	@Override
 	public void setUp(Table firstTable, TestResults testResults) {
-		org.jtester.dbfit.util.Options.reset();
+		Options.reset();
 		super.setUp(firstTable, testResults);
 	}
 
@@ -51,38 +55,45 @@ public class DatabaseFixture extends SequenceFixture {
 		super.tearDown(firstTable, testResults);
 	}
 
-	public void connect() throws SQLException {
+	public boolean connect() throws SQLException {
 		DbFactory db = DbFactory.instance();
 		environment.connect(db.getDataSource(), db.getDbUserName(), db.getDbPassword());
 		environment.getConnection().setAutoCommit(false);
+		return true;
 	}
 
-	public void connect(String dataSource, String username, String password, String database) throws SQLException {
+	public boolean connect(String dataSource, String username, String password, String database) throws SQLException {
 		environment.connect(dataSource, username, password);
 		environment.getConnection().setAutoCommit(false);
+		return true;
 	}
 
-	public void connect(String dataSource, String username, String password) throws SQLException {
+	public boolean connect(String dataSource, String username, String password) throws SQLException {
 		environment.connect(dataSource, username, password);
 		environment.getConnection().setAutoCommit(false);
+		return true;
 	}
 
-	public void connect(String connectionString) throws SQLException {
+	public boolean connect(String connectionString) throws SQLException {
 		environment.connect(connectionString);
 		environment.getConnection().setAutoCommit(false);
+		return true;
 	}
 
-	public void close() throws SQLException {
+	public boolean close() throws SQLException {
 		environment.rollback();
 		environment.closeConnection();
+		return true;
 	}
 
-	public void setParameter(String name, String value) {
-		org.jtester.dbfit.fixture.SetParameterFixture.setParameter(name, value);
+	public boolean setParameter(String name, String value) {
+		SetParameterFixture.setParameter(name, value);
+		return true;
 	}
 
-	public void clearParameters() {
-		org.jtester.dbfit.util.SymbolUtil.clearSymbols();
+	public boolean clearParameters() {
+		SymbolUtil.clearSymbols();
+		return true;
 	}
 
 	public Fixture query(String query) {
@@ -134,40 +145,36 @@ public class DatabaseFixture extends SequenceFixture {
 		return new TestDataFixture(environment, type);
 	}
 
-	public void rollback() throws SQLException {
-		// System.out.println("Rolling back");
+	public boolean rollback() throws SQLException {
 		environment.rollback();
 		environment.getConnection().setAutoCommit(false);
+		return true;
 	}
 
-	public void commit() throws SQLException {
-		// System.out.println("Committing");
+	public boolean commit() throws SQLException {
 		environment.commit();
 		environment.getConnection().setAutoCommit(false);
+		return true;
 	}
 
 	public Fixture queryStats() {
-		return new org.jtester.dbfit.fixture.QueryStatsFixture(environment);
+		return new QueryStatsFixture(environment);
 	}
 
 	public Fixture inspectProcedure(String procName) {
-		return new org.jtester.dbfit.fixture.InspectFixture(environment,
-				org.jtester.dbfit.fixture.InspectFixture.MODE_PROCEDURE, procName);
+		return new InspectFixture(environment, InspectFixture.MODE_PROCEDURE, procName);
 	}
 
 	public Fixture inspectTable(String tableName) {
-		return new org.jtester.dbfit.fixture.InspectFixture(environment,
-				org.jtester.dbfit.fixture.InspectFixture.MODE_TABLE, tableName);
+		return new InspectFixture(environment, InspectFixture.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectView(String tableName) {
-		return new org.jtester.dbfit.fixture.InspectFixture(environment,
-				org.jtester.dbfit.fixture.InspectFixture.MODE_TABLE, tableName);
+		return new InspectFixture(environment, InspectFixture.MODE_TABLE, tableName);
 	}
 
 	public Fixture inspectQuery(String query) {
-		return new org.jtester.dbfit.fixture.InspectFixture(environment,
-				org.jtester.dbfit.fixture.InspectFixture.MODE_QUERY, query);
+		return new InspectFixture(environment, InspectFixture.MODE_QUERY, query);
 	}
 
 	public Fixture storeQuery(String query, String symbolName) {
@@ -178,7 +185,8 @@ public class DatabaseFixture extends SequenceFixture {
 		return new CompareStoredQueriesFixture(environment, symbol1, symbol2);
 	}
 
-	public void setOption(String option, String value) {
-		org.jtester.dbfit.util.Options.setOption(option, value);
+	public boolean setOption(String option, String value) {
+		Options.setOption(option, value);
+		return true;
 	}
 }
