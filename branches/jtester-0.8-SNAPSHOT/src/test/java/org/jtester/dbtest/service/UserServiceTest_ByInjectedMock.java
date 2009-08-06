@@ -1,9 +1,8 @@
 package org.jtester.dbtest.service;
 
 import org.jtester.testng.JTester;
-import org.jtester.unitils.inject.InjectedMock;
+import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
-import org.unitils.inject.annotation.TestedObject;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
@@ -11,10 +10,11 @@ import org.unitils.spring.annotation.SpringBean;
 @Test(groups = { "JTester" })
 public class UserServiceTest_ByInjectedMock extends JTester {
 	@SpringBean("userService")
-	@TestedObject
+	// @TestedObject
 	private UserService userService;
 
-	@InjectedMock
+	// @InjectedMock
+	@Mock(injectInto = "userService")
 	private AddressService addressService;
 
 	@Test

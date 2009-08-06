@@ -8,8 +8,6 @@ import org.jtester.unitils.database.ibatis.service.UserDao;
 import org.jtester.unitils.database.ibatis.service.UserService;
 import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
-import org.unitils.inject.annotation.InjectIntoByType;
-import org.unitils.inject.annotation.TestedObject;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;
 
@@ -18,11 +16,9 @@ import org.unitils.spring.annotation.SpringBeanByName;
 		"org/jtester/unitils/database/ibatis/spring/data-source.xml" })
 public class MockSpringBeanTest extends JTester {
 	@SpringBeanByName
-	@TestedObject
 	private UserService userService;
 
-	@Mock
-	@InjectIntoByType(target = "userService")
+	@Mock(injectInto = "userService")
 	private UserDao userDao;
 
 	public void paySalary() {

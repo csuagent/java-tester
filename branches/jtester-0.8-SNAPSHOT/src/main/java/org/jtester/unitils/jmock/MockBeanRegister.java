@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.unitils.util.AnnotationUtils;
 
-public class MockBeans {
+public class MockBeanRegister {
 	private static Map<Long, Map<String, Object>> mockByNames = new ConcurrentHashMap<Long, Map<String, Object>>();
 
 	/**

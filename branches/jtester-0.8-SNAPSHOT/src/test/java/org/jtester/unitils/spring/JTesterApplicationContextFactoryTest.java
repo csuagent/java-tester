@@ -1,6 +1,6 @@
 package org.jtester.unitils.spring;
 
-import org.jtester.unitils.jmock.MockBeans;
+import org.jtester.unitils.jmock.MockBeanRegister;
 import org.jtester.unitils.spring.SpringBeanService.SomeInterface;
 import org.jtester.unitils.spring.SpringBeanService.SomeInterfaceImpl;
 import org.jtester.unitils.spring.SpringBeanService.SomeInterfaceImpl2;
@@ -20,7 +20,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 	@Test
 	public void testNoOverride() throws Throwable {
-		MockBeans.clean();
+		MockBeanRegister.clean();
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
 
@@ -34,9 +34,9 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 	@Test
 	public void testOverride() throws Throwable {
-		MockBeans.clean();
+		MockBeanRegister.clean();
 		SomeInterface overrider = new SomeInterfaceImpl2();
-		MockBeans.addMockBeanByName(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
+		MockBeanRegister.addMockBeanByName(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
 
@@ -50,7 +50,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 	@Test(expectedExceptions = { AssertionError.class })
 	public void testOverride_failure() throws Throwable {
-		MockBeans.clean();
+		MockBeanRegister.clean();
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
 

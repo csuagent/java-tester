@@ -13,7 +13,6 @@ import org.jmock.Mockery;
 import org.jmock.api.MockObjectNamingScheme;
 import org.jmock.lib.CamelCaseNamingScheme;
 import org.jmock.lib.legacy.ClassImposteriser;
-import org.jtester.unitils.inject.InjectedMock;
 import org.unitils.core.Module;
 import org.unitils.core.TestListener;
 
@@ -38,6 +37,11 @@ public class JmockModule implements Module {
 		return this.context;
 	}
 
+	/**
+	 * 创建Mock对象
+	 * 
+	 * @param testedObject
+	 */
 	private void createMocks(Object testedObject) {
 		Set<Field> mockFields = getFieldsAnnotatedWith(testedObject.getClass(), Mock.class);
 		for (Field mockField : mockFields) {
@@ -51,10 +55,18 @@ public class JmockModule implements Module {
 			MockBeanByName mock = mockField.getAnnotation(MockBeanByName.class);
 			Object mockObject = this.mock(testedObject, mock.value(), mockField);
 
-			MockBeans.addMockBeanByName(mockField.getName(), mockObject);
+			MockBeanRegister.addMockBeanByName(mockField.getName(), mockObject);
 		}
 	}
 
+	/**
+	 * 根据@Mock,@MockBean的value属性创建Mock对象
+	 * 
+	 * @param testedObject
+	 * @param mockname
+	 * @param field
+	 * @return
+	 */
 	private Object mock(Object testedObject, String mockname, Field field) {
 		Class<?> mockType = field.getType();
 		if (StringUtils.isBlank(mockname)) {
@@ -67,24 +79,6 @@ public class JmockModule implements Module {
 		return mockObject;
 	}
 
-	private void createInjectedMocks(Object testObject) {
-		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), InjectedMock.class);
-		for (Field mockField : mockFields) {
-
-			Class<?> mockType = mockField.getType();
-			InjectedMock mock = mockField.getAnnotation(InjectedMock.class);
-
-			Object mockObject = null;
-			if (StringUtils.isBlank(mock.value())) {
-				mockObject = context.mock(mockType);
-			} else {
-				mockObject = context.mock(mockType, mock.value());
-			}
-
-			setFieldValue(testObject, mockField, mockObject);
-		}
-	}
-
 	protected class JmockTestListener extends TestListener {
 		@Override
 		public void beforeTestSetUp(Object testObject, Method testMethod) {
@@ -94,7 +88,6 @@ public class JmockModule implements Module {
 				}
 			};
 			createMocks(testObject);
-			createInjectedMocks(testObject);
 		}
 
 		@Override

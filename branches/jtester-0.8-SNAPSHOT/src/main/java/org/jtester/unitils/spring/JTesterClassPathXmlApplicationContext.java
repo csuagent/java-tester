@@ -1,6 +1,6 @@
 package org.jtester.unitils.spring;
 
-import org.jtester.unitils.jmock.MockBeans;
+import org.jtester.unitils.jmock.MockBeanRegister;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -19,7 +19,7 @@ public class JTesterClassPathXmlApplicationContext extends ClassPathXmlApplicati
 		@Override
 		@SuppressWarnings("unchecked")
 		public Object getBean(final String name, final Class requiredType, final Object[] args) throws BeansException {
-			Object bean = MockBeans.getBeanByName(name);
+			Object bean = MockBeanRegister.getBeanByName(name);
 			return bean == null ? super.getBean(name, requiredType, args) : bean;
 		}
 	}

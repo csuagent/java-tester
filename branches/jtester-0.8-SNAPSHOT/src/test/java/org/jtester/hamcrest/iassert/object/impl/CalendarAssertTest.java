@@ -10,8 +10,6 @@ import org.jmock.api.ExpectationError;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
-import org.unitils.inject.annotation.InjectIntoByType;
-import org.unitils.inject.annotation.TestedObject;
 
 @Test(groups = { "JTester" })
 public class CalendarAssertTest extends JTester {
@@ -28,11 +26,11 @@ public class CalendarAssertTest extends JTester {
 		}
 	}
 
-	@TestedObject
+	// @TestedObject
 	private TestAppClaz testApp = new TestAppClaz();
 
-	@Mock
-	@InjectIntoByType
+	@Mock(injectInto = "testApp")
+	// @InjectIntoByType
 	private IDateTest idate;
 
 	public void yearIs() {

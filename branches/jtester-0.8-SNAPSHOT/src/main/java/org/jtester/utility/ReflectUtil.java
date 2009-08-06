@@ -85,6 +85,21 @@ public class ReflectUtil {
 		}
 	}
 
+	public static Object getFieldValue(Object obj, Field field) {
+		assert obj != null : "the obj can't be null";
+
+		boolean accessible = field.isAccessible();
+		try {
+			field.setAccessible(true);
+			Object o = field.get(obj);
+			return o;
+		} catch (Exception e) {
+			throw new JTesterException("Unable to get the value in field[" + field.getName() + "]", e);
+		} finally {
+			field.setAccessible(accessible);
+		}
+	}
+
 	public static Object getPropertyValue(Object object, String ognlExpression) {
 		try {
 			OgnlContext ognlContext = new OgnlContext();
