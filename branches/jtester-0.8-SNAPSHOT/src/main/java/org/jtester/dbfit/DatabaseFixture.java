@@ -121,11 +121,12 @@ public class DatabaseFixture extends SequenceFixture {
 		return new CleanFixture(environment);
 	}
 
-	public void cleanTable(String tables) {
+	public boolean cleanTable(String tables) {
 		String ts[] = tables.split("[;,]");
 		for (String table : ts) {
 			DbFitUtil.cleanTable(environment, table);
 		}
+		return true;
 	}
 
 	public Fixture testData(String type) {
