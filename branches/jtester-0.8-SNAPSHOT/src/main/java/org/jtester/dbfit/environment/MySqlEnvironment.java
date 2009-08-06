@@ -1,15 +1,14 @@
 package org.jtester.dbfit.environment;
 
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
+import org.jtester.dbfit.environment.typesmap.MySQLTypeMap;
 import org.jtester.dbfit.util.DbParameterAccessor;
 import org.jtester.dbfit.util.NameNormaliser;
 
@@ -66,61 +65,13 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 		return allParams;
 	}
 
-	private static Map<String, Class<?>> javaTypes = new HashMap<String, Class<?>>() {
-		private static final long serialVersionUID = -2101070752077610108L;
-
-		{
-			this.put("VARCHAR", String.class);
-			this.put("CHAR", String.class);
-			this.put("TEXT", String.class);
-			this.put("TINYINT", Integer.class);
-			this.put("SMALLINT", Integer.class);
-			this.put("MEDIUMINT", Integer.class);
-			this.put("INT", Integer.class);
-			this.put("INTEGER", Integer.class);
-			this.put("BIGINT", Long.class);
-			this.put("INTEGER UNSIGNED", Long.class);
-			this.put("INT UNSIGNED", Long.class);
-			this.put("FLOAT", Float.class);
-			this.put("DOUBLE", Double.class);
-			this.put("DECIMAL", BigDecimal.class);
-			this.put("DEC", BigDecimal.class);
-			this.put("DATE", java.sql.Date.class);
-			this.put("TIMESTAMP", java.sql.Timestamp.class);
-			this.put("DATETIME", java.sql.Timestamp.class);
-			this.put("BIT", Boolean.class);
-		}
-	};
-
-	private static Map<String, Integer> sqlTypes = new HashMap<String, Integer>() {
-		private static final long serialVersionUID = -2101070752077610108L;
-
-		{
-			this.put("VARCHAR", Types.VARCHAR);
-			this.put("CHAR", Types.VARCHAR);
-			this.put("TEXT", Types.VARCHAR);
-			this.put("TINYINT", Types.INTEGER);
-			this.put("SMALLINT", Types.INTEGER);
-			this.put("MEDIUMINT", Types.INTEGER);
-			this.put("INT", Types.INTEGER);
-			this.put("INTEGER", Types.INTEGER);
-			this.put("BIGINT", Types.BIGINT);
-			this.put("INTEGER UNSIGNED", Types.BIGINT);
-			this.put("INT UNSIGNED", Types.BIGINT);
-			this.put("FLOAT", Types.FLOAT);
-			this.put("DOUBLE", Types.DOUBLE);
-			this.put("DECIMAL", Types.NUMERIC);
-			this.put("DEC", Types.NUMERIC);
-			this.put("DATE", Types.DATE);
-			this.put("TIMESTAMP", Types.TIMESTAMP);
-			this.put("DATETIME", Types.TIMESTAMP);
-			this.put("BIT", Types.BOOLEAN);
-		}
-	};
+	private static String normaliseTypeName(String dataType) {
+		return dataType.toUpperCase().trim();
+	}
 
 	private static int getSqlType(String dataType) {
-		dataType = dataType.toUpperCase().trim();
-		Integer type = sqlTypes.get(dataType);
+		dataType = normaliseTypeName(dataType);
+		Integer type = MySQLTypeMap.sql.get(dataType);
 		if (type != null) {
 			return type;
 		} else {
@@ -129,8 +80,8 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 	}
 
 	public Class<?> getJavaClass(String dataType) {
-		dataType = dataType.toUpperCase().trim();
-		Class<?> clazz = javaTypes.get(dataType);
+		dataType = normaliseTypeName(dataType);
+		Class<?> clazz = MySQLTypeMap.java.get(dataType);
 		if (clazz != null) {
 			return clazz;
 		} else {

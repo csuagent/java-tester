@@ -1,23 +1,20 @@
 package org.jtester.dbfit.environment;
 
-import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import oracle.jdbc.rowset.OracleCachedRowSet;
+
+import org.jtester.dbfit.environment.typesmap.OracleTypeMap;
 import org.jtester.dbfit.util.DbParameterAccessor;
 import org.jtester.dbfit.util.NameNormaliser;
 import org.jtester.dbfit.util.SqlTimestampParseDelegate;
 import org.jtester.dbfit.util.TypeNormaliser;
 import org.jtester.dbfit.util.TypeNormaliserFactory;
-
-import oracle.jdbc.driver.OracleTypes;
-import oracle.jdbc.rowset.OracleCachedRowSet;
 
 public class OracleEnvironment extends AbstractDbEnvironment {
 	public static class OracleTimestampParser {
@@ -209,15 +206,6 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 		return allParams;
 	}
 
-	// List interface has sequential search, so using list instead of array to
-	// map types
-	private static List<String> stringTypes = Arrays.asList(new String[] { "VARCHAR", "VARCHAR2", "NVARCHAR2", "CHAR",
-			"NCHAR", "CLOB", "ROWID" });
-	private static List<String> decimalTypes = Arrays.asList(new String[] { "BINARY_INTEGER", "NUMBER", "FLOAT" });
-	private static List<String> dateTypes = Arrays.asList(new String[] {});
-	private static List<String> timestampTypes = Arrays.asList(new String[] { "DATE", "TIMESTAMP" });
-	private static List<String> refCursorTypes = Arrays.asList(new String[] { "REF" });
-
 	private static String normaliseTypeName(String dataType) {
 		dataType = dataType.toUpperCase().trim();
 		int idx = dataType.indexOf(" ");
@@ -230,36 +218,23 @@ public class OracleEnvironment extends AbstractDbEnvironment {
 	}
 
 	private static int getSqlType(String dataType) {
-		// todo:strip everything from first blank
 		dataType = normaliseTypeName(dataType);
-
-		if (stringTypes.contains(dataType))
-			return java.sql.Types.VARCHAR;
-		if (decimalTypes.contains(dataType))
-			return java.sql.Types.NUMERIC;
-		if (dateTypes.contains(dataType))
-			return java.sql.Types.DATE;
-		if (refCursorTypes.contains(dataType))
-			return OracleTypes.CURSOR;
-		if (timestampTypes.contains(dataType))
-			return java.sql.Types.TIMESTAMP;
-
-		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
+		Integer type = OracleTypeMap.sql.get(dataType);
+		if (type != null) {
+			return type;
+		} else {
+			throw new UnsupportedOperationException("Type " + dataType + " is not supported");
+		}
 	}
 
 	public Class<?> getJavaClass(String dataType) {
 		dataType = normaliseTypeName(dataType);
-		if (stringTypes.contains(dataType))
-			return String.class;
-		if (decimalTypes.contains(dataType))
-			return BigDecimal.class;
-		if (dateTypes.contains(dataType))
-			return java.sql.Date.class;
-		if (refCursorTypes.contains(dataType))
-			return ResultSet.class;
-		if (timestampTypes.contains(dataType))
-			return java.sql.Timestamp.class;
-		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
+		Class<?> clazz = OracleTypeMap.java.get(dataType);
+		if (clazz != null) {
+			return clazz;
+		} else {
+			throw new UnsupportedOperationException("Type " + dataType + " is not supported");
+		}
 	}
 
 	private static int getParameterDirection(String direction) {
