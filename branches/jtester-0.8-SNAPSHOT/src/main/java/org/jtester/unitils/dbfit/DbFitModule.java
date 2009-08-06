@@ -25,28 +25,30 @@ public class DbFitModule implements Module {
 	protected class DbFitTestListener extends TestListener {
 		@Override
 		public void beforeTestSetUp(Object testObject, Method testMethod) {
-			DbFit dbfit = getMethodOrClassLevelAnnotation(DbFit.class, testMethod, testObject.getClass());
+			Class<?> claz = testObject.getClass();
+			DbFit dbfit = getMethodOrClassLevelAnnotation(DbFit.class, testMethod, claz);
 			if (dbfit == null) {
 				return;
 			}
 			String[] wikis = dbfit.when();
-			runDbWiki(wikis);
+			runDbWiki(claz, wikis);
 		}
 
 		@Override
 		public void afterTestTearDown(Object testObject, Method testMethod) {
-			DbFit dbfit = getMethodOrClassLevelAnnotation(DbFit.class, testMethod, testObject.getClass());
+			Class<?> claz = testObject.getClass();
+			DbFit dbfit = getMethodOrClassLevelAnnotation(DbFit.class, testMethod, claz);
 			if (dbfit == null) {
 				return;
 			}
 			String[] wikis = dbfit.then();
-			runDbWiki(wikis);
+			runDbWiki(claz, wikis);
 		}
 	}
 
-	public void runDbWiki(String[] wikis) {
+	public void runDbWiki(Class<?> testClazz, String[] wikis) {
 		for (String wiki : wikis) {
-			JTesterRunner.run(wiki);
+			JTesterRunner.run(testClazz, wiki);
 		}
 	}
 }

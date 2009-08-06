@@ -11,12 +11,12 @@ public class JTesterRunnerTest extends JTester {
 	public void runTest_HasName() throws Exception {
 		JTesterRunner tdd = new JTesterRunner("test-output");
 
-		tdd.runTest("AcceptanceTests.JavaTests.SimpleQuery", "org/jtester/dbfit/fixture/SimpleQuery.wiki");
+		tdd.runTest("AcceptanceTests.JavaTests.SimpleQuery", JTesterRunnerTest.class, "SimpleQuery.wiki");
 	}
 
 	@Test
 	@DbFit(when = "org/jtester/dbfit/SimpleQuery_Init.wiki")
 	public void runTest() throws Exception {
-		JTesterRunner.run("org/jtester/dbfit/fixture/SimpleQuery.wiki");
+		JTesterRunner.run(null, "org/jtester/dbfit/SimpleQuery.wiki");
 	}
 }

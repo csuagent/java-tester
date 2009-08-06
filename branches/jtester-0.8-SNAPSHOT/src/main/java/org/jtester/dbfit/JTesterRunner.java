@@ -32,20 +32,36 @@ public class JTesterRunner {
 		this.prepareFiles();
 	}
 
-	public void runTest(final String url) throws Exception {
+	public void runTest(Class<?> claz, final String url) throws Exception {
 		String name = url.replace(".wiki", "").replace('\\', '.').replace('/', '.');
-		this.runTest(name, url);
+		this.runTest(name, claz, url);
 	}
 
-	public void runTest(final String name, final String url) throws Exception {
-		InputStream is = ClassLoader.getSystemResourceAsStream(url);
-		String wiki = ResourceUtil.convertStreamToString(is);
+	public void runTest(final String name, Class<?> claz, final String url) throws Exception {
+		String wiki = getWikiContent(claz, url);
 		JTesterPage page = new JTesterPage(wiki);
 		String html = this.addCssFile(page.getHtml());
 		Test test = new InMemoryTestImpl(name, html);
 		TestResult tr = testRunner.runTest(test);
 		resultRepository.recordTestResult(tr);
 		this.isSuccess(tr, name, url);
+	}
+
+	private String getWikiContent(Class<?> claz, final String url) {
+		InputStream is = ResourceUtil.findClassPathStream(claz, url);
+		if (is == null) {
+			throw new RuntimeException("can't find file " + url);
+		}
+		String wiki = ResourceUtil.convertStreamToString(is);
+		if (wiki.contains(DatabaseFixture.class.getName())) {
+			return wiki;
+		} else {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(String.format("|!-%s-!|", DatabaseFixture.class.getName()));
+			buffer.append("\n");
+			buffer.append(wiki);
+			return buffer.toString();
+		}
 	}
 
 	private final static String ERR_MESSAGE = "Run Wiki Page[%s], url[%s], Result is right=%d; wrong=%d;exceptions=%d;";
@@ -87,9 +103,9 @@ public class JTesterRunner {
 
 	private static JTesterRunner defaultRunner = new JTesterRunner();
 
-	public static void run(String url) {
+	public static void run(Class<?> claz, String url) {
 		try {
-			defaultRunner.runTest(url);
+			defaultRunner.runTest(claz, url);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

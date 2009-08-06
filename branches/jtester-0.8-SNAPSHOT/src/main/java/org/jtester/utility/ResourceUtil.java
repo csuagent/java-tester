@@ -45,4 +45,20 @@ public class ResourceUtil {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public static InputStream findClassPathStream(Class<?> claz, String url) {
+		InputStream is = ClassLoader.getSystemResourceAsStream(url);
+		if (is != null) {
+			return is;
+		} else if (claz == null) {
+			throw new RuntimeException("can't find class path resource in " + url);
+		}
+		String newUrl = ClazzUtil.getPathFromPath(claz) + File.separatorChar + url;
+		is = ClassLoader.getSystemResourceAsStream(newUrl);
+		if (is != null) {
+			return is;
+		} else {
+			throw new RuntimeException("can't find class path resource in " + url + " or in " + newUrl);
+		}
+	}
 }
