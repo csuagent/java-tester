@@ -25,7 +25,7 @@ public class InsertFixture extends Fixture {
 	private Binding[] columnBindings;
 
 	public InsertFixture() {
-		this.environment = DbFactory.instance().factory();// DbEnvironmentFactory.getDefaultEnvironment();
+		this.environment = DbFactory.instance().factory();
 	}
 
 	public InsertFixture(DBEnvironment dbEnvironment) {
@@ -62,9 +62,8 @@ public class InsertFixture extends Fixture {
 			Parse row = rows;
 			while ((row = row.more) != null) {
 				runRow(row);
+				right(row);
 			}
-			// rows.Parts.Last.More=new Parse("td",Gray("Generated Query: " +
-			// command.CommandText),null,null);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			exception(rows.parts, e);
