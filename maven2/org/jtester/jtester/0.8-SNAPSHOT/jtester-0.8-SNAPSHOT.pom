@@ -282,6 +282,12 @@
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 			<version>1.2.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xpp3</groupId>
+					<artifactId>xpp3_min</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
@@ -309,6 +315,12 @@
 			<groupId>com.neuri.tdd</groupId>
 			<artifactId>fitnesserunner</artifactId>
 			<version>1.0.8</version>
+			<exclusions>
+				<exclusion>
+					<groupId>info.fitnesse</groupId>
+					<artifactId>fixturegallery</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<reporting>
