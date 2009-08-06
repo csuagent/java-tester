@@ -8,6 +8,12 @@ import java.lang.annotation.Target;
 
 @Target(FIELD)
 @Retention(RUNTIME)
-public @interface MockBeanByName {
+public @interface MockBean {
 	String value() default "";
+
+	MockType type() default MockType.ByName;
+
+	public static enum MockType {
+		ByName;// , ByType;
+	}
 }

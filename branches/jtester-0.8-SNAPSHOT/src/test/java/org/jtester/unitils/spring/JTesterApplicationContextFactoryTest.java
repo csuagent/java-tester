@@ -36,7 +36,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 	public void testOverride() throws Throwable {
 		MockBeanRegister.clean();
 		SomeInterface overrider = new SomeInterfaceImpl2();
-		MockBeanRegister.addMockBeanByName(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
+		MockBeanRegister.addMockBean(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
 

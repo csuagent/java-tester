@@ -49,13 +49,13 @@ public class JmockModule implements Module {
 			this.mock(testedObject, mock.value(), mockField);
 		}
 
-		Set<Field> mockBeansByName = getFieldsAnnotatedWith(testedObject.getClass(), MockBeanByName.class);
+		Set<Field> mockBeansByName = getFieldsAnnotatedWith(testedObject.getClass(), MockBean.class);
 
 		for (Field mockField : mockBeansByName) {
-			MockBeanByName mock = mockField.getAnnotation(MockBeanByName.class);
+			MockBean mock = mockField.getAnnotation(MockBean.class);
 			Object mockObject = this.mock(testedObject, mock.value(), mockField);
 
-			MockBeanRegister.addMockBeanByName(mockField.getName(), mockObject);
+			MockBeanRegister.addMockBean(mockField.getName(), mockObject);
 		}
 	}
 
