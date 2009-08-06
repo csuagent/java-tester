@@ -4,14 +4,11 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.sql.Types;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
-
-import javax.sql.RowSet;
 
 import org.jtester.dbfit.util.DbParameterAccessor;
 import org.jtester.dbfit.util.NameNormaliser;
@@ -69,78 +66,76 @@ public class MySqlEnvironment extends AbstractDbEnvironment {
 		return allParams;
 	}
 
-	// List interface has sequential search, so using list instead of array to
-	// map types
-	private static List<String> stringTypes = Arrays.asList(new String[] { "VARCHAR", "CHAR", "TEXT" });
-	private static List<String> intTypes = Arrays.asList(new String[] { "TINYINT", "SMALLINT", "MEDIUMINT", "INT",
-			"INTEGER" });
-	private static List<String> longTypes = Arrays
-			.asList(new String[] { "BIGINT", "INTEGER UNSIGNED", "INT UNSIGNED" });
-	private static List<String> floatTypes = Arrays.asList(new String[] { "FLOAT" });
-	private static List<String> doubleTypes = Arrays.asList(new String[] { "DOUBLE" });
-	private static List<String> decimalTypes = Arrays.asList(new String[] { "DECIMAL", "DEC" });
-	private static List<String> dateTypes = Arrays.asList(new String[] { "DATE" });
-	private static List<String> timestampTypes = Arrays.asList(new String[] { "TIMESTAMP", "DATETIME" });
-	private static List<String> refCursorTypes = Arrays.asList(new String[] {});
-	private static List<String> boolTypes = Arrays.asList(new String[] { "BIT" });
+	private static Map<String, Class<?>> javaTypes = new HashMap<String, Class<?>>() {
+		private static final long serialVersionUID = -2101070752077610108L;
 
-	private static String normaliseTypeName(String dataType) {
-		dataType = dataType.toUpperCase().trim();
-		return dataType;
-	}
+		{
+			this.put("VARCHAR", String.class);
+			this.put("CHAR", String.class);
+			this.put("TEXT", String.class);
+			this.put("TINYINT", Integer.class);
+			this.put("SMALLINT", Integer.class);
+			this.put("MEDIUMINT", Integer.class);
+			this.put("INT", Integer.class);
+			this.put("INTEGER", Integer.class);
+			this.put("BIGINT", Long.class);
+			this.put("INTEGER UNSIGNED", Long.class);
+			this.put("INT UNSIGNED", Long.class);
+			this.put("FLOAT", Float.class);
+			this.put("DOUBLE", Double.class);
+			this.put("DECIMAL", BigDecimal.class);
+			this.put("DEC", BigDecimal.class);
+			this.put("DATE", java.sql.Date.class);
+			this.put("TIMESTAMP", java.sql.Timestamp.class);
+			this.put("DATETIME", java.sql.Timestamp.class);
+			this.put("BIT", Boolean.class);
+		}
+	};
+
+	private static Map<String, Integer> sqlTypes = new HashMap<String, Integer>() {
+		private static final long serialVersionUID = -2101070752077610108L;
+
+		{
+			this.put("VARCHAR", Types.VARCHAR);
+			this.put("CHAR", Types.VARCHAR);
+			this.put("TEXT", Types.VARCHAR);
+			this.put("TINYINT", Types.INTEGER);
+			this.put("SMALLINT", Types.INTEGER);
+			this.put("MEDIUMINT", Types.INTEGER);
+			this.put("INT", Types.INTEGER);
+			this.put("INTEGER", Types.INTEGER);
+			this.put("BIGINT", Types.BIGINT);
+			this.put("INTEGER UNSIGNED", Types.BIGINT);
+			this.put("INT UNSIGNED", Types.BIGINT);
+			this.put("FLOAT", Types.FLOAT);
+			this.put("DOUBLE", Types.DOUBLE);
+			this.put("DECIMAL", Types.NUMERIC);
+			this.put("DEC", Types.NUMERIC);
+			this.put("DATE", Types.DATE);
+			this.put("TIMESTAMP", Types.TIMESTAMP);
+			this.put("DATETIME", Types.TIMESTAMP);
+			this.put("BIT", Types.BOOLEAN);
+		}
+	};
 
 	private static int getSqlType(String dataType) {
-		// todo:strip everything from first blank
-		dataType = normaliseTypeName(dataType);
-
-		if (stringTypes.contains(dataType))
-			return java.sql.Types.VARCHAR;
-		if (decimalTypes.contains(dataType))
-			return java.sql.Types.NUMERIC;
-		if (intTypes.contains(dataType))
-			return java.sql.Types.INTEGER;
-		if (floatTypes.contains(dataType))
-			return java.sql.Types.FLOAT;
-		if (doubleTypes.contains(dataType))
-			return java.sql.Types.DOUBLE;
-		if (longTypes.contains(dataType))
-			return java.sql.Types.BIGINT;
-		if (timestampTypes.contains(dataType))
-			return java.sql.Types.TIMESTAMP;
-		if (dateTypes.contains(dataType))
-			return java.sql.Types.DATE;
-		if (refCursorTypes.contains(dataType))
-			return java.sql.Types.REF;
-		if (boolTypes.contains(dataType)) {
-			return java.sql.Types.BOOLEAN;
+		dataType = dataType.toUpperCase().trim();
+		Integer type = sqlTypes.get(dataType);
+		if (type != null) {
+			return type;
+		} else {
+			throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 		}
-		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	public Class<?> getJavaClass(String dataType) {
-		dataType = normaliseTypeName(dataType);
-		if (stringTypes.contains(dataType))
-			return String.class;
-		if (decimalTypes.contains(dataType))
-			return BigDecimal.class;
-		if (intTypes.contains(dataType))
-			return Integer.class;
-		if (floatTypes.contains(dataType))
-			return Float.class;
-		if (dateTypes.contains(dataType))
-			return java.sql.Date.class;
-		if (refCursorTypes.contains(dataType))
-			return RowSet.class;
-		if (doubleTypes.contains(dataType))
-			return Double.class;
-		if (longTypes.contains(dataType))
-			return Long.class;
-		if (timestampTypes.contains(dataType))
-			return java.sql.Timestamp.class;
-		if (boolTypes.contains(dataType)) {
-			return Boolean.class;
+		dataType = dataType.toUpperCase().trim();
+		Class<?> clazz = javaTypes.get(dataType);
+		if (clazz != null) {
+			return clazz;
+		} else {
+			throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 		}
-		throw new UnsupportedOperationException("Type " + dataType + " is not supported");
 	}
 
 	public Map<String, DbParameterAccessor> getAllProcedureParameters(String procName) throws SQLException {
