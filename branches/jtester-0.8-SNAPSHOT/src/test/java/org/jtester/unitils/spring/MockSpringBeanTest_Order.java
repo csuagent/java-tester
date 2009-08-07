@@ -1,9 +1,10 @@
 package org.jtester.unitils.spring;
 
 import org.jtester.testng.TestNgUtil;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-public class RunMockBeanSpring {
+@Test(groups = "jtester")
+public class MockSpringBeanTest_Order {
 	@Test
 	public void run1() {
 		TestNgUtil.run(MockBeanByNameTest_Mock.class.getName(), "paySalary", true);
