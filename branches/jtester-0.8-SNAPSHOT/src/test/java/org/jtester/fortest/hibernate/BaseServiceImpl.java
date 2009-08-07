@@ -6,7 +6,6 @@ import java.lang.reflect.ParameterizedType;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.jtester.dbtest.bean.BaseBean;
 
 public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 	protected Class<T> claz;

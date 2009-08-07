@@ -1,4 +1,4 @@
-package org.jtester.dbtest.bean;
+package org.jtester.fortest.hibernate;
 
 import java.util.Collection;
 

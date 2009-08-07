@@ -1,6 +1,6 @@
 package org.jtester.unitils.dbfit;
 
-import org.jtester.dbtest.bean.User;
+import org.jtester.fortest.hibernate.User;
 import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;

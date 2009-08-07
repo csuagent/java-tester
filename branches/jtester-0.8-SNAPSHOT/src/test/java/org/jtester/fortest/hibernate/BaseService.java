@@ -1,7 +1,6 @@
 package org.jtester.fortest.hibernate;
 
 import org.hibernate.Session;
-import org.jtester.dbtest.bean.BaseBean;
 
 public interface BaseService<T extends BaseBean> {
 	/**

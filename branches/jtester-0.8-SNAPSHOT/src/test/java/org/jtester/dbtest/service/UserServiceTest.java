@@ -2,8 +2,8 @@ package org.jtester.dbtest.service;
 
 import java.util.Collection;
 
-import org.jtester.dbtest.bean.Address;
-import org.jtester.dbtest.bean.User;
+import org.jtester.fortest.hibernate.Address;
+import org.jtester.fortest.hibernate.User;
 import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;

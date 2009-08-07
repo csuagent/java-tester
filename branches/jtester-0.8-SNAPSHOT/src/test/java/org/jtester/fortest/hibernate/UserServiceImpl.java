@@ -1,6 +1,5 @@
 package org.jtester.fortest.hibernate;
 
-import org.jtester.dbtest.bean.User;
 
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	private AddressService addressService;
