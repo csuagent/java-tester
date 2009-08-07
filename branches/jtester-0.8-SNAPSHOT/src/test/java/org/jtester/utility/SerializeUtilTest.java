@@ -25,7 +25,7 @@ public class SerializeUtilTest extends JTester {
 
 	@Test(dependsOnMethods = { "toDat" })
 	public void fromDat() {
-		String filename = "d:/manager.dat";
+		String filename = "file:d:/manager.dat";
 		want.file(filename).isExists();
 
 		Manager manager = SerializeUtil.fromDat(Manager.class, filename);
@@ -66,7 +66,7 @@ public class SerializeUtilTest extends JTester {
 
 	@Test(dependsOnMethods = { "toXML" })
 	public void fromXML() {
-		String filename = "d:/manager.xml";
+		String filename = "file:d:/manager.xml";
 		want.file(filename).isExists();
 
 		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
@@ -83,8 +83,7 @@ public class SerializeUtilTest extends JTester {
 
 	@Test
 	public void fromXML_Classpath2() {
-		String filename = "classpath:manager.xml";
-		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
+		Manager manager = SerializeUtil.fromXML(Manager.class, SerializeUtilTest.class, "manager.xml");
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
 		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
 	}

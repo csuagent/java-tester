@@ -303,7 +303,7 @@ public interface JTesterAssert {
 		 * @return
 		 */
 		public IFileAssert file(String filename) {
-			File file = new File(filename);
+			File file = new File(filename.replace("file:", ""));
 			return new FileAssert(file);
 		}
 

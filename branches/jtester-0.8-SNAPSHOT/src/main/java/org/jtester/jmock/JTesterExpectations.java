@@ -1,9 +1,12 @@
 package org.jtester.jmock;
 
+import java.io.File;
 import java.util.Collection;
 
 import org.jmock.Expectations;
 import org.jmock.api.Action;
+import org.jtester.utility.ClazzUtil;
+import org.jtester.utility.SerializeUtil;
 
 public abstract class JTesterExpectations extends Expectations implements ICallMethod {
 	public JTesterExpectations() {
@@ -48,6 +51,33 @@ public abstract class JTesterExpectations extends Expectations implements ICallM
 
 		public void value(Object result) {
 			expectations.will(Expectations.returnValue(result));
+		}
+
+		/**
+		 * 
+		 * @param returnClazz
+		 *            要返回对象的类型
+		 * @param xmlUrl
+		 *            反序列化的xml文件名称(包含classpath路径)
+		 */
+		public void value(Class<?> returnClazz, String xmlUrl) {
+			Object o = SerializeUtil.fromXML(returnClazz, xmlUrl);
+			this.value(o);
+		}
+
+		/**
+		 * 
+		 * @param returnClazz
+		 *            要返回对象的类型
+		 * @param pathClazz
+		 *            xml文件所在的class，用来方便定位xml文件路径
+		 * @param xmlUrl
+		 *            反序列化的xml文件名称
+		 */
+		public void value(Class<?> returnClazz, Class<?> pathClazz, String xmlUrl) {
+			String path = ClazzUtil.getPathFromPath(pathClazz);
+			Object o = SerializeUtil.fromXML(returnClazz, path + File.separatorChar + xmlUrl);
+			this.value(o);
 		}
 
 		public void iterator(Collection<?> collection) {
