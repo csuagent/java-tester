@@ -71,8 +71,9 @@ public class JmockModule implements Module {
 		Class<?> mockType = field.getType();
 		if (StringUtils.isBlank(mockname)) {
 			mockname = namingScheme.defaultNameFor(mockType);
+			mockname += "#" + field.getName();
 		}
-		mockname = mockname + "_" + Thread.currentThread().getId();
+		mockname = mockname + "#" + Thread.currentThread().getId();
 		Object mockObject = context.mock(mockType, mockname);
 
 		setFieldValue(testedObject, field, mockObject);

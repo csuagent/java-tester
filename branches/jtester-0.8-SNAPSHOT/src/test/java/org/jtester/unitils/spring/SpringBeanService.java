@@ -1,8 +1,12 @@
 package org.jtester.unitils.spring;
 
 public class SpringBeanService {
-	private final SomeInterface dependency;
+	private SomeInterface dependency;
 	private SomeInterface dependency2;
+
+	public SpringBeanService() {
+		super();
+	}
 
 	public SpringBeanService(SomeInterface dependency) {
 		super();
