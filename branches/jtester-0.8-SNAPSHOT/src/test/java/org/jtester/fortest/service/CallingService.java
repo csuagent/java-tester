@@ -1,4 +1,4 @@
-package org.jtester.jmock.service;
+package org.jtester.fortest.service;
 
 public class CallingService {
 	private CalledService calledService;

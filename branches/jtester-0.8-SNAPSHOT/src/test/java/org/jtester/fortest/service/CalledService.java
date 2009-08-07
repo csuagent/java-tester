@@ -1,4 +1,4 @@
-package org.jtester.jmock.service;
+package org.jtester.fortest.service;
 
 public interface CalledService {
 	public String called(String test);

@@ -3,9 +3,9 @@
  "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-    <bean id="toBeOverriden" class="org.jtester.unitils.spring.SpringBeanService$SomeInterfaceImpl"/>
+    <bean id="toBeOverriden" class="org.jtester.fortest.service.SpringBeanService$SomeInterfaceImpl"/>
     
-    <bean id="springBeanService" class="org.jtester.unitils.spring.SpringBeanService">
+    <bean id="springBeanService" class="org.jtester.fortest.service.SpringBeanService">
         <constructor-arg ref="toBeOverriden"/>
         <property name="dependency2" ref="toBeOverriden"/>
     </bean>

@@ -1,9 +1,10 @@
 package org.jtester.unitils.spring;
 
+import org.jtester.fortest.service.SpringBeanService;
+import org.jtester.fortest.service.SpringBeanService.SomeInterface;
+import org.jtester.fortest.service.SpringBeanService.SomeInterfaceImpl;
+import org.jtester.fortest.service.SpringBeanService.SomeInterfaceImpl2;
 import org.jtester.unitils.jmock.MockBeanRegister;
-import org.jtester.unitils.spring.SpringBeanService.SomeInterface;
-import org.jtester.unitils.spring.SpringBeanService.SomeInterfaceImpl;
-import org.jtester.unitils.spring.SpringBeanService.SomeInterfaceImpl2;
 import org.junit.Before;
 import org.testng.annotations.Test;
 
@@ -22,7 +23,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 	public void testNoOverride() throws Throwable {
 		MockBeanRegister.clean();
 		context = new JTesterClassPathXmlApplicationContext(
-				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
+				new String[] { "org/jtester/fortest/spring/mock-spring-beans-test.xml" }, true, null);
 
 		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl.class);
 
@@ -38,7 +39,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 		SomeInterface overrider = new SomeInterfaceImpl2();
 		MockBeanRegister.addMockBean(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
 		context = new JTesterClassPathXmlApplicationContext(
-				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
+				new String[] { "org/jtester/fortest/spring/mock-spring-beans-test.xml" }, true, null);
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
 		want.object(anotherBean).notNull();
@@ -52,7 +53,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 	public void testOverride_failure() throws Throwable {
 		MockBeanRegister.clean();
 		context = new JTesterClassPathXmlApplicationContext(
-				new String[] { "org/jtester/unitils/spring/mock-spring-beans-test.xml" }, true, null);
+				new String[] { "org/jtester/fortest/spring/mock-spring-beans-test.xml" }, true, null);
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
 		want.object(anotherBean).notNull();

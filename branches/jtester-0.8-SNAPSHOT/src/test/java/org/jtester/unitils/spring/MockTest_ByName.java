@@ -1,8 +1,9 @@
 package org.jtester.unitils.spring;
 
+import org.jtester.fortest.service.SpringBeanService;
+import org.jtester.fortest.service.SpringBeanService.SomeInterface;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.Mock;
-import org.jtester.unitils.spring.SpringBeanService.SomeInterface;
 import org.testng.annotations.Test;
 
 @Test(groups = "jtester")

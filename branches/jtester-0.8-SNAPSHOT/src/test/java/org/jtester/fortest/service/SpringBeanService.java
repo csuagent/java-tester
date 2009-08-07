@@ -1,4 +1,4 @@
-package org.jtester.unitils.spring;
+package org.jtester.fortest.service;
 
 public class SpringBeanService {
 	private SomeInterface dependency;
