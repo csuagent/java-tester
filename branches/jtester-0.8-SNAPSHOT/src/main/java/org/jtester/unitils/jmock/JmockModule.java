@@ -13,6 +13,7 @@ import org.jmock.Mockery;
 import org.jmock.api.MockObjectNamingScheme;
 import org.jmock.lib.CamelCaseNamingScheme;
 import org.jmock.lib.legacy.ClassImposteriser;
+import org.jtester.utility.StringUtil;
 import org.unitils.core.Module;
 import org.unitils.core.TestListener;
 
@@ -54,8 +55,11 @@ public class JmockModule implements Module {
 		for (Field mockField : mockBeansByName) {
 			MockBean mock = mockField.getAnnotation(MockBean.class);
 			Object mockObject = this.mock(testedObject, mock.value(), mockField);
-
-			MockBeanRegister.addMockBean(mockField.getName(), mockObject);
+			String beanName = mock.bean();
+			if (StringUtil.isBlankOrNull(beanName)) {
+				beanName = mockField.getName();
+			}
+			MockBeanRegister.addMockBean(beanName, mockObject);
 		}
 	}
 

@@ -11,6 +11,8 @@ import java.lang.annotation.Target;
 public @interface MockBean {
 	String value() default "";
 
+	String bean() default "";
+
 	MockType type() default MockType.ByName;
 
 	public static enum MockType {
