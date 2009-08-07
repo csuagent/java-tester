@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Manager extends Employee {
 	private static final long serialVersionUID = 843725563822394654L;
-	private Employee Secretary;
+	private Employee secretary;
 
 	private Serializable phoneNumber;
 
@@ -17,11 +17,11 @@ public class Manager extends Employee {
 	}
 
 	public Employee getSecretary() {
-		return Secretary;
+		return secretary;
 	}
 
 	public void setSecretary(Employee secretary) {
-		Secretary = secretary;
+		this.secretary = secretary;
 	}
 
 	public Serializable getPhoneNumber() {

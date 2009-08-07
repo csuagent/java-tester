@@ -37,7 +37,7 @@ public class SerializeUtilTest extends JTester {
 		String filename = "classpath:org/jtester/utility/manager.dat";
 		Manager manager = SerializeUtil.fromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("05").hourIs(15);
+		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(13);
 	}
 
 	@Test
@@ -78,14 +78,14 @@ public class SerializeUtilTest extends JTester {
 		String filename = "classpath:org/jtester/utility/manager.xml";
 		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
+		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(13);
 	}
 
 	@Test
 	public void fromXML_Classpath2() {
 		Manager manager = SerializeUtil.fromXML(Manager.class, SerializeUtilTest.class, "manager.xml");
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("04").hourIs(16);
+		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(13);
 	}
 
 	@Test

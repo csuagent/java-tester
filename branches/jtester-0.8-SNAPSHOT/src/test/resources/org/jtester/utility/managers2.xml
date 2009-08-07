@@ -1,8 +1,8 @@
 <list>
 	<org.jtester.beans.Manager>
-		<Secretary>
+		<secretary>
 			<name>Harry Hacker</name>
-		</Secretary>
+		</secretary>
 		<phoneNumber class="org.jtester.beans.PhoneNumber">
 			<code>571</code>
 			<number>0571-88886666</number>
@@ -11,9 +11,9 @@
 		<date>2009-05-04 10:25:04.578 CST</date>
 	</org.jtester.beans.Manager>
 	<org.jtester.beans.Manager>
-		<Secretary>
+		<secretary>
 			<name>Harry Hacker</name>
-		</Secretary>
+		</secretary>
 		<phoneNumber class="org.jtester.beans.PhoneNumber">
 			<code>571</code>
 			<number>0571-88886666</number>
