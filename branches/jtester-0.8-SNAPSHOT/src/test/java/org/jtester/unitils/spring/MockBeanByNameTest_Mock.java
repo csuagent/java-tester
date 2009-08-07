@@ -3,8 +3,8 @@ package org.jtester.unitils.spring;
 import java.util.ArrayList;
 
 import org.jtester.fortest.beans.User;
-import org.jtester.unitils.database.ibatis.service.UserDao;
-import org.jtester.unitils.database.ibatis.service.UserService;
+import org.jtester.fortest.service.UserDao;
+import org.jtester.fortest.service.UserService;
 import org.jtester.unitils.jmock.MockBean;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringBeanByName;

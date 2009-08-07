@@ -1,8 +1,8 @@
 package org.jtester.unitils.database.ibatis;
 
 import org.jtester.fortest.beans.User;
+import org.jtester.fortest.service.UserService;
 import org.jtester.testng.JTester;
-import org.jtester.unitils.database.ibatis.service.UserService;
 import org.jtester.unitils.dbwiki.WikiDataSet;
 import org.jtester.unitils.dbwiki.WikiExpectedDataSet;
 import org.testng.annotations.Test;
@@ -12,8 +12,8 @@ import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;
 
 @Test(groups = { "JTester" })
-@SpringApplicationContext( { "classpath:org/jtester/unitils/database/ibatis/spring/beans.xml",
-		"classpath:org/jtester/unitils/database/ibatis/spring/data-source.xml" })
+@SpringApplicationContext( { "classpath:org/jtester/fortest/spring/beans.xml",
+		"classpath:org/jtester/fortest/spring/data-source.xml" })
 public class WikiDataSetTest extends JTester {
 	@SpringBeanByName
 	private UserService userService;

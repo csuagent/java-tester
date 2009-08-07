@@ -1,4 +1,4 @@
-package org.jtester.unitils.database.ibatis.service;
+package org.jtester.fortest.service;
 
 import java.util.List;
 

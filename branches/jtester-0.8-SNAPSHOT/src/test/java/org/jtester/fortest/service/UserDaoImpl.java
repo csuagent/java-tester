@@ -1,4 +1,4 @@
-package org.jtester.unitils.database.ibatis.service;
+package org.jtester.fortest.service;
 
 import java.sql.SQLException;
 import java.util.List;

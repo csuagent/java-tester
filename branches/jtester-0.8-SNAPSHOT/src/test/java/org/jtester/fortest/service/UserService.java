@@ -1,4 +1,4 @@
-package org.jtester.unitils.database.ibatis.service;
+package org.jtester.fortest.service;
 
 import org.jtester.fortest.beans.User;
 
