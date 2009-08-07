@@ -7,7 +7,7 @@ import org.jtester.utility.SerializeUtil;
 import org.testng.annotations.Test;
 
 @Test(groups = "jtester")
-public class JeTest_ReturnValue extends JTester {
+public class ReturnValueTest extends JTester {
 	@Mock
 	private ManagerService service;
 
