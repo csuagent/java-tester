@@ -2,7 +2,7 @@ package org.jtester.unitils.database.ibatis.service;
 
 import java.util.List;
 
-import org.jtester.unitils.database.ibatis.beans.User;
+import org.jtester.beans.User;
 
 public class UserServiceImpl implements UserService {
 	private UserDao userDao;

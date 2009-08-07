@@ -3,7 +3,7 @@ package org.jtester.unitils.database.ibatis.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.jtester.unitils.database.ibatis.beans.User;
+import org.jtester.beans.User;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao {
