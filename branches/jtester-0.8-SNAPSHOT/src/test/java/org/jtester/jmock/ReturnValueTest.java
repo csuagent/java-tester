@@ -1,6 +1,6 @@
 package org.jtester.jmock;
 
-import org.jtester.beans.Manager;
+import org.jtester.fortest.beans.Manager;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.Mock;
 import org.jtester.utility.SerializeUtil;

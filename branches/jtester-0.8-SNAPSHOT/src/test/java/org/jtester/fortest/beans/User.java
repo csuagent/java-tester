@@ -1,4 +1,4 @@
-package org.jtester.beans;
+package org.jtester.fortest.beans;
 
 public class User implements java.io.Serializable {
 	private static final long serialVersionUID = 1145595282412714496L;

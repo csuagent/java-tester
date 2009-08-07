@@ -1,18 +1,24 @@
-<org.jtester.beans.Manager-array>
-  <org.jtester.beans.Manager>
-    <phoneNumber class="org.jtester.beans.PhoneNumber">
+<org.jtester.fortest.beans.Manager-array>
+  <org.jtester.fortest.beans.Manager>
+    <secretary>
+      <name>Harry Hacker</name>
+    </secretary>
+    <phoneNumber class="org.jtester.fortest.beans.PhoneNumber">
       <code>571</code>
       <number>0571-88886666</number>
     </phoneNumber>
     <name>Tony Tester</name>
-    <date>2009-08-07 13:57:26.904 CST</date>
-  </org.jtester.beans.Manager>
-  <org.jtester.beans.Manager>
-    <phoneNumber class="org.jtester.beans.PhoneNumber">
+    <date>2009-08-07 16:46:15.573 CST</date>
+  </org.jtester.fortest.beans.Manager>
+  <org.jtester.fortest.beans.Manager>
+    <secretary>
+      <name>Harry Hacker</name>
+    </secretary>
+    <phoneNumber class="org.jtester.fortest.beans.PhoneNumber">
       <code>571</code>
       <number>0571-88886666</number>
     </phoneNumber>
     <name>Tony Tester</name>
-    <date>2009-08-07 13:57:26.904 CST</date>
-  </org.jtester.beans.Manager>
-</org.jtester.beans.Manager-array>
+    <date>2009-08-07 16:46:15.573 CST</date>
+  </org.jtester.fortest.beans.Manager>
+</org.jtester.fortest.beans.Manager-array>

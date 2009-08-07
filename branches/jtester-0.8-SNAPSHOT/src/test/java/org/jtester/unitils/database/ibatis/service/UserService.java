@@ -1,6 +1,6 @@
 package org.jtester.unitils.database.ibatis.service;
 
-import org.jtester.beans.User;
+import org.jtester.fortest.beans.User;
 
 public interface UserService {
 	public double paySalary(String postcode);

@@ -3,7 +3,7 @@ package org.jtester.unitils.jmock;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.jmock.Expectations;
-import org.jtester.beans.ISpeak;
+import org.jtester.fortest.beans.ISpeak;
 import org.jtester.jmock.JTesterExpectations;
 import org.jtester.testng.JTester;
 import org.testng.annotations.BeforeMethod;

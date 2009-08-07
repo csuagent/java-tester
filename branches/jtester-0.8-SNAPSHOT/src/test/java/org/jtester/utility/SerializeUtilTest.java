@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.jtester.beans.Employee;
-import org.jtester.beans.Manager;
-import org.jtester.beans.PhoneNumber;
 import org.jtester.exception.JTesterException;
+import org.jtester.fortest.beans.Employee;
+import org.jtester.fortest.beans.Manager;
+import org.jtester.fortest.beans.PhoneNumber;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
@@ -37,7 +37,7 @@ public class SerializeUtilTest extends JTester {
 		String filename = "classpath:org/jtester/utility/manager.dat";
 		Manager manager = SerializeUtil.fromDat(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(13);
+		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(16);
 	}
 
 	@Test
@@ -78,14 +78,14 @@ public class SerializeUtilTest extends JTester {
 		String filename = "classpath:org/jtester/utility/manager.xml";
 		Manager manager = SerializeUtil.fromXML(Manager.class, filename);
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(13);
+		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(16);
 	}
 
 	@Test
 	public void fromXML_Classpath2() {
 		Manager manager = SerializeUtil.fromXML(Manager.class, SerializeUtilTest.class, "manager.xml");
 		want.object(manager).propertyEq("name", "Tony Tester").propertyEq("phoneNumber.number", "0571-88886666");
-		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(13);
+		want.date(manager.getDate()).yearIs(2009).monthIs("08").hourIs(16);
 	}
 
 	@Test

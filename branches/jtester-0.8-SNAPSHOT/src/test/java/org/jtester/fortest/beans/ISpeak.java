@@ -1,4 +1,4 @@
-package org.jtester.beans;
+package org.jtester.fortest.beans;
 
 public interface ISpeak {
 	public void say();

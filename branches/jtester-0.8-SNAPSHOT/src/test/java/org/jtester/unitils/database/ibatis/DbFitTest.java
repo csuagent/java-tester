@@ -1,6 +1,6 @@
 package org.jtester.unitils.database.ibatis;
 
-import org.jtester.beans.User;
+import org.jtester.fortest.beans.User;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.database.ibatis.service.UserService;
 import org.jtester.unitils.dbfit.DbFit;

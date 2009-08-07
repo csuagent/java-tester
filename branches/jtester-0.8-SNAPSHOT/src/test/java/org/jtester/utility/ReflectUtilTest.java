@@ -1,7 +1,7 @@
 package org.jtester.utility;
 
-import org.jtester.beans.Employee;
 import org.jtester.exception.JTesterException;
+import org.jtester.fortest.beans.Employee;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 

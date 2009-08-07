@@ -1,4 +1,4 @@
-package org.jtester.beans;
+package org.jtester.fortest.beans;
 
 public class Address {
 	private String street;
