@@ -1,8 +1,8 @@
 package org.jtester.unitils.jmock;
 
+import org.jtester.beans.ISpeak;
+import org.jtester.beans.Person;
 import org.jtester.testng.JTester;
-import org.jtester.unitils.jmock.bean.ISpeak;
-import org.jtester.unitils.jmock.bean.Person;
 import org.testng.annotations.Test;
 import org.unitils.inject.annotation.InjectIntoByType;
 import org.unitils.inject.annotation.TestedObject;

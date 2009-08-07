@@ -1,4 +1,4 @@
-package org.jtester.unitils.jmock.bean;
+package org.jtester.beans;
 
 public interface ISpeak {
 	public void say();
