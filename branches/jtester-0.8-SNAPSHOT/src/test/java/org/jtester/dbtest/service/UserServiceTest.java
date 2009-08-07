@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.jtester.dbtest.bean.Address;
 import org.jtester.dbtest.bean.User;
+import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 import org.unitils.dbunit.annotation.DataSet;
@@ -11,7 +12,7 @@ import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
-@SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
+@SpringApplicationContext( { "classpath:/org/jtester/fortest/hibernate/project.xml" })
 @Test(groups = { "JTester" })
 public class UserServiceTest extends JTester {
 	@SpringBeanByType

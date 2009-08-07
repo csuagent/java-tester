@@ -1,7 +1,6 @@
-package org.jtester.dbtest.service.impl;
+package org.jtester.fortest.hibernate;
 
 import org.jtester.dbtest.bean.BaseBean;
-import org.jtester.dbtest.service.BaseService;
 
 public class BeanServiceImpl extends BaseServiceImpl<BaseBean> implements BaseService<BaseBean> {
 

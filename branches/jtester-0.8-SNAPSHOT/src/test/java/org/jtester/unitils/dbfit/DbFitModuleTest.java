@@ -1,14 +1,14 @@
 package org.jtester.unitils.dbfit;
 
 import org.jtester.dbtest.bean.User;
-import org.jtester.dbtest.service.UserService;
+import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
 @Test(groups = { "JTester" })
-@SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
+@SpringApplicationContext( { "classpath:/org/jtester/fortest/hibernate/project.xml" })
 public class DbFitModuleTest extends JTester {
 	@SpringBeanByType
 	private UserService userService;

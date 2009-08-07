@@ -1,5 +1,6 @@
 package org.jtester.dbtest.service;
 
+import org.jtester.fortest.hibernate.AddressService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringApplicationContext;

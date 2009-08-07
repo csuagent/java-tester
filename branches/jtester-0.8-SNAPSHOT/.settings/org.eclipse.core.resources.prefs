@@ -1,4 +1,4 @@
-#Mon Aug 03 16:30:34 CST 2009
+#Fri Aug 07 17:09:29 CST 2009
 eclipse.preferences.version=1
 encoding//docs/test\ guide.txt=GBK
 encoding//src/main/java/org/jtester/core/IExpectation.java=UTF-8
@@ -41,9 +41,9 @@ encoding//src/main/java/org/jtester/utility/PrimitiveConvertor.java=UTF-8
 encoding//src/main/java/org/jtester/utility/ReflectUtil.java=UTF-8
 encoding//src/main/java/org/jtester/utility/SerializeUtil.java=UTF-8
 encoding//src/main/resources/unitils.properties=UTF-8
-encoding//src/test/java/org/jtester/dbtest/service/BaseService.java=UTF-8
 encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_ByInjectedMock.java=UTF-8
 encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_Mock1.java=UTF-8
 encoding//src/test/java/org/jtester/dbtest/service/UserServiceTest_Mock2.java=UTF-8
+encoding//src/test/java/org/jtester/fortest/hibernate/BaseService.java=UTF-8
 encoding//src/test/java/org/jtester/utility/FindClazUtilTest.java=UTF-8
 encoding/<project>=UTF-8

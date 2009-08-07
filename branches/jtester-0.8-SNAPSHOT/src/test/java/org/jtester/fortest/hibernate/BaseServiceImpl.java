@@ -1,4 +1,4 @@
-package org.jtester.dbtest.service.impl;
+package org.jtester.fortest.hibernate;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jtester.dbtest.bean.BaseBean;
-import org.jtester.dbtest.service.BaseService;
 
 public class BaseServiceImpl<T extends BaseBean> implements BaseService<T> {
 	protected Class<T> claz;

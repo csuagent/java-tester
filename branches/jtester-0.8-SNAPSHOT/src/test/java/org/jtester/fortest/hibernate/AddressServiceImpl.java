@@ -1,6 +1,5 @@
-package org.jtester.dbtest.service.impl;
+package org.jtester.fortest.hibernate;
 
-import org.jtester.dbtest.service.AddressService;
 
 public class AddressServiceImpl implements AddressService {
 

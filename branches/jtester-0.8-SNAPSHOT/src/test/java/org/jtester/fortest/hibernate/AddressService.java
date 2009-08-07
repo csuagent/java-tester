@@ -1,4 +1,4 @@
-package org.jtester.dbtest.service;
+package org.jtester.fortest.hibernate;
 
 public interface AddressService {
 	public String findAddress();
