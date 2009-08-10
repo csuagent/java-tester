@@ -1,9 +1,9 @@
 package org.jtester.unitils.spring;
 
-import org.jtester.fortest.service.SpringBeanService;
-import org.jtester.fortest.service.SpringBeanService.SomeInterface;
-import org.jtester.fortest.service.SpringBeanService.SomeInterfaceImpl;
-import org.jtester.fortest.service.SpringBeanService.SomeInterfaceImpl2;
+import org.jtester.fortest.formock.SomeInterface;
+import org.jtester.fortest.formock.SpringBeanService;
+import org.jtester.fortest.formock.SomeInterface.SomeInterfaceImpl1;
+import org.jtester.fortest.formock.SomeInterface.SomeInterfaceImpl2;
 import org.jtester.unitils.jmock.MockBeanRegister;
 import org.junit.Before;
 import org.testng.annotations.Test;
@@ -25,12 +25,12 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/fortest/spring/mock-spring-beans-test.xml" }, true, null);
 
-		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl.class);
+		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl1.class);
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
 		want.object(anotherBean).notNull();
-		want.object(anotherBean.getDependency()).clazIs(SomeInterfaceImpl.class);
-		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl.class);
+		want.object(anotherBean.getDependency1()).clazIs(SomeInterfaceImpl1.class);
+		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl1.class);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
 		want.object(anotherBean).notNull();
-		want.object(anotherBean.getDependency()).clazIs(SomeInterfaceImpl2.class);
+		want.object(anotherBean.getDependency1()).clazIs(SomeInterfaceImpl2.class);
 		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl2.class);
 
 		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl2.class);
@@ -57,6 +57,6 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
 		want.object(anotherBean).notNull();
-		want.object(anotherBean.getDependency()).clazIs(SomeInterfaceImpl2.class);
+		want.object(anotherBean.getDependency1()).clazIs(SomeInterfaceImpl2.class);
 	}
 }
