@@ -1,4 +1,4 @@
-package org.jtester.utility;
+package org.jtester.utility.xstream;
 
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.basic.BigDecimalConverter;
@@ -40,6 +40,14 @@ import com.thoughtworks.xstream.core.JVM;
 import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.mapper.Mapper;
 
+/**
+ * 重载XStream的setupConverters的方法,为了和eclipse plugin的一致<br>
+ * 去掉SerializableConverter和ExternalizableConverter这2个converter<br>
+ * 去掉awt和swing的支持<br>
+ * 
+ * @author darui.wudr
+ * 
+ */
 public class ExXStream extends AccessibleXStream {
 
 	public ExXStream(HierarchicalStreamDriver hierarchicalStreamDriver) {

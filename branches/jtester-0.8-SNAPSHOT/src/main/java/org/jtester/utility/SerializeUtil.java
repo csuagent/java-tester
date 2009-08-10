@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.jtester.exception.JTesterException;
+import org.jtester.utility.xstream.ExXStream;
 
 //import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;

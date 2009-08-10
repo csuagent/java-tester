@@ -1,4 +1,4 @@
-package org.jtester.utility;
+package org.jtester.utility.xstream;
 
 import java.io.EOFException;
 import java.io.File;
