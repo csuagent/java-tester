@@ -1,5 +1,6 @@
 package org.jtester.unitils.jmock.expectations;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
 
+@SuppressWarnings("unchecked")
 @Test(groups = "jtester")
 public class ReturnValueTest extends JTester {
 
@@ -17,19 +19,70 @@ public class ReturnValueTest extends JTester {
 	@Mock(injectInto = "someService")
 	public SomeInterface someInterface;
 
-	@SuppressWarnings("unchecked")
 	public void testMock() {
 		checking(new Je() {
 			{
 				will.call.one(someInterface).someCall(the.string().isEqualTo("darui.wu").wanted(),
 						the.collection().sizeEq(0).wanted(List.class), the.map().any().wanted(HashMap.class));
-				// will.returns.value(ComplexObject.instance());
+				will.returns.value(ComplexObject.instance());
+
+			}
+		});
+		String result = this.someService.call("darui.wu");
+		want.string(result).contains("name=");
+	}
+
+	public void testMock_FromXML() {
+		checking(new Je() {
+			{
+				will.call.one(someInterface).someCall(the.string().isEqualTo("darui.wu").wanted(),
+						the.collection().sizeEq(0).wanted(List.class), the.map().any().wanted(HashMap.class));
 				will.returns.value(ComplexObject.class, ReturnValueTest.class, "complex object.xml");
 
 			}
 		});
 		String result = this.someService.call("darui.wu");
 		want.string(result).contains("name=");
+	}
+
+	@Test(expectedExceptions = RuntimeException.class)
+	public void testMock_ThrowException() {
+		checking(new Je() {
+			{
+				will.call.one(someInterface).someCall(the.string().isEqualTo("darui.wu").wanted(),
+						the.collection().sizeEq(0).wanted(List.class), the.map().any().wanted(HashMap.class));
+				will.throwException(new RuntimeException("test exception"));
+
+			}
+		});
+		this.someService.call("darui.wu");
+	}
+
+	public void testMock_CatchThrowException() {
+		checking(new Je() {
+			{
+				will.call.one(someInterface).someCall(the.string().isEqualTo("darui.wu").wanted(),
+						the.collection().sizeEq(0).wanted(List.class), the.map().any().wanted(HashMap.class));
+				will.throwException(new RuntimeException("test exception"));
+
+			}
+		});
+		try {
+			this.someService.call("darui.wu");
+		} catch (RuntimeException e) {
+			want.string(e.getMessage()).isEqualTo("test exception");
+		}
+	}
+
+	public void testThrowException() throws InterruptedException, IOException {
+		checking(new Je() {
+			{
+				will.call.allowing(someInterface).someCallException();
+				will.throwException(new IOException("test exception"));
+
+			}
+		});
+		this.someService.callThrowException("darui.wu");
 	}
 
 	public void factualInvoke() {
@@ -47,15 +100,29 @@ public class ReturnValueTest extends JTester {
 			ComplexObject co = this.someInterface.someCall(name, list, map);
 			return co.toString();
 		}
+
+		public String callThrowException(String name) throws InterruptedException {
+			try {
+				this.someInterface.someCallException();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return "";
+		}
 	}
 
 	public static interface SomeInterface {
 		public ComplexObject someCall(String name, List<?> list, HashMap<String, String> map);
+
+		public void someCallException() throws IOException;
 	}
 
 	public static class SomeInterfaceImpl implements SomeInterface {
 		public ComplexObject someCall(String name, List<?> list, HashMap<String, String> map) {
 			return ComplexObject.instance();
+		}
+
+		public void someCallException() throws IOException {
 		}
 	}
 
