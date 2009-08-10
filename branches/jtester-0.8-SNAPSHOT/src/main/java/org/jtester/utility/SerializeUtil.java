@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 
 import org.jtester.exception.JTesterException;
 
-import com.thoughtworks.xstream.XStream;
+//import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
@@ -52,7 +52,7 @@ public class SerializeUtil {
 	 */
 	public static <T> void toXML(T o, String filename) {
 		try {
-			XStream xs = new XStream(new DomDriver());
+			ExXStream xs = new ExXStream(new DomDriver());
 			// XStream xs = new XStream();
 			FileOutputStream fos = new FileOutputStream(filename);
 			xs.toXML(o, fos);
@@ -120,7 +120,7 @@ public class SerializeUtil {
 			if (fis == null) {
 				throw new JTesterException(String.format("file '%s' doesn't exist", filename));
 			}
-			XStream xs = new XStream(new DomDriver());
+			ExXStream xs = new ExXStream(new DomDriver());
 			// XStream xs = new XStream();
 			Object o = xs.fromXML(fis);
 			return (T) o;
