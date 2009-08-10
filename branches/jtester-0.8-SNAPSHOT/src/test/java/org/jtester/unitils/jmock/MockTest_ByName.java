@@ -11,7 +11,7 @@ public class MockTest_ByName extends JTester {
 
 	private SpringBeanService springBeanService = new SpringBeanServiceImpl1();
 
-	@Mock(injectInto = "springBeanService", byProperty = "dependency")
+	@Mock(injectInto = "springBeanService", byProperty = "dependency1")
 	private SomeInterface someInterface1;
 
 	@Mock(injectInto = "springBeanService", byProperty = "dependency2")
