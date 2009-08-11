@@ -26,8 +26,24 @@ public class ClazzUtil {
 		return pack;
 	}
 
+	/**
+	 * 根据类名获得package的路径
+	 * 
+	 * @param clazzName
+	 * @return
+	 */
 	public final static String getPathFromPath(String clazzName) {
 		String pack = getPackFromClassName(clazzName);
 		return pack.replace(".", String.valueOf(File.separatorChar));
+	}
+
+	/**
+	 * 根据类名获得package的路径
+	 * 
+	 * @param clazzName
+	 * @return
+	 */
+	public final static String getPathFromPath(Class<?> clazz) {
+		return getPathFromPath(clazz.getName());
 	}
 }

@@ -1,7 +1,7 @@
 package org.jtester.hamcrest.iassert.common.impl;
 
-import org.jtester.beans.Employee;
-import org.jtester.beans.Manager;
+import org.jtester.fortest.beans.Employee;
+import org.jtester.fortest.beans.Manager;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 

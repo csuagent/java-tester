@@ -5,8 +5,8 @@ import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringApplicationContext;
 
 @Test(groups = { "jtester", "mockbean" })
-@SpringApplicationContext( { "org/jtester/unitils/database/ibatis/spring/beans.xml",
-		"org/jtester/unitils/database/ibatis/spring/data-source.xml" })
+@SpringApplicationContext( { "org/jtester/fortest/spring/beans.xml",
+		"org/jtester/fortest/spring/data-source.xml" })
 public class MockBeanByNameTest_Base extends JTester {
 
 }

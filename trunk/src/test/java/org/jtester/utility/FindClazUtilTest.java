@@ -2,7 +2,7 @@ package org.jtester.utility;
 
 import java.util.List;
 
-import org.jtester.dbtest.service.UserService;
+import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.Test;
 
@@ -25,13 +25,13 @@ public class FindClazUtilTest extends JTester {
 		Class<?> claz = UserService.class;
 		List<String> clazz = FindClazUtil.findClazz(claz);
 		want.collection(clazz).sizeGe(4);
-		want.collection(clazz).allItemMatch("org\\.jtester\\.dbtest\\.service\\..*");
+		want.collection(clazz).allItemMatch("org\\.jtester\\.fortest\\.hibernate\\..*");
 	}
 
 	public void findTestClaz() {
 		Class<?> claz = UserService.class;
 		List<String> clazz = FindMethodUtil.findTestClaz(claz);
-		want.collection(clazz).sizeGe(4);
-		want.collection(clazz).allItemMatch("org\\.jtester\\.dbtest\\.service\\..*");
+		want.collection(clazz).sizeEq(1);
+		want.collection(clazz).allItemMatch("org\\.jtester\\.fortest\\.hibernate\\..*");
 	}
 }

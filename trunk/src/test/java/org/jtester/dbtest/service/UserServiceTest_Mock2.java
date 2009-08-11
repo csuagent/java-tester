@@ -1,20 +1,23 @@
 package org.jtester.dbtest.service;
 
+import org.jtester.fortest.hibernate.AddressService;
+import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
-import org.jtester.unitils.inject.InjectedMock;
+import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
-import org.unitils.inject.annotation.TestedObject;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
-@SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
+@SpringApplicationContext( { "classpath:/org/jtester/fortest/hibernate/project.xml" })
 @Test(groups = { "JTester" })
 public class UserServiceTest_Mock2 extends JTester {
 	@SpringBean("userService")
-	@TestedObject
+	// @TestedObject
 	private UserService userService1;
 
-	@InjectedMock(target = "userService1", property = "addressService", value = "addressService1")
+	// @InjectedMock(target = "userService1", property = "addressService", value
+	// = "addressService1")
+	@Mock(injectInto = "userService1")
 	private AddressService addressService1;
 
 	@Test

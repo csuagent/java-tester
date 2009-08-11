@@ -13,7 +13,7 @@ import org.jmock.Mockery;
 import org.jmock.api.MockObjectNamingScheme;
 import org.jmock.lib.CamelCaseNamingScheme;
 import org.jmock.lib.legacy.ClassImposteriser;
-import org.jtester.unitils.inject.InjectedMock;
+import org.jtester.utility.StringUtil;
 import org.unitils.core.Module;
 import org.unitils.core.TestListener;
 
@@ -38,6 +38,11 @@ public class JmockModule implements Module {
 		return this.context;
 	}
 
+	/**
+	 * 创建Mock对象
+	 * 
+	 * @param testedObject
+	 */
 	private void createMocks(Object testedObject) {
 		Set<Field> mockFields = getFieldsAnnotatedWith(testedObject.getClass(), Mock.class);
 		for (Field mockField : mockFields) {
@@ -45,44 +50,38 @@ public class JmockModule implements Module {
 			this.mock(testedObject, mock.value(), mockField);
 		}
 
-		Set<Field> mockBeansByName = getFieldsAnnotatedWith(testedObject.getClass(), MockBeanByName.class);
+		Set<Field> mockBeansByName = getFieldsAnnotatedWith(testedObject.getClass(), MockBean.class);
 
 		for (Field mockField : mockBeansByName) {
-			MockBeanByName mock = mockField.getAnnotation(MockBeanByName.class);
+			MockBean mock = mockField.getAnnotation(MockBean.class);
 			Object mockObject = this.mock(testedObject, mock.value(), mockField);
-
-			MockBeans.addMockBeanByName(mockField.getName(), mockObject);
+			String beanName = mock.bean();
+			if (StringUtil.isBlankOrNull(beanName)) {
+				beanName = mockField.getName();
+			}
+			MockBeanRegister.addMockBean(beanName, mockObject);
 		}
 	}
 
+	/**
+	 * 根据@Mock,@MockBean的value属性创建Mock对象
+	 * 
+	 * @param testedObject
+	 * @param mockname
+	 * @param field
+	 * @return
+	 */
 	private Object mock(Object testedObject, String mockname, Field field) {
 		Class<?> mockType = field.getType();
 		if (StringUtils.isBlank(mockname)) {
 			mockname = namingScheme.defaultNameFor(mockType);
+			mockname += "#" + field.getName();
 		}
-		mockname = mockname + "_" + Thread.currentThread().getId();
+		mockname = mockname + "#" + Thread.currentThread().getId();
 		Object mockObject = context.mock(mockType, mockname);
 
 		setFieldValue(testedObject, field, mockObject);
 		return mockObject;
-	}
-
-	private void createInjectedMocks(Object testObject) {
-		Set<Field> mockFields = getFieldsAnnotatedWith(testObject.getClass(), InjectedMock.class);
-		for (Field mockField : mockFields) {
-
-			Class<?> mockType = mockField.getType();
-			InjectedMock mock = mockField.getAnnotation(InjectedMock.class);
-
-			Object mockObject = null;
-			if (StringUtils.isBlank(mock.value())) {
-				mockObject = context.mock(mockType);
-			} else {
-				mockObject = context.mock(mockType, mock.value());
-			}
-
-			setFieldValue(testObject, mockField, mockObject);
-		}
 	}
 
 	protected class JmockTestListener extends TestListener {
@@ -94,7 +93,6 @@ public class JmockModule implements Module {
 				}
 			};
 			createMocks(testObject);
-			createInjectedMocks(testObject);
 		}
 
 		@Override

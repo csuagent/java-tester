@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
-	<version>0.7.2</version>
+	<version>0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
@@ -23,8 +23,33 @@
 		<!--  <h2db.version>1.1.104</h2db.version>-->
 		<h2db.version>1.1.107</h2db.version>
 		<mysql.connection.version>5.1.6</mysql.connection.version>
+		<trinidad.version>1.0.8</trinidad.version>
+		<fitnesse.version>20090513</fitnesse.version>
+		<fitlibrary.version>20080812</fitlibrary.version>
+		<xstream.version>1.3.1</xstream.version>
 	</properties>
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<outputDirectory>target/classes</outputDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+
 		<finalName>${artifactId}-${version}</finalName>
 		<plugins>
 			<plugin>
@@ -116,6 +141,16 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
+		</repository>
+		<repository>
+			<id>trinidad</id>
+			<name>trinidad</name>
+			<url>http://maven.neuri.com/</url>
+		</repository>
+		<repository>
+			<id>mvnsearch</id>
+			<name>mvnsearch</name>
+			<url>http://www.mvnsearch.org/maven2/</url>
 		</repository>
 	</repositories>
 	<dependencies>
@@ -224,6 +259,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>jline</groupId>
 			<artifactId>jline</artifactId>
 			<version>0.9.94</version>
@@ -241,7 +282,13 @@
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>1.2.2</version>
+			<version>${xstream.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xpp3</groupId>
+					<artifactId>xpp3_min</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
@@ -253,11 +300,28 @@
 			<groupId>org.apache.ibatis</groupId>
 			<artifactId>ibatis-sqlmap</artifactId>
 			<version>2.3.4.726</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jtester</groupId>
-			<artifactId>jdbcproxy</artifactId>
-			<version>1.1-IBM</version>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitnesse</artifactId>
+			<version>${fitnesse.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitlibrary</artifactId>
+			<version>${fitlibrary.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.neuri.tdd</groupId>
+			<artifactId>fitnesserunner</artifactId>
+			<version>${trinidad.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>info.fitnesse</groupId>
+					<artifactId>fixturegallery</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<reporting>

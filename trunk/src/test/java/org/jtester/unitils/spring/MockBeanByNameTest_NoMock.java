@@ -1,6 +1,6 @@
 package org.jtester.unitils.spring;
 
-import org.jtester.unitils.database.ibatis.service.UserService;
+import org.jtester.fortest.service.UserService;
 import org.jtester.unitils.dbwiki.WikiDataSet;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringBeanByName;

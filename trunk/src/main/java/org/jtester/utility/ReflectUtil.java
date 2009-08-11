@@ -8,6 +8,7 @@ import ognl.OgnlContext;
 import ognl.OgnlException;
 
 import org.jtester.exception.JTesterException;
+import org.springframework.aop.framework.Advised;
 
 /**
  * POJO反射处理工具类
@@ -85,6 +86,21 @@ public class ReflectUtil {
 		}
 	}
 
+	public static Object getFieldValue(Object obj, Field field) {
+		assert obj != null : "the obj can't be null";
+
+		boolean accessible = field.isAccessible();
+		try {
+			field.setAccessible(true);
+			Object o = field.get(obj);
+			return o;
+		} catch (Exception e) {
+			throw new JTesterException("Unable to get the value in field[" + field.getName() + "]", e);
+		} finally {
+			field.setAccessible(accessible);
+		}
+	}
+
 	public static Object getPropertyValue(Object object, String ognlExpression) {
 		try {
 			OgnlContext ognlContext = new OgnlContext();
@@ -93,6 +109,24 @@ public class ReflectUtil {
 			return Ognl.getValue(ognlExprObj, ognlContext, object);
 		} catch (OgnlException e) {
 			throw new JTesterException("Failed to get property value using OGNL expression " + ognlExpression, e);
+		}
+	}
+
+	/**
+	 * 如果是spring代理对象，获得被代理的对象
+	 * 
+	 * @param target
+	 * @return
+	 */
+	public static Object getProxiedObject(Object target) {
+		try {
+			if (target instanceof Advised) {
+				return ((Advised) target).getTargetSource().getTarget();
+			} else {
+				return target;
+			}
+		} catch (Exception e) {
+			throw new JTesterException(e);
 		}
 	}
 }

@@ -9,8 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.jtester.exception.JTesterException;
+import org.jtester.utility.xstream.ExXStream;
 
-import com.thoughtworks.xstream.XStream;
+//import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
@@ -52,7 +53,7 @@ public class SerializeUtil {
 	 */
 	public static <T> void toXML(T o, String filename) {
 		try {
-			XStream xs = new XStream(new DomDriver());
+			ExXStream xs = new ExXStream(new DomDriver());
 			// XStream xs = new XStream();
 			FileOutputStream fos = new FileOutputStream(filename);
 			xs.toXML(o, fos);
@@ -86,13 +87,31 @@ public class SerializeUtil {
 	}
 
 	/**
+	 * 从dat文件中反序列对象
+	 * 
+	 * @param <T>
+	 * @param returnClazz
+	 *            反序列化出来的pojo class类型
+	 * @param pathClazz
+	 *            dat文件所在的目录下的class，用来方便寻找dat文件
+	 * @param filename
+	 *            dat文件名称
+	 * @return
+	 */
+	public static <T> T fromDat(Class<T> returnClazz, Class<?> pathClazz, String filename) {
+		String path = ClazzUtil.getPathFromPath(pathClazz);
+		return fromDat(returnClazz, path + File.separatorChar + filename);
+	}
+
+	/**
 	 * 利用xstream将pojo从xml文件中反序列化出来
 	 * 
 	 * @param <T>
 	 * @param claz
 	 *            反序列化出来的pojo class类型
 	 * @param filename
-	 *            pojo序列化信息文件,如果以"classpath:"开头表示文件存储在classpth的package路径下，否则表示文件的绝对路径
+	 *            pojo序列化信息文件,如果以"classpath:"开头表示文件存储在classpth的package路径下 <br>
+	 *            以"file:" 开头 表示文件的绝对路径
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -102,7 +121,7 @@ public class SerializeUtil {
 			if (fis == null) {
 				throw new JTesterException(String.format("file '%s' doesn't exist", filename));
 			}
-			XStream xs = new XStream(new DomDriver());
+			ExXStream xs = new ExXStream(new DomDriver());
 			// XStream xs = new XStream();
 			Object o = xs.fromXML(fis);
 			return (T) o;
@@ -111,39 +130,58 @@ public class SerializeUtil {
 		}
 	}
 
+	/**
+	 * 利用xstream将pojo从xml文件中反序列化出来
+	 * 
+	 * @param <T>
+	 * @param returnClazz
+	 *            反序列化出来的pojo class类型
+	 * @param pathClazz
+	 *            xml文件所在的目录下的class，用来方便寻找dat文件
+	 * @param filename
+	 *            序列号文件xml的名称
+	 * @return
+	 */
+	public static <T> T fromXML(Class<T> returnClazz, Class<?> pathClazz, String filename) {
+		String path = ClazzUtil.getPathFromPath(pathClazz);
+		return fromXML(returnClazz, path + File.separatorChar + filename);
+	}
+
 	private static InputStream isFileExisted(String filename) throws FileNotFoundException {
-		if (filename.startsWith("classpath:")) {
-			String file = filename.replaceFirst("classpath:", "");
-
-			InputStream stream = null;
-			try {
-				stream = ClassLoader.getSystemResourceAsStream(file);
-			} catch (Throwable e) {
-				stream = null;
-			}
-			if (stream == null) {
-				StackTraceElement[] traces = Thread.currentThread().getStackTrace();
-				boolean calledFromXML = false;
-				for (StackTraceElement trace : traces) {
-					if (trace.getMethodName().equalsIgnoreCase("fromXML")
-							&& trace.getClassName().equalsIgnoreCase("org.jtester.utility.SerializeUtil")) {
-						calledFromXML = true;
-					}
-					if (calledFromXML) {
-						file = ClazzUtil.getPathFromPath(trace.getClassName()) + File.separatorChar + file;
-						stream = ClassLoader.getSystemResourceAsStream(file);
-						break;
-					}
-				}
-			}
-			return stream;
-
-		} else {
-			File file = new File(filename);
+		if (filename.startsWith("file:")) {
+			File file = new File(filename.replace("file:", ""));
 			if (!file.exists()) {
 				throw new JTesterException("object serializable file doesn't exist");
 			}
 			return new FileInputStream(file);
+		} else {
+			String file = filename.replaceFirst("classpath:", "");
+
+			InputStream stream = ClassLoader.getSystemResourceAsStream(file);
+			if (stream == null) {
+				throw new JTesterException("object serializable file doesn't exist");
+			}
+			return stream;
+			// if (stream == null) {
+			// StackTraceElement[] traces =
+			// Thread.currentThread().getStackTrace();
+			// boolean calledFromXML = false;
+			// for (StackTraceElement trace : traces) {
+			// if (trace.getMethodName().equalsIgnoreCase("fromXML")
+			// &&
+			// trace.getClassName().equalsIgnoreCase("org.jtester.utility.SerializeUtil"))
+			// {
+			// calledFromXML = true;
+			// }
+			// if (calledFromXML) {
+			// file = ClazzUtil.getPathFromPath(trace.getClassName()) +
+			// File.separatorChar + file;
+			// stream = ClassLoader.getSystemResourceAsStream(file);
+			// break;
+			// }
+			// }
+			// }
+
 		}
 	}
 

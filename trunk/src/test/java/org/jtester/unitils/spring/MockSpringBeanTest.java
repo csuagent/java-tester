@@ -2,27 +2,23 @@ package org.jtester.unitils.spring;
 
 import java.util.ArrayList;
 
+import org.jtester.fortest.beans.User;
+import org.jtester.fortest.service.UserDao;
+import org.jtester.fortest.service.UserService;
 import org.jtester.testng.JTester;
-import org.jtester.unitils.database.ibatis.beans.User;
-import org.jtester.unitils.database.ibatis.service.UserDao;
-import org.jtester.unitils.database.ibatis.service.UserService;
 import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
-import org.unitils.inject.annotation.InjectIntoByType;
-import org.unitils.inject.annotation.TestedObject;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;
 
 @Test(groups = "jtester")
-@SpringApplicationContext( { "org/jtester/unitils/database/ibatis/spring/beans.xml",
-		"org/jtester/unitils/database/ibatis/spring/data-source.xml" })
+@SpringApplicationContext( { "org/jtester/fortest/spring/beans.xml",
+		"org/jtester/fortest/spring/data-source.xml" })
 public class MockSpringBeanTest extends JTester {
 	@SpringBeanByName
-	@TestedObject
 	private UserService userService;
 
-	@Mock
-	@InjectIntoByType(target = "userService")
+	@Mock(injectInto = "userService")
 	private UserDao userDao;
 
 	public void paySalary() {

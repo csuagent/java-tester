@@ -2,9 +2,9 @@ package org.jtester.unitils.dbwiki;
 
 import java.util.Collection;
 
-import org.jtester.dbtest.bean.Address;
-import org.jtester.dbtest.bean.User;
-import org.jtester.dbtest.service.UserService;
+import org.jtester.fortest.hibernate.Address;
+import org.jtester.fortest.hibernate.User;
+import org.jtester.fortest.hibernate.UserService;
 import org.jtester.testng.JTester;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,7 +15,7 @@ import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
 
 @Test(groups = { "JTester" })
-@SpringApplicationContext( { "classpath:/org/jtester/dbtest/spring/project.xml" })
+@SpringApplicationContext( { "classpath:/org/jtester/fortest/hibernate/project.xml" })
 public class WikiDbUnitModuleTest extends JTester {
 	@SpringBeanByType
 	private UserService userService;

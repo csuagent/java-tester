@@ -1,7 +1,7 @@
 package org.jtester.jmock;
 
-import org.jtester.jmock.service.CalledService;
-import org.jtester.jmock.service.CallingService;
+import org.jtester.fortest.service.CalledService;
+import org.jtester.fortest.service.CallingService;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.jmock.Mock;
 import org.testng.annotations.Test;
