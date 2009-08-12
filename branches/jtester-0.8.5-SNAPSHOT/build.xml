@@ -24,6 +24,11 @@
 		</artifact:dependencies>
 		<echo>The version is ${maven-project.version}</echo>
 	</target>
+	
+	<path id="project.classpath">
+		<path refid="maven.classpath" />
+		<dirset dir="${build.classes}" />
+	</path>
 
 	<target name="compile" depends="init">
 		<mkdir dir="${build.classes}" />
@@ -34,6 +39,17 @@
 			</fileset>
 		</copy>
 	</target>
+
+	<target name="test-compile" depends="init">
+		<mkdir dir="${test-build.classes}" />
+		<javac srcdir="${test-src}" destdir="${test-build.classes}" classpathref="project.classpath" encoding="utf-8" source="1.5"/>
+		<copy todir="${test-build.classes}" includeEmptyDirs="no">
+			<fileset dir="${test-res}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+		
 
 	<target name="jar-all">
 		<mkdir dir="${dist}" />
@@ -46,21 +62,21 @@
 			</manifest>
 		</jar>
 	</target>
-<!--
+	<!--
 	<target name="javadoc" depends="init">
 		<mkdir dir="${build.javadoc}" />
 		<javadoc packagenames="org.elitemark.commons.*" sourcepath="${src}" defaultexcludes="yes" destdir="${build.javadoc}" author="true" version="true" use="true" windowtitle="${app.name}" classpathref="maven.classpath" encoding="UTF-8" docencoding="UTF-8" header="&lt;meta http-equiv='Content-Type' content='text/html;charset=UTF-8' /&gt;">
 			<doctitle>
 				<![CDATA[<h1>Elitemark lightweight commons API</h1>]]>  
-               </doctitle>
-		<bottom>
-			<![CDATA[<i>Copyright &#169; 2007-2008 www.elitemark.org All Rights Reserved.</i>]]>  
-               </bottom>
-	<link href="http://www.elitemark.org/javadoc/" />
-</javadoc>
-</target>
--->
-	<target name="build" depends="clean,compile">
-		<antcall target="jar-all"></antcall>
+            </doctitle>
+			<bottom>
+				<![CDATA[<i>Copyright &#169; 2007-2008 www.elitemark.org All Rights Reserved.</i>]]>  
+	        </bottom>
+			<link href="http://www.elitemark.org/javadoc/" />
+		</javadoc>
+	</target>
+	-->
+	<target name="build" depends="clean,compile,test-compile">
+		<antcall target="jar-all" />
 	</target>
 </project>
