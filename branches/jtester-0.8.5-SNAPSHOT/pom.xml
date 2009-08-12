@@ -6,7 +6,7 @@
 	<version>0.8.5-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<properties>
-		<jetty.version>6.1.4</jetty.version>
+		<testng.version>5.10</testng.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
 		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
 		<!-- <spring.version>2.0.8</spring.version>-->
@@ -203,9 +203,8 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>5.8</version>
+			<version>${testng.version}</version>
 			<classifier>jdk15</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
