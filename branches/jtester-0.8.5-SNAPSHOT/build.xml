@@ -9,6 +9,8 @@
 		<delete dir="${build.classes}" />
 		<delete dir="${build.test}" />
 		<delete dir="${build.javadoc}" />
+		<delete dir="target/instrumented-classes"/>
+		<delete dir="target/report"/>
 	</target>
 
 	<target name="init">
@@ -24,15 +26,22 @@
 		</artifact:dependencies>
 		<echo>The version is ${maven-project.version}</echo>
 	</target>
-	
+
 	<path id="project.classpath">
 		<path refid="maven.classpath" />
 		<dirset dir="${build.classes}" />
+		<dirset dir="${test-build.classes}" />
+	</path>
+	<path id="coverage.classpath">
+		<path refid="maven.classpath" />
+		<dirset dir="target/instrumented-classes" />
+		<dirset dir="${build.classes}"/>
+		<dirset dir="${test-build.classes}" />
 	</path>
 
-	<target name="compile" depends="init">
+	<target name="compile" depends="init" >
 		<mkdir dir="${build.classes}" />
-		<javac srcdir="${src}" destdir="${build.classes}" classpathref="maven.classpath" encoding="utf-8" source="1.5" />
+		<javac srcdir="${src}" destdir="${build.classes}" classpathref="maven.classpath" encoding="utf-8" source="1.5" debug="true"/>
 		<copy todir="${build.classes}" includeEmptyDirs="no">
 			<fileset dir="${res}">
 				<include name="**/*" />
@@ -40,16 +49,46 @@
 		</copy>
 	</target>
 
-	<target name="test-compile" depends="init">
+	<target name="test-compile" depends="compile">
 		<mkdir dir="${test-build.classes}" />
-		<javac srcdir="${test-src}" destdir="${test-build.classes}" classpathref="project.classpath" encoding="utf-8" source="1.5"/>
+		<javac srcdir="${test-src}" destdir="${test-build.classes}" classpathref="project.classpath" encoding="utf-8" source="1.5" />
 		<copy todir="${test-build.classes}" includeEmptyDirs="no">
 			<fileset dir="${test-res}">
 				<include name="**/*" />
 			</fileset>
 		</copy>
 	</target>
-		
+
+	<taskdef resource="testngtasks" classpath="${maven.repository}/org/testng/testng/5.10/testng-5.10-jdk15.jar" />
+	<target name="test" depends="test-compile">
+		<testng classpathref="project.classpath" outputDir="test-output">
+			<jvmarg value="-ea" />
+			<xmlfileset dir="src/test/resources" includes="jtester.xml" />
+		</testng>
+	</target>
+
+	<taskdef resource="tasks.properties" classpath="${maven.repository}/net/sourceforge/cobertura/cobertura/1.9.2/cobertura-1.9.2.jar" />
+	<target name="instrument" depends="test-compile">
+		<delete file="cobertura.ser" />
+		<mkdir dir="target/instrumented-classes"/>
+		<cobertura-instrument todir="target/instrumented-classes" classpathref="project.classpath">
+			<fileset dir="${build.classes}">
+				<include name="**/*.class" />
+				<exclude name="**/*Test.class" />
+			</fileset>
+		</cobertura-instrument>
+	</target>
+	<target name="coverage-test" depends="instrument">
+		<mkdir dir="target/report" />
+		<testng outputDir="test-output" classpathref="coverage.classpath">
+			<jvmarg value="-ea" />
+			<xmlfileset dir="src/test/resources" includes="jtester.xml" />
+		</testng>
+	</target>
+
+	<target name="coverage-report" depends="coverage-test">
+		<cobertura-report datafile="cobertura.ser" srcdir="${src}" destdir="target/report"  classpathref="project.classpath"/>
+	</target>
 
 	<target name="jar-all">
 		<mkdir dir="${dist}" />
@@ -62,6 +101,8 @@
 			</manifest>
 		</jar>
 	</target>
+
+
 	<!--
 	<target name="javadoc" depends="init">
 		<mkdir dir="${build.javadoc}" />
