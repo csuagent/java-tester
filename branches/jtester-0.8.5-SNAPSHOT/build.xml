@@ -5,12 +5,7 @@
 	<property file="build.properties" />
 
 	<target name="clean" description="Cleans up the build artifacts and temporary directories">
-		<delete dir="${dist}" />
-		<delete dir="${build.classes}" />
-		<delete dir="${build.test}" />
-		<delete dir="${build.javadoc}" />
-		<delete dir="target/instrumented-classes"/>
-		<delete dir="target/report"/>
+		<delete dir="${target}" />
 	</target>
 
 	<target name="init">
@@ -34,7 +29,7 @@
 	</path>
 	<path id="coverage.classpath">
 		<path refid="maven.classpath" />
-		<dirset dir="target/instrumented-classes" />
+		<dirset dir="${target}/instrumented-classes" />
 		<dirset dir="${build.classes}"/>
 		<dirset dir="${test-build.classes}" />
 	</path>
@@ -70,8 +65,8 @@
 	<taskdef resource="tasks.properties" classpath="${maven.repository}/net/sourceforge/cobertura/cobertura/1.9.2/cobertura-1.9.2.jar" />
 	<target name="instrument" depends="test-compile">
 		<delete file="cobertura.ser" />
-		<mkdir dir="target/instrumented-classes"/>
-		<cobertura-instrument todir="target/instrumented-classes" classpathref="project.classpath">
+		<mkdir dir="${target}/instrumented-classes"/>
+		<cobertura-instrument todir="${target}/instrumented-classes" classpathref="project.classpath">
 			<fileset dir="${build.classes}">
 				<include name="**/*.class" />
 				<exclude name="**/*Test.class" />
@@ -79,7 +74,7 @@
 		</cobertura-instrument>
 	</target>
 	<target name="coverage-test" depends="instrument">
-		<mkdir dir="target/report" />
+		<mkdir dir="${target}/report" />
 		<testng outputDir="test-output" classpathref="coverage.classpath">
 			<jvmarg value="-ea" />
 			<xmlfileset dir="src/test/resources" includes="jtester.xml" />
@@ -87,13 +82,13 @@
 	</target>
 
 	<target name="coverage-report" depends="coverage-test">
-		<cobertura-report datafile="cobertura.ser" srcdir="${src}" destdir="target/report"  classpathref="project.classpath"/>
+		<cobertura-report datafile="cobertura.ser" srcdir="${src}" destdir="${target}/report"  classpathref="project.classpath"/>
 	</target>
 
 	<target name="jar-all">
-		<mkdir dir="${dist}" />
-		<delete file="${dist}/${artifactId}-${version}.jar" failonerror="false" />
-		<jar destfile="${dist}/${artifactId}-${version}.jar" basedir="${build.classes}" encoding="UTF-8">
+		<mkdir dir="${target}" />
+		<delete file="${target}/${artifactId}-${version}.jar" failonerror="false" />
+		<jar destfile="${target}/${artifactId}-${version}.jar" basedir="${build.classes}" encoding="UTF-8">
 			<manifest>
 				<attribute name="Implementation-Title" value="jtester" />
 				<attribute name="Implementation-Version" value="${version}" />
