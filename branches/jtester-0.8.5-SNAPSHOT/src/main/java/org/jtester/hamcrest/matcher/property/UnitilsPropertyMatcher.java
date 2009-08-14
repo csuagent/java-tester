@@ -70,7 +70,7 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 		Collection<Object> coll = new ArrayList<Object>();
 		if (o == null) {
 			coll.add(null);
-		} else if (o instanceof Collection) {
+		} else if (o instanceof Collection<?>) {
 			Collection<?> oc = (Collection<?>) o;
 			for (Object o1 : oc) {
 				Object value = getProperty(o1, this.property);
