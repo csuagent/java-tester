@@ -30,7 +30,8 @@ public class JTesterDatabaseModule extends DatabaseModule {
 			if (!MockBeanRegister.hasRegisteredMockBean() && !MockBeanRegister.hasMockBean(testClass)) {
 				return;
 			}
-			MockBeanRegister.clean();
+//			MockBeanRegister.cleanMockBean();
+			MockBeanRegister.cleanRegister();
 			SpringModule module = modulesRepository.getModuleOfType(SpringModule.class);
 			Class<?> clazz = testClass;
 			while (clazz != null && !clazz.equals(org.jtester.testng.JTester.class)
