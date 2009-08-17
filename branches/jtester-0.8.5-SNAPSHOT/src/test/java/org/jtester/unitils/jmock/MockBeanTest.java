@@ -34,7 +34,6 @@ public class MockBeanTest extends JTester {
 				});
 			}
 		});
-System.out.println(this.userService.getClass().getName());
 		double total = this.userService.paySalary("310000");
 		want.number(total).isEqualTo(4300d);
 	}
