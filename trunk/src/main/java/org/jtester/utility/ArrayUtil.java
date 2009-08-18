@@ -36,7 +36,7 @@ public class ArrayUtil {
 		if (o == null) {
 			return false;
 		}
-		return o instanceof Collection;
+		return o instanceof Collection<?>;
 	}
 
 	public static int sizeOf(Object o) {
@@ -44,7 +44,7 @@ public class ArrayUtil {
 			return 0;
 		}
 		int size = 0;
-		if (o instanceof Collection) {
+		if (o instanceof Collection<?>) {
 			size = ((Collection<?>) o).size();
 		} else if (o instanceof char[]) {// char
 			size = ((char[]) o).length;

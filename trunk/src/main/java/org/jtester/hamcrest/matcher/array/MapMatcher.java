@@ -16,7 +16,7 @@ public class MapMatcher extends BaseMatcher<Map<?, ?>> {
 	}
 
 	public boolean matches(Object _actual) {
-		if (!(_actual instanceof Map) && _actual == null) {
+		if (!(_actual instanceof Map<?, ?>) && _actual == null) {
 			return false;
 		}
 		Map<?, ?> actual = (Map<?, ?>) _actual;

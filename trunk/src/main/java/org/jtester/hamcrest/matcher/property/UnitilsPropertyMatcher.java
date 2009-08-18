@@ -1,6 +1,6 @@
 package org.jtester.hamcrest.matcher.property;
 
-import static junit.framework.Assert.assertNotNull;
+//import static junit.framework.Assert.assertNotNull;
 import static org.unitils.reflectionassert.ReflectionComparatorFactory.createRefectionComparator;
 
 import java.util.ArrayList;
@@ -47,7 +47,9 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 	private Difference difference;
 
 	public boolean matches(Object actual) {
-		assertNotNull("Actual object is null.", actual);
+		if( actual == null) {
+			throw new RuntimeException("actual object can't be null!");
+		}
 		// Object propertyValue = getProperty(actualObject, propertyName);
 		Collection<?> _actualProps = this.getProperty(actual);
 		Collection<?> _expectedProps = this.getProperty(expected);
@@ -70,7 +72,7 @@ public class UnitilsPropertyMatcher extends BaseMatcher<Object> {
 		Collection<Object> coll = new ArrayList<Object>();
 		if (o == null) {
 			coll.add(null);
-		} else if (o instanceof Collection) {
+		} else if (o instanceof Collection<?>) {
 			Collection<?> oc = (Collection<?>) o;
 			for (Object o1 : oc) {
 				Object value = getProperty(o1, this.property);

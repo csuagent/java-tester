@@ -21,7 +21,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 	@Test
 	public void testNoOverride() throws Throwable {
-		MockBeanRegister.clean();
+		MockBeanRegister.cleanMockBean();
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/fortest/spring/mock-spring-beans-test.xml" }, true, null);
 
@@ -35,7 +35,7 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 	@Test
 	public void testOverride() throws Throwable {
-		MockBeanRegister.clean();
+		MockBeanRegister.cleanMockBean();
 		SomeInterface overrider = new SomeInterfaceImpl2();
 		MockBeanRegister.addMockBean(TO_BE_OVERRIDEN_BEAN_NAME, overrider);
 		context = new JTesterClassPathXmlApplicationContext(
@@ -43,15 +43,15 @@ public class JTesterApplicationContextFactoryTest extends org.jtester.testng.JTe
 
 		SpringBeanService anotherBean = (SpringBeanService) context.getBean(ANOTHER_BEAN_NAME);
 		want.object(anotherBean).notNull();
-		want.object(anotherBean.getDependency1()).clazIs(SomeInterfaceImpl2.class);
-		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl2.class);
+		want.object(anotherBean.getDependency1()).clazIs(SomeInterfaceImpl1.class);
+		want.object(anotherBean.getDependency2()).clazIs(SomeInterfaceImpl1.class);
 
-		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl2.class);
+		want.object(context.getBean(TO_BE_OVERRIDEN_BEAN_NAME)).clazIs(SomeInterfaceImpl1.class);
 	}
 
 	@Test(expectedExceptions = { AssertionError.class })
 	public void testOverride_failure() throws Throwable {
-		MockBeanRegister.clean();
+		MockBeanRegister.cleanMockBean();
 		context = new JTesterClassPathXmlApplicationContext(
 				new String[] { "org/jtester/fortest/spring/mock-spring-beans-test.xml" }, true, null);
 

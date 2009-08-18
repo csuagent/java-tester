@@ -1,11 +1,10 @@
 package org.jtester.unitils.database;
 
-import org.jtester.unitils.jmock.MockBeanRegister;
-import org.unitils.core.ModulesRepository;
+import java.lang.reflect.Method;
+
+import org.springframework.transaction.UnexpectedRollbackException;
 import org.unitils.core.TestListener;
-import org.unitils.core.Unitils;
 import org.unitils.database.DatabaseModule;
-import org.unitils.spring.SpringModule;
 
 public class JTesterDatabaseModule extends DatabaseModule {
 	@Override
@@ -18,25 +17,17 @@ public class JTesterDatabaseModule extends DatabaseModule {
 	 */
 	protected class JtesterDatabaseTestListener extends DatabaseTestListener {
 		/**
-		 * o 如果MockBean已经注册，那么Spring Bean已经被污染，需要重新load context<br>
-		 * o 如果这个测试类中有MockBean对象，那么spring bean就必须被mock，也要重新load context <br>
-		 * o 重启spring context放在这里的原因是，spring初始化最早发生在database的事务期间
+		 * 拦截测试方法提交事务时，由于spring事务管理回滚事务导致unitls抛出UnexpectedRollbackException异常<br>
+		 * 从而导致测试失败，而后面的测试也无法继续
 		 */
-		public void beforeTestClass(Class<?> testClass) {
-			ModulesRepository modulesRepository = Unitils.getInstance().getModulesRepository();
-			if (!modulesRepository.isModuleEnabled(SpringModule.class)) {
-				return;
-			}
-			if (!MockBeanRegister.hasRegisteredMockBean() && !MockBeanRegister.hasMockBean(testClass)) {
-				return;
-			}
-			MockBeanRegister.clean();
-			SpringModule module = modulesRepository.getModuleOfType(SpringModule.class);
-			Class<?> clazz = testClass;
-			while (clazz != null && !clazz.equals(org.jtester.testng.JTester.class)
-					&& !clazz.equals(org.jtester.junit4.JTester.class)) {
-				module.invalidateApplicationContext(clazz);
-				clazz = clazz.getSuperclass();
+		@Override
+		public void afterTestTearDown(Object testObject, Method testMethod) {
+			try {
+				super.afterTestTearDown(testObject, testMethod);
+			} catch (RuntimeException e) {
+				if (!(e instanceof UnexpectedRollbackException)) {
+					throw e;
+				}
 			}
 		}
 	}

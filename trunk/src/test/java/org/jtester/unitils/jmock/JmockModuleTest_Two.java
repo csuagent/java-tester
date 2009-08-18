@@ -32,4 +32,20 @@ public class JmockModuleTest_Two extends JTester {
 		});
 		person.sayHelloTo("darui.wu");
 	}
+
+	@Test
+	public void sayHello_ThrowRuntimeException_WithoutWrapBySpring() {
+		checking(new Je() {
+			{
+				will.call.oneOf(speak).say(the.string().contains("darui.wu").wanted());
+				will.throwException(new RuntimeException("test"));
+			}
+		});
+		try {
+			person.sayHelloTo("darui.wu");
+		} catch (Exception e) {
+			String message = e.getMessage();
+			want.string(message).contains("test");
+		}
+	}
 }

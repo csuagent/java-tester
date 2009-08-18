@@ -13,6 +13,7 @@ import org.jmock.Mockery;
 import org.jmock.api.MockObjectNamingScheme;
 import org.jmock.lib.CamelCaseNamingScheme;
 import org.jmock.lib.legacy.ClassImposteriser;
+import org.jtester.unitils.spring.JTesterSpringModule;
 import org.jtester.utility.StringUtil;
 import org.unitils.core.Module;
 import org.unitils.core.TestListener;
@@ -86,6 +87,19 @@ public class JmockModule implements Module {
 
 	protected class JmockTestListener extends TestListener {
 		@Override
+		public void beforeTestClass(Class<?> testClass) {
+			JTesterSpringModule.invalidSpringContext(testClass);
+
+			Set<Field> mockBeansByName = getFieldsAnnotatedWith(testClass, MockBean.class);
+
+			for (Field mock : mockBeansByName) {
+				Class<?> clazz = mock.getType();
+				String name = mock.getName();
+				MockBeanRegister.register(clazz, name);
+			}
+		}
+
+		@Override
 		public void beforeTestSetUp(Object testObject, Method testMethod) {
 			context = new Mockery() {
 				{
@@ -98,6 +112,7 @@ public class JmockModule implements Module {
 		@Override
 		public void afterTestMethod(Object testObject, Method testMethod, Throwable throwable) {
 			context.assertIsSatisfied();
+			MockBeanRegister.cleanMockBean();
 		}
 	}
 }

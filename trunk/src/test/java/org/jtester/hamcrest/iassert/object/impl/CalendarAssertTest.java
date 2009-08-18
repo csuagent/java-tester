@@ -132,7 +132,7 @@ public class CalendarAssertTest extends JTester {
 		public void setCalendar(Calendar cal);
 	}
 
-	private static class TestAppClaz {
+	protected static class TestAppClaz {
 		private IDateTest idate;
 
 		public void setTime(Date date, Calendar cal) {
