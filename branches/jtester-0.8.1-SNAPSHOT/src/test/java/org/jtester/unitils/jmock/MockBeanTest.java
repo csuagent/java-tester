@@ -6,8 +6,9 @@ import org.jtester.fortest.beans.User;
 import org.jtester.fortest.service.UserDao;
 import org.jtester.fortest.service.UserService;
 import org.jtester.testng.JTester;
-import org.jtester.unitils.jmock.MockBean;
 import org.testng.annotations.Test;
+import org.unitils.database.annotations.Transactional;
+import org.unitils.database.util.TransactionMode;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;
 
@@ -19,6 +20,23 @@ public class MockBeanTest extends JTester {
 
 	@MockBean
 	private UserDao userDao;
+
+	@Transactional(TransactionMode.DISABLED)
+	public void paySalary_ThrowRuntimeException_WithSpringWrapped() {
+		checking(new Je() {
+			{
+				will.call.one(userDao).findUserByPostcode("310000");
+				will.throwException(new RuntimeException("test"));
+			}
+		});
+		try {
+			this.userService.paySalary("310000");
+		} catch (Exception e) {
+			e.printStackTrace();
+			String message = e.getMessage();
+			want.string(message).contains("test");
+		}
+	}
 
 	public void paySalary() {
 		checking(new Je() {
@@ -37,7 +55,7 @@ public class MockBeanTest extends JTester {
 		double total = this.userService.paySalary("310000");
 		want.number(total).isEqualTo(4300d);
 	}
-	
+
 	public void paySalary2() {
 		checking(new Je() {
 			{

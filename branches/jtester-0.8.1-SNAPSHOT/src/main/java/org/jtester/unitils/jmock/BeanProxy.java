@@ -1,5 +1,6 @@
 package org.jtester.unitils.jmock;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.jmock.api.Imposteriser;
@@ -20,7 +21,15 @@ public class BeanProxy implements Invokable {
 	public Object invoke(Invocation invocation) throws Throwable {
 		Object mock = MockBeanRegister.getBean(name, type);
 		Method method = invocation.getInvokedMethod();
-		return method.invoke(mock, invocation.getParametersAsArray());
+		try {
+			return method.invoke(mock, invocation.getParametersAsArray());
+		} catch (Throwable e) {
+			if (e instanceof InvocationTargetException) {
+				throw ((InvocationTargetException) e).getTargetException();
+			} else {
+				throw e;
+			}
+		}
 	}
 
 	private static Imposteriser imposteriser = ClassImposteriser.INSTANCE;
