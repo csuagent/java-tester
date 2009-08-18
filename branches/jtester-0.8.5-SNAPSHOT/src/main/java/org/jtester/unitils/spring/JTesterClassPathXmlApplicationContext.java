@@ -30,6 +30,15 @@ public class JTesterClassPathXmlApplicationContext extends ClassPathXmlApplicati
 				return super.getBean(name, requiredType, args);
 			}
 		}
+
+		@Override
+		public boolean containsBean(String name) {
+			if (MockBeanRegister.hasRegisted(name)) {
+				return true;
+			} else {
+				return super.containsBean(name);
+			}
+		}
 	}
 
 	public JTesterClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)

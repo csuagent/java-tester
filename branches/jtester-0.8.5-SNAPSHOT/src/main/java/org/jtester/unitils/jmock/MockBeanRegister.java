@@ -92,6 +92,11 @@ public class MockBeanRegister {
 		}
 	}
 
+	public static boolean hasRegisted(String name) {
+		Map<String, Class<?>> byNames = currThreadRegistedByName();
+		return byNames.containsKey(name);
+	}
+
 	/**
 	 * 获得的mock的bean对象
 	 * 
