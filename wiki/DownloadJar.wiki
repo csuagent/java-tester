@@ -1,10 +1,7 @@
 #labels jar包下载
 #jar包下载
 
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7/jtester-0.7.jar jtester-0.7.jar]<br/>
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7/jtester-0.7-sources.jar jtester-0.7-sources.jar]<br/>
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7/jtester-0.7-tests.jar jtester-0.7-tests.jar]<br/>
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.7/jtester-0.7-test-sources.jar jtester-0.7-test-sources.jar]<br/>
-
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6.jar jtester-0.6.jar]<br/>
-[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.6/jtester-0.6-sources.jar jtester-0.6-sources.jar]<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.8.2/jtester-0.8.2.jar jtester-0.8.2.jar]<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.8.2/jtester-0.8.2-sources.jar jtester-0.8.2-sources.jar]<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.8.2/jtester-0.8.2-tests.jar jtester-0.8.2-tests.jar]<br/>
+[http://java-tester.googlecode.com/svn/maven2/org/jtester/jtester/0.8.2/jtester-0.8.2-test-sources.jar jtester-0.8.2-test-sources.jar]<br/>
