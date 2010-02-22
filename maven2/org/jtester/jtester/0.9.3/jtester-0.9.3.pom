@@ -6,7 +6,7 @@
 	<version>0.9.3</version>
 	<packaging>jar</packaging>
 	<properties>
-		<testng.version>5.10</testng.version>
+		<testng.version>5.11</testng.version>
 		<hibernate.version>3.2.5.ga</hibernate.version>
 		<hibernate-annotations.version>3.2.1.ga</hibernate-annotations.version>
 		<spring.version>2.5.4</spring.version>
