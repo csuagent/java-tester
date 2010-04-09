@@ -8,4 +8,23 @@
   <version>0.7.0-RC1</version>
   <name>tellurium-core</name>
   <url>http://code.google.com/p/aost</url>
+  
+  <dependencies>
+        <dependency>
+            <groupId>caja</groupId>
+            <artifactId>json_simple</artifactId>
+            <version>r1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.0.1-FINAL</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.stringtree</groupId>
+            <artifactId>stringtree-json</artifactId>
+            <version>2.0.10</version>
+        </dependency>
+	</dependencies>
 </project>
