@@ -1,0 +1,57 @@
+package org.jtester.tutorial.daos.impl;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jtester.tutorial.beans.PhoneGroup;
+import org.jtester.tutorial.beans.PhoneItem;
+import org.jtester.tutorial.daos.PhoneGroupDao;
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+
+public class PhoneGroupDaoImpl extends SqlMapClientDaoSupport implements PhoneGroupDao {
+
+	public List<PhoneItem> findPhoneItemsByGroupName(String groupName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public long insertPhoneGroup(PhoneGroup group) {
+		try {
+			this.getSqlMapClient().insert("jtester-tutorial.insert_phone_group", group);
+			long id = this.getGroupIdByName(group.getGroupName());
+			return id;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void addPhoneItemToGroup(final long itemId, final long groupId) {
+		try {
+			Map<String, Long> parameters = new HashMap<String, Long>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("phoneItemId", itemId);
+					put("phoneGroupId", groupId);
+				}
+			};
+			this.getSqlMapClient().insert("jtester-tutorial.add_phone_item_to_group", parameters);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public long getGroupIdByName(String groupName) {
+		try {
+			Long id = (Long) this.getSqlMapClient().queryForObject("jtester-tutorial.find_group_id_by_name", groupName);
+			if (id == null) {
+				throw new RuntimeException("can't find phone group by name:" + groupName);
+			} else {
+				return id;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+}
