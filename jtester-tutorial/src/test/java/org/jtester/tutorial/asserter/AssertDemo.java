@@ -24,4 +24,11 @@ public class AssertDemo extends JTester {
 		// jtester方式
 		want.string(statement).contains("abc");
 	}
+
+	/**
+	 * 复杂的验证功能
+	 */
+	public void testComplexStyle() {
+
+	}
 }
