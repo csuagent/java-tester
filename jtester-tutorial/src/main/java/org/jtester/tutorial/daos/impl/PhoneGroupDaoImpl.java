@@ -12,9 +12,15 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 public class PhoneGroupDaoImpl extends SqlMapClientDaoSupport implements PhoneGroupDao {
 
-	public List<PhoneItem> findPhoneItemsByGroupName(String groupName) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<PhoneItem> findPhoneItemsByGroupId(long groupId) {
+		try {
+			List<?> items = (List<?>) this.getSqlMapClient().queryForList(
+					"jtester-tutorial.find_phone_items_id_by_group", groupId);
+			return (List<PhoneItem>) items;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public long insertPhoneGroup(PhoneGroup group) {

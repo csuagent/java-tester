@@ -34,4 +34,14 @@
 		select id from phone_item where username=#value#
 		]]>
 	</select>
+	
+	<select id="find_phone_items_id_by_group" resultMap="PHONE_ITEM"
+		parameterClass="long">
+        <![CDATA[
+		select * from phone_item as item 
+		where exists (select 1 from phone_item_group as ig
+		              where item.id = ig.item_id 
+		              and ig.group_id=#value#)
+		]]>
+	</select>
 </sqlMap>

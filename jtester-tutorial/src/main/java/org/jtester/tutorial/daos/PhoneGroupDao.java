@@ -6,8 +6,8 @@ import org.jtester.tutorial.beans.PhoneGroup;
 import org.jtester.tutorial.beans.PhoneItem;
 
 public interface PhoneGroupDao {
-	List<PhoneItem> findPhoneItemsByGroupName(String groupName);
-	
+	List<PhoneItem> findPhoneItemsByGroupId(long groupId);
+
 	long getGroupIdByName(String groupName);
 
 	long insertPhoneGroup(PhoneGroup group);

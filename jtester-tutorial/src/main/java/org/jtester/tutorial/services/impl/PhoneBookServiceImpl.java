@@ -2,6 +2,7 @@ package org.jtester.tutorial.services.impl;
 
 import java.util.List;
 
+import org.jtester.tutorial.beans.PhoneGroup;
 import org.jtester.tutorial.beans.PhoneItem;
 import org.jtester.tutorial.daos.PhoneGroupDao;
 import org.jtester.tutorial.daos.PhoneItemDao;
@@ -33,16 +34,18 @@ public class PhoneBookServiceImpl implements PhoneBookService {
 	}
 
 	public List<PhoneItem> findPhoneItemsByGroupName(String groupName) {
-		return this.phoneGroupDao.findPhoneItemsByGroupName(groupName);
+		long groupId = this.phoneGroupDao.getGroupIdByName(groupName);
+		return this.phoneGroupDao.findPhoneItemsByGroupId(groupId);
 	}
 
 	public void insertPhoneBook(String username, String mobile, String groupname) {
 		PhoneItem phoneItem = new PhoneItem();
-		// TODO Auto-generated method stub
+		phoneItem.setUsername(username);
+		phoneItem.setMobile(mobile);
 
 		long itemId = this.phoneItemDao.insertPhoneItem(phoneItem);
-		// PhoneGroup phoneGroup= new PhoneGroup();
-		System.out.println(itemId);
-
+		PhoneGroup phoneGroup = new PhoneGroup(groupname);
+		long groupId = this.phoneGroupDao.insertPhoneGroup(phoneGroup);
+		this.phoneGroupDao.addPhoneItemToGroup(itemId, groupId);
 	}
 }

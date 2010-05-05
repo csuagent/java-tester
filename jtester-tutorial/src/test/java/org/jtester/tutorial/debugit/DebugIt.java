@@ -2,6 +2,7 @@ package org.jtester.tutorial.debugit;
 
 import java.util.List;
 
+import org.jtester.fit.dbfit.DbFitRunner;
 import org.jtester.tutorial.beans.PhoneGroup;
 import org.jtester.tutorial.beans.PhoneItem;
 import org.jtester.tutorial.daos.PhoneGroupDao;
@@ -11,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DebugIt {
 	public static void main(String[] args) {
+		DbFitRunner.runDbFit(DebugIt.class, "clean table.wiki");
 		// 初始化环境
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
 				"spring/data-source.xml", "spring/beans.xml" });
