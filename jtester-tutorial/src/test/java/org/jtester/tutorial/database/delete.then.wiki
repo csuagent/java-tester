@@ -1,0 +1,10 @@
+|connect|
+
+|delete|tdd_user|
+|first_name|
+|your first name|
+
+|query|select * from tdd_user|
+|first_name|
+|darui|
+|your first name2|

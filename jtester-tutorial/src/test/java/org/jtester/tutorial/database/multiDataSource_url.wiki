@@ -1,0 +1,29 @@
+多数据源支持，直接在connect命令后面跟url，用户，密码，driver class
+|connect|jdbc:mysql://10.249.164.1/jtester?characterEncoding=UTF8|daruiwu||com.mysql.jdbc.Driver|
+
+|clean table|tdd_user|
+
+|insert|tdd_user|
+|id|salary|
+|1|2345|
+
+|query|select * from tdd_user|
+|id|
+|1|
+
+|commit|
+
+连接默认数据库
+|connect|
+
+|clean table|tdd_user|
+
+|insert|tdd_user|
+|id|sarary|
+|1|2345|
+
+|query|select * from tdd_user|
+|id|
+|1|
+
+|commit|

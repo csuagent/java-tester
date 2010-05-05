@@ -1,0 +1,8 @@
+|connect|
+
+根据条件查询记录，验证相应的字段
+|query|select * from tdd_user|
+|first_name|last_name|
+|darui|wu|
+|your first name|your last name|
+|your first name2|your last name2|

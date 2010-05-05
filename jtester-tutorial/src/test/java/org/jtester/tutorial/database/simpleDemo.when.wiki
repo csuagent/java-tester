@@ -1,0 +1,14 @@
+数据库连接，使用jtester.properties中配置好的属性
+|connect|
+
+清空tdd_user中的数据
+|clean table|tdd_user|
+
+准备数据，往tdd_user中插入2条测试使用的记录
+|insert|tdd_user|
+|id|first_name|last_name|
+|1|your first name|your last name|
+|2|your first name2|your last name2|
+
+提交数据
+|commit|
