@@ -1,0 +1,8 @@
+|org.jtester.fixture.CustomizeTypeFixture|
+|testMethod_Integer|
+|>>value|
+|3|
+|3|
+
+
+

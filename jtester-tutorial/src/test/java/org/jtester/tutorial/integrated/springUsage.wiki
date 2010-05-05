@@ -1,0 +1,15 @@
+|org.jtester.fit.dbfit.DatabaseFixture|
+|connect|
+
+|clean table|tdd_user|
+
+|org.jtester.fixture.SpringUsageFixture|
+|insertUser|
+|first|last|
+|my first name ddd|my last name dd|
+|my first name ccc|my last name cc|
+
+|query|select * from tdd_user|
+|first_name|
+|my first name ddd|
+|my first name ccc|
