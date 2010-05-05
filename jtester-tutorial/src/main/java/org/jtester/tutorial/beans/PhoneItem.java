@@ -1,5 +1,7 @@
 package org.jtester.tutorial.beans;
 
+import org.jtester.utility.DateUtil;
+
 public class PhoneItem implements java.io.Serializable {
 	private static final long serialVersionUID = 1145595282412714496L;
 	private long id;
@@ -13,13 +15,18 @@ public class PhoneItem implements java.io.Serializable {
 	private String title;
 	private String mail;
 
-	public PhoneItem() {
+	private String createdDate;
 
+	private String modifedTime;
+
+	public PhoneItem() {
 	}
 
 	public PhoneItem(String username, String mobile) {
 		this.username = username;
 		this.mobile = mobile;
+		this.createdDate = DateUtil.currDateStr();
+		this.modifedTime = DateUtil.currDateTimeStr();
 	}
 
 	public long getId() {
@@ -62,7 +69,7 @@ public class PhoneItem implements java.io.Serializable {
 		this.familyPhone = familyPhone;
 	}
 
-	public Boolean isGender() {
+	public Boolean getGender() {
 		return gender;
 	}
 
@@ -92,5 +99,21 @@ public class PhoneItem implements java.io.Serializable {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getModifedTime() {
+		return modifedTime;
+	}
+
+	public void setModifedTime(String modifedTime) {
+		this.modifedTime = modifedTime;
 	}
 }
