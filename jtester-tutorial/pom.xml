@@ -3,7 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester-tutorial</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1</version>
+	<properties>
+		<jmockit.version>0.997</jmockit.version>
+	</properties>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<outputDirectory>target/classes</outputDirectory>
