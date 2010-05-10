@@ -5,7 +5,7 @@ CREATE TABLE `phone_group` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `group_name` (`group_name`)
 )ENGINE=InnoDB
-AUTO_INCREMENT=13 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+AUTO_INCREMENT=2 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 
 CREATE TABLE `phone_item` (
@@ -20,7 +20,7 @@ CREATE TABLE `phone_item` (
   `mail` VARCHAR(20) COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB
-AUTO_INCREMENT=7 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+AUTO_INCREMENT=3 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 
 CREATE TABLE `phone_item_group` (
