@@ -30,7 +30,6 @@ public class PhoneItemDaoImpl extends SqlMapClientDaoSupport implements PhoneIte
 	}
 
 	public List<PhoneItem> findPageBook(int page, int pageSize) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
