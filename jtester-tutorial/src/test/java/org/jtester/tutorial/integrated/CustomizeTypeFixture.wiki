@@ -1,4 +1,4 @@
-|org.jtester.fixture.CustomizeTypeFixture|
+|org.jtester.tutorial.integrated.CustomizeTypeFixture|
 |testMethod_dto|
 |first name|age|addresses|map|my list|
 |a|34|wenyi,wener|key1:value;key2:value|add;ddd|

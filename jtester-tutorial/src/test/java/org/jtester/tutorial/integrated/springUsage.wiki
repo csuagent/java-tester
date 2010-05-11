@@ -1,15 +1,15 @@
 |org.jtester.fit.dbfit.DatabaseFixture|
 |connect|
 
-|clean table|tdd_user|
+|clean table|phone_item,phone_group,phone_item_group|
 
-|org.jtester.fixture.SpringUsageFixture|
+|org.jtester.tutorial.integrated.SpringUsageFixture|
 |insertUser|
-|first|last|
-|my first name ddd|my last name dd|
-|my first name ccc|my last name cc|
+|username|mobile|
+|darui.wu	|15900001111|
+|jobs.wang	|15900001112|
 
-|query|select * from tdd_user|
-|first_name|
-|my first name ddd|
-|my first name ccc|
+|query|select * from phone_item|
+|username|
+|darui.wu	|
+|jobs.wang	|

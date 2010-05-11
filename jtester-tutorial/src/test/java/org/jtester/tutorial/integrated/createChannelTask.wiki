@@ -1,6 +1,6 @@
 
 
-|org.jtester.fixture.EsbChannelTaskManagerFixture|
+|org.jtester.tutorial.integrated.EsbChannelTaskManagerFixture|
 |createChannelTask|
 |esbResult|source|password|channelTask|orgIdPath|taskName|sendUser|sendCount|sendType|customerFatigueRules|fatigueEnabled|blacklistNames|isRemoteSend|externalId|priority|channelSetting|isTest|
 |true|ICBU.POSTOFFICE|password4PostOffice||12/34|testtask1|tester1|100|e_mail|LastCount(Email,3)<=100|true||true|null|null|EMAIL:[HOST]:[PORT]:[USER]:[PASSWORD]|false|

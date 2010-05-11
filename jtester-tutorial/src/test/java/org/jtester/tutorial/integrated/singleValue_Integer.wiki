@@ -1,4 +1,4 @@
-|org.jtester.fixture.CustomizeTypeFixture|
+|org.jtester.tutorial.integrated.CustomizeTypeFixture|
 |testMethod_Integer|
 |>>value|
 |3|
