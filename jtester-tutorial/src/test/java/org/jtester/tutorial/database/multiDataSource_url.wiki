@@ -1,20 +1,5 @@
-å¤šæ•°æ®æºæ”¯æŒï¼Œç›´æ¥åœ¨connectå‘½ä»¤åé¢è·Ÿurlï¼Œç”¨æˆ·ï¼Œå¯†ç ï¼Œdriver class
-|connect|jdbc:mysql://10.249.164.1/jtester?characterEncoding=UTF8|daruiwu||com.mysql.jdbc.Driver|
-
-|clean table|tdd_user|
-
-|insert|tdd_user|
-|id|salary|
-|1|2345|
-
-|query|select * from tdd_user|
-|id|
-|1|
-
-|commit|
-
-è¿æ¥é»˜è®¤æ•°æ®åº“
-|connect|
+¶àÊı¾İÔ´Ö§³Ö£¬Ö±½ÓÔÚconnectÃüÁîºóÃæ¸úurl£¬ÓÃ»§£¬ÃÜÂë£¬driver class
+|connect|jdbc:mysql://localhost/presentationtdd?characterEncoding=UTF8|root|password|com.mysql.jdbc.Driver|
 
 |clean table|tdd_user|
 
@@ -25,5 +10,20 @@
 |query|select * from tdd_user|
 |id|
 |1|
+
+|commit|
+
+Á¬½ÓÄ¬ÈÏÊı¾İ¿â
+|connect|
+
+|clean table|phone_item|
+
+|insert|phone_item|
+|id|username|mobile|
+|1|darui.wu|15900001111|
+
+|query|select * from phone_item|
+|mobile|
+|15900001111|
 
 |commit|

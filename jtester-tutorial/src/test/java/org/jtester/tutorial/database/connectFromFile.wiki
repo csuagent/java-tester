@@ -1,28 +1,28 @@
 GRANT ALL PRIVILEGES ON *.* TO daruiwu@10.16.47.1;
 
-ä½¿ç”¨jtester.propertiesä¸­å‰ç¼€ä¸ºhouyiçš„æ•°æ®åº“å±æ€§è¿æ¥
-|connect from file|houyi|
+Ê¹ÓÃjtester.propertiesÖĞÇ°×ºÎªpresentationtddµÄÊı¾İ¿âÊôĞÔÁ¬½Ó
+|connect from file|presentationtdd|
 
 |clean table|tdd_user|
 
 |insert|tdd_user|
-|id|salary|
+|id|sarary|
 |2|234|
 
 |commit|
 
 |query|select * from tdd_user|
-|id|salary|
+|id|sarary|
 |2|234|
 
 
-ä½¿ç”¨æŒ‡å®šæ–‡ä»¶ä¸­çš„æ— å‰ç¼€æ•°æ®åº“å±æ€§è¿æ¥
-|connect from file||org/jtester/dbfit/db.properties|
+Ê¹ÓÃÖ¸¶¨ÎÄ¼şÖĞµÄÎŞÇ°×ºÊı¾İ¿âÊôĞÔÁ¬½Ó
+|connect from file||org/jtester/tutorial/database/db.properties|
 
 |clean table|tdd_user|
 
 |insert|tdd_user|
-|id|salary|
+|id|sarary|
 |1|2345|
 
 |query|select * from tdd_user|
@@ -31,11 +31,11 @@ GRANT ALL PRIVILEGES ON *.* TO daruiwu@10.16.47.1;
 
 |commit|
 
-ä½¿ç”¨æŒ‡å®šæ–‡ä»¶ä¸­çš„å‰ç¼€ä¸ºanotherçš„æ•°æ®åº“å±æ€§è¿æ¥
-|connect from file|another|org/jtester/dbfit/db.properties|
+Ê¹ÓÃÖ¸¶¨ÎÄ¼şÖĞµÄÇ°×ºÎªanotherµÄÊı¾İ¿âÊôĞÔÁ¬½Ó
+|connect from file|presentationtdd|org/jtester/tutorial/database/db.properties|
 
 |insert|tdd_user|
-|id|salary|
+|id|sarary|
 |2|2345|
 
 |commit|

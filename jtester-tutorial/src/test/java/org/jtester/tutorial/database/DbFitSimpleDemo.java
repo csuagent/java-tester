@@ -11,7 +11,7 @@ import org.unitils.spring.annotation.SpringBeanByName;
 
 @Test
 @SpringApplicationContext( { "spring/data-source.xml" })
-@AutoBeanInject(maps = { @BeanMap(intf = "**.*", impl = "**.*Impl") })
+@AutoBeanInject(maps = { @BeanMap(intf = "**.*", impl = "**.impl.*Impl") })
 public class DbFitSimpleDemo extends JTester {
 	@SpringBeanByName
 	PhoneBookService phoneBookService;
