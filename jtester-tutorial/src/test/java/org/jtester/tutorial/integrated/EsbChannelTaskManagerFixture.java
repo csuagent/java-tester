@@ -7,10 +7,10 @@ import net.sf.json.JSONObject;
 import org.jtester.fit.fixture.DtoPropertyFixture;
 import org.jtester.utility.StringHelper;
 
-import com.ali.martini.biz.marketing.channel.constants.ChannelConstant;
-import com.ali.martini.biz.marketing.channel.constants.ChannelTaskConstant;
-import com.ali.martini.biz.marketing.channel.constants.EsbResult;
-import com.ali.martini.biz.marketing.channel.constants.EsbService;
+import com.xxx.biz.service.ChannelConstant;
+import com.xxx.biz.service.ChannelTaskConstant;
+import com.xxx.biz.service.EsbResult;
+import com.xxx.biz.service.EsbService;
 
 public class EsbChannelTaskManagerFixture extends DtoPropertyFixture {
 

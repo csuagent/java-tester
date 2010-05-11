@@ -1,4 +1,4 @@
-package com.ali.martini.biz.marketing.channel.constants;
+package com.xxx.biz.service;
 
 /**
  * EsbChannelMessageManager

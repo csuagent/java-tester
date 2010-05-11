@@ -1,4 +1,4 @@
-package com.ali.martini.biz.marketing.channel.constants;
+package com.xxx.biz.service;
 
 public class EsbResult implements java.io.Serializable {
 	private static final long serialVersionUID = 8514215927548436570L;
