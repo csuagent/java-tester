@@ -12,14 +12,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DebugIt {
 	public static void main(String[] args) {
-		 DbFitRunner.runDbFit(DebugIt.class, "clean table.wiki");
-		// 初始化环境
+		DbFitRunner.runDbFit(DebugIt.class, "clean table.wiki");
+		// 初始化spring环境
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
 				"spring/data-source.xml", "spring/beans.xml" });
-		// 准备数据
 		PhoneGroupDao phoneGroupDao = (PhoneGroupDao) context.getBean("phoneGroupDao");
-		long groupId = phoneGroupDao.insertPhoneGroup(new PhoneGroup("classmate"));
 		PhoneItemDao phoneItemDao = (PhoneItemDao) context.getBean("phoneItemDao");
+
+		// 准备数据
+		long groupId = phoneGroupDao.insertPhoneGroup(new PhoneGroup("classmate"));
 		long phoneId1 = phoneItemDao.insertPhoneItem(new PhoneItem("darui.wu", "15900001111"));
 		phoneGroupDao.addPhoneItemToGroup(phoneId1, groupId);
 
