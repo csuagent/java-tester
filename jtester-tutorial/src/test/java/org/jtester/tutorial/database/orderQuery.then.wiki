@@ -1,18 +1,18 @@
 |connect|
 
 查询出来的数据和你匹配数据的顺序必须一致
-|ordered query|select * from tdd_user|
-|first_name|last_name|
-|your first name|your last name|
-|your first name2|your last name2|
-|darui|wu|
+|ordered query|select * from phone_item|
+|username|
+|martin.bob|
+|jobs.wang|
+|darui.wu|
 
 
 execute后面可以执行任何sql语句
-|execute|delete from tdd_user|
+|execute|delete from phone_item|
 
 |commit|
 
-|query|select count(*) as count from tdd_user|
+|query|select count(*) as count from phone_item|
 |count|
 |0|

@@ -1,10 +1,10 @@
 |connect|
 
-|delete|tdd_user|
-|first_name|
-|your first name|
+|delete|phone_item|
+|username|
+|martin.bob|
 
-|query|select * from tdd_user|
-|first_name|
-|darui|
-|your first name2|
+|query|select * from phone_item|
+|username|
+|darui.wu|
+|jobs.wang|
