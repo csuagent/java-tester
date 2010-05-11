@@ -48,6 +48,7 @@ public class UserServiceTest_PartitialMock extends JTester {
 	}
 
 	@Test
+	@DbFit(when = "org/jtester/tutorial/debugit/testFindPhoneItemsByGroupName.wiki")
 	public void partialMock2() {
 		new Expectations() {
 			@Mocked(methods = "getGroupIdByName")
