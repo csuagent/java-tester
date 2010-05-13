@@ -36,9 +36,10 @@ public class UserServiceTest_PartitialMock extends JTester {
 				throw new RuntimeException();
 			}
 		};
-
+		// 调用原有的逻辑
 		List<PhoneItem> items = phoneGroupDao.findPhoneItemsByGroupId(1L);
 		want.collection(items).sizeEq(2);
+		// 调用的是mock的方法
 		try {
 			phoneGroupDao.getGroupIdByName(groupname);
 			want.fail();
