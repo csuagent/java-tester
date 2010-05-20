@@ -46,6 +46,7 @@
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
+					<encoding>utf-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -270,11 +271,11 @@
 			<version>10.2.0.3.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>jline</groupId>
-			<artifactId>jline</artifactId>
-			<version>0.9.94</version>
-		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>jline</groupId>-->
+		<!--			<artifactId>jline</artifactId>-->
+		<!--			<version>0.9.94</version>-->
+		<!--		</dependency>-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
@@ -313,18 +314,18 @@
 			<artifactId>fitlibrary</artifactId>
 			<version>${fitlibrary.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-ant-tasks</artifactId>
-			<version>2.0.10</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>ant</artifactId>
-					<groupId>ant</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.maven</groupId>-->
+		<!--			<artifactId>maven-ant-tasks</artifactId>-->
+		<!--			<version>2.0.10</version>-->
+		<!--			<scope>provided</scope>-->
+		<!--			<exclusions>-->
+		<!--				<exclusion>-->
+		<!--					<artifactId>ant</artifactId>-->
+		<!--					<groupId>ant</groupId>-->
+		<!--				</exclusion>-->
+		<!--			</exclusions>-->
+		<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -393,11 +394,23 @@
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils-dbmaintainer</artifactId>
 			<version>${unitils.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.dbunit</groupId>
+					<artifactId>dbunit</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils-database</artifactId>
 			<version>${unitils.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.dbunit</groupId>
+					<artifactId>dbunit</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.unitils</groupId>
@@ -409,11 +422,11 @@
 			<artifactId>unitils-spring</artifactId>
 			<version>${unitils.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-dbunit</artifactId>
-			<version>${unitils.version}</version>
-		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.unitils</groupId>-->
+		<!--			<artifactId>unitils-dbunit</artifactId>-->
+		<!--			<version>${unitils.version}</version>-->
+		<!--		</dependency>-->
 		<dependency>
 			<groupId>mockit</groupId>
 			<artifactId>jmockit</artifactId>
