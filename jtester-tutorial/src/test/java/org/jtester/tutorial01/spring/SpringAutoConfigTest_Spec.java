@@ -1,4 +1,4 @@
-package org.jtester.tutorial.spring;
+package org.jtester.tutorial01.spring;
 
 import java.util.ArrayList;
 import java.util.List;

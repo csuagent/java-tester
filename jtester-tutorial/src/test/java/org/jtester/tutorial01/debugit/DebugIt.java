@@ -1,4 +1,4 @@
-package org.jtester.tutorial.debugit;
+package org.jtester.tutorial01.debugit;
 
 import java.util.List;
 

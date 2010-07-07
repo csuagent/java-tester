@@ -1,4 +1,4 @@
-package org.jtester.tutorial.debugit.testng;
+package org.jtester.tutorial01.debugit.testng;
 
 import org.testng.annotations.Test;
 

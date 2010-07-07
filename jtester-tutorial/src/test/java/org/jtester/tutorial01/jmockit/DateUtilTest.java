@@ -1,4 +1,4 @@
-package org.jtester.tutorial.jmockit;
+package org.jtester.tutorial01.jmockit;
 
 import java.util.Calendar;
 import java.util.Date;

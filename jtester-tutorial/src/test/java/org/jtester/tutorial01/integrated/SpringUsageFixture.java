@@ -1,4 +1,4 @@
-package org.jtester.tutorial.integrated;
+package org.jtester.tutorial01.integrated;
 
 import org.jtester.fit.fixture.DtoPropertyFixture;
 import org.jtester.tutorial01.beans.PhoneItem;

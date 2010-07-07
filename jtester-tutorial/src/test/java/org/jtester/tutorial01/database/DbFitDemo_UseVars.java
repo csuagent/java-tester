@@ -1,4 +1,4 @@
-package org.jtester.tutorial.database;
+package org.jtester.tutorial01.database;
 
 import java.util.HashMap;
 import java.util.Map;

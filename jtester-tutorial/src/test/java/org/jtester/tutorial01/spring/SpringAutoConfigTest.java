@@ -1,4 +1,4 @@
-package org.jtester.tutorial.spring;
+package org.jtester.tutorial01.spring;
 
 import org.jtester.testng.JTester;
 import org.jtester.tutorial01.beans.PhoneItem;

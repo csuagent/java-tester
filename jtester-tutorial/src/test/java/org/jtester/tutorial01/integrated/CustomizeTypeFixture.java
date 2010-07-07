@@ -1,4 +1,4 @@
-package org.jtester.tutorial.integrated;
+package org.jtester.tutorial01.integrated;
 
 import java.util.HashMap;
 import java.util.List;

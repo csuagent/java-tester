@@ -1,4 +1,4 @@
-package org.jtester.tutorial.integrated;
+package org.jtester.tutorial01.integrated;
 
 import org.jtester.fit.FitRunner;
 import org.jtester.testng.JTester;

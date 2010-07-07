@@ -1,4 +1,4 @@
-package org.jtester.tutorial.database;
+package org.jtester.tutorial01.database;
 
 import org.jtester.testng.JTester;
 import org.jtester.tutorial01.services.PhoneBookService;
