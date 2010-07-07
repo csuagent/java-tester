@@ -3,8 +3,8 @@ package org.jtester.tutorial.debugit;
 import java.util.List;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.services.PhoneBookService;
 import org.jtester.unitils.dbfit.DbFit;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringApplicationContext;

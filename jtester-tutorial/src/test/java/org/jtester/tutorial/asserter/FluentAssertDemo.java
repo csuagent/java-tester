@@ -3,7 +3,7 @@ package org.jtester.tutorial.asserter;
 import java.util.Arrays;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
+import org.jtester.tutorial01.beans.PhoneItem;
 import org.testng.annotations.Test;
 
 @Test

@@ -1,4 +1,4 @@
-package org.jtester.tutorial.utils;
+package org.jtester.tutorial01.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,9 +1,9 @@
-package org.jtester.tutorial.daos.impl;
+package org.jtester.tutorial01.daos.impl;
 
 import java.util.List;
 
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneItemDao;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneItemDao;
 
 public class PhoneItemDaoSpecImpl implements PhoneItemDao {
 	private List<PhoneItem> phoneItems;

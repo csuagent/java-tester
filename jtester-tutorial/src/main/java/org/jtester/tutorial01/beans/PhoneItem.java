@@ -1,4 +1,4 @@
-package org.jtester.tutorial.beans;
+package org.jtester.tutorial01.beans;
 
 import org.jtester.utility.DateUtil;
 

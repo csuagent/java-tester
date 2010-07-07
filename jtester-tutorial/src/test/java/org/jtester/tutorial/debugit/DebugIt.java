@@ -3,11 +3,11 @@ package org.jtester.tutorial.debugit;
 import java.util.List;
 
 import org.jtester.fit.dbfit.DbFitRunner;
-import org.jtester.tutorial.beans.PhoneGroup;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneGroupDao;
-import org.jtester.tutorial.daos.PhoneItemDao;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneGroup;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneGroupDao;
+import org.jtester.tutorial01.daos.PhoneItemDao;
+import org.jtester.tutorial01.services.PhoneBookService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DebugIt {

@@ -8,11 +8,11 @@ import mockit.MockClass;
 import mockit.UsingMocksAndStubs;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneGroupDao;
-import org.jtester.tutorial.daos.impl.PhoneGroupDaoImpl;
 import org.jtester.tutorial.jmockit.DateUtilTest.MockDateUtil;
-import org.jtester.tutorial.utils.DateUtil;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneGroupDao;
+import org.jtester.tutorial01.daos.impl.PhoneGroupDaoImpl;
+import org.jtester.tutorial01.utils.DateUtil;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;

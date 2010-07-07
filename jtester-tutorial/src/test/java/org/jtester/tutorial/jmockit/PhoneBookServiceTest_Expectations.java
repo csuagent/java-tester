@@ -6,9 +6,9 @@ import java.util.List;
 import mockit.Mocked;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneGroupDao;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneGroupDao;
+import org.jtester.tutorial01.services.PhoneBookService;
 import org.jtester.unitils.spring.SpringBeanFor;
 import org.testng.annotations.Test;
 import org.unitils.spring.annotation.SpringApplicationContext;

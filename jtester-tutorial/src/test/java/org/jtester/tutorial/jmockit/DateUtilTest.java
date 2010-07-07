@@ -1,5 +1,6 @@
 package org.jtester.tutorial.jmockit;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import mockit.Mock;
@@ -8,10 +9,8 @@ import mockit.MockUp;
 import mockit.Mockit;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.utils.DateUtil;
+import org.jtester.tutorial01.utils.DateUtil;
 import org.testng.annotations.Test;
-
-import com.ibm.icu.util.Calendar;
 
 @SuppressWarnings("unused")
 @Test

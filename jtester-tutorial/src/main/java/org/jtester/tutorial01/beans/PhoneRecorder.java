@@ -1,4 +1,4 @@
-package org.jtester.tutorial.beans;
+package org.jtester.tutorial01.beans;
 
 public class PhoneRecorder implements java.io.Serializable {
 	private static final long serialVersionUID = 6482531484126014995L;

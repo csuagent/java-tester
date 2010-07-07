@@ -1,4 +1,4 @@
-package org.jtester.tutorial.beans;
+package org.jtester.tutorial01.beans;
 
 public class PhoneGroup implements java.io.Serializable {
 	private static final long serialVersionUID = 104322259850302278L;

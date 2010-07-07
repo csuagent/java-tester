@@ -1,10 +1,10 @@
-package org.jtester.tutorial.daos.impl;
+package org.jtester.tutorial01.daos.impl;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneItemDao;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneItemDao;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 public class PhoneItemDaoImpl extends SqlMapClientDaoSupport implements PhoneItemDao {

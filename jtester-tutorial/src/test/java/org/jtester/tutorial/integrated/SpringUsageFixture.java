@@ -1,8 +1,8 @@
 package org.jtester.tutorial.integrated;
 
 import org.jtester.fit.fixture.DtoPropertyFixture;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneItemDao;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneItemDao;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByName;
 

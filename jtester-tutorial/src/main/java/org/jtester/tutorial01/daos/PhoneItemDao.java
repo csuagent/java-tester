@@ -1,8 +1,8 @@
-package org.jtester.tutorial.daos;
+package org.jtester.tutorial01.daos;
 
 import java.util.List;
 
-import org.jtester.tutorial.beans.PhoneItem;
+import org.jtester.tutorial01.beans.PhoneItem;
 
 public interface PhoneItemDao {
 	PhoneItem findPhoneByName(String username);

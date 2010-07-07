@@ -1,13 +1,13 @@
-package org.jtester.tutorial.daos.impl;
+package org.jtester.tutorial01.daos.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jtester.tutorial.beans.PhoneGroup;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneGroupDao;
+import org.jtester.tutorial01.beans.PhoneGroup;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneGroupDao;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 public class PhoneGroupDaoImpl extends SqlMapClientDaoSupport implements PhoneGroupDao {

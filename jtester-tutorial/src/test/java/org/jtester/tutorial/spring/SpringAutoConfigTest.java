@@ -1,8 +1,8 @@
 package org.jtester.tutorial.spring;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.services.PhoneBookService;
 import org.jtester.unitils.dbfit.DbFit;
 import org.jtester.unitils.spring.AutoBeanInject;
 import org.jtester.unitils.spring.AutoBeanInject.BeanMap;

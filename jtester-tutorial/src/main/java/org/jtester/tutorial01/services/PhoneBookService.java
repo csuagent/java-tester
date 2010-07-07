@@ -1,8 +1,8 @@
-package org.jtester.tutorial.services;
+package org.jtester.tutorial01.services;
 
 import java.util.List;
 
-import org.jtester.tutorial.beans.PhoneItem;
+import org.jtester.tutorial01.beans.PhoneItem;
 
 public interface PhoneBookService {
 	PhoneItem findPhoneByName(String username);

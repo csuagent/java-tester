@@ -7,10 +7,10 @@ import mockit.MockUp;
 import mockit.Mocked;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneGroupDao;
-import org.jtester.tutorial.daos.impl.PhoneGroupDaoImpl;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneGroupDao;
+import org.jtester.tutorial01.daos.impl.PhoneGroupDaoImpl;
+import org.jtester.tutorial01.services.PhoneBookService;
 import org.jtester.unitils.dbfit.DbFit;
 import org.jtester.unitils.spring.SpringBeanFor;
 import org.testng.annotations.Test;
@@ -51,6 +51,10 @@ public class UserServiceTest_PartitialMock extends JTester {
 	@Test
 	@DbFit(when = "org/jtester/tutorial/debugit/testFindPhoneItemsByGroupName.wiki")
 	public void partialMock2() {
+		
+//		want.object(list.iterator().next().getPriceList().get(0)).reflectionEq(price001);
+//		List<Object> list = null;
+//		want.collection(list).sizeEq(1).reflectionEq(new Object[] {price001});
 		new Expectations() {
 			@Mocked(methods = "getGroupIdByName")
 			PhoneGroupDaoImpl dao;

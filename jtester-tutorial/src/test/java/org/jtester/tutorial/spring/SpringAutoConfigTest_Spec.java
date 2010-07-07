@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jtester.testng.JTester;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneItemDao;
-import org.jtester.tutorial.daos.impl.PhoneItemDaoSpecImpl;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneItemDao;
+import org.jtester.tutorial01.daos.impl.PhoneItemDaoSpecImpl;
+import org.jtester.tutorial01.services.PhoneBookService;
 import org.jtester.unitils.dbfit.DbFit;
 import org.jtester.unitils.spring.AutoBeanInject;
 import org.jtester.unitils.spring.SpringBeanFor;

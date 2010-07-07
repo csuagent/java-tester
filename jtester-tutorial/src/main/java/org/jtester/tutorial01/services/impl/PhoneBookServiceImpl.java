@@ -1,12 +1,12 @@
-package org.jtester.tutorial.services.impl;
+package org.jtester.tutorial01.services.impl;
 
 import java.util.List;
 
-import org.jtester.tutorial.beans.PhoneGroup;
-import org.jtester.tutorial.beans.PhoneItem;
-import org.jtester.tutorial.daos.PhoneGroupDao;
-import org.jtester.tutorial.daos.PhoneItemDao;
-import org.jtester.tutorial.services.PhoneBookService;
+import org.jtester.tutorial01.beans.PhoneGroup;
+import org.jtester.tutorial01.beans.PhoneItem;
+import org.jtester.tutorial01.daos.PhoneGroupDao;
+import org.jtester.tutorial01.daos.PhoneItemDao;
+import org.jtester.tutorial01.services.PhoneBookService;
 
 public class PhoneBookServiceImpl implements PhoneBookService {
 	private PhoneItemDao phoneItemDao;
