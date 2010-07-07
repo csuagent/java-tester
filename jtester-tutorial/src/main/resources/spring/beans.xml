@@ -6,10 +6,10 @@
  http://www.sprin gframework.org/schema/tx http://www.sprin gframework.org/schema/tx/sprin g-tx-2.0.xsd "
  default-dependency-check="none" default-lazy-init="false" default-autowire="byName">
 
-    <bean id="phoneItemDao" class="org.jtester.tutorial.daos.impl.PhoneItemDaoImpl"/>
+    <bean id="phoneItemDao" class="org.jtester.tutorial01.daos.impl.PhoneItemDaoImpl"/>
     
-    <bean id="phoneGroupDao" class="org.jtester.tutorial.daos.impl.PhoneGroupDaoImpl"/>
+    <bean id="phoneGroupDao" class="org.jtester.tutorial01.daos.impl.PhoneGroupDaoImpl"/>
     
-    <bean id="phoneBookService" class="org.jtester.tutorial.services.impl.PhoneBookServiceImpl"/>
+    <bean id="phoneBookService" class="org.jtester.tutorial01.services.impl.PhoneBookServiceImpl"/>
 
 </beans>
