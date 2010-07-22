@@ -24,7 +24,7 @@ public class AComplexTest extends BaseForTest {
 			billingAddress = new Address("1222 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			shippingAddress = new Address("1333 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			customer = new Customer(99, "John", "Doe", 30, billingAddress, shippingAddress);
-			product = new Product(88, "SomeWidget", 19.99);
+			product = new Product("SomeWidget", 19.99);
 			invoice = new Invoice(customer);
 
 			// Exercise SUT
@@ -33,6 +33,7 @@ public class AComplexTest extends BaseForTest {
 			List<LineItem> lineItems = invoice.getLineItems();
 			if (lineItems.size() == 1) {
 				LineItem actItem = (LineItem) lineItems.get(0);
+				actItem.caculate();
 				assertEquals("inv", invoice, actItem.getInv());
 				assertEquals("prod", product, actItem.getProd());
 				assertEquals("quant", 5, actItem.getQuantity());
@@ -64,7 +65,7 @@ public class AComplexTest extends BaseForTest {
 			billingAddress = new Address("1222 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			shippingAddress = new Address("1333 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			customer = new Customer(99, "John", "Doe", 30, billingAddress, shippingAddress);
-			product = new Product(88, "SomeWidget", 19.99);
+			product = new Product("SomeWidget", 19.99);
 			invoice = new Invoice(customer);
 
 			// Exercise SUT
@@ -73,8 +74,13 @@ public class AComplexTest extends BaseForTest {
 			List<LineItem> lineItems = invoice.getLineItems();
 			if (lineItems.size() == 1) {
 				LineItem expected = new LineItem(invoice, product, 5, 30, 19.99, new BigDecimal("69.96"));
-				assertExpectedLineItem(expected, lineItems.get(0));
-				// want.object(lineItems.get(0)).reflectionEq(expected);
+				LineItem actual = lineItems.get(0);
+				actual.caculate();
+				// assertExpectedLineItem(expected, actual);
+				want.object(lineItems.get(0)).reflectionEq(expected);
+				// want.object(lineItems.get(0)).propertyEq(new String[] {
+				// "inv", "prod", "quantity", "percentDiscount", "" }, new
+				// Object[] {});
 			} else {
 				assertTrue("Invoice should have 1 item", false);
 			}
@@ -100,7 +106,7 @@ public class AComplexTest extends BaseForTest {
 			billingAddress = new Address("1222 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			shippingAddress = new Address("1333 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			customer = new Customer(99, "John", "Doe", 30, billingAddress, shippingAddress);
-			product = new Product(88, "SomeWidget", 19.99);
+			product = new Product("SomeWidget", 19.99);
 			invoice = new Invoice(customer);
 
 			// Exercise SUT
@@ -110,7 +116,10 @@ public class AComplexTest extends BaseForTest {
 			List<LineItem> lineItems = invoice.getLineItems();
 			want.collection(lineItems).sizeEq(1);
 			LineItem expected = new LineItem(invoice, product, 5, 30, 19.99, new BigDecimal("69.96"));
-			assertExpectedLineItem(expected, lineItems.get(0));
+			LineItem actual = lineItems.get(0);
+			actual.caculate();
+			// assertExpectedLineItem(expected, actual);
+			want.object(actual).reflectionEq(expected);
 
 		} finally {
 			// Teardown
@@ -134,7 +143,7 @@ public class AComplexTest extends BaseForTest {
 			billingAddress = new Address("1222 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			shippingAddress = new Address("1333 1st St SW", "Calgary", "Alberta", "T2N 2V2", "Canada");
 			customer = new Customer(99, "John", "Doe", 30, billingAddress, shippingAddress);
-			product = new Product(88, "SomeWidget", 19.99);
+			product = new Product("SomeWidget", 19.99);
 			invoice = new Invoice(customer);
 
 			// Exercise SUT
@@ -144,7 +153,10 @@ public class AComplexTest extends BaseForTest {
 			List<LineItem> lineItems = invoice.getLineItems();
 			want.collection(lineItems).sizeEq(1);
 			LineItem expected = new LineItem(invoice, product, 5, 30, 19.99, new BigDecimal("69.96"));
-			assertExpectedLineItem(expected, lineItems.get(0));
+			LineItem actual = lineItems.get(0);
+			actual.caculate();
+			// assertExpectedLineItem(expected, actual);
+			want.object(actual).reflectionEq(expected);
 
 		} finally {
 			try {
@@ -176,7 +188,7 @@ public class AComplexTest extends BaseForTest {
 		registers.add(shippingAddress);
 		Customer customer = new Customer(99, "John", "Doe", 30, billingAddress, shippingAddress);
 		registers.add(customer);
-		Product product = new Product(88, "SomeWidget", 19.99);
+		Product product = new Product("SomeWidget", 19.99);
 		registers.add(product);
 		Invoice invoice = new Invoice(customer);
 		registers.add(invoice);
@@ -188,7 +200,10 @@ public class AComplexTest extends BaseForTest {
 		List<LineItem> lineItems = invoice.getLineItems();
 		want.collection(lineItems).sizeEq(1);
 		LineItem expected = new LineItem(invoice, product, 5, 30, 19.99, new BigDecimal("69.96"));
-		assertExpectedLineItem(expected, lineItems.get(0));
+		LineItem actual = lineItems.get(0);
+		actual.caculate();
+		// assertExpectedLineItem(expected, actual);
+		want.object(actual).reflectionEq(expected);
 	}
 
 	@Test

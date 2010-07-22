@@ -10,7 +10,7 @@ public class AComplexTestHelper {
 	}
 
 	public static Product createAProduct(double unitPrice) {
-		Product product = new Product(88, "SomeWidget", 19.99);
+		Product product = new Product("SomeWidget", 19.99);
 		return product;
 	}
 

@@ -64,12 +64,16 @@ public class LineItem {
 		this.unitPrice = unitPrice;
 	}
 
-	public BigDecimal getExtendedPrice() {
+	public void caculate() {
 		if (extendedPrice == null) {
 			double d = this.unitPrice * this.quantity * (100 - this.percentDiscount) / 100;
 			String str = String.format("%.2f", d);
 			this.extendedPrice = new BigDecimal(str);
 		}
+	}
+
+	public BigDecimal getExtendedPrice() {
+		caculate();
 		return this.extendedPrice;
 	}
 }
